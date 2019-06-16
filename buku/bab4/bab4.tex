@@ -1,0 +1,277 @@
+\chapter {IMPLEMENTASI}
+
+\section{Lingkungan Implementasi}
+
+Lingkungan implementasi dan pengembangan menggunakan sebuah komputer dengan spesifikasi perangkat lunak dan perangkat keras sebagai berikut.
+
+\begin{enumerate}
+	\item Perangkat Keras
+	\begin{enumerate}
+		\item Processor Intel® Core™ i5-3320M CPU @ 2.60GHz
+		\item Random Access Memory 4GB
+	\end{enumerate}
+	\item Perangkat Lunak
+	\begin{enumerate}
+		\item Sistem Operasi Manjaro Illyria 18.0 64-bit
+		\item Text Editor Visual Studio Code 1.29.1
+		\item Bahasa Pemrograman C++
+		\item g++ (GCC) 8.2.1 20181127
+	\end{enumerate}
+\end{enumerate}
+
+\section{Implementasi Kelas Node}
+Subbab ini menjabarkan implementasi dari kelas \textit{Node} yang dijelaskan pada subbab \ref{desain_kelas_node}. Implementasi kelas \textit{Node} dapat dilihat pada Kode Sumber \ref{code:class_node}.
+
+\begin{lstlisting}[language=C++, caption=Implementasi Kelas \textit{Node}, label=code:class_node, firstnumber=0]
+	class Node
+    public:
+        int value;
+        vector<int> neighbour;
+\end{lstlisting}
+
+\section{Implementasi Kelas Tree}
+Subbab ini menjabarkan implementasi dari kelas \textit{Tree} yang dijelaskan pada subbab \ref{desain_kelas_tree}. Kelas ini menyimpan berbagai data dan operasi yang digunakan dalam sistem. Implementasi kelas \textit{Tree} dapat dilihat pada Kode Sumber \ref{code:class_tree}.
+
+\begin{lstlisting}[language=C++, firstnumber=0]
+	class Tree
+	{
+	  private:
+		int edgeValuesCount[30];
+		int distinctEdgeValue;
+		int numberOfNode;
+		vector<Node *> *nodes;
+	
+		void incrementEdgeValue(int value)
+		{
+			if (!this->edgeValuesCount[value]) {
+				++this->distinctEdgeValue;
+			}
+			++this->edgeValuesCount[value];
+		}
+	
+		void decrementEdgeValue(int value)
+		{
+			this->edgeValuesCount[value]--;
+			if (!this->edgeValuesCount[value])
+			{
+				this->distinctEdgeValue--;
+				return;
+			}
+		}
+	
+		Node *getNode(int id)
+		{
+			return this->nodes->at(id);
+		}
+	
+	\end{lstlisting}
+	
+	\pagebreak
+	\begin{lstlisting}[language=C++, firstnumber=32]
+		void populateEdgeValueFromNode(Node *node, int ignore)
+		{
+			for (vector<int>::iterator it = node->neighbour.begin(); it != node->neighbour.end(); ++it)
+			{
+				if (*it == ignore)
+					continue;
+				Node *otherNode = this->getNode(*it);
+				this->incrementEdgeValue(getEdgeValue(node, otherNode));
+			}
+		}
+	
+		void clearEdgeValueFromNode(Node *node, int ignore)
+		{
+			for (vector<int>::iterator it = node->neighbour.begin(); it != node->neighbour.end(); ++it)
+			{
+				if (*it == ignore)
+					continue;
+				Node *otherNode = this->getNode(*it);
+				this->decrementEdgeValue(getEdgeValue(node, otherNode));
+			}
+		}
+	
+	  public:
+		Tree(int numberOfNodeInp){
+			this->numberOfNode = numberOfNodeInp;
+			memset(this->edgeValuesCount, 0, sizeof(this->edgeValuesCount));
+			distinctEdgeValue = 0;
+			this->nodes = new vector<Node *>(numberOfNodeInp, nullptr);
+			for (int i = 0; i < numberOfNodeInp; ++i)
+		\end{lstlisting}
+		\pagebreak
+		\begin{lstlisting}[language=C++, firstnumber=62]
+			{
+				Node *newNode = new Node();
+				newNode->value = i;
+				newNode->neighbour = vector<int>();
+				nodes->at(i) = newNode;
+			}
+		}
+	
+		vector<Node*>* getNodes(){
+			return this->nodes;
+		}
+	
+		int getNumberOfNode(){
+			return this->numberOfNode;
+		}
+	
+		void connectNode(int a, int b)
+		{
+			Node *nodeA, *nodeB;
+			nodeA = this->getNode(a);
+			nodeB = this->getNode(b);
+			nodeA->neighbour.push_back(b);
+			nodeB->neighbour.push_back(a);
+			int edgeValue = getEdgeValue(nodeA, nodeB);
+			this->incrementEdgeValue(edgeValue);
+		}
+	
+		int countDistinctEdgeValue()
+		{
+			return this->distinctEdgeValue;
+		}
+	
+		void swapNodeValue(int a, int b)
+		{
+			Node *nodeA, *nodeB;
+			nodeA = this->nodes->at(a);
+			nodeB = this->nodes->at(b);
+			this->clearEdgeValueFromNode(nodeA, -1);
+			this->clearEdgeValueFromNode(nodeB, a);
+		\end{lstlisting}
+		\pagebreak
+		\begin{lstlisting}[language=C++, caption=Implementasi Kelas \textit{Tree}, label=code:class_tree, firstnumber=102]
+			int temp = nodeA->value;
+			nodeA->value = nodeB->value;
+			nodeB->value = temp;
+			this->populateEdgeValueFromNode(nodeA, -1);
+			this->populateEdgeValueFromNode(nodeB, a);
+			return;
+		}
+	
+		void print(){
+			for (int i = 0; i < numberOfNode; ++i)
+			{
+				if (i)
+					putchar(' ');
+				printf("%d", nodes->at(i)->value);
+			}
+			putchar('\n');
+		}
+	};
+\end{lstlisting}
+
+\section{Implementasi Kelas Tabu}
+Subbab ini menjabarkan implementasi dari kelas batasan tabu yang dijelaskan pada subbab \ref{desain_kelas_tabu}. Kelas ini berfungsi untuk mencatat data langkah tabu dan aksi yang dibatasi oleh tabu. Implementasi kelas batasan tabu dapat dilihat pada Kode Sumber \ref{code:class_tabu}.
+
+\begin{lstlisting}[language=C++, firstnumber=0]
+	class TabuLimit
+    private:
+        int stepCounter;
+        int limit;
+        int choosenAt[2800];
+
+\end{lstlisting}
+\pagebreak
+\begin{lstlisting}[language=C++, caption=Implementasi Kelas Batasan Tabu, label=code:class_tabu, firstnumber=6]
+    public:
+        TabuLimit(int limit): limit(limit), stepCounter(limit + 1)
+        {
+            memset(choosenAt, 0, sizeof(choosenAt));
+        }
+
+        void choose(int actionId) {
+            choosenAt[actionId] = stepCounter;
+            ++stepCounter;
+        }
+
+        bool isAllowed(int actionId) {
+            return (stepCounter - choosenAt[actionId]) > limit;
+        }
+\end{lstlisting}
+
+\section{Implementasi Fungsi Utama}
+Subbab ini menjabarkan implementasi dari fungsi utama yang dijelaskan pada subbab \ref{desain_fungsi_solusi}. Implementasi fungsi ini dapat dilihat pada Kode Sumber \ref{code:solution}.
+
+\begin{lstlisting}[language=C++, caption=Implementasi Fungsi Utama, label=code:solution, firstnumber=0]
+	void solution()
+	int numberOfNode;
+	scanf("%d", &numberOfNode);
+	Tree tree(numberOfNode);
+	inputTree(&tree);
+	searchAnswer(&tree);
+	tree.print();
+	return;
+\end{lstlisting}
+
+\section{Implementasi Fungsi Masukan Tree}
+Subbab ini menjabarkan implementasi dari fungsi masukan \textit{tree} yang dijelaskan pada subbab \ref{desain_fungsi_masukan_tree}. Implementasi fungsi ini dapat dilihat pada Kode Sumber \ref{code:inputTree}.
+
+\begin{lstlisting}[language=C++, caption=Implementasi Fungsi Masukan \textit{Tree}, label=code:inputTree, firstnumber=0]
+	void inputTree(Tree *tree)
+    for (int i = 1; i < tree->getNumberOfNode(); ++i)
+    {
+        int u, v;
+        scanf("%d%d", &u, &v);
+        --u;
+        --v;
+        tree->connectNode(u, v);
+    }
+\end{lstlisting}
+
+\section{Implementasi Fungsi Pencarian Jawaban}
+Subbab ini menjabarkan implementasi dari fungsi pencarian jawaban yang dijelaskan pada subbab \ref{desain_fungsi_pencarian_jawaban}.  Implementasi fungsi ini dapat dilihat pada Kode Sumber \ref{code:searchAnswer}.
+
+\begin{lstlisting}[language=C++, firstnumber=0]
+	void searchAnswer(Tree *tree)
+    TabuLimit tabu(15);
+    int currentDistinctEdgeValue = tree->countDistinctEdgeValue();
+    while (currentDistinctEdgeValue < tree->getNumberOfNode() - 1)
+    {
+        pair<int, int> possibleSwap;
+        int maxDistinctEdgeValue = 0;
+		bool foundBetterConfiguration = false;
+		\end{lstlisting}
+		\pagebreak
+		\begin{lstlisting}[language=C++, firstnumber=8]
+        for (int i = 0; i < tree->getNumberOfNode(); ++i)
+        {
+            for (int j = i + 1; j < tree->getNumberOfNode(); ++j)
+            {
+                int actionId = (i * 100) + j;
+                if (!tabu.isAllowed(actionId))
+                {
+                    continue;
+                }
+                tree->swapNodeValue(i, j);
+                int possibleDistinctEdgeValue = tree->countDistinctEdgeValue();
+                if (possibleDistinctEdgeValue > currentDistinctEdgeValue)
+                {
+                    foundBetterConfiguration = true;
+                    currentDistinctEdgeValue = possibleDistinctEdgeValue;
+                    tabu.choose(actionId);
+                    continue;
+				}
+                if (
+                    (!foundBetterConfiguration) &&
+                    possibleDistinctEdgeValue > maxDistinctEdgeValue)
+                {
+                    maxDistinctEdgeValue = possibleDistinctEdgeValue;
+                    possibleSwap = make_pair(i, j);
+                }
+                tree->swapNodeValue(i, j);
+            }
+		}
+	\end{lstlisting}
+	\pagebreak
+	\begin{lstlisting}[language=C++, caption=Implementasi Fungsi Masukan \textit{Tree}, label=code:searchAnswer, firstnumber=36]
+        if (!foundBetterConfiguration)
+        {
+            pair<int, int> choosenSwap = possibleSwap;
+            tree->swapNodeValue(choosenSwap.first, choosenSwap.second);
+            currentDistinctEdgeValue = tree->countDistinctEdgeValue();
+            tabu.choose((choosenSwap.first * 100) + choosenSwap.second);
+        }
+    }
+\end{lstlisting}
