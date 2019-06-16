@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="main" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+    <texify>
+      <compiler>XELATEX</compiler>
+      <compiler-path />
+      <compiler-arguments />
+      <main-file>$PROJECT_DIR$/buku/main.tex</main-file>
+      <aux-dir>false</aux-dir>
+      <out-dir>true</out-dir>
+      <output-format>PDF</output-format>
+      <bib-run-config>BibTeX.main bibliography</bib-run-config>
+    </texify>
+    <method v="2" />
+  </configuration>
+</component>
