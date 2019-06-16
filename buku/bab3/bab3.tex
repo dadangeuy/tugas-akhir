@@ -4,143 +4,180 @@ Bab ini akan menjelaskan analisis dan perancangan sistem untuk mencapai tujuan d
 \section{Analisis Sistem}
 Subbab ini akan membahas mengenai hasil analisa perangkat lunak \textit{push notification} terpusat. Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, dan spesifikasi kebutuhan perangkat lunak.
 
-    \subsection{Analisis Permasalahan}
-    Permasalahan yang diangkat pada tugas akhir ini adalah karena aplikasi \textit{push notification} terpusat yang digunakan saat ini kurang dapat diandalkan untuk mengirim notifikasi dalam jumlah besar. Berdasarkan hasil pengujian yang telah dilakukan, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya 63,8 persen \cite{application-thesis}. Rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus \textit{Race Condition} dalam implementasi \textit{queue} yang dibuat.
+\subsection{Analisis Permasalahan}
+Permasalahan yang diangkat pada tugas akhir ini adalah karena aplikasi \textit{push notification} terpusat yang digunakan saat ini kurang dapat diandalkan untuk mengirim notifikasi dalam jumlah besar. Berdasarkan hasil pengujian yang telah dilakukan, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya 63,8 persen \cite{application-thesis}. Rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus \textit{Race Condition} dalam implementasi \textit{queue} yang dibuat.
 
-    \subsection{Deskripsi Umum Sistem}
-    Aplikasi \textit{push notification} terpusat merupakan aplikasi yang digunakan untuk mengirim notifikasi ke perangkat pengguna secara terjadwal dan \textit{asynchronous}.
-    Aplikasi \textit{push notification} terpusat terbagi menjadi 3 modul, yaitu \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}. Secara umum, \textit{Scheduler} bertanggung jawab untuk mengantrikan notifikasi yang sudah saatnya dikirim, \textit{Sender APN} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{iOS}, dan \textit{Sender FCM} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{Android} dan \textit{Web}.
-    Komunikasi antar modul aplikasi push notification terpusat menggunakan pola \textit{publish/subscribe}, dengan pembagian antrian (\textit{message queue}) berdasarkan topik. Topik antrian dibagi berdasarkan tipe perangkat penerima notifikasi, yaitu \textit{Android}, \textit{Web}, dan \textit{iOS}. Scheduler akan mem-\textit{publish} notifikasi ke topik antrian yang sesuai, \textit{Sender APN} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{iOS}, dan \textit{Sender FCM} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{Android} dan \textit{Web}.
-    Pada tugas akhir ini, Komunikasi antar modul serta penyimpanan antrian akan diatur oleh \textit{Kafka}, dan implementasi modul aplikasi push notification terpusat akan menggunakan kerangka kerja \textit{Spring} dengan bahasa pemrograman \textit{Java}.
+\subsection{Deskripsi Umum Sistem}
+Aplikasi \textit{push notification} terpusat merupakan aplikasi yang digunakan untuk mengirim notifikasi ke perangkat pengguna secara terjadwal dan \textit{asynchronous}.
+Aplikasi \textit{push notification} terpusat terbagi menjadi 3 modul, yaitu \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}. Secara umum, \textit{Scheduler} bertanggung jawab untuk mengantrikan notifikasi yang sudah saatnya dikirim, \textit{Sender APN} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{iOS}, dan \textit{Sender FCM} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{Android} dan \textit{Web}.
+Komunikasi antar modul aplikasi push notification terpusat menggunakan pola \textit{publish/subscribe}, dengan pembagian antrian (\textit{message queue}) berdasarkan topik. Topik antrian dibagi berdasarkan tipe perangkat penerima notifikasi, yaitu \textit{Android}, \textit{Web}, dan \textit{iOS}. Scheduler akan mem-\textit{publish} notifikasi ke topik antrian yang sesuai, \textit{Sender APN} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{iOS}, dan \textit{Sender FCM} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{Android} dan \textit{Web}.
+Pada tugas akhir ini, Komunikasi antar modul serta penyimpanan antrian akan diatur oleh \textit{Kafka}, dan implementasi modul aplikasi push notification terpusat akan menggunakan kerangka kerja \textit{Spring} dengan bahasa pemrograman \textit{Java}.
 
-    \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
-    Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan. Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, diagram kasus penggunaan dan aktivitas.
+\subsection{Spesifikasi Kebutuhan Perangkat Lunak}
+Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan. Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, diagram kasus penggunaan dan aktivitas.
 
-        \subsubsection{Aktor}
-        \begin{longtable}{|p{2cm}|p{6cm}|}
-            \hline
-            \textbf{Aktor} & \textbf{Tugas} \\
-            \hline
-            Manajemen &
-            Membuat tugas pengiriman notifikasi, mengatur konfigurasi client, memantau kondisi \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}. \\
-            \hline
-            \textit{Scheduler} & Membuat dan menjadwalkan pengiriman paket notifikasi. \\
-            \hline
-            \textit{Sender APN} & Mengirimkan paket notifikasi untuk perangkat \textit{iOS}. \\
-            \hline
-            \textit{Sender FCM} & Mengirimkan paket notifikasi untuk perangkat \textit{Android} dan \textit{Web}. \\
-            \hline
-            \textit{Kafka} & Menyimpan data antrian paket notifikasi, mengatur komunikasi antar modul aplikasi. \\
-            \hline
-            \caption{Aktor pada sistem}
-        \end{longtable}
+\subsubsection{Aktor}
+\begin{longtable}{|p{2cm}|p{6cm}|}
+    \hline
+    \textbf{Aktor} & \textbf{Tugas} & \hline
+    Manajemen &
+    Membuat tugas pengiriman notifikasi, mengatur konfigurasi client, memantau kondisi \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}. & \hline
+    \textit{Scheduler} & Membuat dan menjadwalkan pengiriman paket notifikasi. & \hline
+    \textit{Sender APN} & Mengirimkan paket notifikasi untuk perangkat \textit{iOS}. & \hline
+    \textit{Sender FCM} & Mengirimkan paket notifikasi untuk perangkat \textit{Android} dan \textit{Web}. & \hline
+    \textit{Kafka} & Menyimpan data antrian paket notifikasi, mengatur komunikasi antar modul aplikasi. & \hline
+    \caption{Aktor pada sistem}
+\end{longtable}
 
-        \subsubsection{Kebutuhan Fungsional}
-        \begin{longtable}{|p{2cm}|p{2cm}|p{4cm}|}
-            \hline
-		    \textbf{No.} & \textbf{Kebutuhan Fungsional} & \textbf{Deskripsi} \\
-    		\hline
-		    F01 & Mengirim notifikasi ke beberapa akun & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun tertentu. \\
-    		\hline
-		    F02 & Mengirim notifikasi ke beberapa grup & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun yang merupakan anggota dari grup tertentu. \\
-    		\hline
-		    F03 & Mengirim notifikasi secara terjadwal & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS pada waktu tertentu. \\
-    		\hline
-		    F04 & Menyimpan hasil pengiriman notifikasi & Sistem dapat menyimpan hasil pengiriman (\textit{response} dari \textit{APNs}, \textit{FCM}, atau \textit{error stacktrace}) setiap notifikasi yang dikirim. \\
-    		\hline
-            \caption{Kebutuhan fungsional sistem}
-        \end{longtable}
+\subsubsection{Kebutuhan Fungsional}
+\begin{longtable}{|p{2cm}|p{2cm}|p{4cm}|}
+    \hline
+    \textbf{No.} & \textbf{Kebutuhan Fungsional} & \textbf{Deskripsi} & \hline
+    F01 & Mengirim notifikasi ke beberapa akun & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun tertentu. & \hline
+    F02 & Mengirim notifikasi ke beberapa grup & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun yang merupakan anggota dari grup tertentu. & \hline
+    F03 & Mengirim notifikasi secara terjadwal & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS pada waktu tertentu. & \hline
+    F04 & Menyimpan hasil pengiriman notifikasi & Sistem dapat menyimpan hasil pengiriman (\textit{response} dari \textit{APNs}, \textit{FCM}, atau \textit{error stacktrace}) setiap notifikasi yang dikirim. & \hline
+    \caption{Kebutuhan fungsional sistem}
+\end{longtable}
 
-        \subsubsection{Kebutuhan Non Fungsional}
-        \begin{longtable}{|p{1cm}|p{2cm}|p{5cm}|}
-            \hline
-            \textbf{No.} & \textbf{Parameter} & \textbf{Deskripsi}  \\
-            \hline
-            1 & Reliability & Aplikasi dapat mengirimkan notifikasi ke layanan FCM \& APNs tanpa terjadi kegagalan \\
-            \hline
-            2 & Portability & Aplikasi dapat dijalankan pada sistem operasi berbasis linux. \\
-            \hline
-            3 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{crash}. \\
-            \hline
-            \caption{Kebutuhan non fungsional sistem}
-        \end{longtable}
+\subsubsection{Kebutuhan Non Fungsional}
+\begin{longtable}{|p{1cm}|p{2cm}|p{5cm}|}
+    \hline
+    \textbf{No.} & \textbf{Parameter} & \textbf{Deskripsi} & \hline
+    1 & Reliability & Aplikasi dapat mengirimkan notifikasi ke layanan FCM \& APNs tanpa terjadi kegagalan & \hline
+    2 & Portability & Aplikasi dapat dijalankan pada sistem operasi berbasis linux. & \hline
+    3 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{crash}. & \hline
+    \caption{Kebutuhan non fungsional sistem}
+\end{longtable}
 
-        \subsubsection{Diagram Kasus Penggunaan dan Aktivitas}
-        Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
-        
-        % TODO: Diagram Kasus Penggunaan
-        [Diagram Kasus Penggunaan]
-        
-        Penjelasan lebih lengkap dapat dilihat pada tabel berikut.
-        
-        \begin{longtable}{|p{1cm}|p{5cm}|p{2cm}|}
-            \hline
-            \textbf{Kode} & \textbf{Nama Kasus Penggunaan} & \textbf{Aktor}  \\
-            \hline
-            UC01 & Membuat paket notifikasi dari \textit{batch} baru & Scheduler \\
-            \hline
-            UC02 & Memasukkan paket notifikasi ke dalam antrian sesuai jadwal pengiriman dan topik (Android, Web, iOS) & Scheduler \\
-            \hline
-            UC03 & Memperbarui status pengiriman paket notifikasi (Baru dibuat, Dalam antrian, atau Gagal) & Scheduler \\
-            \hline
-            UC04 & Mengambil paket notifikasi yang ada di antrian topik iOS & Sender APN \\
-            \hline
-            UC05 & Mengirimkan paket notifikasi iOS ke layanan APNs & Sender APN \\
-            \hline
-            UC06 & Mengambil paket notifikasi yang ada di antrian topik Android dan Web & Sender FCM \\
-            \hline
-            UC07 & Mengirimkan paket notifikasi Android dan Web ke layanan FCM & Sender FCM \\
-            \hline
-            UC08 & Memperbarui status pengiriman paket notifikasi (Terkirim atau Gagal) & Sender APN, Sender FCM \\
-            \hline
-            UC09 & Menampilkan kondisi kesehatan aplikasi luar yang terhubung (SQL Server dan Kafka) & Scheduler, Sender APN, Sender FCM \\
-            \hline
-            UC10 & Menampilkan metrik penggunaan sumber daya \textit{server} (\textit{memory} dan \textit{cpu}) & Scheduler, Sender APN, Sender FCM \\
-            \hline
-            UC11 & Menampilkan konfigurasi yang digunakan & Scheduler, Sender APN, Sender FCM \\
-            \hline
-            UC12 & Menampilkan \textit{log} & Scheduler, Sender APN, Sender FCM \\
-            \hline
-            \caption{Deskripsi Kasus Penggunaan Sistem}
-        \end{longtable}
-        
-        \paragraph{UC01}
-        % TODO: Penjelasan Kasus Penggunaan
-        \begin{longtable}{|p{2cm}|p{6cm}|}
-            \hline
-            \textbf{Komponen} & \textbf{Deskripsi}  \\
-            \hline
-            Nama & - \\
-            \hline
-            Kode & - \\
-            \hline
-            Deskripsi & - \\
-            \hline
-            Tipe & - \\
-            \hline
-            Aktor & - \\
-            \hline
-            Kondisi Awal & - \\
-            \hline
-            Kondisi Akhir & - \\
-            \hline
-            Alur Normal & - \\
-            \hline
-            Alur Alternatif & - \\
-            \hline
-            \caption{Kasus Penggunaan -}
-        \end{longtable}
-        Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas sebagai berikut.
-        % TODO: Gambar diagram aktivitas
-        
-        \paragraph{UC02}
-        \paragraph{UC03}
-        \paragraph{UC04}
-        \paragraph{UC05}
-        \paragraph{UC06}
-        \paragraph{UC07}
-        \paragraph{UC08}
-        \paragraph{UC09}
-        \paragraph{UC10}
-        \paragraph{UC11}
-        \paragraph{UC12}
+\subsubsection{Diagram Kasus Penggunaan dan Aktivitas}
+Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
+
+% TODO: Diagram Kasus Penggunaan
+[Diagram Kasus Penggunaan]
+
+Penjelasan lebih lengkap dapat dilihat pada tabel berikut.
+
+\begin{longtable}{|p{1cm}|p{5cm}|p{2cm}|}
+    \hline
+    \textbf{Kode} & \textbf{Nama Kasus Penggunaan} & \textbf{Aktor} & \hline
+    UC01 & Membuat paket notifikasi dari \textit{batch} baru & Scheduler & \hline
+    UC02 & Memasukkan paket notifikasi ke dalam antrian sesuai jadwal pengiriman dan topik (Android, Web, iOS) & Scheduler & \hline
+    UC04 & Mengambil paket notifikasi yang ada di antrian topik iOS & Sender APN & \hline
+    UC05 & Mengirimkan paket notifikasi iOS ke layanan APNs & Sender APN & \hline
+    UC06 & Mengambil paket notifikasi yang ada di antrian topik Android dan Web & Sender FCM & \hline
+    UC07 & Mengirimkan paket notifikasi Android dan Web ke layanan FCM & Sender FCM & \hline
+    UC08 & Memperbarui status pengiriman paket notifikasi (Terkirim atau Gagal) & Sender APN, Sender FCM & \hline
+    UC09 & Menampilkan kondisi kesehatan aplikasi luar yang terhubung (SQL Server dan Kafka) & Scheduler, Sender APN, Sender FCM & \hline
+    UC10 & Menampilkan metrik penggunaan sumber daya \textit{server} (\textit{memory} dan \textit{cpu}) & Scheduler, Sender APN, Sender FCM & \hline
+    UC11 & Menampilkan konfigurasi yang digunakan & Scheduler, Sender APN, Sender FCM & \hline
+    UC12 & Menampilkan \textit{log} & Scheduler, Sender APN, Sender FCM & \hline
+    \caption{Deskripsi Kasus Penggunaan Sistem}
+\end{longtable}
+
+% template tabel deskripsi kasus penggunaan
+\newcommand\tableUcDesc[7] {
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+    \hline
+    \textbf{Komponen} & \textbf{Deskripsi} & \hline
+    Kode & #1 & \hline
+    Nama & #2 & \hline
+    Deskripsi & #3 & \hline
+    Aktor & #4 & \hline
+    Kondisi Awal & #5 & \hline
+    Kondisi Akhir & #6 & \hline
+    Alur Normal & #7 & \hline
+    \caption{Kasus Penggunaan #2}
+\end{longtable}
+}
+
+\paragraph{Membuat Paket}
+\par Pada kasus ini, ketika pengguna ingin mengirimkan notifikasi dengan spesifikasi tertentu lewat halaman manajemen,
+manajemen akan menyimpan spesifikasi tersebut sebagai batch, yang tersimpan di database.
+\par Scheduler akan memeriksa pada interval waktu tertentu apakah ada batch baru, dan kemudian membuatkan paket, yang
+berisi spesifikasi notifikasi untuk setiap perangkat yang merupakan target penerima notifikasi dari batch tersebut.
+\tableUcDesc
+{UC01}
+{Membuat Paket}
+{Paket akan dibuat setiap ada batch baru di database}
+{Scheduler}
+{1 menit setelah pengecekan terakhir}
+{Paket ditambahkan ke database}
+{
+\begin{enumerate}
+    \item Aktor memeriksa apakah terdapat batch yang belum di proses di database.
+    \item Aktor membuat data paket dari data batch tersebut.
+    \item Aktor menyimpan data paket dan memperbarui data batch di database.
+\end{enumerate}
+}
+\par Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas
+sebagai berikut.
+%TODO: gambar diagram aktivitas
+
+\paragraph{Menambahkan Paket ke Antrian}
+\par Pada kasus ini, Scheduler akan memeriksa pada interval waktu tertentu apakah ada paket yang sudah waktunya untuk
+dikirim. Jika ada, scheduler akan menambahkan paket tersebut ke antrian kafka dengan topik yang sesuai.
+\tableUcDesc
+{UC02}
+{Menambahkan Paket ke Antrian}
+{Paket akan diantrikan ke kafka sesuai dengan jadwal pengiriman dan topik (Android, Web, atau iOS)}
+{Scheduler}
+{1 menit setelah pengecekan terakhir}
+{Paket diantrikan ke kafka}
+{
+\begin{enumerate}
+    \item Aktor memeriksa apakah terdapat paket yang sudah waktunya dikirim di database.
+    \item Aktor menambahkan paket ke dalam antrian kafka dengan spesifikasi topik sebagai berikut:
+    \begin{enumerate}
+        \item Topik "android" untuk paket dengan target perangkat Android.
+        \item Topik "web" untuk paket dengan target perangkat Web.
+        \item Topik "ios" untuk paket dengan target perangkat iOS.
+    \end{enumerate}
+    \item Aktor memperbarui data paket di database.
+\end{enumerate}
+}
+\par Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas
+sebagai berikut.
+%TODO: gambar diagram aktivitas
+
+\paragraph{Mengirim Paket ke APNs}
+\par Pada kasus ini, Sender APN akan menunggu Kafka untuk mengirimkan paket yang berada dalam antrian topik "ios".
+Setelah paket diterima, paket akan dikirim ke layanan APNs, dan kemudian akan diterima oleh perangkat pengguna.
+\tableUcDesc
+{UC03}
+{Mengirim Paket ke APNs}
+{Paket yang ada didalam antrian topik "ios" akan dikirimkan ke layanan APNs}
+{Sender APN}
+{Paket diterima dari antrian topik "ios" di Kafka}
+{Paket diterima oleh APNs}
+{
+\begin{enumerate}
+    \item Aktor menunggu paket dari antrian topik "ios" di kafka.
+    \item Aktor mengirimkan request notifikasi ke layanan APNs berdasarkan data paket.
+    \item Aktor memperbarui data paket di database berdasarkan response dari APNs.
+\end{enumerate}
+}
+\par Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas
+sebagai berikut.
+%TODO: gambar diagram aktivitas
+
+\paragraph{Mengirim Paket ke FCM}
+\par Pada kasus ini, Sender FCM akan menunggu Kafka untuk mengirimkan paket yang berada dalam antrian topik "android" dan "web".
+Setelah paket diterima, paket akan dikirim ke layanan FCM, dan kemudian akan diterima oleh perangkat pengguna.
+\tableUcDesc
+{UC04}
+{Mengirim Paket ke FCM}
+{Paket yang ada didalam antrian topik "android" akan dikirimkan ke layanan FCM}
+{Sender FCM}
+{Paket diterima dari antrian topik "android" atau "web" di kafka}
+{Paket diterima oleh FCM}
+{
+\begin{enumerate}
+    \item Aktor menunggu paket dari antrian topik "android" atau "web" di kafka.
+    \item Aktor mengirimkan request notifikasi ke layanan FCM berdasarkan data paket.
+    \item Aktor memperbarui data paket di database berdasarkan response dari FCM.
+\end{enumerate}
+}
+\par Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas
+sebagai berikut.
+%TODO: gambar diagram aktivitas
