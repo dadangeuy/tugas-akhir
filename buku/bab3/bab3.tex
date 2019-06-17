@@ -21,23 +21,15 @@ Pada tugas akhir ini, Komunikasi antar modul serta penyimpanan antrian akan diat
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
 Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan.
-Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, diagram kasus penggunaan dan aktivitas.
+Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, dan diagram kasus penggunaan.
 
 \subsubsection{Aktor}
 \begin{longtable}{|p{2cm}|p{6cm}|}
     \hline
     \textbf{Aktor} & \textbf{Tugas} & \hline
-    Manajemen &
-    Membuat tugas pengiriman notifikasi, mengatur konfigurasi client, memantau kondisi \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}.
-    & \hline
-    \textit{Scheduler} & Membuat dan menjadwalkan pengiriman packet notifikasi.
-    & \hline
-    \textit{Sender APN} & Mengirimkan packet notifikasi untuk perangkat \textit{iOS}.
-    & \hline
-    \textit{Sender FCM} & Mengirimkan packet notifikasi untuk perangkat \textit{Android} dan \textit{Web}.
-    & \hline
-    \textit{Kafka} & Menyimpan data antrian packet notifikasi, mengatur komunikasi antar modul aplikasi.
-    & \hline
+    \textit{Scheduler} & Membuat dan menjadwalkan pengiriman packet notifikasi. & \hline
+    \textit{Sender APN} & Mengirimkan packet notifikasi untuk perangkat \textit{iOS}. & \hline
+    \textit{Sender FCM} & Mengirimkan packet notifikasi untuk perangkat \textit{Android} dan \textit{Web}. & \hline
     \caption{Aktor pada sistem}
 \end{longtable}
 
@@ -45,26 +37,20 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{No.} & \textbf{Kebutuhan Fungsional} & \textbf{Deskripsi} & \hline
-    F01 & Mengirim notifikasi ke beberapa akun & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun tertentu.
-    & \hline
-    F02 & Mengirim notifikasi ke beberapa grup & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun yang merupakan anggota dari grup tertentu.
-    & \hline
-    F03 & Mengirim notifikasi secara terjadwal & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS pada waktu tertentu.
-    & \hline
-    F04 & Menyimpan hasil pengiriman notifikasi & Sistem dapat menyimpan hasil pengiriman (\textit{response} dari \textit{APNs}, \textit{FCM}, atau \textit{error stacktrace}) setiap notifikasi yang dikirim.
-    & \hline
+    F01 & Mengirim notifikasi ke beberapa akun & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun tertentu. & \hline
+    F02 & Mengirim notifikasi ke beberapa grup & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun yang merupakan anggota dari grup tertentu. & \hline
+    F03 & Mengirim notifikasi secara terjadwal & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS pada waktu tertentu. & \hline
+    F04 & Menyimpan hasil pengiriman notifikasi & Sistem dapat menyimpan hasil pengiriman (\textit{response} dari \textit{APNs}, \textit{FCM}, atau \textit{error stacktrace}) setiap notifikasi yang dikirim. & \hline
     \caption{Kebutuhan fungsional sistem}
 \end{longtable}
 
 \subsubsection{Kebutuhan Non Fungsional}
-\begin{longtable}{|p{1cm}|p{2cm}|p{5cm}|}
+\begin{longtable}{|p{0.5cm}|p{2cm}|p{5.5cm}|}
     \hline
     \textbf{No.} & \textbf{Parameter} & \textbf{Deskripsi} & \hline
-    1 & Reliability & Aplikasi dapat mengirimkan notifikasi ke layanan FCM \& APNs tanpa terjadi kegagalan & \hline
-    2 & Portability & Aplikasi dapat dijalankan pada sistem operasi berbasis linux.
-    & \hline
-    3 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{crash}.
-    & \hline
+    1 & Reliability & Aplikasi dapat mengirimkan 100.000 notifikasi ke layanan FCM \& APNs dengan tingkat keberhasilan 90 persen. & \hline
+    2 & Portability & Aplikasi dapat dijalankan pada sistem operasi berbasis linux. & \hline
+    3 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{down}. & \hline
     \caption{Kebutuhan non fungsional sistem}
 \end{longtable}
 
@@ -111,16 +97,14 @@ Penjelasan lebih lengkap dapat dilihat pada tabel berikut.
 }
 
 \paragraph{Pembuatan Packet}
-\par Pada kasus ini, ketika pengguna ingin mengirimkan notifikasi dengan spesifikasi tertentu lewat halaman manajemen,
-manajemen akan menyimpan spesifikasi tersebut sebagai batch, yang tersimpan di database.
-\par Scheduler akan memeriksa pada interval waktu tertentu apakah ada batch baru, dan kemudian membuatkan packet, yang
-berisi spesifikasi notifikasi untuk setiap perangkat yang merupakan target penerima notifikasi dari batch tersebut.
+\par Pada kasus ini, \textit{Scheduler} akan memeriksa secara berkala apakah terdapat batch yang belum di proses.
+Jika ada, \textit{Scheduler} akan membuatkan \textit{packet} untuk \textit{batch} tersebut.
 \tableUcDesc
 {UC01}
 {Pembuatan Packet}
 {Packet akan dibuat setiap ada batch baru di database}
 {Scheduler}
-{1 menit setelah pengecekan terakhir}
+{Batch ditambahkan ke database}
 {Packet ditambahkan ke database}
 {
 \begin{enumerate}
@@ -129,9 +113,6 @@ berisi spesifikasi notifikasi untuk setiap perangkat yang merupakan target pener
     \item Aktor menyimpan data packet dan memperbarui data batch di database.
 \end{enumerate}
 }
-\par Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas
-sebagai berikut.
-%TODO: gambar diagram aktivitas
 
 \paragraph{Menambahkan Packet ke Antrian}
 \par Pada kasus ini, Scheduler akan memeriksa pada interval waktu tertentu apakah ada packet yang sudah waktunya untuk
@@ -156,9 +137,6 @@ Jika ada, scheduler akan menambahkan packet tersebut ke antrian kafka dengan top
     \item Aktor memperbarui data packet di database.
 \end{enumerate}
 }
-\par Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas
-sebagai berikut.
-%TODO: gambar diagram aktivitas
 
 \paragraph{Pengiriman Packet ke APNs}
 \par Pada kasus ini, Sender APN akan menunggu Kafka untuk mengirimkan packet yang berada dalam antrian topik "ios".
@@ -177,9 +155,6 @@ Setelah packet diterima, packet akan dikirim ke layanan APNs, dan kemudian akan 
     \item Aktor memperbarui data packet di database berdasarkan response dari APNs.
 \end{enumerate}
 }
-\par Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas
-sebagai berikut.
-%TODO: gambar diagram aktivitas
 
 \paragraph{Pengiriman Packet ke FCM}
 \par Pada kasus ini, Sender FCM akan menunggu Kafka untuk mengirimkan packet yang berada dalam antrian topik "android" dan "web".
@@ -198,9 +173,6 @@ Setelah packet diterima, packet akan dikirim ke layanan FCM, dan kemudian akan d
     \item Aktor memperbarui data packet di database berdasarkan response dari FCM.
 \end{enumerate}
 }
-\par Berdasarkan skenario kasus penggunaan diatas, skenario tersebut dapat digambarkan sebagai diagram aktivitas
-sebagai berikut.
-%TODO: gambar diagram aktivitas
 
 \section{Perancangan Sistem}
 \par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan
@@ -214,7 +186,7 @@ Spring.
 Aplikasi saling terhubung lewat Kafka dan SQL Server.
 Secara garis besar, aplikasi ini memiliki rancangan
 arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_pengiriman_notifikasi}.
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering\includegraphics[width=1\textwidth]{bab3/figures/arsitektur_pengiriman_notifikasi.jpg}
     \caption{Arsitektur Pengiriman Notifikasi}
     \label{arsitektur_pengiriman_notifikasi}
@@ -374,7 +346,7 @@ Basis data yang digunakan adalah SQL Server 2012.
 \par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat.
 Proses pembuatan dapat
 dilihat di diagram alir pada gambar~\ref{flowchart_pembuatan_packet}.
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering\includegraphics[width=0.8\textwidth]{bab3/figures/flowchart_pembuatan_packet.jpg}
     \caption{Diagram Alir Proses Pembuatan \textit{Packet}}
     \label{flowchart_pembuatan_packet}
@@ -386,7 +358,7 @@ Antrian
 \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS).
 Proses pengantrian
 dapat dilihat di diagram alir pada gambar~\ref{flowchart_menambahkan_packet_ke_antrian}.
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering\includegraphics[width=0.7\textwidth]{bab3/figures/flowchart_menambahkan_packet_ke_antrian.jpg}
     \caption{Diagram Alir Proses Menambahkan \textit{Packet} ke Antrian}
     \label{flowchart_menambahkan_packet_ke_antrian}
@@ -396,7 +368,7 @@ dapat dilihat di diagram alir pada gambar~\ref{flowchart_menambahkan_packet_ke_a
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "ios" ke perangkat pengguna
 yang berbasis iOS lewat layanan APNs. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada
 gambar~\ref{flowchart_pengiriman_packet_ke_apns}.
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering\includegraphics[width=0.7\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_apns.jpg}
     \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke APNs}
     \label{flowchart_pengiriman_packet_ke_apns}
@@ -407,7 +379,7 @@ gambar~\ref{flowchart_pengiriman_packet_ke_apns}.
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke
 perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di
 diagram alir pada gambar~\ref{flowchart_pengiriman_packet_ke_fcm}.
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering\includegraphics[width=0.7\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_fcm.jpg}
     \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke FCM}
     \label{flowchart_pengiriman_packet_ke_fcm}
