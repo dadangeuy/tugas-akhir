@@ -54,30 +54,24 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
     \caption{Kebutuhan non fungsional sistem}
 \end{longtable}
 
-\subsubsection{Diagram Kasus Penggunaan dan Aktivitas}
-Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci.
-Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
-
-% TODO: Diagram Kasus Penggunaan
-[Diagram Kasus Penggunaan]
-
-Penjelasan lebih lengkap dapat dilihat pada tabel berikut.
-
-\begin{longtable}{|p{1cm}|p{5cm}|p{2cm}|}
+\subsubsection{Diagram Kasus Penggunaan}
+\par Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
+\par Diagram kasus penggunaan untuk setiap modul (\textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}) aplikasi \textit{push notification} terpusat dapat dilihat pada diagram~\ref{diagram_kasus_penggunaan}.
+\begin{figure}[H]
+    \centering\includegraphics[width=1\textwidth]{bab3/figures/diagram_kasus_penggunaan.jpg}
+    \caption{Diagram Kasus Penggunaan}
+    \label{diagram_kasus_penggunaan}
+\end{figure}
+Penjelasan lebih lengkap dapat dilihat pada tabel~\ref{tabel_deskripsi_kasus_penggunaan_sistem}.
+\begin{longtable}{|p{1cm}|p{5.5cm}|p{2cm}|}
     \hline
     \textbf{Kode} & \textbf{Nama Kasus Penggunaan} & \textbf{Aktor} & \hline
-    UC01 & Membuat packet notifikasi dari \textit{batch} baru & Scheduler & \hline
-    UC02 & Memasukkan packet notifikasi ke dalam antrian sesuai jadwal pengiriman dan topik (Android, Web, iOS) & Scheduler & \hline
-    UC04 & Mengambil packet notifikasi yang ada di antrian topik iOS & Sender APN & \hline
-    UC05 & Mengirimkan packet notifikasi iOS ke layanan APNs & Sender APN & \hline
-    UC06 & Mengambil packet notifikasi yang ada di antrian topik Android dan Web & Sender FCM & \hline
-    UC07 & Mengirimkan packet notifikasi Android dan Web ke layanan FCM & Sender FCM & \hline
-    UC08 & Memperbarui status pengiriman packet notifikasi (Terkirim atau Gagal) & Sender APN, Sender FCM & \hline
-    UC09 & Menampilkan kondisi kesehatan aplikasi luar yang terhubung (SQL Server dan Kafka) & Scheduler, Sender APN, Sender FCM & \hline
-    UC10 & Menampilkan metrik penggunaan sumber daya \textit{server} (\textit{memory} dan \textit{cpu}) & Scheduler, Sender APN, Sender FCM & \hline
-    UC11 & Menampilkan konfigurasi yang digunakan & Scheduler, Sender APN, Sender FCM & \hline
-    UC12 & Menampilkan \textit{log} & Scheduler, Sender APN, Sender FCM & \hline
+    UC01 & Pembuatan Packet & Scheduler & \hline
+    UC02 & Menambahkan Packet ke Antrian & Scheduler & \hline
+    UC03 & Pengiriman Packet ke APNs & Sender APN & \hline
+    UC04 & Pengiriman Packet ke FCM & Sender FCM & \hline
     \caption{Deskripsi Kasus Penggunaan Sistem}
+    \label{tabel_deskripsi_kasus_penggunaan_sistem}
 \end{longtable}
 
 % template tabel deskripsi kasus penggunaan
