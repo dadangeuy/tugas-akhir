@@ -2,30 +2,42 @@
 Bab ini akan menjelaskan analisis dan perancangan sistem untuk mencapai tujuan dari tugas akhir, meliputi perancangan data, proses, dan analisa implementasi secara umum.
 
 \section{Analisis Sistem}
-Subbab ini akan membahas mengenai hasil analisa perangkat lunak \textit{push notification} terpusat. Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, dan spesifikasi kebutuhan perangkat lunak.
+Subbab ini akan membahas mengenai hasil analisa perangkat lunak \textit{push notification} terpusat.
+Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, dan spesifikasi kebutuhan perangkat lunak.
 
 \subsection{Analisis Permasalahan}
-Permasalahan yang diangkat pada tugas akhir ini adalah karena aplikasi \textit{push notification} terpusat yang digunakan saat ini kurang dapat diandalkan untuk mengirim notifikasi dalam jumlah besar. Berdasarkan hasil pengujian yang telah dilakukan, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya 63,8 persen \cite{application-thesis}. Rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus \textit{Race Condition} dalam implementasi \textit{queue} yang dibuat.
+Permasalahan yang diangkat pada tugas akhir ini adalah karena aplikasi \textit{push notification} terpusat yang digunakan saat ini kurang dapat diandalkan untuk mengirim notifikasi dalam jumlah besar.
+Berdasarkan hasil pengujian yang telah dilakukan, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya 63,8 persen~\cite{application-thesis}.
+Rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus \textit{Race Condition} dalam implementasi \textit{queue} yang dibuat.
 
 \subsection{Deskripsi Umum Sistem}
 Aplikasi \textit{push notification} terpusat merupakan aplikasi yang digunakan untuk mengirim notifikasi ke perangkat pengguna secara terjadwal dan \textit{asynchronous}.
-Aplikasi \textit{push notification} terpusat terbagi menjadi 3 modul, yaitu \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}. Secara umum, \textit{Scheduler} bertanggung jawab untuk mengantrikan notifikasi yang sudah saatnya dikirim, \textit{Sender APN} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{iOS}, dan \textit{Sender FCM} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{Android} dan \textit{Web}.
-Komunikasi antar modul aplikasi push notification terpusat menggunakan pola \textit{publish/subscribe}, dengan pembagian antrian (\textit{message queue}) berdasarkan topik. Topik antrian dibagi berdasarkan tipe perangkat penerima notifikasi, yaitu \textit{Android}, \textit{Web}, dan \textit{iOS}. Scheduler akan mem-\textit{publish} notifikasi ke topik antrian yang sesuai, \textit{Sender APN} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{iOS}, dan \textit{Sender FCM} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{Android} dan \textit{Web}.
+Aplikasi \textit{push notification} terpusat terbagi menjadi 3 modul, yaitu \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}.
+Secara umum, \textit{Scheduler} bertanggung jawab untuk mengantrikan notifikasi yang sudah saatnya dikirim, \textit{Sender APN} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{iOS}, dan \textit{Sender FCM} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{Android} dan \textit{Web}.
+Komunikasi antar modul aplikasi push notification terpusat menggunakan pola \textit{publish/subscribe}, dengan pembagian antrian (\textit{message queue}) berdasarkan topik.
+Topik antrian dibagi berdasarkan tipe perangkat penerima notifikasi, yaitu \textit{Android}, \textit{Web}, dan \textit{iOS}.
+Scheduler akan mem-\textit{publish} notifikasi ke topik antrian yang sesuai, \textit{Sender APN} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{iOS}, dan \textit{Sender FCM} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{Android} dan \textit{Web}.
 Pada tugas akhir ini, Komunikasi antar modul serta penyimpanan antrian akan diatur oleh \textit{Kafka}, dan implementasi modul aplikasi push notification terpusat akan menggunakan kerangka kerja \textit{Spring} dengan bahasa pemrograman \textit{Java}.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
-Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan. Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, diagram kasus penggunaan dan aktivitas.
+Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan.
+Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, diagram kasus penggunaan dan aktivitas.
 
 \subsubsection{Aktor}
 \begin{longtable}{|p{2cm}|p{6cm}|}
     \hline
     \textbf{Aktor} & \textbf{Tugas} & \hline
     Manajemen &
-    Membuat tugas pengiriman notifikasi, mengatur konfigurasi client, memantau kondisi \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}. & \hline
-    \textit{Scheduler} & Membuat dan menjadwalkan pengiriman packet notifikasi. & \hline
-    \textit{Sender APN} & Mengirimkan packet notifikasi untuk perangkat \textit{iOS}. & \hline
-    \textit{Sender FCM} & Mengirimkan packet notifikasi untuk perangkat \textit{Android} dan \textit{Web}. & \hline
-    \textit{Kafka} & Menyimpan data antrian packet notifikasi, mengatur komunikasi antar modul aplikasi. & \hline
+    Membuat tugas pengiriman notifikasi, mengatur konfigurasi client, memantau kondisi \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}.
+    & \hline
+    \textit{Scheduler} & Membuat dan menjadwalkan pengiriman packet notifikasi.
+    & \hline
+    \textit{Sender APN} & Mengirimkan packet notifikasi untuk perangkat \textit{iOS}.
+    & \hline
+    \textit{Sender FCM} & Mengirimkan packet notifikasi untuk perangkat \textit{Android} dan \textit{Web}.
+    & \hline
+    \textit{Kafka} & Menyimpan data antrian packet notifikasi, mengatur komunikasi antar modul aplikasi.
+    & \hline
     \caption{Aktor pada sistem}
 \end{longtable}
 
@@ -33,10 +45,14 @@ Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis ya
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{No.} & \textbf{Kebutuhan Fungsional} & \textbf{Deskripsi} & \hline
-    F01 & Mengirim notifikasi ke beberapa akun & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun tertentu. & \hline
-    F02 & Mengirim notifikasi ke beberapa grup & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun yang merupakan anggota dari grup tertentu. & \hline
-    F03 & Mengirim notifikasi secara terjadwal & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS pada waktu tertentu. & \hline
-    F04 & Menyimpan hasil pengiriman notifikasi & Sistem dapat menyimpan hasil pengiriman (\textit{response} dari \textit{APNs}, \textit{FCM}, atau \textit{error stacktrace}) setiap notifikasi yang dikirim. & \hline
+    F01 & Mengirim notifikasi ke beberapa akun & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun tertentu.
+    & \hline
+    F02 & Mengirim notifikasi ke beberapa grup & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun yang merupakan anggota dari grup tertentu.
+    & \hline
+    F03 & Mengirim notifikasi secara terjadwal & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS pada waktu tertentu.
+    & \hline
+    F04 & Menyimpan hasil pengiriman notifikasi & Sistem dapat menyimpan hasil pengiriman (\textit{response} dari \textit{APNs}, \textit{FCM}, atau \textit{error stacktrace}) setiap notifikasi yang dikirim.
+    & \hline
     \caption{Kebutuhan fungsional sistem}
 \end{longtable}
 
@@ -45,13 +61,16 @@ Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis ya
     \hline
     \textbf{No.} & \textbf{Parameter} & \textbf{Deskripsi} & \hline
     1 & Reliability & Aplikasi dapat mengirimkan notifikasi ke layanan FCM \& APNs tanpa terjadi kegagalan & \hline
-    2 & Portability & Aplikasi dapat dijalankan pada sistem operasi berbasis linux. & \hline
-    3 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{crash}. & \hline
+    2 & Portability & Aplikasi dapat dijalankan pada sistem operasi berbasis linux.
+    & \hline
+    3 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{crash}.
+    & \hline
     \caption{Kebutuhan non fungsional sistem}
 \end{longtable}
 
 \subsubsection{Diagram Kasus Penggunaan dan Aktivitas}
-Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
+Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci.
+Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
 
 % TODO: Diagram Kasus Penggunaan
 [Diagram Kasus Penggunaan]
@@ -116,7 +135,8 @@ sebagai berikut.
 
 \paragraph{Menambahkan Packet ke Antrian}
 \par Pada kasus ini, Scheduler akan memeriksa pada interval waktu tertentu apakah ada packet yang sudah waktunya untuk
-dikirim. Jika ada, scheduler akan menambahkan packet tersebut ke antrian kafka dengan topik yang sesuai.
+dikirim.
+Jika ada, scheduler akan menambahkan packet tersebut ke antrian kafka dengan topik yang sesuai.
 \tableUcDesc
 {UC02}
 {Menambahkan Packet ke Antrian}
@@ -188,8 +208,11 @@ arsitektur, data, dan proses.
 
 \subsection{Perancangan Arsitektur}
 \par Aplikasi \textit{push notification} terpusat akan dibagi menjadi 3 modul, yaitu \textit{Scheduler},
-\textit{Sender APN}, dan \textit{Sender FCM}. Aplikasi dibangun dengan bahasa pemrograman Java, dengan kerangka kerja
-Spring. Aplikasi saling terhubung lewat Kafka dan SQL Server. Secara garis besar, aplikasi ini memiliki rancangan
+\textit{Sender APN}, dan \textit{Sender FCM}.
+Aplikasi dibangun dengan bahasa pemrograman Java, dengan kerangka kerja
+Spring.
+Aplikasi saling terhubung lewat Kafka dan SQL Server.
+Secara garis besar, aplikasi ini memiliki rancangan
 arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_pengiriman_notifikasi}.
 \begin{figure}[!ht]
     \centering\includegraphics[width=1\textwidth]{bab3/figures/arsitektur_pengiriman_notifikasi.jpg}
@@ -199,9 +222,11 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
 
 \subsection{Perancangan Basis Data}
 \par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification}
-terpusat. Basis data yang digunakan adalah SQL Server 2012.
+terpusat.
+Basis data yang digunakan adalah SQL Server 2012.
 
 \subsubsection{Tabel User (user\_account)}
+\par Tabel ini digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -212,6 +237,7 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \end{longtable}
 
 \subsubsection{Tabel Group (pn\_group)}
+\par Tabel ini digunakan untuk mengelompokan pengguna. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -222,6 +248,7 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \end{longtable}
 
 \subsubsection{Tabel Group Member (pn\_group\_member)}
+\par Tabel ini digunakan untuk menambahkan pengguna kedalam suatu kelompok. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -233,6 +260,7 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \end{longtable}
 
 \subsubsection{Tabel Client (oauth\_client)}
+\par Tabel ini digunakan untuk menyimpan data \textit{client} (aplikasi) yang ada di Institut Teknologi Sepuluh Nopember. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -243,6 +271,7 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \end{longtable}
 
 \subsubsection{Tabel Certificate (pn\_certificate)}
+\par Tabel ini digunakan untuk menyimpan data sertifikat yang digunakan untuk autentikasi ke layanan APNs dan FCM. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -258,6 +287,7 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \end{longtable}
 
 \subsubsection{Tabel Device (device\_token)}
+\par Tabel ini digunakan untuk menyimpan data perangkat pengguna yang terdaftar di layanan APNs dan FCM. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -273,6 +303,7 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \end{longtable}
 
 \subsubsection{Tabel Batch (pn\_batch)}
+\par Tabel ini digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa perangkat. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -296,6 +327,7 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \end{longtable}
 
 \subsubsection{Tabel Packet (pn\_packet)}
+\par Tabel ini digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -304,13 +336,14 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
     Device Token ID & uuid & Perangkat penerima notifikasi & \hline
     Sent At & datetime & Waktu notifikasi diterima oleh APNs atau FCM & \hline
     Reason & varchar(255) & Penyebab jika terjadi kegagalan & \hline
-    Packet Status & numeric(1) & Status pengiriman packet (CREATED, WAITING, SUCCESS, FAILED) & \hline
+    Packet Status & numeric(1) & Status pengiriman packet (dibuat, menunggu, berhasil, atau gagal) & \hline
     Created At & datetime & Tanggal dan waktu dibuat & \hline
     Update At & datetime & Tanggal dan waktu diperbarui & \hline
     \caption{Tabel Packet (pn\_packet)}
 \end{longtable}
 
 \subsubsection{Tabel User Destination (pn\_user\_destination)}
+\par Tabel ini digunakan untuk menyimpan data pengguna yang menjadi target penerima notifikasi dalam satu \textit{batch}. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -322,6 +355,7 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \end{longtable}
 
 \subsubsection{Tabel Group Destination (pn\_group\_destination)}
+\par Tabel ini digunakan untuk menyimpan data kelompok yang menjadi target penerima notifikasi dalam satu \textit{batch}. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} & \hline
@@ -337,7 +371,8 @@ terpusat. Basis data yang digunakan adalah SQL Server 2012.
 \textit{push notification} terpusat.
 
 \subsubsection{Proses Pembuatan \textit{Packet}}
-\par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat. Proses pembuatan dapat
+\par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat.
+Proses pembuatan dapat
 dilihat di diagram alir pada gambar~\ref{flowchart_pembuatan_packet}.
 \begin{figure}[!ht]
     \centering\includegraphics[width=0.8\textwidth]{bab3/figures/flowchart_pembuatan_packet.jpg}
@@ -346,8 +381,10 @@ dilihat di diagram alir pada gambar~\ref{flowchart_pembuatan_packet}.
 \end{figure}
 
 \subsubsection{Proses Menambahkan \textit{Packet} ke Antrian}
-\par Proses ini bertujuan untuk mengantrikan \textit{packet} yang sudah waktunya untuk dikirim. Antrian
-\textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS). Proses pengantrian
+\par Proses ini bertujuan untuk mengantrikan \textit{packet} yang sudah waktunya untuk dikirim.
+Antrian
+\textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS).
+Proses pengantrian
 dapat dilihat di diagram alir pada gambar~\ref{flowchart_menambahkan_packet_ke_antrian}.
 \begin{figure}[!ht]
     \centering\includegraphics[width=0.7\textwidth]{bab3/figures/flowchart_menambahkan_packet_ke_antrian.jpg}
