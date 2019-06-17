@@ -6,7 +6,7 @@
       <compiler-arguments />
       <main-file>$PROJECT_DIR$/buku/main.tex</main-file>
       <aux-dir>false</aux-dir>
-      <out-dir>true</out-dir>
+      <out-dir>false</out-dir>
       <output-format>PDF</output-format>
       <bib-run-config>BibTeX.main bibliography</bib-run-config>
     </texify>
