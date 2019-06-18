@@ -5,7 +5,7 @@
       <compiler-path />
       <compiler-arguments />
       <main-file>$PROJECT_DIR$/buku/main.tex</main-file>
-      <aux-dir />
+      <aux-dir>$PROJECT_DIR$/buku</aux-dir>
     </texify-bibtex>
     <method v="2" />
   </configuration>
