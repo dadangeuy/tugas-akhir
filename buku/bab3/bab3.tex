@@ -225,7 +225,7 @@ Basis data yang digunakan adalah SQL Server 2012.
     \caption{Tabel Group Member (pn\_group\_member)}
 \end{longtable}
 
-\subsubsection{Tabel Client (oauth\_client)}
+\subsubsection{Tabel Client}
 \par Tabel ini digunakan untuk menyimpan data \textit{client} (aplikasi) yang ada di Institut Teknologi Sepuluh Nopember. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
@@ -233,10 +233,10 @@ Basis data yang digunakan adalah SQL Server 2012.
     Client ID & uuid & Primary key tabel & \hline
     Created At & datetime & Tanggal dan waktu dibuat & \hline
     Update At & datetime & Tanggal dan waktu diperbarui & \hline
-    \caption{Tabel Client (oauth\_client)}
+    \caption{Tabel Client}
 \end{longtable}
 
-\subsubsection{Tabel Certificate (pn\_certificate)}
+\subsubsection{Tabel Certificate}
 \par Tabel ini digunakan untuk menyimpan data sertifikat yang digunakan untuk autentikasi ke layanan APNs dan FCM. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
@@ -249,10 +249,10 @@ Basis data yang digunakan adalah SQL Server 2012.
     Password & varchar(255) & Kata sandi untuk sertifikat iOS & \hline
     Created At & datetime & Tanggal dan waktu dibuat & \hline
     Update At & datetime & Tanggal dan waktu diperbarui & \hline
-    \caption{Tabel Certificate (pn\_certificate)}
+    \caption{Tabel Certificate}
 \end{longtable}
 
-\subsubsection{Tabel Device (device\_token)}
+\subsubsection{Tabel Device}
 \par Tabel ini digunakan untuk menyimpan data perangkat pengguna yang terdaftar di layanan APNs dan FCM. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
@@ -265,10 +265,10 @@ Basis data yang digunakan adalah SQL Server 2012.
     Active & numeric(1) & Perangkat aktif atau tidak & \hline
     Created At & datetime & Tanggal dan waktu dibuat & \hline
     Update At & datetime & Tanggal dan waktu diperbarui & \hline
-    \caption{Tabel Device (device\_token)}
+    \caption{Tabel Device}
 \end{longtable}
 
-\subsubsection{Tabel Batch (pn\_batch)}
+\subsubsection{Tabel Batch}
 \par Tabel ini digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa perangkat. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
@@ -289,10 +289,10 @@ Basis data yang digunakan adalah SQL Server 2012.
     Client Destination ID & uuid & Client tujuan penerima notifikasi & \hline
     Created At & datetime & Tanggal dan waktu dibuat & \hline
     Update At & datetime & Tanggal dan waktu diperbarui & \hline
-    \caption{Tabel Batch (pn\_batch)}
+    \caption{Tabel Batch}
 \end{longtable}
 
-\subsubsection{Tabel Packet (pn\_packet)}
+\subsubsection{Tabel Packet}
 \par Tabel ini digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
@@ -305,10 +305,10 @@ Basis data yang digunakan adalah SQL Server 2012.
     Packet Status & numeric(1) & Status pengiriman packet (dibuat, menunggu, berhasil, atau gagal) & \hline
     Created At & datetime & Tanggal dan waktu dibuat & \hline
     Update At & datetime & Tanggal dan waktu diperbarui & \hline
-    \caption{Tabel Packet (pn\_packet)}
+    \caption{Tabel Packet}
 \end{longtable}
 
-\subsubsection{Tabel User Destination (pn\_user\_destination)}
+\subsubsection{Tabel User Destination}
 \par Tabel ini digunakan untuk menyimpan data pengguna yang menjadi target penerima notifikasi dalam satu \textit{batch}. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
@@ -317,10 +317,10 @@ Basis data yang digunakan adalah SQL Server 2012.
     User ID & uuid & Pengguna penerima notifikasi & \hline
     Created At & datetime & Tanggal dan waktu dibuat & \hline
     Update At & datetime & Tanggal dan waktu diperbarui & \hline
-    \caption{Tabel User Destination (pn\_user\_destination)}
+    \caption{Tabel User Destination}
 \end{longtable}
 
-\subsubsection{Tabel Group Destination (pn\_group\_destination)}
+\subsubsection{Tabel Group Destination}
 \par Tabel ini digunakan untuk menyimpan data kelompok yang menjadi target penerima notifikasi dalam satu \textit{batch}. Detail atribut dapat dilihat pada tabel berikut.
 \begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
     \hline
@@ -329,7 +329,7 @@ Basis data yang digunakan adalah SQL Server 2012.
     Group ID & uuid & Grup penerima notifikasi & \hline
     Created At & datetime & Tanggal dan waktu dibuat & \hline
     Update At & datetime & Tanggal dan waktu diperbarui & \hline
-    \caption{Tabel Group Destination (pn\_group\_destination)}
+    \caption{Tabel Group Destination}
 \end{longtable}
 
 \subsection{Perancangan Proses}
@@ -367,7 +367,6 @@ gambar~\ref{flowchart_pengiriman_packet_ke_apns}.
     \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke APNs}
     \label{flowchart_pengiriman_packet_ke_apns}
 \end{figure}
-\linebreak
 
 \subsubsection{Proses Pengiriman Packet ke FCM}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke
@@ -378,4 +377,3 @@ diagram alir pada gambar~\ref{flowchart_pengiriman_packet_ke_fcm}.
     \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke FCM}
     \label{flowchart_pengiriman_packet_ke_fcm}
 \end{figure}
-\linebreak
