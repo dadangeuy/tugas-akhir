@@ -34,7 +34,7 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
 \end{longtable}
 
 \subsubsection{Kebutuhan Fungsional}
-\begin{longtable}{|p{2.5cm}|p{2cm}|p{4.5cm}|}
+\begin{longtable}{|p{0.6cm}|p{3cm}|p{4.5cm}|}
     \hline
     \textbf{No.} & \textbf{Kebutuhan Fungsional} & \textbf{Deskripsi} & \hline
     F01 & Mengirim notifikasi ke beberapa akun & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun tertentu. & \hline
@@ -58,21 +58,10 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
 \par Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
 \par Diagram kasus penggunaan untuk setiap modul (\textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}) aplikasi \textit{push notification} terpusat dapat dilihat pada diagram~\ref{diagram_kasus_penggunaan}.
 \begin{figure}[H]
-    \centering\includegraphics[width=1\textwidth]{bab3/figures/diagram_kasus_penggunaan.jpg}
+    \centering\includegraphics[width=0.8\textwidth]{bab3/figures/diagram_kasus_penggunaan.jpg}
     \caption{Diagram Kasus Penggunaan}
     \label{diagram_kasus_penggunaan}
 \end{figure}
-Penjelasan lebih lengkap dapat dilihat pada tabel~\ref{tabel_deskripsi_kasus_penggunaan_sistem}.
-\begin{longtable}{|p{1cm}|p{5.5cm}|p{2cm}|}
-    \hline
-    \textbf{Kode} & \textbf{Nama Kasus Penggunaan} & \textbf{Aktor} & \hline
-    UC01 & Pembuatan Packet & Scheduler & \hline
-    UC02 & Menambahkan Packet ke Antrian & Scheduler & \hline
-    UC03 & Pengiriman Packet ke APNs & Sender APN & \hline
-    UC04 & Pengiriman Packet ke FCM & Sender FCM & \hline
-    \caption{Deskripsi Kasus Penggunaan Sistem}
-    \label{tabel_deskripsi_kasus_penggunaan_sistem}
-\end{longtable}
 
 % template tabel deskripsi kasus penggunaan
 \newcommand\tableUcDesc[7] {
@@ -187,9 +176,7 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
 \end{figure}
 
 \subsection{Perancangan Basis Data}
-\par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification}
-terpusat.
-Basis data yang digunakan adalah SQL Server 2012.
+\par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification} terpusat. Basis data yang digunakan adalah SQL Server 2012.
 
 \subsubsection{Tabel User (user\_account)}
 \par Tabel ini digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Detail atribut dapat dilihat pada tabel berikut.
