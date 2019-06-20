@@ -356,13 +356,13 @@ lalu untuk setiap device, data packet akan dibuat dan disimpan ke database.
 Setelah packet berhasil dibuat, waktu pengiriman batch akan diperbarui menjadi waktu saat ini untuk menandai bahwa
 batch tersebut telah selesai diproses.
 Potongan kode yang digunakan untuk pembuatan packet dapat dilihat pada kode sumber [].
-\subsubsection{Implementasi Pengiriman Packet ke Antrian}
-\par Proses pengiriman packet ke antrian dilakukan secara berkala oleh modul Scheduler dengan interval waktu 1 menit
+\subsubsection{Implementasi Penambahan Packet ke Antrian}
+\par Proses penambahan packet ke antrian dilakukan secara berkala oleh modul Scheduler dengan interval waktu 1 menit
 dan jeda awal 30 detik.
 Proses ini diawali dengan mencari data packet yang sudah siap untuk dikirim (waktu pengiriman kurang dari waktu saat
 ini) dari sistem basis data,
 lalu packet tersebut akan diantrikan ke Kafka, dengan pembagian topik sesuai dengan jenis device penerima packet.
-Potongan kode yang digunakan untuk pengiriman packet ke antrian dapat dilihat pada kode sumber [].
+Potongan kode yang digunakan untuk penambahan packet ke antrian dapat dilihat pada kode sumber [].
 
 \subsection{Implementasi Modul Sender APN}
 \par Subbab ini membahas implementasi modul Sender APN berdasarkan kasus penggunaan aktor Sender APN.
@@ -375,7 +375,7 @@ lalu Kafka akan mengirimkan packet yang ada di antrian topik ios secara berkala 
 Setelah itu packet yang telah diterima akan dikirimkan oleh Sender APN ke layanan APNs.
 Potongan kode yang digunakan untuk pengiriman packet ke APNs dapat dilihat pada kode sumber [].
 
-\subsection{Implementasi Sender FCM}
+\subsection{Implementasi Modul Sender FCM}
 \par Subbab ini membahas implementasi modul Sender FCM berdasarkan kasus penggunaan aktor Sender FCM.
 
 \subsubsection{Implementasi Pengiriman Packet ke FCM}

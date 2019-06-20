@@ -1,26 +1,21 @@
 \chapter{ANALISIS DAN PERANCANGAN SISTEM}
-Bab ini akan menjelaskan analisis dan perancangan sistem untuk mencapai tujuan dari tugas akhir, meliputi perancangan data, proses, dan analisa implementasi secara umum.
+Bab ini menjelaskan analisis dan perancangan sistem untuk mencapai tujuan dari tugas akhir, meliputi perancangan data, proses, dan analisa implementasi secara umum.
 
 \section{Analisis Sistem}
 Subbab ini akan membahas mengenai hasil analisa perangkat lunak \textit{push notification} terpusat.
 Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, dan spesifikasi kebutuhan perangkat lunak.
 
 \subsection{Analisis Permasalahan}
-\par Permasalahan yang diangkat pada tugas akhir ini adalah masalah keandalan aplikasi \textit{push notification}
-terpusat untuk mengirimkan notifikasi ke perangkat pengguna dalam jumlah yang besar.
-Berdasarkan hasil pengujian yang dilakukan oleh pengembang sebelumnya, tingkat keberhasilan pengiriman notifikasi ke
-3000 pengguna hanya sebesar 63,8 persen.
-Berdasarkan analisis yang penulis lakukan, rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus
-\textit{Race Condition} yang tidak ditangani dalam implementasi \textit{message queue} yang telah dibuat.
+\par Permasalahan yang diangkat pada tugas akhir ini adalah masalah keandalan aplikasi \textit{push notification} terpusat untuk mengirimkan notifikasi ke perangkat pengguna dalam jumlah yang besar. Berdasarkan hasil pengujian yang dilakukan oleh pengembang sebelumnya, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya sebesar 63,8 persen.
+\par Berdasarkan analisa yang penulis lakukan, rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus \textit{Race Condition} yang tidak ditangani dalam implementasi \textit{message queue} yang telah dibuat. Potongan sumber kode implementasi \textit{message queue} dapat dilihat pada \nameref{lampiran:queue_service}.
+\par Pada kasus ini, terdapat beberapa \textit{thread worker} yang mengubah data \textit{queue} secara paralel. Queue dibuat menggunakan dengan struktur data \textit{LinkedList}, yang tidak mendukung perubahan data secara paralel \cite{linkedlist-online}.
 
 \subsection{Deskripsi Umum Sistem}
-Aplikasi \textit{push notification} terpusat merupakan aplikasi yang digunakan untuk mengirim notifikasi ke perangkat pengguna secara terjadwal dan \textit{asynchronous}.
-Aplikasi \textit{push notification} terpusat terbagi menjadi 3 modul, yaitu \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}.
-Secara umum, \textit{Scheduler} bertanggung jawab untuk mengantrikan notifikasi yang sudah saatnya dikirim, \textit{Sender APN} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{iOS}, dan \textit{Sender FCM} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{Android} dan \textit{Web}.
-Komunikasi antar modul aplikasi push notification terpusat menggunakan pola \textit{publish/subscribe}, dengan pembagian antrian (\textit{message queue}) berdasarkan topik.
-Topik antrian dibagi berdasarkan tipe perangkat penerima notifikasi, yaitu \textit{Android}, \textit{Web}, dan \textit{iOS}.
-Scheduler akan mem-\textit{publish} notifikasi ke topik antrian yang sesuai, \textit{Sender APN} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{iOS}, dan \textit{Sender FCM} akan men-\textit{subscribe} notifikasi yang ada di antrian topik \textit{Android} dan \textit{Web}.
-Pada tugas akhir ini, Komunikasi antar modul serta penyimpanan antrian akan diatur oleh \textit{Kafka}, dan implementasi modul aplikasi push notification terpusat akan menggunakan kerangka kerja \textit{Spring} dengan bahasa pemrograman \textit{Java}.
+Aplikasi \textit{push notification} terpusat merupakan aplikasi yang digunakan untuk mengirim notifikasi ke perangkat pengguna secara terjadwal dan \textit{asynchronous}, dan terbagi menjadi 3 modul, yaitu \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}.
+\par Secara umum, \textit{Scheduler} bertanggung jawab untuk mengantrikan notifikasi yang sudah saatnya dikirim, \textit{Sender APN} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{iOS}, dan \textit{Sender FCM} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{Android} dan \textit{Web}.
+\par Komunikasi antar modul aplikasi push notification terpusat menggunakan pola \textit{publish/subscribe}, dengan pembagian antrian (\textit{message queue}) berdasarkan topik.
+Topik antrian ditentukan berdasarkan tipe perangkat penerima notifikasi, yaitu \textit{Android}, \textit{Web}, dan \textit{iOS}.
+\par Pada tugas akhir ini, komunikasi antar modul dan penyimpanan antrian akan menggunakan \textit{Kafka}, sistem basis data akan menggunakan \textit{SQL Server}, dan implementasi modul aplikasi akan menggunakan kerangka kerja \textit{Spring} dengan bahasa pemrograman \textit{Java}.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
 Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan.
@@ -40,10 +35,10 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
 \begin{longtable}{|p{0.6cm}|p{3cm}|p{4.5cm}|}
     \hline
     \textbf{No.} & \textbf{Kebutuhan Fungsional} & \textbf{Deskripsi} \\ \hline
-    F01 & Mengirim notifikasi ke beberapa akun & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun tertentu. \\ \hline
-    F02 & Mengirim notifikasi ke beberapa grup & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS yang dimiliki oleh akun yang merupakan anggota dari grup tertentu. \\ \hline
-    F03 & Mengirim notifikasi secara terjadwal & Sistem dapat mengirim notifikasi ke perangkat Android, Web, dan iOS pada waktu tertentu. \\ \hline
-    F04 & Menyimpan hasil pengiriman notifikasi & Sistem dapat menyimpan hasil pengiriman (\textit{response} dari \textit{APNs}, \textit{FCM}, atau \textit{error stacktrace}) setiap notifikasi yang dikirim. \\ \hline
+    F01 & Pembuatan Packet & Sistem dapat membuat packet sesuai dengan data dari batch. \\ \hline
+    F02 & Menambahkan Packet ke Antrian & Sistem dapat mengirimkan packet ke antrian. \\ \hline
+    F03 & Pengiriman Packet ke APNs & Sistem dapat mengambil packet dari antrian dan mengirim packet ke layanan APNs. \\ \hline
+    F04 & Pengiriman Packet ke FCM & Sistem dapat mengambil packet dari antrian dan mengirim ke packet layanan FCM. \\ \hline
     \caption{Kebutuhan fungsional sistem}
 \end{longtable}
 
@@ -51,8 +46,8 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
 \begin{longtable}{|p{0.5cm}|p{2cm}|p{5.5cm}|}
     \hline
     \textbf{No.} & \textbf{Parameter} & \textbf{Deskripsi} \\ \hline
-    1 & Reliability & Aplikasi dapat mengirimkan 100.000 notifikasi ke layanan FCM \& APNs dengan tingkat keberhasilan 90 persen. \\ \hline
-    2 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{down}. \\ \hline
+    1 & Reliability & Aplikasi dapat mengirimkan 1 juta notifikasi ke layanan FCM \& APNs dengan tingkat sempurna. \\ \hline
+    2 & Availability & Aplikasi dapat menangani pengiriman 1 juta notifikasi tanpa \textit{down}. \\ \hline
     \caption{Kebutuhan non fungsional sistem}
 \end{longtable}
 
@@ -82,18 +77,17 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
 }
 
 \paragraph{Pembuatan Packet}
-\par Pada kasus ini, \textit{Scheduler} akan memeriksa secara berkala apakah terdapat batch yang belum di proses.
-Jika ada, \textit{Scheduler} akan membuatkan \textit{packet} untuk \textit{batch} tersebut.
+\par Pada kasus ini, \textit{Scheduler} akan memeriksa secara berkala apakah terdapat batch yang belum di proses. Jika ada, \textit{Scheduler} akan membuatkan \textit{packet} untuk \textit{batch} tersebut.
 \tableUcDesc
 {UC01}
 {Pembuatan Packet}
 {Packet akan dibuat setiap ada batch baru di database}
 {Scheduler}
-{Batch ditambahkan ke database}
-{Packet ditambahkan ke database}
+{Terdapat batch yang belum diproses}
+{Packet dibuat}
 {
 \begin{enumerate}
-    \item Aktor memeriksa apakah terdapat batch yang belum di proses di database.
+    \item Aktor memeriksa apakah terdapat batch yang belum diproses di database.
     \item Aktor membuat data packet dari data batch tersebut.
     \item Aktor menyimpan data packet dan memperbarui data batch di database.
 \end{enumerate}
@@ -108,7 +102,7 @@ Jika ada, scheduler akan menambahkan packet tersebut ke antrian kafka dengan top
 {Menambahkan Packet ke Antrian}
 {Packet akan diantrikan ke kafka sesuai dengan jadwal pengiriman dan topik (Android, Web, atau iOS)}
 {Scheduler}
-{1 menit setelah pengecekan terakhir}
+{Terdapat packet yang siap dikirim}
 {Packet diantrikan ke kafka}
 {
 \begin{enumerate}
@@ -132,7 +126,7 @@ Setelah packet diterima, packet akan dikirim ke layanan APNs, dan kemudian akan 
 {Packet yang ada didalam antrian topik "ios" akan dikirimkan ke layanan APNs}
 {Sender APN}
 {Packet diterima dari antrian topik "ios" di Kafka}
-{Packet diterima oleh APNs}
+{Packet dikirim ke APNs}
 {
 \begin{enumerate}
     \item Aktor menunggu packet dari antrian topik "ios" di kafka.
@@ -150,7 +144,7 @@ Setelah packet diterima, packet akan dikirim ke layanan FCM, dan kemudian akan d
 {Packet yang ada didalam antrian topik "android" akan dikirimkan ke layanan FCM}
 {Sender FCM}
 {Packet diterima dari antrian topik "android" atau "web" di kafka}
-{Packet diterima oleh FCM}
+{Packet dikirim ke FCM}
 {
 \begin{enumerate}
     \item Aktor menunggu packet dari antrian topik "android" atau "web" di kafka.
