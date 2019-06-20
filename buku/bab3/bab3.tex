@@ -6,9 +6,12 @@ Subbab ini akan membahas mengenai hasil analisa perangkat lunak \textit{push not
 Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, dan spesifikasi kebutuhan perangkat lunak.
 
 \subsection{Analisis Permasalahan}
-Permasalahan yang diangkat pada tugas akhir ini adalah karena aplikasi \textit{push notification} terpusat yang digunakan saat ini kurang dapat diandalkan untuk mengirim notifikasi dalam jumlah besar.
-Berdasarkan hasil pengujian yang telah dilakukan, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya 63,8 persen~\cite{application-thesis}.
-Rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus \textit{Race Condition} dalam implementasi \textit{queue} yang dibuat.
+\par Permasalahan yang diangkat pada tugas akhir ini adalah masalah keandalan aplikasi \textit{push notification}
+terpusat untuk mengirimkan notifikasi ke perangkat pengguna dalam jumlah yang besar.
+Berdasarkan hasil pengujian yang dilakukan oleh pengembang sebelumnya, tingkat keberhasilan pengiriman notifikasi ke
+3000 pengguna hanya sebesar 63,8 persen.
+Berdasarkan analisis yang penulis lakukan, rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus
+\textit{Race Condition} yang tidak ditangani dalam implementasi \textit{message queue} yang telah dibuat.
 
 \subsection{Deskripsi Umum Sistem}
 Aplikasi \textit{push notification} terpusat merupakan aplikasi yang digunakan untuk mengirim notifikasi ke perangkat pengguna secara terjadwal dan \textit{asynchronous}.
@@ -49,8 +52,7 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
     \hline
     \textbf{No.} & \textbf{Parameter} & \textbf{Deskripsi} & \hline
     1 & Reliability & Aplikasi dapat mengirimkan 100.000 notifikasi ke layanan FCM \& APNs dengan tingkat keberhasilan 90 persen. & \hline
-    2 & Portability & Aplikasi dapat dijalankan pada sistem operasi berbasis linux. & \hline
-    3 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{down}. & \hline
+    2 & Availability & Aplikasi dapat menangani pengiriman 100.000 notifikasi tanpa \textit{down}. & \hline
     \caption{Kebutuhan non fungsional sistem}
 \end{longtable}
 
