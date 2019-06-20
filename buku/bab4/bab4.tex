@@ -5,34 +5,34 @@
 \par Lingkungan implementasi yang digunakan untuk mengembangkan tugas akhir ini memiliki spesifikasi perangkat keras dan lunak seperti ditampilkan pada tabel~\ref{tabel_spesifikasi_server}, tabel~\ref{tabel_spesifikasi_perangkat_android}, dan tabel~\ref{tabel_spesifikasi_perangkat_ios}.
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
     \hline
-    \textbf{Jenis} & \textbf{Spesifikasi} & \hline
-    CPU & AMD Ryzen 5 2500U & \hline
-    Memory & 12 GB & \hline
-    Sistem Operasi & Ubuntu 19.04 & \hline
+    \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
+    CPU & AMD Ryzen 5 2500U \\ \hline
+    Memory & 12 GB \\ \hline
+    Sistem Operasi & Ubuntu 19.04 \\ \hline
     Kakas Bantu &
     \begin{enumerate}
         \item Intellij IDEA
         \item DataGrip
         \item Docker
-    \end{enumerate} & \hline
+    \end{enumerate} \\ \hline
     \caption{Spesifikasi Server}
     \label{tabel_spesifikasi_server}
 \end{longtable}
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
     \hline
-    \textbf{Jenis} & \textbf{Spesifikasi} & \hline
-    CPU & Snapdragon 636 & \hline
-    Memory & 3 GB & \hline
-    Sistem Operasi & Android 9 (Pie) & \hline
+    \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
+    CPU & Snapdragon 636 \\ \hline
+    Memory & 3 GB \\ \hline
+    Sistem Operasi & Android 9 (Pie) \\ \hline
     \caption{Spesifikasi Perangkat Android}
     \label{tabel_spesifikasi_perangkat_android}
 \end{longtable}
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
     \hline
-    \textbf{Jenis} & \textbf{Spesifikasi} & \hline
-    CPU & Apple A10 Fusion & \hline
-    Memory & 3 GB & \hline
-    Sistem Operasi & iOS 12 & \hline
+    \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
+    CPU & Apple A10 Fusion \\ \hline
+    Memory & 3 GB \\ \hline
+    Sistem Operasi & iOS 12 \\ \hline
     \caption{Spesifikasi Perangkat iOS}
     \label{tabel_spesifikasi_perangkat_ios}
 \end{longtable}
@@ -348,7 +348,7 @@
 \subsection{Implementasi Modul Scheduler}
 \par Subbab ini membahas implementasi modul Scheduler berdasarkan kasus penggunaan aktor Scheduler.
 
-\subsubsubsection{Implementasi Pembuatan Packet}
+\subsubsection{Implementasi Pembuatan Packet}
 \par Proses pembuatan packet dilakukan secara berkala oleh modul Scheduler dengan interval waktu 1 menit.
 Proses ini diawali dengan mencari data batch yang belum dan boleh diproses dari sistem basis data,
 lalu mencari data device yang akan menerima notifikasi dari batch sistem basis data,
