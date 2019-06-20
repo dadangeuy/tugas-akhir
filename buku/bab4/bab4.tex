@@ -345,16 +345,45 @@
 %TODO kopas kodingan
 \section{Implementasi Proses dan Kasus Penggunaan}
 
-\subsection{Implementasi Scheduler}
+\subsection{Implementasi Modul Scheduler}
+\par Subbab ini membahas implementasi modul Scheduler berdasarkan kasus penggunaan aktor Scheduler.
 
-\subsubsection{Implementasi Pembuatan Packet}
+\subsubsubsection{Implementasi Pembuatan Packet}
+\par Proses pembuatan packet dilakukan secara berkala oleh modul Scheduler dengan interval waktu 1 menit.
+Proses ini diawali dengan mencari data batch yang belum dan boleh diproses dari sistem basis data,
+lalu mencari data device yang akan menerima notifikasi dari batch sistem basis data,
+lalu untuk setiap device, data packet akan dibuat dan disimpan ke database.
+Setelah packet berhasil dibuat, waktu pengiriman batch akan diperbarui menjadi waktu saat ini untuk menandai bahwa
+batch tersebut telah selesai diproses.
+Potongan kode yang digunakan untuk pembuatan packet dapat dilihat pada kode sumber [].
+\subsubsection{Implementasi Pengiriman Packet ke Antrian}
+\par Proses pengiriman packet ke antrian dilakukan secara berkala oleh modul Scheduler dengan interval waktu 1 menit
+dan jeda awal 30 detik.
+Proses ini diawali dengan mencari data packet yang sudah siap untuk dikirim (waktu pengiriman kurang dari waktu saat
+ini) dari sistem basis data,
+lalu packet tersebut akan diantrikan ke Kafka, dengan pembagian topik sesuai dengan jenis device penerima packet.
+Potongan kode yang digunakan untuk pengiriman packet ke antrian dapat dilihat pada kode sumber [].
 
-\subsubsection{Implementasi Menambahkan Packet ke Antrian}
-
-\subsection{Implementasi Sender APN}
+\subsection{Implementasi Modul Sender APN}
+\par Subbab ini membahas implementasi modul Sender APN berdasarkan kasus penggunaan aktor Sender APN.
 
 \subsubsection{Implementasi Pengiriman Packet ke APNs}
+\par Proses pengiriman packet dilakukan secara berkala oleh Sender APN dengan cara menunggu Kafka untuk mengirimkan
+data packet yang siap dikirim.
+Proses ini diawali dengan Sender APN mendaftarkan diri di kafka sebagai consumer untuk topik ios,
+lalu Kafka akan mengirimkan packet yang ada di antrian topik ios secara berkala ke Sender APN,
+Setelah itu packet yang telah diterima akan dikirimkan oleh Sender APN ke layanan APNs.
+Potongan kode yang digunakan untuk pengiriman packet ke APNs dapat dilihat pada kode sumber [].
 
 \subsection{Implementasi Sender FCM}
+\par Subbab ini membahas implementasi modul Sender FCM berdasarkan kasus penggunaan aktor Sender FCM.
 
 \subsubsection{Implementasi Pengiriman Packet ke FCM}
+\par Proses pengiriman packet dilakukan secara berkala oleh Sender FCM dengan cara menunggu Kafka untuk mengirimkan
+data packet yang siap dikirim.
+Proses ini diawali dengan Sender FCM mendaftarkan diri di kafka sebagai consumer untuk topik android dan web,
+lalu Kafka akan mengirimkan packet yang ada di antrian topik android dan web secara berkala ke Sender FCM,
+Setelah itu packet yang telah diterima dikirimkan oleh Sender FCM ke layanan FCM.
+Potongan kode yang digunakan untuk pengiriman packet ke FCM dapat dilihat pada kode sumber [].
+%\lstinputlisting[label=code:PacketConsumer, firstline=19, caption=Implementasi Kelas PacketConsumer, language=Java]
+%{bab4/codes/sender-fcm/PacketConsumer.java}
