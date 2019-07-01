@@ -3,13 +3,13 @@
 
 \section{Kesimpulan}
 \begin{enumerate}
-    \item (App can send notification to APNs and FCM) %TODO
-    \item (Kafka as message queue can handle 1M) %TODO
+    \item Aplikasi push notification terpusat yang diimplementasikan dengan Kafka memiliki tingkat keberhasilan X\% untuk 100.000 pengiriman.
+    \item Aplikasi push notification terpusat yang diimplementasikan dengan Kafka mengirim rata-rata X notifikasi per menit.
+    \item Library spring boot client dapat digunakan untuk memantau kondisi aplikasi.
 \end{enumerate}
 
 \section{Saran}
 \begin{enumerate}
-    \item (Horizontal Scaling) %TODO
-    \item (Better Cache Handling) %TODO
-    \item (Inactive Device Removal) %TODO
+    \item Mencari nilai partisi topik yang optimal untuk mempercepat pengiriman kafka.
+    \item Memperbarui data perangkat yang sudah tidak aktif berdasarkan \textit{response} dari layanan APNs dan FCM ketika mengirim notifikasi.
 \end{enumerate}

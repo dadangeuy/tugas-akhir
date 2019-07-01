@@ -1,49 +1,52 @@
 \chapter{ANALISIS DAN PERANCANGAN SISTEM}
-Bab ini menjelaskan analisis dan perancangan sistem untuk mencapai tujuan dari tugas akhir, meliputi perancangan data, proses, dan analisa implementasi secara umum.
+\par Bab ini menjelaskan analisis dan perancangan sistem untuk mencapai tujuan dari tugas akhir, meliputi perancangan data, proses, dan analisa implementasi secara umum.
 
 \section{Analisis Sistem}
-Subbab ini akan membahas mengenai hasil analisa perangkat lunak \textit{push notification} terpusat.
+\par Subbab ini akan membahas mengenai hasil analisa perangkat lunak \textit{push notification} terpusat.
 Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, dan spesifikasi kebutuhan perangkat lunak.
 
 \subsection{Analisis Permasalahan}
-\par Permasalahan yang diangkat pada tugas akhir ini adalah masalah keandalan aplikasi \textit{push notification} terpusat untuk mengirimkan notifikasi ke perangkat pengguna dalam jumlah yang besar. Berdasarkan hasil pengujian yang dilakukan oleh pengembang sebelumnya, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya sebesar 63,8 persen.
-\par Berdasarkan analisa yang penulis lakukan, rendahnya tingkat keberhasilan pengiriman ini disebabkan oleh kasus \textit{Race Condition} yang tidak ditangani dalam implementasi \textit{message queue} yang telah dibuat. Potongan sumber kode implementasi \textit{message queue} dapat dilihat pada \nameref{lampiran:queue_service}.
-\par Pada kasus ini, terdapat beberapa \textit{thread worker} yang mengubah data \textit{queue} secara paralel. Queue dibuat menggunakan dengan struktur data \textit{LinkedList}, yang tidak mendukung perubahan data secara paralel \cite{linkedlist-online}.
+\par Permasalahan yang diangkat pada tugas akhir ini adalah masalah keandalan aplikasi \textit{push notification} terpusat untuk mengirimkan notifikasi ke perangkat pengguna dalam jumlah besar. Berdasarkan hasil pengujian yang dilakukan oleh pengembang sebelumnya, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya sebesar 63,8 persen \cite{application-thesis}.
+\par Berdasarkan analisa yang penulis lakukan, rendahnya tingkat keberhasilan pengiriman disebabkan oleh kasus \textit{race condition} yang tidak ditangani dalam implementasi \textit{message queue} yang telah dibuat. \textit{Race condition} terjadi karena terdapat beberapa \textit{worker} yang mengubah data \textit{queue} secara bersamaan, namun struktur data \textit{linked list} yang digunakan oleh \textit{queue} tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}. Potongan kode implementasi \textit{message queue} dapat dilihat pada kode sumber~\ref{code:queue_service}.
 
 \subsection{Deskripsi Umum Sistem}
-Aplikasi \textit{push notification} terpusat merupakan aplikasi yang digunakan untuk mengirim notifikasi ke perangkat pengguna secara terjadwal dan \textit{asynchronous}, dan terbagi menjadi 3 modul, yaitu \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}.
-\par Secara umum, \textit{Scheduler} bertanggung jawab untuk mengantrikan notifikasi yang sudah saatnya dikirim, \textit{Sender APN} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{iOS}, dan \textit{Sender FCM} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{Android} dan \textit{Web}.
+Aplikasi \textit{push notification} terpusat merupakan aplikasi yang digunakan untuk mengirim notifikasi ke perangkat pengguna secara terjadwal dan \textit{asynchronous}, dan pada tugas akhir ini akan dibagi menjadi 3 modul, yaitu \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}.
+\par Secara umum, \textit{Scheduler} bertanggung jawab untuk penjadwalan antrian notifikasi, \textit{Sender APN} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{iOS} lewat layanan APNs, dan \textit{Sender FCM} bertanggung jawab untuk mengirimkan notifikasi yang diantrikan ke perangkat \textit{Android} dan \textit{Web} lewat layanan FCM.
 \par Komunikasi antar modul aplikasi push notification terpusat menggunakan pola \textit{publish/subscribe}, dengan pembagian antrian (\textit{message queue}) berdasarkan topik.
 Topik antrian ditentukan berdasarkan tipe perangkat penerima notifikasi, yaitu \textit{Android}, \textit{Web}, dan \textit{iOS}.
-\par Pada tugas akhir ini, komunikasi antar modul dan penyimpanan antrian akan menggunakan \textit{Kafka}, sistem basis data akan menggunakan \textit{SQL Server}, dan implementasi modul aplikasi akan menggunakan kerangka kerja \textit{Spring} dengan bahasa pemrograman \textit{Java}.
+\par Pada tugas akhir ini, komunikasi antar modul dan penyimpanan antrian akan menggunakan \textit{Kafka}, sistem basis data akan menggunakan \textit{SQL Server}, dan implementasi modul-modul aplikasi akan menggunakan bahasa pemrograman \textit{Java} dengan kerangka kerja \textit{Spring}.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
 Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan.
 Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, dan diagram kasus penggunaan.
 
 \subsubsection{Aktor}
-\begin{longtable}{|p{2cm}|p{6cm}|}
+\begin{longtable}{|p{2cm}|p{7cm}|}
     \hline
     \textbf{Aktor} & \textbf{Tugas} \\ \hline
-    \textit{Scheduler} & Membuat dan menjadwalkan pengiriman packet notifikasi. \\ \hline
-    \textit{Sender APN} & Mengirimkan packet notifikasi untuk perangkat \textit{iOS}. \\ \hline
-    \textit{Sender FCM} & Mengirimkan packet notifikasi untuk perangkat \textit{Android} dan \textit{Web}. \\ \hline
+    \textit{Scheduler} & Membuat dan menjadwalkan pengiriman \textit{packet} notifikasi. \\ \hline
+    \textit{Sender APN} & Mengirimkan \textit{packet} notifikasi untuk perangkat \textit{iOS}. \\ \hline
+    \textit{Sender FCM} & Mengirimkan \textit{packet} notifikasi untuk perangkat \textit{Android} dan \textit{Web}. \\ \hline
     \caption{Aktor pada sistem}
 \end{longtable}
 
 \subsubsection{Kebutuhan Fungsional}
-\begin{longtable}{|p{0.6cm}|p{3cm}|p{4.5cm}|}
+\begin{longtable}{|p{0.6cm}|p{3cm}|p{5cm}|}
     \hline
     \textbf{No.} & \textbf{Kebutuhan Fungsional} & \textbf{Deskripsi} \\ \hline
-    F01 & Pembuatan Packet & Sistem dapat membuat packet sesuai dengan data dari batch. \\ \hline
-    F02 & Menambahkan Packet ke Antrian & Sistem dapat mengirimkan packet ke antrian. \\ \hline
-    F03 & Pengiriman Packet ke APNs & Sistem dapat mengambil packet dari antrian dan mengirim packet ke layanan APNs. \\ \hline
-    F04 & Pengiriman Packet ke FCM & Sistem dapat mengambil packet dari antrian dan mengirim ke packet layanan FCM. \\ \hline
+    F01 & Pembuatan Packet & Jika terdapat batch yang belum dan boleh dibuatkan packet, sistem dapat membuatkan packet dari batch tersebut. \\ \hline
+    F02 & Menambahkan Packet ke Antrian & Jika terdapat packet yang belum dan sudah waktunya dikirim, sistem dapat menambahkan packet tersebut ke antrian pengiriman. \\ \hline
+    F03 & Pengiriman Packet ke APNs & Jika terdapat packet untuk perangkat iOS di antrian pengiriman, sistem dapat mengambil packet dari antrian dan mengirim packet ke layanan APNs. \\ \hline
+    F04 & Pengiriman Packet ke FCM & Jika terdapat packet untuk perangkat Android dan Web di antrian pengiriman, sistem dapat mengambil packet dari antrian dan mengirim packet ke layanan FCM. \\ \hline
+    F05 & Menampilkan Penggunaan Sumber Daya & Jika mendapat request HTTP tertentu, sistem dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan dalam bentuk response HTTP. \\ \hline
+    F06 & Menampilkan Status Kesehatan & Jika mendapat request HTTP tertentu, sistem dapat menampilkan kondisi layanan yang berhubungan dengan sistem (Kafka dan SQL Server) dalam bentuk response HTTP. \\ \hline
+    F07 & Menampilkan Konfigurasi & Jika mendapat request HTTP tertentu, sistem dapat menampilkan konfigurasi aplikasi sistem dalam bentuk response HTTP. \\ \hline
+    F08 & Menampilkan Log & Jika mendapat request HTTP tertentu, sistem dapat menampilkan isi log sistem dalam bentuk response HTTP. \\ \hline
     \caption{Kebutuhan fungsional sistem}
 \end{longtable}
 
 \subsubsection{Kebutuhan Non Fungsional}
-\begin{longtable}{|p{0.5cm}|p{2cm}|p{5.5cm}|}
+\begin{longtable}{|p{0.6cm}|p{2cm}|p{5.5cm}|}
     \hline
     \textbf{No.} & \textbf{Parameter} & \textbf{Deskripsi} \\ \hline
     1 & Reliability & Aplikasi dapat mengirimkan 1 juta notifikasi ke layanan FCM \& APNs dengan tingkat sempurna. \\ \hline
@@ -53,105 +56,170 @@ Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk 
 
 \subsubsection{Diagram Kasus Penggunaan}
 \par Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
-\par Diagram kasus penggunaan untuk setiap modul (\textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}) aplikasi \textit{push notification} terpusat dapat dilihat pada diagram~\ref{diagram_kasus_penggunaan}.
+\par Diagram kasus penggunaan untuk setiap modul (\textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM}) aplikasi \textit{push notification} terpusat dapat dilihat pada gambar~\ref{diagram_kasus_penggunaan}.
 \begin{figure}[H]
-    \centering\includegraphics[width=0.8\textwidth]{bab3/figures/diagram_kasus_penggunaan.jpg}
+    \centering\includegraphics[width=1\textwidth]{bab3/figures/diagram_kasus_penggunaan.jpg}
     \caption{Diagram Kasus Penggunaan}
     \label{diagram_kasus_penggunaan}
 \end{figure}
 
 % template tabel deskripsi kasus penggunaan
-\newcommand\tableUcDesc[7] {
+\newcommand\tableUcDesc[8] {
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
     \hline
     \textbf{Komponen} & \textbf{Deskripsi} \\ \hline
     Kode & #1 \\ \hline
     Nama & #2 \\ \hline
-    Deskripsi & #3 \\ \hline
-    Aktor & #4 \\ \hline
-    Kondisi Awal & #5 \\ \hline
-    Kondisi Akhir & #6 \\ \hline
-    Alur Normal & #7 \\ \hline
+    Aktor & #3 \\ \hline
+    Kondisi Awal & #4 \\ \hline
+    Kondisi Akhir & #5 \\ \hline
+    Alur Normal & #6 \\ \hline
+    Alur Alternatif & #7 \\ \hline
     \caption{Kasus Penggunaan #2}
 \end{longtable}
 }
 
 \paragraph{Pembuatan Packet}
-\par Pada kasus ini, \textit{Scheduler} akan memeriksa secara berkala apakah terdapat batch yang belum di proses. Jika ada, \textit{Scheduler} akan membuatkan \textit{packet} untuk \textit{batch} tersebut.
+\par Pada kasus ini, \textit{Scheduler} akan mencari batch yang belum dan boleh dibuatkan \textit{packet} secara berkala. Jika ada, \textit{Scheduler} akan membuatkan \textit{packet} untuk \textit{batch} tersebut.
 \tableUcDesc
 {UC01}
 {Pembuatan Packet}
-{Packet akan dibuat setiap ada batch baru di database}
 {Scheduler}
-{Terdapat batch yang belum diproses}
-{Packet dibuat}
+{Terdapat batch yang belum dan boleh dibuatkan packet}
+{Packet dibuat untuk batch tersebut}
 {
 \begin{enumerate}
-    \item Aktor memeriksa apakah terdapat batch yang belum diproses di database.
-    \item Aktor membuat data packet dari data batch tersebut.
-    \item Aktor menyimpan data packet dan memperbarui data batch di database.
+    \item Aktor memeriksa apakah terdapat batch yang belum dan boleh dibuatkan packet.
+    \item Aktor membuatkan data packet dari batch tersebut.
+    \item Aktor menyimpan data packet dan memperbarui data batch.
 \end{enumerate}
 }
+{-}
 
 \paragraph{Menambahkan Packet ke Antrian}
-\par Pada kasus ini, Scheduler akan memeriksa pada interval waktu tertentu apakah ada packet yang sudah waktunya untuk
-dikirim.
-Jika ada, scheduler akan menambahkan packet tersebut ke antrian kafka dengan topik yang sesuai.
+\par Pada kasus ini, \textit{Scheduler} akan mencari \textit{packet} yang belum dan sudah waktunya dikirim secara berkala. Jika ada, \textit{Scheduler} akan menambahkan \textit{packet} tersebut ke antrian \textit{Kafka} dengan topik yang dibagi berdasarkan jenis perangkat penerima.
 \tableUcDesc
 {UC02}
 {Menambahkan Packet ke Antrian}
-{Packet akan diantrikan ke kafka sesuai dengan jadwal pengiriman dan topik (Android, Web, atau iOS)}
 {Scheduler}
-{Terdapat packet yang siap dikirim}
-{Packet diantrikan ke kafka}
+{Terdapat packet yang belum dan sudah waktunya dikirim}
+{Packet ditambahkan ke antrian}
 {
 \begin{enumerate}
-    \item Aktor memeriksa apakah terdapat packet yang sudah waktunya dikirim di database.
-    \item Aktor menambahkan packet ke dalam antrian kafka dengan spesifikasi topik sebagai berikut:
+    \item Aktor memeriksa apakah terdapat packet yang belum dan sudah waktunya dikirim.
+    \item Aktor menambahkan packet ke dalam antrian dengan spesifikasi topik sebagai berikut:
     \begin{enumerate}
         \item Topik "android" untuk packet dengan target perangkat Android.
         \item Topik "web" untuk packet dengan target perangkat Web.
         \item Topik "ios" untuk packet dengan target perangkat iOS.
     \end{enumerate}
-    \item Aktor memperbarui data packet di database.
+    \item Aktor memperbarui data packet (status sedang menunggu).
 \end{enumerate}
 }
+{-}
 
 \paragraph{Pengiriman Packet ke APNs}
-\par Pada kasus ini, Sender APN akan menunggu Kafka untuk mengirimkan packet yang berada dalam antrian topik "ios".
-Setelah packet diterima, packet akan dikirim ke layanan APNs, dan kemudian akan diterima oleh perangkat pengguna.
+\par Pada kasus ini, \textit{Sender APN} akan menunggu \textit{Kafka} mengirimkan packet yang ada di antrian topik "ios". Setelah packet diterima, packet akan dikirimkan ke layanan APNs.
 \tableUcDesc
 {UC03}
 {Pengiriman Packet ke APNs}
-{Packet yang ada didalam antrian topik "ios" akan dikirimkan ke layanan APNs}
 {Sender APN}
-{Packet diterima dari antrian topik "ios" di Kafka}
-{Packet dikirim ke APNs}
+{Terdapat packet di antrian topik "ios"}
+{Packet diterima oleh layanan APNs}
 {
 \begin{enumerate}
-    \item Aktor menunggu packet dari antrian topik "ios" di kafka.
+    \item Aktor menerima packet dari antrian topik "ios".
     \item Aktor mengirimkan request notifikasi ke layanan APNs berdasarkan data packet.
-    \item Aktor memperbarui data packet di database berdasarkan response dari APNs.
+    \item Aktor memperbarui data packet berdasarkan response dari APNs (berhasil atau gagal dan alasan gagal).
 \end{enumerate}
 }
+{-}
 
 \paragraph{Pengiriman Packet ke FCM}
-\par Pada kasus ini, Sender FCM akan menunggu Kafka untuk mengirimkan packet yang berada dalam antrian topik "android" dan "web".
-Setelah packet diterima, packet akan dikirim ke layanan FCM, dan kemudian akan diterima oleh perangkat pengguna.
+\par Pada kasus ini, \textit{Sender FCM} akan menunggu \textit{Kafka} mengirimkan packet yang ada di antrian topik "android" dan "web". Setelah packet diterima, packet akan dikirimkan ke layanan FCM.
 \tableUcDesc
 {UC04}
 {Pengiriman Packet ke FCM}
-{Packet yang ada didalam antrian topik "android" akan dikirimkan ke layanan FCM}
 {Sender FCM}
-{Packet diterima dari antrian topik "android" atau "web" di kafka}
-{Packet dikirim ke FCM}
+{Terdapat packet di antrian topik "android" atau "web"}
+{Packet diterima oleh layanan FCM}
 {
 \begin{enumerate}
-    \item Aktor menunggu packet dari antrian topik "android" atau "web" di kafka.
+    \item Aktor menerima packet dari antrian topik "android" atau "web".
     \item Aktor mengirimkan request notifikasi ke layanan FCM berdasarkan data packet.
-    \item Aktor memperbarui data packet di database berdasarkan response dari FCM.
+    \item Aktor memperbarui data packet berdasarkan response dari FCM (berhasil atau gagal dan alasan gagal).
 \end{enumerate}
 }
+{-}
+
+\paragraph{Menampilkan Penggunaan Sumber Daya}
+\par Pada kasus ini, \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM} dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan aplikasi dengan menggunakan REST API.
+\tableUcDesc
+{UC05}
+{Menampilkan Penggunaan Sumber Daya}
+{Scheduler, Sender APN, Sender FCM}
+{Aktor menerima request HTTP}
+{Aktor mengembalikan response HTTP}
+{
+	\begin{enumerate}
+		\item Aktor menerima request HTTP untuk melihat penggunaan sumber daya.
+		\item Aktor memeriksa metrik penggunaan sumber daya dari sistem operasi.
+		\item Aktor mengembalikan hasil pemeriksaan penggunaan sumber daya dalam bentuk response HTTP.
+	\end{enumerate}
+}
+{-}
+
+\paragraph{Menampilkan Status Kesehatan}
+\par Pada kasus ini, \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM} dapat menampilkan status kesehatan aplikasi dan layanan yang terhubung dengan aplikasi dengan menggunakan REST API.
+\tableUcDesc
+{UC06}
+{Menampilkan Status Kesehatan}
+{Scheduler, Sender APN, Sender FCM}
+{Aktor menerima request HTTP}
+{Aktor mengembalikan response HTTP}
+{
+	\begin{enumerate}
+		\item Aktor menerima request HTTP untuk melihat status kesehatan.
+		\item Aktor memeriksa apakah aktor dapat terhubung ke layanan-layanan yang dibutuhkan oleh aktor untuk beroperasi.
+		\item Aktor mengembalikan status (bisa diakses atau tidak) layanan-layanan yang dibutuhkan dalam bentuk response HTTP.
+	\end{enumerate}
+}
+{-}
+
+\paragraph{Menampilkan Konfigurasi}
+\par Pada kasus ini, \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM} dapat menampilkan konfigurasi aplikasi dengan menggunakan REST API.
+\tableUcDesc
+{UC07}
+{Menampilkan Konfigurasi}
+{Scheduler, Sender APN, Sender FCM}
+{Aktor menerima request HTTP}
+{Aktor mengembalikan response HTTP}
+{
+	\begin{enumerate}
+		\item Aktor menerima request HTTP untuk melihat konfigurasi aplikasi.
+		\item Aktor memeriksa konfigurasi \textit{Spring} yang ada di aplikasi.
+		\item Aktor memeriksa \textit{environment variable} yang ada di sistem operasi.
+		\item Aktor mengembalikan konfigurasi \textit{Spring} dan \textit{environment variable} yang ada dalam bentuk response HTTP.
+	\end{enumerate}
+}
+{-}
+
+\paragraph{Menampilkan Log}
+\par Pada kasus ini, \textit{Scheduler}, \textit{Sender APN}, dan \textit{Sender FCM} dapat menampilkan \textit{log} yang dikeluarkan oleh aplikasi dengan menggunakan REST API.
+\tableUcDesc
+{UC08}
+{Menampilkan Log}
+{Scheduler, Sender APN, Sender FCM}
+{Aktor menerima request HTTP}
+{Aktor mengembalikan response HTTP}
+{
+\begin{enumerate}
+	\item Aktor menerima request HTTP untuk melihat log aplikasi.
+	\item Aktor mencari lokasi file log yang digunakan aplikasi untuk menyimpan log.
+	\item Aktor mengembalikan isi file log dalam bentuk response HTTP.
+\end{enumerate}
+}
+{-}
 
 \section{Perancangan Sistem}
 \par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan
@@ -180,6 +248,32 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
     User ID & uuid & Primary key tabel \\ \hline
+    Name & varchar(150) & - \\ \hline
+    Nickname & varchar(20) & - \\ \hline
+    Username & varchar(255) & - \\ \hline
+    Password & varchar(256) & - \\ \hline
+    Email & varchar(255) & - \\ \hline
+    Email Verified & numeric(1) & - \\ \hline
+    Scope & varchar(4000) & - \\ \hline
+    Alternate Email & varchar(255) & - \\ \hline
+    Alternate Email Verified & numeric(1) & - \\ \hline
+    Phone & varchar(18) & - \\ \hline
+    Phone Verified & numeric(1) & - \\ \hline
+    Enabled & numeric(1) & - \\ \hline
+    Picture & varbinary(max) & - \\ \hline
+    Gender & char(1) & - \\ \hline
+    Birth Date & date & - \\ \hline
+    Zone Info & varchar(40) & - \\ \hline
+    Locale & varchar(10) & - \\ \hline
+    Integra ID & numeric(12) & - \\ \hline
+    Registration ID & varchar(25) & - \\ \hline
+    Must Change Password & numeric(1) & - \\ \hline
+    Sandbox & numeric(1) & - \\ \hline
+    Locked & datetime & - \\ \hline
+    Suspended & datetime & - \\ \hline
+    Has Suspended & numeric(1) & - \\ \hline
+    Group ID & int & - \\ \hline
+    Auth Method ID & numeric(2) & - \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
     \caption{Tabel User (user\_account)}
@@ -191,6 +285,7 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
     Group ID & uuid & Primary key tabel \\ \hline
+    Name & varchar(100) & - \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
     \caption{Tabel Group (pn\_group)}
@@ -214,6 +309,32 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
     \hline
     \textbf{Nama Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
     Client ID & uuid & Primary key tabel \\ \hline
+    Client Name & varchar(100) & - \\ \hline
+    Client Description & varchar(250) & - \\ \hline
+    Client Secret & varchar(255) & - \\ \hline
+    Expires At & datetime & - \\ \hline
+    Logo & varchar(100) & - \\ \hline
+    Redirect URI & varchar(2000) & - \\ \hline
+    Post Logout Redirect URIS & varchar(2048) & - \\ \hline
+    Front Channel Logout URI & varchar(255) & - \\ \hline
+    Front Channel Logout Session Required & numeric(1) & - \\ \hline
+    Back Channel Logout URI & varchar(255) & - \\ \hline
+    Back Channel Logout Session Required & numeric(1) & - \\ \hline
+    Base URI & varchar(255) & - \\ \hline
+    API Base URI & varchar(255) & - \\ \hline
+    Application Type & char(1) & - \\ \hline
+    Contact Name & varchar(255) & - \\ \hline
+    Contact Email & varchar(255) & - \\ \hline
+    Preauthorized & numeric(1) & - \\ \hline
+    Grant Types & varchar(80) & - \\ \hline
+    Scope & varchar(4000) & - \\ \hline
+    Sandbox & numeric(1) & - \\ \hline
+    Is Moderated & numeric(1) & - \\ \hline
+    Visible & numeric(1) & - \\ \hline
+    Category ID & int & - \\ \hline
+    Auth Type ID & char(1) & - \\ \hline
+    User ID & uniqueidentifier & - \\ \hline
+    Provider ID & uniqueidentifier & - \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
     \caption{Tabel Client}
@@ -230,8 +351,6 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
     Certificate Key & text & File sertifikat yang sudah diencode dengan base64 \\ \hline
     Type & char(1) & Tipe sertifikat (FCM atau APNs) \\ \hline
     Password & varchar(255) & Kata sandi untuk sertifikat iOS \\ \hline
-    Created At & datetime & Tanggal dan waktu dibuat \\ \hline
-    Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
     \caption{Tabel Certificate}
 \end{longtable}
 
@@ -246,8 +365,8 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
     Device Token & varchar(255) & Token yang terdaftar di layanan APNs dan FCM \\ \hline
     Device Type & char(1) & Jenis perangkat (Android, Web, atau iOS) \\ \hline
     Active & numeric(1) & Perangkat aktif atau tidak \\ \hline
-    Created At & datetime & Tanggal dan waktu dibuat \\ \hline
-    Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
+    Registration Date & datetime & - \\ \hline
+    Invalidate Date & datetime & - \\ \hline
     \caption{Tabel Device}
 \end{longtable}
 
@@ -316,47 +435,38 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
 \end{longtable}
 
 \subsection{Perancangan Proses}
-\par Subbab ini menjelaskan tentang rancangan, tujuan, dan diagram alir proses-proses yang ada pada aplikasi
-\textit{push notification} terpusat.
+\par Subbab ini menjelaskan tentang rancangan, tujuan, dan diagram alir proses-proses yang ada pada aplikasi \textit{push notification} terpusat.
 
 \subsubsection{Proses Pembuatan Packet}
-\par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat.
-Proses pembuatan dapat
-dilihat di diagram alir pada gambar~\ref{flowchart_pembuatan_packet}.
+\par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat. Proses pembuatan dapat dilihat di diagram alir pada gambar~\ref{flowchart_pembuatan_packet}.
 \begin{figure}[H]
-    \centering\includegraphics[width=0.8\textwidth]{bab3/figures/flowchart_pembuatan_packet.jpg}
+    \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_pembuatan_packet.jpg}
     \caption{Diagram Alir Proses Pembuatan \textit{Packet}}
     \label{flowchart_pembuatan_packet}
 \end{figure}
 
 \subsubsection{Proses Menambahkan Packet ke Antrian}
 \par Proses ini bertujuan untuk mengantrikan \textit{packet} yang sudah waktunya untuk dikirim.
-Antrian
-\textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS).
-Proses pengantrian
-dapat dilihat di diagram alir pada gambar~\ref{flowchart_menambahkan_packet_ke_antrian}.
+Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS). Proses pengantrian dapat dilihat di diagram alir pada gambar~\ref{flowchart_menambahkan_packet_ke_antrian}.
 \begin{figure}[H]
-    \centering\includegraphics[width=0.7\textwidth]{bab3/figures/flowchart_menambahkan_packet_ke_antrian.jpg}
+    \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_menambahkan_packet_ke_antrian.jpg}
     \caption{Diagram Alir Proses Menambahkan \textit{Packet} ke Antrian}
     \label{flowchart_menambahkan_packet_ke_antrian}
 \end{figure}
 
 \subsubsection{Proses Pengiriman Packet ke APNs}
-\par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "ios" ke perangkat pengguna
-yang berbasis iOS lewat layanan APNs. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada
+\par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "ios" ke perangkat pengguna yang berbasis iOS lewat layanan APNs. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada
 gambar~\ref{flowchart_pengiriman_packet_ke_apns}.
 \begin{figure}[H]
-    \centering\includegraphics[width=0.7\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_apns.jpg}
+    \centering\includegraphics[width=0.8\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_apns.jpg}
     \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke APNs}
     \label{flowchart_pengiriman_packet_ke_apns}
 \end{figure}
 
 \subsubsection{Proses Pengiriman Packet ke FCM}
-\par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke
-perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di
-diagram alir pada gambar~\ref{flowchart_pengiriman_packet_ke_fcm}.
+\par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada gambar~\ref{flowchart_pengiriman_packet_ke_fcm}.
 \begin{figure}[H]
-    \centering\includegraphics[width=0.7\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_fcm.jpg}
+    \centering\includegraphics[width=0.8\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_fcm.jpg}
     \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke FCM}
     \label{flowchart_pengiriman_packet_ke_fcm}
 \end{figure}
