@@ -7,7 +7,12 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 
 \subsection{Analisis Permasalahan}
 \par Permasalahan yang diangkat pada tugas akhir ini adalah keandalan aplikasi push notification terpusat untuk mengirimkan notifikasi ke perangkat pengguna dalam jumlah besar. Berdasarkan hasil pengujian yang dilakukan oleh pengembang sebelumnya, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya sebesar 63,8 persen \cite{application-thesis}.
-\par \textit{Message queue} pada aplikasi push notification terpusat bekerja dengan cara membuat satu antrian dengan beberapa \textit{thread worker} bekerja sebagai \textit{producer} dan \textit{consumer} dari antrian tersebut secara bersamaan. Berdasarkan analisa yang penulis lakukan, struktur data \textit{linked list} yang digunakan dalam implementasi antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}. Konsekuensinya, bisa saja terdapat pesan yang gagal ditambahkan ke antrian atau diambil oleh beberapa \textit{thread worker}. Potongan kode implementasi \textit{message queue} dapat dilihat pada Kode Sumber \ref{code:queue_service}.
+\par Arsitektur \textit{message queue} pada aplikasi push notification terpusat dapat dilihat pada Gambar \ref{arsitektur_message_queue_lama}. Terdapat beberapa \textit{thread} yang menambahkan dan mengambil pesan dari antrian secara bersamaan. Berdasarkan analisis yang penulis lakukan, struktur data \textit{linked list} yang digunakan oleh antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}. Konsekuensinya, pesan yang berada di antrian bisa saja hilang tanpa ada \textit{error} yang terdeteksi oleh aplikasi. Potongan kode implementasi \textit{message queue} dapat dilihat pada \nameref{lampiran:queue_service}.
+\begin{figure}[H]
+	\centering\includegraphics[width=1\textwidth]{bab3/figures/arsitektur_message_queue_lama.jpg}
+	\caption{Arsitektur \textit{Message Queue} Lama}
+	\label{arsitektur_message_queue_lama}
+\end{figure}
 
 \subsection{Deskripsi Umum Sistem}
 \par Aplikasi push notification terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Pada tugas akhir ini akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM.
@@ -331,8 +336,8 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada gambar~\ref{arsitektur_
     Visible & numeric(1) & - \\ \hline
     Category ID & int & - \\ \hline
     Auth Type ID & char(1) & - \\ \hline
-    User ID & uniqueidentifier & - \\ \hline
-    Provider ID & uniqueidentifier & - \\ \hline
+    User ID & uuid & - \\ \hline
+    Provider ID & uuid & - \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
     \caption{Tabel Client}
