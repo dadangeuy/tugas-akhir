@@ -8,7 +8,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \subsection{Analisis Permasalahan}
 \par Permasalahan yang diangkat pada tugas akhir ini adalah keandalan aplikasi push notification terpusat untuk mengirimkan notifikasi ke perangkat pengguna dalam jumlah besar. Berdasarkan hasil pengujian yang dilakukan oleh pengembang sebelumnya, tingkat keberhasilan pengiriman notifikasi ke 3000 pengguna hanya sebesar 63,8 persen \cite{application-thesis}.
 \par Arsitektur \textit{message queue} pada aplikasi push notification terpusat dapat dilihat pada Gambar \ref{arsitektur_message_queue_lama}. Terdapat beberapa \textit{thread} yang menambahkan dan mengambil pesan dari antrian secara bersamaan. Berdasarkan analisis yang penulis lakukan, struktur data \textit{linked list} yang digunakan oleh antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}. Konsekuensinya, pesan yang berada di antrian bisa saja hilang tanpa ada \textit{error} yang terdeteksi oleh aplikasi. Potongan kode implementasi \textit{message queue} dapat dilihat pada \nameref{lampiran:queue_service}.
-\begin{figure}[H]
+\begin{figure}[hb]
 	\centering\includegraphics[width=1\textwidth]{bab3/figures/arsitektur_message_queue_lama.jpg}
 	\caption{Arsitektur \textit{Message Queue} Lama}
 	\label{arsitektur_message_queue_lama}
@@ -60,7 +60,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \subsubsection{Diagram Kasus Penggunaan}
 \par Subbab ini menjelaskan kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya.
 \par Diagram kasus penggunaan untuk setiap modul (Scheduler, Sender APN, dan Sender FCM) aplikasi \textit{push notification} terpusat dapat dilihat pada Gambar \ref{diagram_kasus_penggunaan}.
-\begin{figure}[H]
+\begin{figure}[hb]
     \centering\includegraphics[width=1\textwidth]{bab3/figures/diagram_kasus_penggunaan.jpg}
     \caption{Diagram Kasus Penggunaan}
     \label{diagram_kasus_penggunaan}
@@ -236,7 +236,7 @@ Spring.
 Aplikasi saling terhubung lewat Kafka dan SQL Server.
 Secara garis besar, aplikasi ini memiliki rancangan
 arsitektur pengiriman notifikasi yang dapat dilihat pada Gambar \ref{arsitektur_pengiriman_notifikasi}.
-\begin{figure}[H]
+\begin{figure}[hb]
     \centering\includegraphics[width=1\textwidth]{bab3/figures/arsitektur_pengiriman_notifikasi.jpg}
     \caption{Arsitektur Pengiriman Notifikasi}
     \label{arsitektur_pengiriman_notifikasi}
@@ -452,7 +452,7 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada Gambar \ref{arsitektur_
 
 \subsubsection{Proses Pembuatan Packet}
 \par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat. Proses pembuatan dapat dilihat di diagram alir pada Gambar \ref{flowchart_pembuatan_packet}.
-\begin{figure}[H]
+\begin{figure}[hb]
     \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_pembuatan_packet.jpg}
     \caption{Diagram Alir Proses Pembuatan \textit{Packet}}
     \label{flowchart_pembuatan_packet}
@@ -461,7 +461,7 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada Gambar \ref{arsitektur_
 \subsubsection{Proses Menambahkan Packet ke Antrian}
 \par Proses ini bertujuan untuk mengantrikan \textit{packet} yang sudah waktunya untuk dikirim.
 Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS). Proses pengantrian dapat dilihat di diagram alir pada Gambar \ref{flowchart_menambahkan_packet_ke_antrian}.
-\begin{figure}[H]
+\begin{figure}[hb]
     \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_menambahkan_packet_ke_antrian.jpg}
     \caption{Diagram Alir Proses Menambahkan \textit{Packet} ke Antrian}
     \label{flowchart_menambahkan_packet_ke_antrian}
@@ -470,16 +470,16 @@ Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (
 \subsubsection{Proses Pengiriman Packet ke APNs}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "ios" ke perangkat pengguna yang berbasis iOS lewat layanan APNs. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada
 Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
-\begin{figure}[H]
-    \centering\includegraphics[width=0.8\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_apns.jpg}
+\begin{figure}[hb]
+    \centering\includegraphics[width=0.6\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_apns.jpg}
     \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke APNs}
     \label{flowchart_pengiriman_packet_ke_apns}
 \end{figure}
 
 \subsubsection{Proses Pengiriman Packet ke FCM}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada Gambar \ref{flowchart_pengiriman_packet_ke_fcm}.
-\begin{figure}[H]
-    \centering\includegraphics[width=0.8\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_fcm.jpg}
+\begin{figure}[hb]
+    \centering\includegraphics[width=0.6\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_fcm.jpg}
     \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke FCM}
     \label{flowchart_pengiriman_packet_ke_fcm}
 \end{figure}
