@@ -456,9 +456,8 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \subsubsection{Proses Pembuatan Packet}
 \par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat. Proses pembuatan dapat dilihat di diagram alir pada Gambar \ref{flowchart_pembuatan_packet}.
 \begin{figure}[hb]
+	\caption{Diagram Alir Proses Pembuatan \textit{Packet}} \label{flowchart_pembuatan_packet}
     \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_pembuatan_packet.jpg}
-    \caption{Diagram Alir Proses Pembuatan \textit{Packet}}
-    \label{flowchart_pembuatan_packet}
 \end{figure}
 
 \subsubsection{Proses Menambahkan Packet ke Antrian}
@@ -466,24 +465,21 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Proses ini bertujuan untuk mengantrikan \textit{packet} yang sudah waktunya untuk dikirim.
 Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS). Proses pengantrian dapat dilihat di diagram alir pada Gambar \ref{flowchart_menambahkan_packet_ke_antrian}.
 \begin{figure}[hb]
+	\caption{Diagram Alir Proses Menambahkan \textit{Packet} ke Antrian} \label{flowchart_menambahkan_packet_ke_antrian}
     \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_menambahkan_packet_ke_antrian.jpg}
-    \caption{Diagram Alir Proses Menambahkan \textit{Packet} ke Antrian}
-    \label{flowchart_menambahkan_packet_ke_antrian}
 \end{figure}
 
 \subsubsection{Proses Pengiriman Packet ke APNs}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "ios" ke perangkat pengguna yang berbasis iOS lewat layanan APNs. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada
 Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 \begin{figure}[hb]
+	\caption{Diagram Alir Proses Pengiriman \textit{Packet} ke APNs} \label{flowchart_pengiriman_packet_ke_apns}
     \centering\includegraphics[width=0.6\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_apns.jpg}
-    \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke APNs}
-    \label{flowchart_pengiriman_packet_ke_apns}
 \end{figure}
 
 \subsubsection{Proses Pengiriman Packet ke FCM}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada Gambar \ref{flowchart_pengiriman_packet_ke_fcm}.
 \begin{figure}[hb]
+	\caption{Diagram Alir Proses Pengiriman \textit{Packet} ke FCM} \label{flowchart_pengiriman_packet_ke_fcm}
     \centering\includegraphics[width=0.6\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_fcm.jpg}
-    \caption{Diagram Alir Proses Pengiriman \textit{Packet} ke FCM}
-    \label{flowchart_pengiriman_packet_ke_fcm}
 \end{figure}
