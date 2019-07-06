@@ -1,0 +1,17 @@
+...
+management:
+  endpoint:
+    health:
+      show-details: when_authorized
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+...
+spring:
+...
+  security:
+    user:
+      name: ${MONITOR_USERNAME:monitor_local}
+      password: ${MONITOR_PASSWORD:monitor_local123#}
+
