@@ -228,22 +228,22 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan
 arsitektur, data, dan proses.
 
-\subsection{Perancangan Arsitektur}
+\subsection{Perancangan Arsitektur} \label{s:perancangan_arsitektur}
 \par Aplikasi \textit{push notification} terpusat akan dibagi menjadi 3 modul, yaitu Scheduler,
 Sender APN, dan Sender FCM.
 Aplikasi dibangun dengan bahasa pemrograman Java, dengan kerangka kerja
 Spring.
 Aplikasi saling terhubung lewat Kafka dan SQL Server.
 Secara garis besar, aplikasi ini memiliki rancangan
-arsitektur pengiriman notifikasi yang dapat dilihat pada Gambar \ref{arsitektur_pengiriman_notifikasi}.
-\begin{figure}[hb]
+arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
+\begin{figure}[H]
     \centering\includegraphics[width=1\textwidth]{bab3/figures/arsitektur_pengiriman_notifikasi.jpg}
     \caption{Arsitektur Pengiriman Notifikasi}
-    \label{arsitektur_pengiriman_notifikasi}
+    \label{f:arsitektur_aplikasi}
 \end{figure}
 
 \subsection{Perancangan Basis Data}
-\par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification} terpusat. Basis data yang digunakan adalah SQL Server 2012.
+\par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification} terpusat. Sistem basis data yang digunakan adalah SQL Server 2012.
 
 \subsubsection{Tabel User}
 \par Tabel user digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user}.
@@ -404,7 +404,7 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada Gambar \ref{arsitektur_
     \label{tabel_batch}
 \end{longtable}
 
-\subsubsection{Tabel Packet}
+\subsubsection{Tabel Packet} \label{s:tabel_packet}
 \par Tabel packet digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_packet}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
     \hline
@@ -445,6 +445,23 @@ arsitektur pengiriman notifikasi yang dapat dilihat pada Gambar \ref{arsitektur_
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
     \caption{Tabel Group Destination}
     \label{tabel_group_destination}
+\end{longtable}
+
+\subsection{Perancangan Antrian Pesan}
+\par Subbab ini membahas bagaimana rancangan antrian pesan yang akan digunakan. Sistem antrian pesan yang digunakan adalah Apache Kafka.
+
+\subsection{Perancangan Skema}
+\par Berdasarkan rancangan arsitektur pada Subbab \ref{s:perancangan_arsitektur}, Scheduler akan mengirimkan \textit{packet} ke Sender APN dan Sender FCM lewat antrian pesan. Pertukaran data \textit{packet} di antrian pesan akan menggunakan format JSON. Skema JSON dapat dilihat pada Kode Sumber \ref{json:packet}.
+\lstinputlisting[label=json:packet, caption=Skema JSON Packet, language=SQL] {bab3/json/packet.json}
+
+\subsection{Perancangan Topik}
+\par Berdasarkan rancangan arsitektur pada Subbab \ref{s:perancangan_arsitektur}, antrian \textit{packet} akan dipisah berdasarkan tipe perangkat penerima \textit{packet}. Rincian pembagian topik dapat dilihat pada Tabel \ref{t:pembagian_topik_antrian}.
+\begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|}
+	\caption{Pembagian Topik Antrian} \label{t:pembagian_topik_antrian} \\ \hline
+	\textbf{Perangkat} & \textbf{Topik} & \textbf{Deskripsi} \\ \hline
+	Android & android & Berisi \textit{packet} untuk perangkat Android dengan format JSON. \\ \hline
+	Web & web & Berisi \textit{packet} untuk perangkat Web dengan format JSON. \\ \hline
+	iOS & ios & Berisi \textit{packet} untuk perangkat iOS dengan format JSON. \\ \hline
 \end{longtable}
 
 \subsection{Perancangan Proses}

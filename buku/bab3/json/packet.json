@@ -1,0 +1,36 @@
+{  
+   "id": <uuid>,
+   "batch": {  
+      "id": <uuid>,
+      "title": <string>,
+      "body": <string>,
+      "image": <string>,
+      "sound": <string>,
+      "action": <string>,
+      "additionalData": <string>,
+      "deliveryDate": <datetime>,
+      "startedAt": <datetime>,
+      "finishedAt": <datetime>,
+      "allowed": <boolean>,
+      "clientDestination": {  
+         "id": <uuid>
+      }
+   },
+   "device": {  
+      "id": <uuid>,
+      "client": {  
+         "id": <uuid>
+      },
+      "user": {  
+         "id": <uuid>
+      },
+      "token": <string>,
+      "type": <enum>,
+      "active": <boolean>
+   },
+   "sentAt": <datetime>,
+   "reason": <string>,
+   "status": <enum>,
+   "createdAt": <datetime>,
+   "updateAt": <datetime>
+}

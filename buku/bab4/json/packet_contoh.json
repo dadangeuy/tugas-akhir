@@ -1,0 +1,36 @@
+{  
+   "id":"a311426d-af50-416a-ad80-46124b6ec67e",
+   "batch":{  
+      "id":"211598dd-2c68-4448-b0ac-72517d6a777f",
+      "title":"judul",
+      "body":"konten",
+      "image":"hoaxQeUktishYeV.png",
+      "sound":"lIMk6LW25ieNLim.mp3",
+      "action":"aksi",
+      "additionalData":"{\"key\":\"value\"}",
+      "deliveryDate":"2019-07-06T17:50:00",
+      "startedAt":"2019-07-06T17:50:50.67",
+      "finishedAt":"2019-07-06T17:50:51.377",
+      "allowed":true,
+      "clientDestination":{  
+         "id":"c947af96-000c-4e71-8ae3-486c8d283b21"
+      }
+   },
+   "device":{  
+      "id":"3c43a602-ba49-4671-83a0-22816c6cf43a",
+      "client":{  
+         "id":"c947af96-000c-4e71-8ae3-486c8d283b21"
+      },
+      "user":{  
+         "id":"69f16ffb-1462-4341-9918-00003503d35a"
+      },
+      "token":"FC57E66B889917A452AE7F72CF0B89074902A4AA719FA3E5CC345C6D2D0434FD",
+      "type":"IOS",
+      "active":true
+   },
+   "sentAt":null,
+   "reason":null,
+   "status":"WAITING",
+   "createdAt":"2019-07-06T17:50:51.293",
+   "updateAt":"2019-07-06T17:50:51.293"
+}

@@ -135,7 +135,7 @@
     \label{tabel_pn_group_destination}
 \end{figure}
 
-\section{Implementasi Message Queue}
+\section{Implementasi Antrian Pesan}
 %TODO
 
 \subsection{Implementasi Kafka}
@@ -144,12 +144,11 @@
 \subsection{Implementasi Zookeeper}
 %TODO
 
-%TODO kopas kodingan
 \section{Implementasi Proses dan Kasus Penggunaan}
 \par Subbab ini membahas implementasi proses yang dibuat berdasarkan hasil analisa dan rancangan yang telah dilakukan.
 
 \subsection{Implementasi Pembuatan Packet}
-\par Proses pembuatan \textit{packet} dilakukan secara berkala oleh modul Scheduler setiap 30 detik. \textit{Packet} yang telah dibuat akan disimpan ke SQL Server. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pembuatan_packet}.
+\par Proses pembuatan \textit{packet} dilakukan secara berkala oleh modul Scheduler setiap 30 detik. \textit{Packet} yang telah dibuat akan disimpan di sistem basis data (SQL Server). Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pembuatan_packet}.
 \lstinputlisting[label=code:pembuatan_packet, caption=Implementasi Pembuatan Packet, language=Java] {bab4/codes/pembuatan_packet.java}
 
 \subsubsection{Implementasi Menambahkan Packet ke Antrian}
