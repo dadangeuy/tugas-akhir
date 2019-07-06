@@ -1,0 +1,19 @@
+...
+x-env:
+  - &zookeeper-username '${ZOOKEEPER_USERNAME}'
+  - &zookeeper-password '${ZOOKEEPER_PASSWORD}'
+  - &kafka-username '${KAFKA_USERNAME}'
+  - &kafka-password '${KAFKA_PASSWORD}'
+
+services:
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    network_mode: host
+    environment:
+      ZOO_ENABLE_AUTH: 'yes'
+      ZOO_SERVER_USERS: *zookeeper-username
+      ZOO_SERVER_PASSWORDS: *zookeeper-password
+      ZOO_CLIENT_USER: *zookeeper-username
+      ZOO_CLIENT_PASSWORD: *zookeeper-password
+  ...
+
