@@ -5,25 +5,25 @@
 \section{Latar Belakang}
 \par \textit{Push notification} adalah pesan yang muncul di perangkat pengguna lewat aplikasi yang terpasang dalam perangkat tersebut. \textit{Push notification} pada umumnya digunakan untuk menyebarkan informasi seperti promo, pengingat pembayaran, berita terbaru, dan sebagainya.
 \par Pengiriman \textit{push notification} di Institut Teknologi Sepuluh Nopember menggunakan aplikasi Push Notification Terpusat. Push Notification Terpusat adalah layanan pengiriman \textit{push notification} berbasis web yang dikembangkan untuk memudahkan manajemen dan penyebaran informasi ke pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember \cite{application-thesis}.
-\par Aplikasi Push Notification Terpusat menggunakan metode \textit{message queue} dalam proses pengiriman \textit{push notification}. \textit{Message queue} adalah metode komunikasi antar sistem secara asynchronous dengan cara membuat antrian untuk pesan-pesan yang akan diolah \cite{message-queue-online}. \textit{Message queue} pada umumnya digunakan oleh aplikasi yang membutuhkan waktu lama untuk mengolah data, seperti pengiriman email, transaksi perbankan, dan sebagainya.
+\par Aplikasi Push Notification Terpusat menggunakan metode \textit{message queue} untuk mengirim \textit{push notification}. \textit{Message queue} adalah metode komunikasi antar sistem secara asynchronous dengan cara membuat antrian untuk pesan-pesan yang akan diolah \cite{message-queue-online}. \textit{Message queue} pada umumnya digunakan oleh aplikasi yang membutuhkan waktu lama untuk mengolah data, seperti pengiriman email, transaksi perbankan, dan sebagainya.
 \par \textit{Message queue} yang digunakan oleh Push Notification Terpusat memiliki kelemahan dari sisi keandalan pengiriman \textit{push notification}. Berdasarkan hasil pengujian, untuk kasus uji pengiriman \textit{push notification} ke 3000 perangkat, tingkat keberhasilan pengiriman hanya 63,8 persen \cite{application-thesis}.
 \par Oleh karena itu, pada tugas akhir ini penulis mengusulkan untuk menggunakan Kafka sebagai pengganti \textit{message queue} yang saat ini digunakan. Kafka adalah layanan terdistribusi untuk \textit{data streaming} yang dibuat berdasarkan konsep \textit{message queue} \cite{kafka-online}. Berdasarkan hasil uji yang dilakukan oleh pengembang lain, Kafka terbukti mampu mengirimkan push notification ke 1 juta perangkat dengan tingkat keberhasilan pengiriman 100 persen \cite{prototype-article}.
 
 \section {Rumusan Masalah}
 Rumusan masalah yang diangkat pada tugas akhir ini adalah sebagai berikut:
 \begin {enumerate}
-\item Bagaimana implementasi \textit{message queue} dengan Kafka pada aplikasi push notification terpusat?
-\item Bagaimana implementasi penjadwalan pengiriman \textit{push notification} pada aplikasi push notification terpusat?
+\item Bagaimana implementasi \textit{message queue} dengan Kafka pada aplikasi Push Notification Terpusat?
+\item Bagaimana implementasi penjadwalan pengiriman \textit{push notification} pada aplikasi Push Notification Terpusat?
 \item Bagaimana implementasi pengiriman \textit{push notification} ke perangkat pengguna?
-\item Bagaimana implementasi \textit{monitoring} pada aplikasi push notification terpusat?
+\item Bagaimana implementasi pemantauan pada aplikasi push notification terpusat?
 \end {enumerate}
 
 \section {Batasan Masalah}
 Permasalahan yang dibahas pada tugas akhir ini memiliki batasan sebagai berikut:
 \begin {enumerate}
-\item Aplikasi push notification terpusat digunakan untuk ruang lingkup Institut Teknologi Sepuluh Nopember.
-\item Aplikasi push notification terpusat mengirim \textit{push notification} ke perangkat android, web, dan ios dengan menggunakan layanan Apple Push Notification Service dan Firebase Cloud Messaging.
-\item \textit{Monitoring} digunakan untuk melihat kondisi layanan aplikasi push notification terpusat.
+\item Push Notification Terpusat digunakan untuk ruang lingkup Institut Teknologi Sepuluh Nopember.
+\item Aplikasi Push Notification Terpusat mengirim \textit{push notification} ke perangkat Android, Web, dan iOS dengan menggunakan layanan Apple Push Notification Service dan Firebase Cloud Messaging.
+\item Implementasi pemantauan hanya digunakan untuk melihat kondisi layanan Push Notification Terpusat.
 \item Teknologi yang digunakan dalam pembuatan aplikasi ini adalah bahasa pemrograman Java dengan kerangka kerja Spring.
 \end {enumerate}
 

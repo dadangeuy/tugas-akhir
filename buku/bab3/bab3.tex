@@ -16,11 +16,11 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{figure}
 
 \subsubsection{Durabilitas Penyimpanan Antrian}
-\par Antrian \textit{packet} pada Push Notification Terpusat disimpan dalam sebuah struktur data yang ada di sistem. Konsekuensinya, jika sistem \textit{down}, seluruh \textit{packet} yang berada diantrian akan hilang. Selain itu, karena semua pesan disimpan di sistem, sistem akan kehabisan memori jika jumlah pesan yang diantrikan terlalu banyak.
+\par Antrian \textit{packet} pada Push Notification Terpusat disimpan dalam sebuah struktur data yang ada di sistem. Konsekuensinya, jika sistem \textit{down}, seluruh \textit{packet} yang berada diantrian akan hilang. Selain itu, karena semua pesan disimpan di sistem, sistem akan kehabisan memori dan \textit{crash} jika jumlah pesan yang diantrikan terlalu banyak.
 
 \subsection{Deskripsi Umum Sistem}
 \par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Pada tugas akhir ini, aplikasi akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM.
-\par Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{push notification}, Sender APN bertanggung jawab untuk mengirimkan \textit{push notification} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{push notification} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
+\par Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{packet}, Sender APN bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
 \par Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan. Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, dan diagram kasus penggunaan.
