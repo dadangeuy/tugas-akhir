@@ -35,11 +35,14 @@
 	\textbf{Kode} & FT-01 \\ \hline
 	\textbf{Nama} & Pengujian Pembuatan Packet \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu membuatkan data \textit{packet} dari data \textit{batch} \\ \hline
-	\textbf{Kondisi Awal} & Data batch ditambahkan ke sistem basis data \\ \hline
+	\textbf{Kondisi Awal} & Data batch belum ditambahkan ke sistem basis data \\ \hline
 	\textbf{Langkah Pengujian} &  
 	\begin{enumerate}
-		\item Penulis menambahkan data batch baru lewat halaman manajemen aplikasi push notification terpusat.
-		\item 
+		\item Pengguna menambahkan data batch baru lewat halaman manajemen aplikasi push notification terpusat.
+		\item Sistem akan menyimpan data \textit{batch} ke dalam sistem basis data
+		\item Scheduler akan mengecek \textit{batch} yang baru dibuat pada sistem basis data
+		\item Pada setiap batch, Scheduler akan mencari device yang sesuai dengan pengguna pada group \textit{batch} tersebut
+		\item Untuk setiap \textit{device}, Scheduler membuatkan \textit{packet} dan menyimpannya di database.
 	\end{enumerate} \\ \hline
 	\textbf{Hasil yang diharapkan} & Data \textit{packet} tersimpan di sistem basis data \\ \hline
 	\textbf{Hasil yang diperoleh} & Data \textit{packet} tersimpan di sistem basis data \\ \hline
@@ -47,19 +50,136 @@
 \end{longtable}
 
 \subsection{Pengujian Menambahkan Packet ke Antrian}
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+	\caption{Pengujian Pembuatan Antrian} \label{t:uji_pembuatan_antrian} \\ \hline
+	\textbf{Kode} & FT-02 \\ \hline
+	\textbf{Nama} & Pengujian Pembuatan Antrian \\ \hline
+	\textbf{Tujuan} & Menguji apakah sistem mampu membuatkan data antrian dari data \textit{packet} \\ \hline
+	\textbf{Kondisi Awal} & Data packet sudah dibuat dan belum ditambahkan ke antrian \\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Scheduler mencari paket yang belum dan sudah waktunya dikirim
+		\item Scheduler memperbarui data \textit{packet} dari "Dibuat" menjadi "Menunggu"
+		\item Scheduler akan mengecek apakah \textit{device} dari \textit{packet} itu adalah untuk perangkat Android, iOS atau web.
+		\begin{enumerate}
+			\item Apabila \textit{device} untuk perangkat Android, Scheduler akan mengirim ke topik antrian "android"
+			\item Apabila \textit{device} untuk perangkat iOS, Scheduler akan mengirim ke topik antrian "ios"
+			\item Apabila \textit{device} untuk perangkat web, Scheduler akan mengirim ke topik antrian "web"
+		\end{enumerate}
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Data antrian tersimpan di Kafka. \\ \hline
+	\textbf{Hasil yang diperoleh} & Data antrian tersimpan di Kafka. \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
 
 \subsection{Pengujian Pengiriman Packet ke APNs}
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+	\caption{Pengujian Pengiriman Packet ke APNs} \label{t:uji_pengiriman_packet_apn} \\ \hline
+	\textbf{Kode} & FT-03 \\ \hline
+	\textbf{Nama} & Pengujian Pembuatan Packet \\ \hline
+	\textbf{Tujuan} & Menguji apakah sistem mampu mengirim \textit{packet} ke APNs \\ \hline
+	\textbf{Kondisi Awal} &  Packet ada pada antrian topik "ios"\\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Kafka mengirim \textit{packet} pada antrian topik "ios" ke Sender APN
+		\item Sender APN menerima packet dari antrian topik "ios"
+		\item Sender APN mengirim \textit{request push notification} ke APNs
+		\begin{enumerate}
+			\item Apabila berhasil, Sender APN memperbarui data \textit{packet} menjadi "sukses"
+			\item Apabila gagal, Sender APN memperbarui data \textit{packet} menjadi "gagal"
+		\end{enumerate}
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Notifikasi terkirim pada perangkat iOS pengguna \\ \hline
+	\textbf{Hasil yang diperoleh} & Notifikasi terkirim pada perangkat iOS pengguna \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
 
 \subsection{Pengujian Pengiriman Packet ke FCM}
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+	\caption{Pengujian Pengiriman Packet ke FCM} \label{t:uji_pengiriman_packet_fcm} \\ \hline
+	\textbf{Kode} & FT-04 \\ \hline
+	\textbf{Nama} & Pengujian Pengiriman Packet ke FCM \\ \hline
+	\textbf{Tujuan} & Menguji apakah sistem mampu mengirim \textit{packet} ke FCM \\ \hline
+	\textbf{Kondisi Awal} &  Packet ada pada antrian topik "android" atau "web"\\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Kafka mengirim \textit{packet} pada antrian topik "android" dan "web" ke Sender FCM
+		\item Sender FCM menerima packet dari antrian topik "android" atau "web"
+		\item Sender FCM mengirim \textit{request push notification} ke FCM
+		\begin{enumerate}
+			\item Apabila berhasil, Sender FCM memperbarui data \textit{packet} menjadi "sukses"
+			\item Apabila gagal, Sender FCM memperbarui data \textit{packet} menjadi "gagal"
+		\end{enumerate}
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Notifikasi terkirim pada perangkat Android atau web pengguna \\ \hline
+	\textbf{Hasil yang diperoleh} & Notifikasi terkirim pada perangkat Android atau web pengguna \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
 
 \subsection{Pengujian Menampilkan Penggunaan Sumber Daya}
-
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+	\caption{Pengujian Menampilkan Penggunaan Sumber Daya} \label{t:uji_menampilkan_penggunaan_sumber_daya} \\ \hline
+	\textbf{Kode} & FT-05 \\ \hline
+	\textbf{Nama} & Pengujian Menampilkan Penggunaan Sumber Daya \\ \hline
+	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan penggunaan sumber daya \\ \hline
+	\textbf{Kondisi Awal} &  \textit{Server} dalam keadaan berjalan\\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Aplikasi Manajemen mengakses \textit{endpoint} untuk menampilkan penggunaan sumber daya
+		\item Sistem mengirim response berupa JSON mengenai penggunaan sumber daya
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Aplikasi dapat mengetahui penggunaan sumber daya \\ \hline
+	\textbf{Hasil yang diperoleh} & Aplikasi dapat mengetahui penggunaan sumber daya \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
 \subsection{Pengujian Menampilkan Status Kesehatan}
-
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+	\caption{Pengujian Menampilkan Status Kesehatan} \label{t:uji_menampilkan_status_kesehatan} \\ \hline
+	\textbf{Kode} & FT-06 \\ \hline
+	\textbf{Nama} & Pengujian Menampilkan Status Kesehatan \\ \hline
+	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan status kesehatan \\ \hline
+	\textbf{Kondisi Awal} &  \textit{Server} dalam keadaan berjalan\\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Aplikasi Manajemen mengakses \textit{endpoint} untuk menampilkan status kesehatan
+		\item Sistem mengirim response berupa JSON mengenai status kesehatan
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Aplikasi dapat mengetahui status kesehatan \\ \hline
+	\textbf{Hasil yang diperoleh} & Aplikasi dapat mengetahui status kesehatan \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
 \subsection{Pengujian Menampilkan Konfigurasi}
-
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+	\caption{Pengujian Menampilkan Konfigurasi} \label{t:uji_menampilkan_konfigurasi} \\ \hline
+	\textbf{Kode} & FT-07 \\ \hline
+	\textbf{Nama} & Pengujian Menampilkan Konfigurasi \\ \hline
+	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan konfigurasi \\ \hline
+	\textbf{Kondisi Awal} &  \textit{Server} dalam keadaan berjalan\\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Aplikasi Manajemen mengakses \textit{endpoint} untuk menampilkan konfigurasi
+		\item Sistem mengirim response berupa JSON mengenai konfigurasi
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Aplikasi dapat mengetahui konfigurasi \\ \hline
+	\textbf{Hasil yang diperoleh} & Aplikasi dapat mengetahui konfigurasi \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
 \subsection{Pengujian Menampilkan Log}
-
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+	\caption{Pengujian Menampilkan Log} \label{t:uji_menampilkan_log} \\ \hline
+	\textbf{Kode} & FT-08 \\ \hline
+	\textbf{Nama} & Pengujian Menampilkan Log \\ \hline
+	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan log \\ \hline
+	\textbf{Kondisi Awal} &  \textit{Server} dalam keadaan berjalan\\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Aplikasi Manajemen mengakses \textit{endpoint} untuk menampilkan log
+		\item Sistem mengirim response berupa JSON mengenai log
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Aplikasi dapat mengetahui log \\ \hline
+	\textbf{Hasil yang diperoleh} & Aplikasi dapat mengetahui log \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
 \section{Pengujian Non Fungsional}
 
 \subsection{Pengujian Performa}
