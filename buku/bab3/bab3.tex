@@ -303,7 +303,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \subsubsection{Tabel Group Member}
 \par Tabel group member digunakan untuk menyimpan data pengguna yang menjadi anggota dari suatu kelompok. Rincian atribut dapat dilihat pada Tabel \ref{tabel_group_member}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
-	\caption{Tabel Group Member (pn\_group\_member)} \label{tabel_group_member} \\ \hline
+	\caption{Tabel Group Member} \label{tabel_group_member} \\ \hline
     \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
     Group ID & uuid & Grup tempat pengguna terdaftar \\ \hline
     User ID & uuid & Pengguna yang terdaftar di grup \\ \hline
@@ -438,11 +438,11 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \subsection{Perancangan Antrian Pesan}
 \par Subbab ini membahas bagaimana rancangan antrian pesan yang akan digunakan. Sistem antrian pesan yang digunakan adalah Apache Kafka.
 
-\subsection{Perancangan Skema}
+\subsubsection{Perancangan Skema}
 \par Berdasarkan rancangan arsitektur pada Subbab \ref{s:perancangan_arsitektur}, Scheduler akan mengirimkan \textit{packet} ke Sender APN dan Sender FCM lewat antrian pesan. Pertukaran data \textit{packet} di antrian pesan akan menggunakan format JSON. Skema JSON dapat dilihat pada Kode Sumber \ref{json:packet}.
 \lstinputlisting[label=json:packet, caption=Skema JSON Packet, language=SQL] {bab3/json/packet.json}
 
-\subsection{Perancangan Topik}
+\subsubsection{Perancangan Topik}
 \par Berdasarkan rancangan arsitektur pada Subbab \ref{s:perancangan_arsitektur}, antrian \textit{packet} akan dipisah berdasarkan tipe perangkat penerima \textit{packet}. Rincian pembagian topik dapat dilihat pada Tabel \ref{t:pembagian_topik_antrian}.
 \begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|}
 	\caption{Pembagian Topik Antrian} \label{t:pembagian_topik_antrian} \\ \hline

@@ -3,44 +3,29 @@
 
 \section{Lingkungan Implementasi}
 \par Lingkungan implementasi yang digunakan untuk mengembangkan tugas akhir ini memiliki spesifikasi perangkat keras dan lunak seperti ditampilkan pada Tabel \ref{tabel_spesifikasi_server}, Tabel \ref{tabel_spesifikasi_perangkat_android}, dan Tabel \ref{tabel_spesifikasi_perangkat_ios}.
-\begin{table}[H]
-	\centering
-	\begin{tabularx}{0.75\textwidth}{|l|X|}
-		\hline
-		\textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
-		CPU & AMD Ryzen 5 2500U \\ \hline
-		CPU Core & 4 \\ \hline
-		Memory & 12 GB \\ \hline
-		Sistem Operasi & Ubuntu 19.04 \\ \hline
-		IDE & Intellij IDEA \\ \hline
-	\end{tabularx}
-	\caption{Spesifikasi Server}
-	\label{tabel_spesifikasi_server}
-\end{table}
-\begin{table}[H]
-	\centering
-	\begin{tabularx}{0.75\textwidth}{|l|X|}
-		\hline
-		\textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
-		CPU & Snapdragon 636 \\ \hline
-		Memory & 3 GB \\ \hline
-		Sistem Operasi & Android 9 (Pie) \\ \hline
-	\end{tabularx}
-	\caption{Spesifikasi Perangkat Android}
-	\label{tabel_spesifikasi_perangkat_android}
-\end{table}
-\begin{table}[H]
-	\centering
-	\begin{tabularx}{0.75\textwidth}{|l|X|}
-		\hline
-		\textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
-		CPU & Apple A10 Fusion \\ \hline
-		Memory & 3 GB \\ \hline
-		Sistem Operasi & iOS 12 \\ \hline
-	\end{tabularx}
-	\caption{Spesifikasi Perangkat iOS}
-	\label{tabel_spesifikasi_perangkat_ios}
-\end{table}
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Spesifikasi Server} \label{tabel_spesifikasi_server} \\ \hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	CPU & AMD Ryzen 5 2500U \\ \hline
+	CPU Core & 4 \\ \hline
+	Memory & 12 GB \\ \hline
+	Sistem Operasi & Ubuntu 19.04 \\ \hline
+	IDE & Intellij IDEA \\ \hline
+\end{longtable}
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Spesifikasi Perangkat Android} \label{tabel_spesifikasi_perangkat_android} \\ \hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	CPU & Snapdragon 636 \\ \hline
+	Memory & 3 GB \\ \hline
+	Sistem Operasi & Android 9 (Pie) \\ \hline
+\end{longtable}
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Spesifikasi Perangkat iOS} \label{tabel_spesifikasi_perangkat_ios} \\ \hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	CPU & Apple A10 Fusion \\ \hline
+	Memory & 3 GB \\ \hline
+	Sistem Operasi & iOS 12 \\ \hline
+\end{longtable}
 
 \section{Implementasi Basis Data}
 \par Subbab ini membahas struktur tabel yang digunakan, meliputi tujuan pembuatan tabel, Kode yang digunakan untuk membuat tabel, dan gambar tabel yang telah dibuat.
@@ -167,11 +152,11 @@
 
 \subsection{Implementasi Pemantauan Aplikasi}
 \par Proses pemantauan aplikasi (menampilkan penggunaan sumber daya, menampilkan status kesehatan, menampilkan konfigurasi, menampilkan log) diimplementasikan dengan menggunakan library Actuator yang sudah terintegrasi dengan kerangka kerja Spring. Untuk keamanan, API Actuator dilindungi dengan metode autentikasi HTTP Basic. Setiap modul aplikasi (Scheduler, Sender APN, dan Sender FCM) menggunakan konfigurasi Actuator yang sama. Hasil implementasi konfigurasi dan API endpoint dapat dilihat pada Kode Sumber \ref{yaml:actuator} dan Tabel \ref{t:api_actuator}.
-\lstinputlisting[label=yaml:actuator, caption=Konfigurasi Actuator] {bab4/yaml/actuator.yml}
+\lstinputlisting[label=yaml:actuator, caption=Implementasi Java untuk Konfigurasi Actuator] {bab4/yaml/actuator.yml}
 
 \begin{longtable}{|p{3cm}|p{4.5cm}|p{1.5cm}|}
-	\caption{API Endpoint Actuator} \label{t:api_actuator} \\ \hline
-	\textbf{API Endpoint} & \textbf{Deskripsi} & \textbf{Format} \\ \hline
+	\caption{Daftar API Endpoint Actuator} \label{t:api_actuator} \\ \hline
+	\rowcolor{lightgray} API Endpoint & Deskripsi & Format \\ \hline
 	/actuator/metrics & Menampilkan daftar metrik penggunaan sumber daya & JSON \\ \hline
 	/actuator/metrics/* & Menampilkan rincian metrik penggunaan sumber daya & JSON \\ \hline
 	/actuator/health & Menampilkan daftar kondisi kesehatan layanan yang terhubung & JSON \\ \hline
