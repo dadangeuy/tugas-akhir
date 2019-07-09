@@ -4,9 +4,9 @@
 
 \section{Latar Belakang}
 \par \textit{Push notification} adalah pesan yang muncul di perangkat pengguna lewat aplikasi yang terpasang dalam perangkat tersebut. \textit{Push notification} pada umumnya digunakan untuk menyebarkan informasi seperti promo, pengingat pembayaran, berita terbaru, dan sebagainya.
-\par Pengiriman \textit{push notification} di Institut Teknologi Sepuluh Nopember menggunakan layanan aplikasi push notification terpusat. Aplikasi push notification terpusat adalah layanan pengiriman \textit{push notification} berbasis web yang dikembangkan untuk memudahkan manajemen dan proses penyebaran informasi ke pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember \cite{application-thesis}.
-\par Aplikasi push notification terpusat menggunakan metode \textit{message queue} dalam proses pengiriman \textit{push notification}. \textit{Message queue} adalah metode komunikasi antar sistem secara asynchronous dengan cara membuat antrian untuk pesan-pesan yang akan diolah \cite{message-queue-online}. \textit{Message queue} pada umumnya digunakan oleh aplikasi yang membutuhkan waktu lama untuk mengolah data, seperti pengiriman email, transaksi perbankan, dan sebagainya.
-\par \textit{Message queue} yang digunakan oleh aplikasi push notification terpusat memiliki kelemahan dari sisi keandalan pengiriman \textit{push notification}. Berdasarkan hasil pengujian, untuk kasus uji pengiriman \textit{push notification} ke 3000 perangkat, tingkat keberhasilan pengiriman hanya 63,8 persen \cite{application-thesis}.
+\par Pengiriman \textit{push notification} di Institut Teknologi Sepuluh Nopember menggunakan layanan aplikasi Push Notification Terpusat. Push Notification Terpusat adalah layanan pengiriman \textit{push notification} berbasis web yang dikembangkan untuk memudahkan manajemen dan proses penyebaran informasi ke pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember \cite{application-thesis}.
+\par Aplikasi Push Notification Terpusat menggunakan metode \textit{message queue} dalam proses pengiriman \textit{push notification}. \textit{Message queue} adalah metode komunikasi antar sistem secara asynchronous dengan cara membuat antrian untuk pesan-pesan yang akan diolah \cite{message-queue-online}. \textit{Message queue} pada umumnya digunakan oleh aplikasi yang membutuhkan waktu lama untuk mengolah data, seperti pengiriman email, transaksi perbankan, dan sebagainya.
+\par \textit{Message queue} yang digunakan oleh Push Notification Terpusat memiliki kelemahan dari sisi keandalan pengiriman \textit{push notification}. Berdasarkan hasil pengujian, untuk kasus uji pengiriman \textit{push notification} ke 3000 perangkat, tingkat keberhasilan pengiriman hanya 63,8 persen \cite{application-thesis}.
 \par Oleh karena itu, pada tugas akhir ini penulis mengusulkan untuk menggunakan Kafka sebagai pengganti \textit{message queue} yang saat ini digunakan. Kafka adalah layanan terdistribusi untuk \textit{data streaming} yang dibuat berdasarkan konsep \textit{message queue} \cite{kafka-online}. Berdasarkan hasil uji yang dilakukan oleh pengembang lain, Kafka terbukti mampu mengirimkan push notification ke 1 juta perangkat dengan tingkat keberhasilan pengiriman 100 persen \cite{prototype-article}.
 \par Selain perbaikan \textit{message queue}, penulis juga akan menambahkan fitur \textit{monitoring} untuk memudahkan pengembang aplikasi mendiagnosa jika terdapat masalah pada aplikasi push notification terpusat.
 
@@ -50,8 +50,8 @@ Tahap ini meliputi perumusan kebutuhan fungsional, kebutuhan non-fungsional, kas
 \item Implementasi\\
 Aplikasi ini diimplementasikan dengan menggunakan kakas bantu sebagai berikut:
 \begin{enumerate}
-\item Sistem basis data menggunakan Microsoft SQL Server.
-\item Message queueing menggunakan Apache Kafka.
+\item Sistem basis data menggunakan SQL Server.
+\item Sistem antrian pesan menggunakan Apache Kafka.
 \item Aplikasi dibuat menggunakan bahasa pemrograman Java dengan kerangka kerja Spring.
 \item Pembuatan aplikasi menggunakan IDE Intellij IDEA.
 \end{enumerate}

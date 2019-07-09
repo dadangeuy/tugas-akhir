@@ -4,44 +4,44 @@
 \section{Push Notification Terpusat}
 \par Push Notification Terpusat merupakan aplikasi yang dibuat untuk memudahkan penyebaran informasi di lingkungan ITS sebagai pengganti media cetak \cite{application-thesis}. Aplikasi ini dapat mengirimkan push notification secara langsung atau terjadwal ke perangkat pengguna (Android dan iOS) \cite{application-thesis}. Push Notification Terpusat merupakan aplikasi yang akan dikembangkan dalam tugas akhir ini.
 
-\section{Android}
-\par Android adalah sistem operasi perangkat bergerak yang dikembangkan oleh Google untuk ponsel, pakaian, tablet, televisi, dan kendaraan \cite{android-online}. Perangkat dengan sistem operasi Android merupakan salah satu target penerima push notification yang dikirim oleh aplikasi push notification terpusat.
-
 \section{iOS}
 \par iOS adalah sistem operasi perangkat bergerak yang dikembangkan oleh Apple untuk perangkat iPhone, iPad, dan iPod \cite{ios-online}. Perangkat dengan sistem operasi iOS merupakan salah satu target penerima push notification yang dikirim oleh aplikasi push notification terpusat.
 
-\section{Firebase Cloud Messaging (FCM)}
-\par Firebase Cloud Messaging adalah solusi pengiriman pesan lintas platform yang dapat diandalkan untuk mengirimkan pesan dan dapat digunakan tanpa biaya \cite{fcm-online}. Push notification yang menargetkan perangkat Android akan dikirim ke layanan Firebase Cloud Messaging oleh aplikasi push notification terpusat.
+\section{Android}
+\par Android adalah sistem operasi perangkat bergerak yang dikembangkan oleh Google untuk ponsel, pakaian, tablet, televisi, dan kendaraan \cite{android-online}. Perangkat dengan sistem operasi Android merupakan salah satu target penerima push notification yang dikirim oleh Push Notification Terpusat.
 
 \section{Apple Push Notification Service (APNs)}
-\par Apple Push Notification Service adalah layanan pengiriman notifikasi jarak jauh yang kuat, cepat dan sangat efisien, yang dapat digunakan oleh pengembang aplikasi untuk menyebarkan informasi ke perangkat iOS, watchOS, tvOS, dan macOS \cite{apns-online}. Push notification yang menargetkan perangkat iOS akan dikirim ke layanan Apple Push Notification Service oleh aplikasi push notification terpusat.
+\par Apple Push Notification Service adalah layanan pengiriman notifikasi jarak jauh yang kuat, cepat dan sangat efisien, yang dapat digunakan oleh pengembang aplikasi untuk menyebarkan informasi ke perangkat iOS, watchOS, tvOS, dan macOS \cite{apns-online}. Push notification yang menargetkan perangkat iOS akan dikirim ke layanan Apple Push Notification Service oleh Push Notification Terpusat.
+
+\section{Firebase Cloud Messaging (FCM)}
+\par Firebase Cloud Messaging adalah solusi pengiriman pesan lintas platform yang dapat diandalkan untuk mengirimkan pesan dan dapat digunakan tanpa biaya \cite{fcm-online}. \textit{Push notification} yang menargetkan perangkat Android akan dikirim ke layanan Firebase Cloud Messaging oleh Push Notification Terpusat.
 
 \section{Java}
-\par Java adalah bahasa pemrograman yang umum, konkuren, berbasis kelas, dan berbasis objek \cite{java-online}. Java merupakan salah satu bahasa pemrograman yang digunakan dalam pembuatan aplikasi push notification terpusat.
+\par Java adalah bahasa pemrograman yang umum, konkuren, berbasis kelas, dan berbasis objek \cite{java-online}. Java merupakan salah satu bahasa pemrograman yang digunakan dalam pembuatan Push Notification Terpusat.
 
 \section{Microsoft SQL Server}
-\par Microsoft SQL Server adalah sistem basis data relasional yang bahasa pemrograman utamanya menggunakan MS-SQL dan Transact-SQL \cite{sqlserver-thesis}. Microsoft SQL Server merupakan sistem basis data yang digunakan oleh aplikasi push notification terpusat.
+\par Microsoft SQL Server adalah sistem basis data relasional yang bahasa pemrograman utamanya menggunakan MS-SQL dan Transact-SQL \cite{sqlserver-thesis}. Microsoft SQL Server merupakan sistem basis data yang digunakan oleh Push Notification Terpusat.
 
 \section{Message Queue}
-\par Message queue atau antrian pesan adalah metode komunikasi antar layanan secara asynchronous yang digunakan dalam arsitektur serverless dan microservices \cite{message-queue-online}. Setiap pesan disimpan dalam antrian sampai pesan tersebut selesai diproses dan dihapus. Setiap pesan hanya diproses satu kali, oleh satu consumer \cite{message-queue-online}. Message queue merupakan konsep yang digunakan pada aplikasi push notification terpusat untuk menangani pengiriman pesan dalam jumlah besar.
+\par \textit{Message queue} atau antrian pesan adalah metode komunikasi antar layanan secara asynchronous yang digunakan dalam arsitektur serverless dan microservices \cite{message-queue-online}. Setiap pesan disimpan dalam antrian sampai pesan tersebut selesai diproses dan dihapus. Setiap pesan hanya diproses satu kali, oleh satu consumer \cite{message-queue-online}. Antrian pesan merupakan konsep yang digunakan pada Push Notification Terpusat untuk menangani pengiriman pesan dalam jumlah besar.
 
 \section{Publish/Subscribe}
-\par Publish/Subscribe adalah salah satu bentuk komunikasi asynchronous antar layanan yang digunakan dalam arsitektur serverless dan microservices \cite{publish-subscribe-online}. Setiap pesan yang diterbitkan ke sebuah topik akan langsung diterima oleh semua subscriber topik tersebut \cite{publish-subscribe-online}. Publish/Subscribe merupakan model komunikasi yang digunakan oleh Kafka, dan akan diterapkan pada aplikasi push notification terpusat.
+\par \textit{Publish/Subscribe} adalah salah satu bentuk komunikasi asynchronous antar layanan yang digunakan dalam arsitektur \textit{serverless} dan \textit{microservices}. Setiap pesan yang diterbitkan ke sebuah topik akan langsung diterima oleh semua subscriber topik tersebut \cite{publish-subscribe-online}. \textit{Publish/Subscribe} merupakan model komunikasi yang digunakan oleh Kafka, dan akan diterapkan pada Push Notification Terpusat.
 
 \section{Zookeeper}
-%TODO
+\par Zookeeper adalah layanan tersentralisasi untuk mengatur konfigurasi, penamaan, sinkronisasi sistem terdistribusi, untuk sekelompok layanan \cite{zookeeper-online}. Zookeeper adalah layanan yang digunakan oleh Kafka untuk mengatur koordinasi sistem.
 
 \section{Kafka}
-\par Kafka merupakan layanan terdistribusi untuk data streaming \cite{kafka-online}. Pada dasarnya, Kafka merupakan sistem publish/subscribe messaging, dimana terdapat satu atau lebih sistem yang meng-generate data untuk suatu topik tertentu secara real-time di Kafka (disebut sebagai Producers) \cite{kafka-online}. Kemudian, topik tersebut dapat dibaca oleh satu atau lebih sistem yang membutuhkan data-data dari topik tersebut secara real-time (disebut sebagai Consumers) \cite{kafka-online}. Aplikasi push notification terpusat akan menggunakan Kafka untuk menggantikan fungsi message queueing pengiriman push notification yang digunakan saat ini.
+\par Kafka merupakan layanan terdistribusi untuk data streaming \cite{kafka-online}. Pada dasarnya, Kafka merupakan sistem \textit{publish/subscribe messaging}, dimana terdapat satu atau lebih sistem yang meng-\textit{generate} data untuk suatu topik tertentu secara \textit{real-time} di Kafka (disebut sebagai \textit{Producers}) \cite{kafka-online}. Kemudian, topik tersebut dapat dibaca oleh satu atau lebih sistem yang membutuhkan data-data dari topik tersebut secara \textit{real-time} (disebut sebagai Consumers) \cite{kafka-online}. Aplikasi push notification terpusat akan menggunakan Kafka untuk menggantikan fungsi antrian pesan pada Push Notification Terpusat.
 
 \section{Spring}
-\par Spring adalah sebuah platform yang menyediakan dukungan infrastruktur lengkap untuk mengembangkan aplikasi Java \cite{spring-online}. Aplikasi push notification terpusat akan menggunakan kerangka kerja Spring untuk memudahkan pengembangan aplikasi.
+\par Spring adalah sebuah \textit{platform} yang menyediakan dukungan infrastruktur lengkap untuk mengembangkan aplikasi Java \cite{spring-online}. Spring merupakan kerangka kerja yang digunakan untuk mengembangkan Push Notification Terpusat.
 
 \section{Actuator}
-%TODO
+\par Actuator berisi sekumpulan fitur tambahan untuk pemantauan dan pengaturan aplikasi yang sudah ditahap \textit{production}. Aplikasi bisa dipantau dan diatur dengan menggunakan \textit{endpoint} HTTP atau JMX \cite{actuator-online}. Actuator merupakan pustaka yang digunakan dalam implementasi pemantauan Push Notification Terpusat.
 
 \section{Docker}
-%TODO
+\par Docker adalah \textit{platform} terbuka untuk membangun, mengirim, dan menjalankan aplikasi. Docker memungkinkan pengembang untuk memisahkan kebutuhan infrastruktur dari aplikasi, sehingga proses pengembangan aplikasi bisa lebih cepat \cite{docker-online}. Docker merupakan \textit{platform} yang digunakan untuk menjalankan layanan yang terdapat pada Push Notification Terpusat.
 
 \section{Docker Compose}
-%TODO
+\par Docker Compose adalah alat untuk mendefinisikan dan menjalankan beberapa \textit{container} aplikasi menggunakan Docker. Dengan Docker Compose, pengembang bisa menggunakan file berbasis YAML untuk mengatur konfigurasi layanan aplikasi, dan menggunakannya untuk membuat dan menjalankan layanan aplikasi \cite{docker-compose-online}. Docker Compose merupakan alat yang digunakan untuk mendefinisikan konfigurasi layanan Push Notification Terpusat.
