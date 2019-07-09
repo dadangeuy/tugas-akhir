@@ -3,7 +3,7 @@
 
 \section{Lingkungan Pengujian}
 \par Lingkungan yang digunakan untuk menguji tugas akhir ini memiliki spesifikasi perangkat keras dan lunak yang ditunjukkan pada tabel \ref{5:tabel_spesifikasi_server}, \ref{5:tabel_spesifikasi_perangkat_android}, dan \ref{5:tabel_spesifikasi_perangkat_ios}.
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Spesifikasi Server} \label{5:tabel_spesifikasi_server} \\ \hline
     \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
     CPU & Intel(R) Xeon(R) CPU E5-2690 v4 \\ \hline
@@ -11,14 +11,14 @@
     Memory & 8 GB \\ \hline
     Sistem Operasi & Ubuntu 18.04 \\ \hline
 \end{longtable}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Spesifikasi Perangkat Android} \label{5:tabel_spesifikasi_perangkat_android} \\ \hline
     \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
     CPU & Snapdragon 636 \\ \hline
     Memory & 3 GB \\ \hline
     Sistem Operasi & Android 9 (Pie) \\ \hline
 \end{longtable}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Spesifikasi Perangkat iOS} \label{5:tabel_spesifikasi_perangkat_ios} \\ \hline
     \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
     CPU & Apple A10 Fusion \\ \hline
@@ -27,11 +27,12 @@
 \end{longtable}
 
 \section{Pengujian Fungsional}
+\par Pengujian fungsional dilakukan untuk mengetahui apakah sistem yang dibangun sudah memiliki kebutuhan fungsional yang diperlukan.
 
 \subsection{Pengujian Pembuatan Packet}
-
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-	\caption{Pengujian Pembuatan Packet} \label{t:uji_pembuatan_packet} \\ \hline
+\par Pengujian Pembuatan Packet dilakukan untuk mengetahui apakah Scheduler berhasil membuatkan data \textit{packet} dari \textit{batch} dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pembuatan_packet}.
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Pembuatan Packet} \label{t:uji_pembuatan_packet} \\ \hline
 	\textbf{Kode} & FT-01 \\ \hline
 	\textbf{Nama} & Pengujian Pembuatan Packet \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu membuatkan data \textit{packet} dari data \textit{batch} \\ \hline
@@ -50,8 +51,9 @@
 \end{longtable}
 
 \subsection{Pengujian Menambahkan Packet ke Antrian}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-	\caption{Pengujian Pembuatan Antrian} \label{t:uji_pembuatan_antrian} \\ \hline
+\par Pengujian menambahkan \textit{packet} dilakukan untuk mengetahui apakah Scheduler berhasil menambahkan \textit{packet} ke antrian dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pembuatan_antrian}.
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Menambahkan \textit{Packet} ke Antrian} \label{t:uji_pembuatan_antrian} \\ \hline
 	\textbf{Kode} & FT-02 \\ \hline
 	\textbf{Nama} & Pengujian Pembuatan Antrian \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu membuatkan data antrian dari data \textit{packet} \\ \hline
@@ -73,8 +75,9 @@
 \end{longtable}
 
 \subsection{Pengujian Pengiriman Packet ke APNs}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-	\caption{Pengujian Pengiriman Packet ke APNs} \label{t:uji_pengiriman_packet_apn} \\ \hline
+\par Pengujian pengiriman \textit{packet} ke APNs dilakukan untuk mengetahui apakah Sender APN berhasil mengirimkan \textit{packet} ke layanan APNs dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_apn}.
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Pengiriman \textit{Packet} ke APNs} \label{t:uji_pengiriman_packet_apn} \\ \hline
 	\textbf{Kode} & FT-03 \\ \hline
 	\textbf{Nama} & Pengujian Pembuatan Packet \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu mengirim \textit{packet} ke APNs \\ \hline
@@ -95,8 +98,9 @@
 \end{longtable}
 
 \subsection{Pengujian Pengiriman Packet ke FCM}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-	\caption{Pengujian Pengiriman Packet ke FCM} \label{t:uji_pengiriman_packet_fcm} \\ \hline
+\par Pengujian pengiriman \textit{packet} ke FCM dilakukan untuk mengetahui apakah Sender FCM berhasil mengirimkan \textit{packet} ke layanan FCM dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_fcm}.
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Pengiriman \textit{Packet} ke FCM} \label{t:uji_pengiriman_packet_fcm} \\ \hline
 	\textbf{Kode} & FT-04 \\ \hline
 	\textbf{Nama} & Pengujian Pengiriman Packet ke FCM \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu mengirim \textit{packet} ke FCM \\ \hline
@@ -117,8 +121,8 @@
 \end{longtable}
 
 \subsection{Pengujian Menampilkan Penggunaan Sumber Daya}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-	\caption{Pengujian Menampilkan Penggunaan Sumber Daya} \label{t:uji_menampilkan_penggunaan_sumber_daya} \\ \hline
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Menampilkan Penggunaan Sumber Daya} \label{t:uji_menampilkan_penggunaan_sumber_daya} \\ \hline
 	\textbf{Kode} & FT-05 \\ \hline
 	\textbf{Nama} & Pengujian Menampilkan Penggunaan Sumber Daya \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan penggunaan sumber daya \\ \hline
@@ -133,8 +137,8 @@
 	\textbf{Hasil pengujian} & Berhasil \\ \hline
 \end{longtable}
 \subsection{Pengujian Menampilkan Status Kesehatan}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-	\caption{Pengujian Menampilkan Status Kesehatan} \label{t:uji_menampilkan_status_kesehatan} \\ \hline
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Menampilkan Status Kesehatan} \label{t:uji_menampilkan_status_kesehatan} \\ \hline
 	\textbf{Kode} & FT-06 \\ \hline
 	\textbf{Nama} & Pengujian Menampilkan Status Kesehatan \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan status kesehatan \\ \hline
@@ -149,8 +153,8 @@
 	\textbf{Hasil pengujian} & Berhasil \\ \hline
 \end{longtable}
 \subsection{Pengujian Menampilkan Konfigurasi}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-	\caption{Pengujian Menampilkan Konfigurasi} \label{t:uji_menampilkan_konfigurasi} \\ \hline
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Menampilkan Konfigurasi} \label{t:uji_menampilkan_konfigurasi} \\ \hline
 	\textbf{Kode} & FT-07 \\ \hline
 	\textbf{Nama} & Pengujian Menampilkan Konfigurasi \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan konfigurasi \\ \hline
@@ -165,8 +169,8 @@
 	\textbf{Hasil pengujian} & Berhasil \\ \hline
 \end{longtable}
 \subsection{Pengujian Menampilkan Log}
-\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-	\caption{Pengujian Menampilkan Log} \label{t:uji_menampilkan_log} \\ \hline
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Menampilkan Log} \label{t:uji_menampilkan_log} \\ \hline
 	\textbf{Kode} & FT-08 \\ \hline
 	\textbf{Nama} & Pengujian Menampilkan Log \\ \hline
 	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan log \\ \hline
@@ -180,53 +184,98 @@
 	\textbf{Hasil yang diperoleh} & Aplikasi dapat mengetahui log \\ \hline
 	\textbf{Hasil pengujian} & Berhasil \\ \hline
 \end{longtable}
+
 \section{Pengujian Non Fungsional}
+\par Pengujian non fungsional dilakukan untuk mengetahui apakah sistem yang dibangun sudah memenuhi kebutuhan non fungsional yang diperlukan.
 
 \subsection{Pengujian Performa}
+\par Pengujian performa dilakukan untuk mengetahui seberapa cepat sistem dalam mengirim \textit{packet} ke layanan APNs dan FCM. Hasil uji dapat dilihat pada Tabel \ref{t:performa}.
 \begin{longtable}{|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|}
-	\caption{Hasil Pengujian Performa} \label{t:performa} \\ \hline
-	\rowcolor{gray!10} & \multicolumn{2}{c|}{Jumlah Perangkat} & \multicolumn{3}{c|}{Waktu Pengolahan \textit{Packet}} \\ \hhline{~|*5{-}|}
-	\rowcolor{gray!10} \multirow{-2}{*}{Kode} & Android & iOS & Pembuatan & Pengiriman & Total \\ \hline
+	\caption{Hasil Uji Performa} \label{t:performa} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{2}{c|}{Jumlah Perangkat} & \multicolumn{3}{c|}{Waktu Pengolahan \textit{Packet}} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & iOS & Android & Pembuatan & Pengiriman & Total \\ \hline
 	NFT-01 & 1.000 & 1.000 & 00:00:04 & 00:02:13 & 00:02:17 \\ \hline
 	NFT-02 & 10.000 & 10.000 & 00:00:25 & 00:12:09 & 00:12:34 \\ \hline
 	NFT-03 & 100.000 & 100.000 & 00:03:46 & 01:57:46 & 02:01:32 \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Keandalan}
-
-\subsubsection{Pengujian Keandalan Pengiriman Packet ke Perangkat Android}
-\begin{longtable}{|p{1.3cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
-	\caption{Hasil Pengujian Keandalan Pengiriman Packet ke Perangkat Android} \label{t:keandalan_android} \\ \hline
-	\rowcolor{gray!10} &  & \multicolumn{2}{c|}{Packet Diterima} \\ \hhline{~|~|*2{-}|}
-	\rowcolor{gray!10} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & FCM & Android \\ \hline
-	NFT-04 & 1.000 & 1.000 & 1.000 \\ \hline
-	NFT-05 & 10.000 & 10.000 & 10.000 \\ \hline
-	NFT-06 & 100.000 & 100.000 & 100.000 \\ \hline
-\end{longtable}
+\par Pengujian keandalan dilakukan untuk mengetahui tingkat keberhasilan pengiriman \textit{packet} ke perangkat pengguna.
 
 \subsubsection{Pengujian Keandalan Pengiriman Packet ke Perangkat iOS}
+\par Pengujian keandalan pengiriman \textit{packet} ke perangkat iOS dilakukan untuk mengetahui tingkat keberhasilan pengiriman \textit{packet} ke layanan APNs dan perangkat iOS. Hasil uji dapat dilihat pada Tabel \ref{t:keandalan_ios}, dan analisis kegagalan pada Tabel \ref{t:analisis_ios}.
 \begin{longtable}{|p{1.3cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
-	\caption{Hasil Pengujian Keandalan Pengiriman Packet ke Perangkat iOS} \label{t:keandalan_ios} \\ \hline
-	\rowcolor{gray!10} &  & \multicolumn{2}{c|}{Packet Diterima} \\ \hhline{~|~|*2{-}|}
-	\rowcolor{gray!10} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & APNs & iOS \\ \hline
+	\caption{Hasil Uji Keandalan Pengiriman Packet ke Perangkat iOS} \label{t:keandalan_ios} \\ \hline
+	\rowcolor{lightgray} &  & \multicolumn{2}{c|}{Packet Diterima} \\ \hhline{~|~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & APNs & iOS \\ \hline
 	NFT-07 & 1.000 & 1.000 & 1.000 \\ \hline
 	NFT-08 & 10.000 & 10.000 & 9.984 \\ \hline
 	NFT-09 & 100.000 & 100.000 & 99.848 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{1.3cm}|p{3cm}|p{1cm}|p{3cm}|}
-	\caption{Penyebab Packet Gagal Diterima oleh Perangkat iOS} \label{t:keandalan_ios} \\ \hline
-	\rowcolor{gray!10} Kode & Error & Jumlah & Penyebab \\ \hline
+	\caption{Analisis Kegagalan pada Hasil Uji Keandalan Pengiriman \textit{Packet} ke Perangkat iOS} \label{t:analisis_ios} \\ \hline
+	\rowcolor{lightgray} Kode & \textit{Error} & Jumlah & Penyebab \\ \hline
 	NFT-08 & TooManyRequests & 16 & \textit{Request} diblokir oleh APNs karena terlalu banyak mengirim notifikasi ke satu perangkat \\ \hline
 	NFT-09 & TooManyRequests & 152 & \textit{Request} diblokir oleh APNs karena terlalu banyak mengirim notifikasi ke satu perangkat \\ \hline
 \end{longtable}
 
+\subsubsection{Pengujian Keandalan Pengiriman Packet ke Perangkat Android}
+\par Pengujian keandalan pengiriman packet ke perangkat android dilakukan untuk mengetahui tingkat keberhasilan sistem dalam mengirim \textit{packet} ke layanan FCM dan perangkat Android yang digunakan untuk pengujian. Hasil uji dapat dilihat pada Tabel \ref{t:keandalan_android}.
+\begin{longtable}{|p{1.3cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman Packet ke Perangkat Android} \label{t:keandalan_android} \\ \hline
+	\rowcolor{lightgray} &  & \multicolumn{2}{c|}{Packet Diterima} \\ \hhline{~|~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & FCM & Android \\ \hline
+	NFT-04 & 1.000 & 1.000 & 1.000 \\ \hline
+	NFT-05 & 10.000 & 10.000 & 10.000 \\ \hline
+	NFT-06 & 100.000 & 100.000 & 100.000 \\ \hline
+\end{longtable}
+
 \subsection{Pengujian Ketersediaan}
-\begin{longtable}{|p{1.3cm}|p{4cm}|p{1.5cm}|}
-	\caption{Hasil Pengujian Ketersediaan Layanan} \label{t:keandalan_ios} \\ \hline
-	\rowcolor{gray!10} Kode & Jumlah Packet Dikirim & \textit{Downtime} \\ \hline
-	NFT-10 & 2.000 & 0 \\ \hline
-	NFT-11 & 20.000 & 0 \\ \hline
-	NFT-12 & 200.000 & 0 \\ \hline
+\par Pengujian ketersediaan dilakukan untuk mengetahui apakah sistem tetap bekerja normal saat sedang mengirimkan \textit{packet} dalam jumlah besar. Hasil uji dapat dilihat pada tabel \ref{t:ketersediaan}.
+\begin{longtable}{|p{1.3cm}|p{2.2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+	\caption{Hasil Uji Ketersediaan Layanan} \label{t:ketersediaan} \\ \hline
+	\rowcolor{lightgray} & & \multicolumn{3}{c|}{\textit{Downtime}} \\ \hhline{~|~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Packet} & Scheduler & Sender APN & Sender FCM \\ \hline
+	NFT-10 & 2.000 & - & - & - \\ \hline
+	NFT-11 & 20.000 & - & - & - \\ \hline
+	NFT-12 & 200.000 & - & - & - \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Durabilitas}
+\par Pengujian durabilitas dilakukan untuk mengetahui apakah sistem tetap bekerja normal saat salah satu layanan mati. Pengujian dibagi menjadi 2 skenario, yaitu saat Sender APN dimatikan dan Sender FCM dimatikan.
+
+\subsubsection{Pengujian Mematikan Sementara Sender APN}
+\par Pengujian mematikan sementara Sender APN dilakukan dengan cara mematikan Sender APN selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_apn_mati}.
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Mematikan Sementara Sender APN} \label{t:nft_sender_apn_mati} \\ \hline
+	\textbf{Kode} & NFT-13 \\ \hline
+	\textbf{Nama} & Pengujian Mematikan Sementara Sender APN \\ \hline
+	\textbf{Tujuan} & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender APN mati sementara \\ \hline
+	\textbf{Kondisi Awal} & Sistem dalam keadaan berjalan \\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Aktor membuat \textit{batch} baru lewat halaman kirim notifikasi pada modul manajemen.
+		\item Sender APN dimatikan selama 5 menit.
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Notifikasi diterima oleh perangkat iOS \\ \hline
+	\textbf{Hasil yang diperoleh} & Notifikasi diterima oleh perangkat iOS \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
+
+\subsubsection{Pengujian Mematikan Sementara Sender FCM}
+\par Pengujian mematikan sementara Sender FCM dilakukan dengan cara mematikan Sender FCM selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_fcm_mati}.
+\begin{longtable}{|p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Mematikan Sementara Sender FCM} \label{t:nft_sender_fcm_mati} \\ \hline
+	\textbf{Kode} & NFT-14 \\ \hline
+	\textbf{Nama} & Pengujian Mematikan Sementara Sender FCM \\ \hline
+	\textbf{Tujuan} & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender FCM mati sementara \\ \hline
+	\textbf{Kondisi Awal} & Sistem dalam keadaan berjalan \\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Aktor membuat \textit{batch} baru lewat halaman kirim notifikasi pada modul manajemen.
+		\item Sender FCM dimatikan selama 5 menit.
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Notifikasi diterima oleh perangkat Android \\ \hline
+	\textbf{Hasil yang diperoleh} & Notifikasi diterima oleh perangkat Android \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
