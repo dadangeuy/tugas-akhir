@@ -72,7 +72,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \newcommand\tableUcDesc[8] {
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
 	\caption{Kasus Penggunaan #3} \label{#1} \\ \hline
-    \textbf{Komponen} & \textbf{Deskripsi} \\ \hline
+    \rowcolor{lightgray} Komponen & Deskripsi \\ \hline
     Kode & #2 \\ \hline
     Nama & #3 \\ \hline
     Aktor & #4 \\ \hline
@@ -87,7 +87,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Pada kasus ini, Scheduler akan mencari batch yang belum dan boleh dibuatkan \textit{packet} secara berkala. Jika ada, Scheduler akan membuatkan \textit{packet} untuk \textit{batch} tersebut. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pembuatan_packet}.
 \tableUcDesc
 {t:skenario_pembuatan_packet}
-{UC01}
+{UC-01}
 {Pembuatan Packet}
 {Scheduler}
 {Terdapat batch yang belum dan boleh dibuatkan packet}
@@ -105,7 +105,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Pada kasus ini, Scheduler akan mencari \textit{packet} yang belum dan sudah waktunya dikirim secara berkala. Jika ada, Scheduler akan menambahkan \textit{packet} tersebut ke antrian pesan dengan topik yang dibagi berdasarkan jenis perangkat penerima. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menambahkan_packet_ke_antrian}.
 \tableUcDesc
 {t:skenario_menambahkan_packet_ke_antrian}
-{UC02}
+{UC-02}
 {Menambahkan Packet ke Antrian}
 {Scheduler}
 {Terdapat packet yang belum dan sudah waktunya dikirim}
@@ -128,7 +128,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Pada kasus ini, Sender APN akan menunggu \textit{Kafka} mengirimkan packet yang ada di antrian topik "ios". Setelah packet diterima, packet akan dikirimkan ke layanan APNs. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_apns}.
 \tableUcDesc
 {t:skenario_pengiriman_packet_ke_apns}
-{UC03}
+{UC-03}
 {Pengiriman Packet ke APNs}
 {Sender APN}
 {Terdapat packet di antrian topik "ios"}
@@ -146,7 +146,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Pada kasus ini, Sender FCM akan menunggu \textit{Kafka} mengirimkan packet yang ada di antrian topik "android" dan "web". Setelah packet diterima, packet akan dikirimkan ke layanan FCM. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_fcm}.
 \tableUcDesc
 {t:skenario_pengiriman_packet_ke_fcm}
-{UC04}
+{UC-04}
 {Pengiriman Packet ke FCM}
 {Sender FCM}
 {Terdapat packet di antrian topik "android" atau "web"}
@@ -164,7 +164,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan aplikasi dengan menggunakan REST API. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_penggunaan_sumber_daya}.
 \tableUcDesc
 {t:skenario_menampilkan_penggunaan_sumber_daya}
-{UC05}
+{UC-05}
 {Menampilkan Penggunaan Sumber Daya}
 {Scheduler, Sender APN, Sender FCM}
 {Aktor menerima request HTTP}
@@ -182,7 +182,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan status kesehatan aplikasi dan layanan yang terhubung dengan aplikasi dengan menggunakan REST API. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_status_kesehatan}.
 \tableUcDesc
 {t:skenario_menampilkan_status_kesehatan}
-{UC06}
+{UC-06}
 {Menampilkan Status Kesehatan}
 {Scheduler, Sender APN, Sender FCM}
 {Aktor menerima request HTTP}
@@ -200,7 +200,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan konfigurasi aplikasi dengan menggunakan REST API. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_konfigurasi}.
 \tableUcDesc
 {t:skenario_menampilkan_konfigurasi}
-{UC07}
+{UC-07}
 {Menampilkan Konfigurasi}
 {Scheduler, Sender APN, Sender FCM}
 {Aktor menerima request HTTP}
@@ -219,7 +219,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan \textit{log} yang dikeluarkan oleh aplikasi dengan menggunakan REST API. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_log}.
 \tableUcDesc
 {t:skenario_menampilkan_log}
-{UC08}
+{UC-08}
 {Menampilkan Log}
 {Scheduler, Sender APN, Sender FCM}
 {Aktor menerima request HTTP}
@@ -257,7 +257,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel user digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
  	\caption{Tabel User} \label{tabel_user} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     User ID & uuid & Primary key tabel \\ \hline
     Name & varchar(150) & - \\ \hline
     Nickname & varchar(20) & - \\ \hline
@@ -293,7 +293,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel group digunakan untuk menyimpan data kelompok pengguna. Rincian atribut dapat dilihat pada Tabel \ref{tabel_group}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Group} \label{tabel_group} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Group ID & uuid & Primary key tabel \\ \hline
     Name & varchar(100) & - \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
@@ -304,7 +304,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel group member digunakan untuk menyimpan data pengguna yang menjadi anggota dari suatu kelompok. Rincian atribut dapat dilihat pada Tabel \ref{tabel_group_member}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Group Member} \label{tabel_group_member} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Group ID & uuid & Grup tempat pengguna terdaftar \\ \hline
     User ID & uuid & Pengguna yang terdaftar di grup \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
@@ -315,7 +315,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel client digunakan untuk menyimpan data aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_client}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Client} \label{tabel_client} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Client ID & uuid & Primary key tabel \\ \hline
     Client Name & varchar(100) & - \\ \hline
     Client Description & varchar(250) & - \\ \hline
@@ -351,7 +351,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel certificate digunakan untuk menyimpan data sertifikat yang digunakan untuk autentikasi ke layanan APNs dan FCM. Rincian atribut dapat dilihat pada Tabel \ref{tabel_certificate}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Certificate} \label{tabel_certificate} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Certificate ID & uuid & Primary key tabel \\ \hline
     Client ID & uuid & Foreign key tabel client \\ \hline
     Bundle ID & varchar(255) & Bundle ID untuk aplikasi iOS \\ \hline
@@ -364,7 +364,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel device digunakan untuk menyimpan data perangkat pengguna aplikasi yang terdaftar di layanan APNs dan FCM. Rincian atribut dapat dilihat pada Tabel \ref{tabel_device}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Device} \label{tabel_device} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Device ID & uuid & Primary key tabel \\ \hline
     Client ID & uuid & Client tempat perangkat terdaftar \\ \hline
     User ID & uuid & User pemilik perangkat \\ \hline
@@ -379,7 +379,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel batch digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_batch}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Batch} \label{tabel_batch} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Batch ID & uuid & Primary key tabel \\ \hline
     Title & varchar(255) & Judul notifikasi \\ \hline
     Body & varchar(255) & Isi pesan notifikasi \\ \hline
@@ -402,7 +402,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel packet digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_packet}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Packet} \label{tabel_packet} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Packet ID & uuid & Primary key tabel \\ \hline
     Batch ID & uuid & Batch notifikasi \\ \hline
     Device Token ID & uuid & Perangkat penerima notifikasi \\ \hline
@@ -417,7 +417,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel user destination digunakan untuk menyimpan data pengguna yang menjadi target penerima notifikasi dalam satu \textit{batch}. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user_destination}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel User Destination} \label{tabel_user_destination} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Batch ID & uuid & Batch notifikasi \\ \hline
     User ID & uuid & Pengguna penerima notifikasi \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
@@ -428,7 +428,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Tabel group destination digunakan untuk menyimpan data kelompok yang menjadi target penerima notifikasi dalam satu \textit{batch}. Rincian atribut dapat dilihat pada Tabel \ref{tabel_group_destination}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Group Destination} \label{tabel_group_destination} \\ \hline
-    \textbf{Atribut} & \textbf{Tipe Data} & \textbf{Deskripsi} \\ \hline
+    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Batch ID & uuid & Batch notifikasi \\ \hline
     Group ID & uuid & Grup penerima notifikasi \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
@@ -446,7 +446,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Berdasarkan rancangan arsitektur pada Subbab \ref{s:perancangan_arsitektur}, antrian \textit{packet} akan dipisah berdasarkan tipe perangkat penerima \textit{packet}. Rincian pembagian topik dapat dilihat pada Tabel \ref{t:pembagian_topik_antrian}.
 \begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|}
 	\caption{Pembagian Topik Antrian} \label{t:pembagian_topik_antrian} \\ \hline
-	\textbf{Perangkat} & \textbf{Topik} & \textbf{Deskripsi} \\ \hline
+	\rowcolor{lightgray} Perangkat & Topik & Deskripsi \\ \hline
 	Android & android & Berisi \textit{packet} untuk perangkat Android dengan format JSON. \\ \hline
 	Web & web & Berisi \textit{packet} untuk perangkat Web dengan format JSON. \\ \hline
 	iOS & ios & Berisi \textit{packet} untuk perangkat iOS dengan format JSON. \\ \hline
