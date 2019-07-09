@@ -3,13 +3,14 @@
 
 \section{Kesimpulan}
 \begin{enumerate}
-    \item Aplikasi push notification terpusat yang diimplementasikan dengan Kafka memiliki tingkat keberhasilan X\% untuk 100.000 pengiriman.
-    \item Aplikasi push notification terpusat yang diimplementasikan dengan Kafka mengirim rata-rata X notifikasi per menit.
-    \item Library spring boot client dapat digunakan untuk memantau kondisi aplikasi.
+	\item Implementasi antrian pesan dengan Kafka dapat dilakukan dengan kerangka kerja Spring, yaitu dengan mengirim \textit{packet} ke antrian Kafka dengan format data JSON.
+	\item Implementasi penjadwalan dapat dilakukan dengan membuat \textit{scheduler} yang memeriksa sistem basis data setiap 30 detik.
+	\item Implementasi pengiriman \textit{push notification} ke perangkat Android dapat dilakukan dengan mengirim \textit{request push notification} ke layanan FCM, sedangkan pengiriman ke perangkat iOS dapat dilakukan dengan mengirim \textit{request} ke layanan APNs.
+	\item Implementasi pemantauan aplikasi dapat menggunakan pustaka Actuator.
 \end{enumerate}
 
 \section{Saran}
 \begin{enumerate}
-    \item Mencari nilai partisi topik yang optimal untuk mempercepat pengiriman kafka.
     \item Memperbarui data perangkat yang sudah tidak aktif berdasarkan \textit{response} dari layanan APNs dan FCM ketika mengirim notifikasi.
+    \item Menambahkan indeks untuk mempercepat pencarian di sistem basis data.
 \end{enumerate}
