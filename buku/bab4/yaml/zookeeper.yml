@@ -7,7 +7,7 @@ x-env:
 
 services:
   zookeeper:
-    image: bitnami/zookeeper:latest
+    image: bitnami/zookeeper:3.5.5
     network_mode: host
     environment:
       ZOO_ENABLE_AUTH: 'yes'

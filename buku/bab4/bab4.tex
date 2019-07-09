@@ -140,17 +140,17 @@
 
 \subsection{Implementasi Zookeeper}
 \par Zookeeper dijalankan sebagai Docker Container dengan konfigurasi yang diatur oleh Docker Compose. Zookeeper dibutuhkan oleh Kafka untuk mengatur distribusi topik, consumer, dan sebagainya. Untuk keamanan, Zookeeper dilindungi dengan metode autentikasi SASL/Digest-MD5. Hasil implementasi dapat dilihat pada Kode Sumber \ref{yaml:zookeeper}.
-\lstinputlisting[label=yaml:zookeeper, caption=Implementasi Zookeeper] {bab4/yaml/zookeeper.yml}
+\lstinputlisting[label=yaml:zookeeper, caption=Konfigurasi Docker Compose untuk Zookeeper] {bab4/yaml/zookeeper.yml}
 
 \subsection{Implementasi Kafka}
 \par Kafka akan berjalan sebagai Docker Container dengan konfigurasi yang diatur oleh Docker Compose. Untuk meningkatkan performa, partisi topik ditambah menjadi 4 dan jumlah \textit{thread} jaringan ditambah menjadi 16. Untuk keamanan, Kafka dilindungi dengan metode autentikasi SASL/PLAINTEXT. Hasil implementasi dapat dilihat pada Kode Sumber \ref{yaml:kafka}.
-\lstinputlisting[label=yaml:kafka, caption=Implementasi Kafka] {bab4/yaml/kafka.yml}
+\lstinputlisting[label=yaml:kafka, caption=Konfigurasi Docker Compose untuk Kafka] {bab4/yaml/kafka.yml}
 
 \section{Implementasi Proses dan Kasus Penggunaan}
 \par Subbab ini membahas implementasi proses yang dibuat berdasarkan hasil analisa dan rancangan yang telah dilakukan.
 
 \subsection{Implementasi Pembuatan Packet}
-\par Proses pembuatan \textit{packet} dilakukan secara berkala oleh modul Scheduler setiap 30 detik. \textit{Packet} yang telah dibuat akan disimpan di sistem basis data (SQL Server). Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pembuatan_packet}.
+\par Proses pembuatan \textit{packet} dilakukan secara berkala oleh modul Scheduler setiap 30 detik. \textit{Packet} yang telah dibuat akan disimpan di sistem basis data. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pembuatan_packet}.
 \lstinputlisting[label=code:pembuatan_packet, caption=Implementasi Pembuatan Packet, language=Java] {bab4/java/pembuatan_packet.java}
 
 \subsection{Implementasi Menambahkan Packet ke Antrian}
