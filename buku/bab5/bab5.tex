@@ -4,37 +4,47 @@
 \section{Lingkungan Pengujian}
 \par Lingkungan yang digunakan untuk menguji tugas akhir ini memiliki spesifikasi perangkat keras dan lunak yang ditunjukkan pada tabel \ref{5:tabel_spesifikasi_server}, \ref{5:tabel_spesifikasi_perangkat_android}, dan \ref{5:tabel_spesifikasi_perangkat_ios}.
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-    \hline
+	\caption{Spesifikasi Server} \label{5:tabel_spesifikasi_server} \\ \hline
     \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
     CPU & Intel(R) Xeon(R) CPU E5-2690 v4 \\ \hline
     CPU Core & 4 \\ \hline
     Memory & 8 GB \\ \hline
     Sistem Operasi & Ubuntu 18.04 \\ \hline
-    \caption{Spesifikasi Server}
-    \label{5:tabel_spesifikasi_server}
 \end{longtable}
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-    \hline
+	\caption{Spesifikasi Perangkat Android} \label{5:tabel_spesifikasi_perangkat_android} \\ \hline
     \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
     CPU & Snapdragon 636 \\ \hline
     Memory & 3 GB \\ \hline
     Sistem Operasi & Android 9 (Pie) \\ \hline
-    \caption{Spesifikasi Perangkat Android}
-    \label{5:tabel_spesifikasi_perangkat_android}
 \end{longtable}
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
-    \hline
+	\caption{Spesifikasi Perangkat iOS} \label{5:tabel_spesifikasi_perangkat_ios} \\ \hline
     \textbf{Jenis} & \textbf{Spesifikasi} \\ \hline
     CPU & Apple A10 Fusion \\ \hline
     Memory & 3 GB \\ \hline
     Sistem Operasi & iOS 12 \\ \hline
-    \caption{Spesifikasi Perangkat iOS}
-    \label{5:tabel_spesifikasi_perangkat_ios}
 \end{longtable}
 
-\section{Pengujian Fungsionalitas}
+\section{Pengujian Fungsional}
 
 \subsection{Pengujian Pembuatan Packet}
+
+\begin{longtable}{|p{2.5cm}|p{6.5cm}|}
+	\caption{Pengujian Pembuatan Packet} \label{t:uji_pembuatan_packet} \\ \hline
+	\textbf{Kode} & FT-01 \\ \hline
+	\textbf{Nama} & Pengujian Pembuatan Packet \\ \hline
+	\textbf{Tujuan} & Menguji apakah sistem mampu membuatkan data \textit{packet} dari data \textit{batch} \\ \hline
+	\textbf{Kondisi Awal} & Data batch ditambahkan ke sistem basis data \\ \hline
+	\textbf{Langkah Pengujian} &  
+	\begin{enumerate}
+		\item Penulis menambahkan data batch baru lewat halaman manajemen aplikasi push notification terpusat.
+		\item 
+	\end{enumerate} \\ \hline
+	\textbf{Hasil yang diharapkan} & Data \textit{packet} tersimpan di sistem basis data \\ \hline
+	\textbf{Hasil yang diperoleh} & Data \textit{packet} tersimpan di sistem basis data \\ \hline
+	\textbf{Hasil pengujian} & Berhasil \\ \hline
+\end{longtable}
 
 \subsection{Pengujian Menambahkan Packet ke Antrian}
 
@@ -50,16 +60,36 @@
 
 \subsection{Pengujian Menampilkan Log}
 
-\section{Pengujian Performa}
+\section{Pengujian Non Fungsional}
 
-\subsection{Pengujian Pengiriman Notifikasi ke 1.000 Perangkat}
+\subsection{Pengujian Performa}
+\par Lorem Ipsum
+\begin{longtable}{|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|}
+	\caption{Hasil Pengujian Performa} \label{t:performa} \\ \hline
+	\rowcolor{gray!10} & \multicolumn{2}{c|}{Jumlah Perangkat} & \multicolumn{3}{c|}{Waktu Pengolahan \textit{Packet}} \\ \hhline{~|*5{-}|}
+	\rowcolor{gray!10} \multirow{-2}{*}{Kode} & Android & iOS & Pembuatan & Pengiriman & Total \\ \hline
+	NFT-01 & 1.000 & 1.000 & 00:00:04 & 00:02:13 & 00:02:17 \\ \hline
+	NFT-02 & 10.000 & 10.000 & 00:00:25 & 00:12:09 & 00:12:34 \\ \hline
+	NFT-03 & 100.000 & 100.000 & 00:03:46 & 01:57:46 & 02:01:32 \\ \hline
+\end{longtable}
 
-\subsection{Pengujian Pengiriman Notifikasi ke 10.000 Perangkat}
+\subsection{Pengujian Keandalan}
+\par Lorem Ipsum
+\begin{longtable}{|p{1.3cm}|p{3cm}|p{1.3cm}|p{1.5cm}|}
+	\caption{Hasil Pengujian Keandalan} \label{t:performa} \\ \hline
+	\rowcolor{gray!10} &  & \multicolumn{2}{c|}{Packet Terkirim} \\ \hhline{~|~|*2{-}|}
+	\rowcolor{gray!10} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & APNs & iOS \\ \hline
+	NFT-04 & 1.000 & 1.000 & - \\ \hline
+	NFT-05 & 10.000 & 10.000 & - \\ \hline
+	NFT-06 & 100.000 & 100.000 & - \\ \hline
+\end{longtable}
 
-\subsection{Pengujian Pengiriman Notifikasi ke 100.000 Perangkat}
+\subsection{Pengujian Ketersediaan}
+
+\subsection{Pengujian Durabilitas}
 
 \section{Evaluasi Hasil Pengujian}
 
-\subsection{Evaluasi Pengujian Fungsionalitas}
+\subsection{Evaluasi Pengujian Fungsional}
 
-\subsection{Evaluasi Pengujian Performa}
+\subsection{Evaluasi Pengujian Non Fungsional}
