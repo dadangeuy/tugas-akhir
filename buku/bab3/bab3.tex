@@ -37,26 +37,28 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 
 \subsubsection{Kebutuhan Fungsional}
 \par Kebutuhan fungsional mendefinisikan hal-hal yang harus dilakukan oleh sistem berdasarkan masukan yang diterima, proses yang dilakukan, dan hasil yang dicapai. Kebutuhan fungsional aplikasi push notification terpusat dijelaskan pada Tabel \ref{t:fungsional}.
-\begin{longtable}{|p{0.6cm}|p{3cm}|p{5cm}|}
-    \caption{Kebutuhan fungsional sistem} \label{t:fungsional} \\ \hline
-    \textbf{No.} & \textbf{Kebutuhan Fungsional} & \textbf{Deskripsi} \\ \hline
-    F01 & Pembuatan \textit{Packet} & Jika terdapat \textit{batch} yang belum dan boleh dibuatkan \textit{packet}, sistem dapat membuatkan \textit{packet} dari \textit{batch} tersebut. \\ \hline
-    F02 & Menambahkan \textit{Packet} ke Antrian & Jika terdapat \textit{packet} yang belum dan sudah waktunya dikirim, sistem dapat menambahkan \textit{packet} tersebut ke antrian. \\ \hline
-    F03 & Pengiriman \textit{Packet} ke APNs & Jika terdapat \textit{packet} untuk perangkat iOS di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan APNs. \\ \hline
-    F04 & Pengiriman \textit{Packet} ke FCM & Jika terdapat \textit{packet} untuk perangkat Android dan Web di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan FCM. \\ \hline
+\begin{longtable}{|p{1cm}|p{3cm}|p{5cm}|}
+    \caption{Kebutuhan Fungsional Sistem} \label{t:fungsional} \\ \hline
+    \rowcolor{lightgray} Kode & {Kebutuhan} & Deskripsi \\ \hline
+    F-01 & Pembuatan \textit{Packet} & Jika terdapat \textit{batch} yang belum dan boleh dibuatkan \textit{packet}, sistem dapat membuatkan \textit{packet} dari \textit{batch} tersebut. \\ \hline
+    F-02 & Menambahkan \textit{Packet} ke Antrian & Jika terdapat \textit{packet} yang belum dan sudah waktunya dikirim, sistem dapat menambahkan \textit{packet} tersebut ke antrian. \\ \hline
+    F-03 & Pengiriman \textit{Packet} ke APNs & Jika terdapat \textit{packet} untuk perangkat iOS di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan APNs. \\ \hline
+    F-04 & Pengiriman \textit{Packet} ke FCM & Jika terdapat \textit{packet} untuk perangkat Android dan Web di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan FCM. \\ \hline
     F05 & Menampilkan Penggunaan Sumber Daya & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan dalam bentuk \textit{response} HTTP. \\ \hline
-    F06 & Menampilkan Status Kesehatan & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan kondisi layanan yang berhubungan dengan sistem (SQL Server dan Kafka) dalam bentuk \textit{response} HTTP. \\ \hline
-    F07 & Menampilkan Konfigurasi & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan konfigurasi sistem dalam bentuk \textit{response} HTTP. \\ \hline
-    F08 & Menampilkan \textit{Log} & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan isi \textit{log} sistem dalam bentuk \textit{response} HTTP. \\ \hline
+    F-06 & Menampilkan Status Kesehatan & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan kondisi layanan yang berhubungan dengan sistem (SQL Server dan Kafka) dalam bentuk \textit{response} HTTP. \\ \hline
+    F-07 & Menampilkan Konfigurasi & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan konfigurasi sistem dalam bentuk \textit{response} HTTP. \\ \hline
+    F-08 & Menampilkan \textit{Log} & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan isi \textit{log} sistem dalam bentuk \textit{response} HTTP. \\ \hline
 \end{longtable}
 
 \subsubsection{Kebutuhan Non Fungsional}
 \par Kebutuhan non fungsional mendefinisikan bagaimana sistem harus bekerja dalam kondisi tertentu. Kebutuhan non fungsional aplikasi push notification terpusat dijelaskan pada Tabel \ref{t:non_fungsional}.
-\begin{longtable}{|p{0.6cm}|p{2cm}|p{5.5cm}|}
+\begin{longtable}{|p{1.2cm}|p{2cm}|p{5.5cm}|}
 	\caption{Kebutuhan non fungsional sistem} \label{t:non_fungsional} \\ \hline
-    \textbf{No.} & \textbf{Parameter} & \textbf{Deskripsi} \\ \hline
-    1 & Reliability & Aplikasi dapat mengirimkan 100 ribu notifikasi ke layanan FCM dan APNs. \\ \hline
-    2 & Availability & Aplikasi dapat menangani pengiriman 100 ribu notifikasi tanpa \textit{down}. \\ \hline
+    \rowcolor{lightgray} Kode & Aspek & Deskripsi \\ \hline
+    NF-01 & Performa & Aplikasi dapat mengirimkan 100 ribu \textit{push notification} dalam waktu kurang dari 6 jam. \\ \hline
+    NF-02 & Keandalan & Aplikasi dapat mengirimkan 100 ribu \textit{push notification} ke layanan APNs dan FCM tanpa gagal. \\ \hline
+    NF-03 & Ketersediaan & Aplikasi dapat menangani pengiriman 100 ribu \textit{push notification} tanpa ada layanan yang \textit{down}. \\ \hline
+    NF-04 & Durabilitas & Aplikasi dapat mengirimkan \textit{push notification} saat salah satu layanan dimatikan sementara. \\ \hline
 \end{longtable}
 
 \subsubsection{Diagram Kasus Penggunaan}

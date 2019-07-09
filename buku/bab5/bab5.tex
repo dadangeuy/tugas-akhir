@@ -183,7 +183,6 @@
 \section{Pengujian Non Fungsional}
 
 \subsection{Pengujian Performa}
-\par Lorem Ipsum
 \begin{longtable}{|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|}
 	\caption{Hasil Pengujian Performa} \label{t:performa} \\ \hline
 	\rowcolor{gray!10} & \multicolumn{2}{c|}{Jumlah Perangkat} & \multicolumn{3}{c|}{Waktu Pengolahan \textit{Packet}} \\ \hhline{~|*5{-}|}
@@ -194,22 +193,40 @@
 \end{longtable}
 
 \subsection{Pengujian Keandalan}
-\par Lorem Ipsum
-\begin{longtable}{|p{1.3cm}|p{3cm}|p{1.3cm}|p{1.5cm}|}
-	\caption{Hasil Pengujian Keandalan} \label{t:performa} \\ \hline
-	\rowcolor{gray!10} &  & \multicolumn{2}{c|}{Packet Terkirim} \\ \hhline{~|~|*2{-}|}
+
+\subsubsection{Pengujian Keandalan Pengiriman Packet ke Perangkat Android}
+\begin{longtable}{|p{1.3cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
+	\caption{Hasil Pengujian Keandalan Pengiriman Packet ke Perangkat Android} \label{t:keandalan_android} \\ \hline
+	\rowcolor{gray!10} &  & \multicolumn{2}{c|}{Packet Diterima} \\ \hhline{~|~|*2{-}|}
+	\rowcolor{gray!10} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & FCM & Android \\ \hline
+	NFT-04 & 1.000 & 1.000 & 1.000 \\ \hline
+	NFT-05 & 10.000 & 10.000 & 10.000 \\ \hline
+	NFT-06 & 100.000 & 100.000 & 100.000 \\ \hline
+\end{longtable}
+
+\subsubsection{Pengujian Keandalan Pengiriman Packet ke Perangkat iOS}
+\begin{longtable}{|p{1.3cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
+	\caption{Hasil Pengujian Keandalan Pengiriman Packet ke Perangkat iOS} \label{t:keandalan_ios} \\ \hline
+	\rowcolor{gray!10} &  & \multicolumn{2}{c|}{Packet Diterima} \\ \hhline{~|~|*2{-}|}
 	\rowcolor{gray!10} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & APNs & iOS \\ \hline
-	NFT-04 & 1.000 & 1.000 & - \\ \hline
-	NFT-05 & 10.000 & 10.000 & - \\ \hline
-	NFT-06 & 100.000 & 100.000 & - \\ \hline
+	NFT-07 & 1.000 & 1.000 & 1.000 \\ \hline
+	NFT-08 & 10.000 & 10.000 & 9.984 \\ \hline
+	NFT-09 & 100.000 & 100.000 & 99.848 \\ \hline
+\end{longtable}
+\begin{longtable}{|p{1.3cm}|p{3cm}|p{1cm}|p{3cm}|}
+	\caption{Penyebab Packet Gagal Diterima oleh Perangkat iOS} \label{t:keandalan_ios} \\ \hline
+	\rowcolor{gray!10} Kode & Error & Jumlah & Penyebab \\ \hline
+	NFT-08 & TooManyRequests & 16 & \textit{Request} diblokir oleh APNs karena terlalu banyak mengirim notifikasi ke satu perangkat \\ \hline
+	NFT-09 & TooManyRequests & 152 & \textit{Request} diblokir oleh APNs karena terlalu banyak mengirim notifikasi ke satu perangkat \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Ketersediaan}
+\begin{longtable}{|p{1.3cm}|p{4cm}|p{1.5cm}|}
+	\caption{Hasil Pengujian Ketersediaan Layanan} \label{t:keandalan_ios} \\ \hline
+	\rowcolor{gray!10} Kode & Jumlah Packet Dikirim & \textit{Downtime} \\ \hline
+	NFT-10 & 2.000 & 0 \\ \hline
+	NFT-11 & 20.000 & 0 \\ \hline
+	NFT-12 & 200.000 & 0 \\ \hline
+\end{longtable}
 
 \subsection{Pengujian Durabilitas}
-
-\section{Evaluasi Hasil Pengujian}
-
-\subsection{Evaluasi Pengujian Fungsional}
-
-\subsection{Evaluasi Pengujian Non Fungsional}
