@@ -16,8 +16,10 @@
 
 \noindent\textbf{Abstrak} \\
 \itshape
-\par Aplikasi \textit{push notification} terpusat merupakan layanan pengiriman push notification berbasis web. Aplikasi ini dikembangkan dengan tujuan untuk mempermudah manajemen pengiriman push notification ke perangkat Android, Web dan iOS di lingkup Institut Teknologi Sepuluh Nopember.
-\par Pada tugas akhir ini, penulis mengembangkan aplikasi \textit{push notification} terpusat dengan cara mengganti implementasi message queue yang sudah ada dengan Kafka. Aplikasi ini akan dikembangkan menggunakan bahasa pemrograman Java dengan kerangka kerja Spring, message queue Kafka, dan sistem basis data SQL Server. Untuk mengimplementasikan aplikasi ini, penulis membagi aplikasi menjadi tiga modul, yaitu \textit{Scheduler}, \textit{Sender APN} dan \textit{Sender FCN}. \textit{Scheduler} bertanggung jawab untuk penjadwalan pengiriman notifikasi. Sender APN bertanggung jawab untuk mengirimkan notifikasi ke perangkat iOS lewat layanan Apple Push Notification Service (APNs). Sedangkan Sender FCM bertanggung jawab untuk mengirimkan notifikasi ke perangkat Android dan Web lewat layanan Firebase Cloud Messaging (FCM).
+\par Push notification adalah pesan yang muncul di perangkat pengguna lewat aplikasi yang terpasang dalam perangkat tersebut. Push notification pada umumnya digunakan untuk menyebarkan informasi seperti promo, pengingat pembayaran, berita terbaru, dan sebagainya.
+\par Pengiriman push notification di Institut Teknologi Sepuluh Nopember menggunakan layanan aplikasi Push Notification Terpusat. Push Notification Terpusat adalah layanan pengiriman push notification berbasis web yang dikembangkan untuk memudahkan manajemen dan penyebaran informasi ke pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember.
+\par Pada tugas akhir ini, penulis mengembangkan Push Notification Terpusat dengan menggunakan Kafka sebagai message queue. Aplikasi akan diimplementasikan dengan bahasa pemrograman Java dan kerangka kerja Spring.
+\par Pengujian pada tugas akhir ini meliputi pengujian fungsional dan non fungsional dengan menggunakan metode \textit{blackbox}. Dari hasil uji, sistem yang dibuat dapat memenuhi kebutuhan fungsional yang ada di aplikasi sebelumnya dengan performa, keandalan, ketersediaan, dan durabilitas yang lebih baik dari sebelumnya.
 
 \vspace*{1em}
 \noindent\bfseries Kata Kunci: Push Notification, Apple Push Notification Service, Firebase Cloud Messaging, Apache Kafka
@@ -40,7 +42,10 @@
 	
 \noindent\textbf{Abstract} \\
 \itshape
-\par 
+\par Push notification is a message that shown in user device using an installed application inside the device. Push notification usually is used to distribute information like promo, payment reminder, new news, et cetera.
+\par Institut Teknologi Sepuluh Nopember use Centralized Push Notification application to send \textit{push notification}. Centralized Push Notification is a push notification management service based on web platform, developed to simplify management and distributing information to user of application in Institut Teknologi Sepuluh Nopember.
+\par In this undergraduate thesis, writer will improve Centralized Push Notification using Kafka as message queue. The application will be implemented in Java as programming language and Spring as framework.
+\par Testing in this undergraduate thesis include functional and non functional test using blackbox method. From the test result, the new system can fulfill all functional requirement from the old system, with better performance, realibility, availability, and durability.
 
 \vspace*{1em}
 \noindent\bfseries Keywords: Push Notification, Apple Push Notification Service, Firebase Cloud Messaging, Apache Kafka

@@ -32,7 +32,7 @@
 \par Zookeeper adalah layanan tersentralisasi untuk mengatur konfigurasi, penamaan, sinkronisasi sistem terdistribusi, untuk sekelompok layanan \cite{zookeeper-online}. Zookeeper adalah layanan yang digunakan oleh Kafka untuk mengatur koordinasi sistem.
 
 \section{Kafka}
-\par Kafka merupakan layanan terdistribusi untuk data streaming \cite{kafka-online}. Pada dasarnya, Kafka merupakan sistem \textit{publish/subscribe messaging}, dimana terdapat satu atau lebih sistem yang meng-\textit{generate} data untuk suatu topik tertentu secara \textit{real-time} di Kafka (disebut sebagai \textit{Producers}) \cite{kafka-online}. Kemudian, topik tersebut dapat dibaca oleh satu atau lebih sistem yang membutuhkan data-data dari topik tersebut secara \textit{real-time} (disebut sebagai Consumers) \cite{kafka-online}. Aplikasi push notification terpusat akan menggunakan Kafka untuk menggantikan fungsi antrian pesan pada Push Notification Terpusat.
+\par Kafka merupakan layanan terdistribusi untuk data streaming \cite{kafka-online}. Pada dasarnya, Kafka merupakan sistem \textit{publish/subscribe messaging}, dimana terdapat satu atau lebih sistem yang meng-\textit{generate} data untuk suatu topik tertentu secara \textit{real-time} di Kafka (disebut sebagai \textit{Producers}) \cite{kafka-online}. Kemudian, topik tersebut dapat dibaca oleh satu atau lebih sistem yang membutuhkan data-data dari topik tersebut secara \textit{real-time} (disebut sebagai Consumers) \cite{kafka-online}. Push Notification Terpusat akan menggunakan Kafka untuk menggantikan sistem antrian pesan yang sudah ada.
 
 \section{Spring}
 \par Spring adalah sebuah \textit{platform} yang menyediakan dukungan infrastruktur lengkap untuk mengembangkan aplikasi Java \cite{spring-online}. Spring merupakan kerangka kerja yang digunakan untuk mengembangkan Push Notification Terpusat.
@@ -48,3 +48,6 @@
 
 \section{YAML}
 \par YAML adalah bahasa untuk serialisasi data yang dirancang agar mudah dipahami oleh manusia dan bisa berjalan dengan bahasa pemrograman modern \cite{yaml-online}. YAML merupakan bahasa yang digunakan untuk konfigurasi Spring dan Docker Compose.
+
+\section{JSON}
+\par JSON adalah format pertukaran data yang ringan, berbasis teks, dan independen \cite{json-online}. JSON merupakan format pertukaran data yang digunakan pada Push Notification Terpusat.

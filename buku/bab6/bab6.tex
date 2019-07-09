@@ -3,10 +3,10 @@
 
 \section{Kesimpulan}
 \begin{enumerate}
-	\item Implementasi antrian pesan dengan Kafka dapat dilakukan dengan kerangka kerja Spring, yaitu dengan mengirim \textit{packet} ke antrian Kafka dengan format data JSON.
-	\item Implementasi penjadwalan dapat dilakukan dengan membuat \textit{scheduler} yang memeriksa sistem basis data setiap 30 detik.
-	\item Implementasi pengiriman \textit{push notification} ke perangkat Android dapat dilakukan dengan mengirim \textit{request push notification} ke layanan FCM, sedangkan pengiriman ke perangkat iOS dapat dilakukan dengan mengirim \textit{request} ke layanan APNs.
-	\item Implementasi pemantauan aplikasi dapat menggunakan pustaka Actuator.
+	\item Implementasi antrian pesan dengan Kafka dapat dilakukan dengan menggunakan Docker untuk menjalankan Kafka, dan kerangka kerja Spring untuk mengirim dan mengambil pesan dari antrian.
+	\item Implementasi penjadwalan pengiriman \textit{push notification} dapat dilakukan dengan membuat layanan \textit{scheduler} yang memeriksa sistem basis data setiap 30 detik.
+	\item Implementasi pengiriman \textit{push notification} ke perangkat Android dapat dilakukan dengan mengirim \textit{request push notification} ke layanan FCM, sedangkan pengiriman ke perangkat iOS dapat dilakukan dengan mengirim \textit{request push notification} ke layanan APNs.
+	\item Implementasi pemantauan aplikasi dapat dilakukan dengan menggunakan pustaka Actuator.
 \end{enumerate}
 
 \section{Saran}
