@@ -151,19 +151,19 @@
 
 \subsection{Implementasi Pembuatan Packet}
 \par Proses pembuatan \textit{packet} dilakukan secara berkala oleh modul Scheduler setiap 30 detik. \textit{Packet} yang telah dibuat akan disimpan di sistem basis data. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pembuatan_packet}.
-\lstinputlisting[label=code:pembuatan_packet, caption=Implementasi Pembuatan Packet, language=Java] {bab4/java/pembuatan_packet.java}
+\lstinputlisting[label=code:pembuatan_packet, caption=Implementasi Java untuk Pembuatan Packet, language=Java] {bab4/java/pembuatan_packet.java}
 
 \subsection{Implementasi Menambahkan Packet ke Antrian}
 \par Proses menambahkan \textit{packet} ke antrian dilakukan secara berkala oleh modul Scheduler setiap 30 detik dengan jeda awal 15 detik. Tujuan penambahan jeda awal adalah untuk mengoptimalkan penggunaan sumber daya \textit{server} dengan mencegah proses pembuatan dan mengantrikan packet berjalan bersamaan. \textit{Packet} yang siap dikirim akan diantrikan ke Kafka. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:menambahkan_packet_ke_antrian}.
-\lstinputlisting[label=code:menambahkan_packet_ke_antrian, caption=Implementasi Menambahkan Packet ke Antrian, language=Java] {bab4/java/menambahkan_packet_ke_antrian.java}
+\lstinputlisting[label=code:menambahkan_packet_ke_antrian, caption=Implementasi Java untuk Menambahkan Packet ke Antrian, language=Java] {bab4/java/menambahkan_packet_ke_antrian.java}
 
 \subsection{Implementasi Pengiriman Packet ke APNs}
 \par Proses pengiriman \textit{packet} ke APNs dilakukan secara berkala oleh Sender APN dengan cara menunggu Kafka untuk memberikan \textit{packet} yang berada diantrian topik "ios". Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pengiriman_packet_ke_apns}.
-\lstinputlisting[label=code:pengiriman_packet_ke_apns, caption=Implementasi Pengiriman Packet ke APNs, language=Java] {bab4/java/pengiriman_packet_ke_apns.java}
+\lstinputlisting[label=code:pengiriman_packet_ke_apns, caption=Implementasi Java untuk Pengiriman Packet ke APNs, language=Java] {bab4/java/pengiriman_packet_ke_apns.java}
 
 \subsection{Implementasi Pengiriman Packet ke FCM}
 \par Proses pengiriman packet dilakukan secara berkala oleh Sender FCM dengan cara menunggu Kafka untuk mengirimkan data packet yang berada diantrian topik "android" dan "web". Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pengiriman_packet_ke_fcm}.
-\lstinputlisting[label=code:pengiriman_packet_ke_fcm, caption=Implementasi Pengiriman Packet ke FCM, language=Java] {bab4/java/pengiriman_packet_ke_fcm.java}
+\lstinputlisting[label=code:pengiriman_packet_ke_fcm, caption=Implementasi Java untuk Pengiriman Packet ke FCM, language=Java] {bab4/java/pengiriman_packet_ke_fcm.java}
 
 \subsection{Implementasi Pemantauan Aplikasi}
 \par Proses pemantauan aplikasi (menampilkan penggunaan sumber daya, menampilkan status kesehatan, menampilkan konfigurasi, menampilkan log) diimplementasikan dengan menggunakan library Actuator yang sudah terintegrasi dengan kerangka kerja Spring. Untuk keamanan, API Actuator dilindungi dengan metode autentikasi HTTP Basic. Setiap modul aplikasi (Scheduler, Sender APN, dan Sender FCM) menggunakan konfigurasi Actuator yang sama. Hasil implementasi konfigurasi dan API endpoint dapat dilihat pada Kode Sumber \ref{yaml:actuator} dan Tabel \ref{t:api_actuator}.
