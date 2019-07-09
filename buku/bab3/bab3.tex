@@ -9,17 +9,17 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Subbab ini membahas permasalahan yang dihadapi oleh aplikasi push notification terpusat saat ini serta penyebab dan dampak dari masalah tersebut.
 
 \subsubsection{Keandalan Antrian Pesan}
-\par Arsitektur antrian pesan pada aplikasi push notification terpusat dapat dilihat pada Gambar \ref{arsitektur_message_queue_lama}. Terdapat beberapa \textit{thread} yang menambahkan dan mengambil pesan dari antrian secara bersamaan. Berdasarkan analisis yang penulis lakukan, struktur data \textit{linked list} yang digunakan oleh antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}. Konsekuensinya, pesan yang berada di antrian bisa saja hilang tanpa ada \textit{error} yang terdeteksi oleh sistem. Potongan kode implementasi antrian pesan dapat dilihat pada \nameref{lampiran:queue_service}.
+\par Arsitektur antrian pesan pada Push Notification Terpusat dapat dilihat pada Gambar \ref{arsitektur_message_queue_lama}. Terdapat beberapa \textit{thread} yang menambahkan dan mengambil pesan dari antrian secara bersamaan. Berdasarkan analisis yang penulis lakukan, struktur data \textit{linked list} yang digunakan oleh antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}. Konsekuensinya, pesan yang berada di antrian bisa saja hilang tanpa ada \textit{error} yang terdeteksi oleh sistem. Potongan kode implementasi antrian pesan dapat dilihat pada \nameref{lampiran:queue_service}.
 \begin{figure}[H]
-	\caption{Arsitektur Antrian Pesan} \label{arsitektur_message_queue_lama}
+	\caption{Arsitektur Lama untuk Antrian Pesan} \label{arsitektur_message_queue_lama}
 	\includegraphics[width=1\textwidth]{bab3/figures/arsitektur_message_queue_lama.jpg}
 \end{figure}
 
 \subsubsection{Durabilitas Penyimpanan Antrian}
-\par Pada aplikasi push notification terpusat, antrian \textit{packet} disimpan dalam sebuah struktur data yang ada di sistem. Konsekuensinya, jika layanan \textit{down}, seluruh \textit{packet} yang berada diantrian akan hilang. Selain itu, karena semua pesan disimpan di sistem, sistem akan kehabisan memori jika jumlah pesan yang diantrikan terlalu banyak.
+\par Antrian \textit{packet} pada Push Notification Terpusat disimpan dalam sebuah struktur data yang ada di sistem. Konsekuensinya, jika sistem \textit{down}, seluruh \textit{packet} yang berada diantrian akan hilang. Selain itu, karena semua pesan disimpan di sistem, sistem akan kehabisan memori jika jumlah pesan yang diantrikan terlalu banyak.
 
 \subsection{Deskripsi Umum Sistem}
-\par Aplikasi push notification terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Pada tugas akhir ini, aplikasi akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM.
+\par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Pada tugas akhir ini, aplikasi akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM.
 \par Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{push notification}, Sender APN bertanggung jawab untuk mengirimkan \textit{push notification} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{push notification} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
@@ -28,7 +28,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \subsubsection{Aktor}
 \par Aktor adalah pihak-pihak, baik manusia maupun sistem atau perangkat lain yang terlibat dan berinteraksi secara langsung dengan sistem. Rincian aktor-aktor yang terdapat pada aplikasi push notification terpusat dijelaskan pada Tabel \ref{t:aktor}.
 \begin{longtable}{|p{2cm}|p{7cm}|}
-    \caption{Rincian Aktor Sistem} \label{t:aktor} \\ \hline
+    \caption{Aktor pada Sistem} \label{t:aktor} \\ \hline
     \rowcolor{lightgray} Aktor & Tugas \\ \hline
     Scheduler & Membuat dan menjadwalkan pengiriman \textit{packet}. \\ \hline
     Sender APN & Mengirimkan \textit{packet} untuk perangkat iOS. \\ \hline
@@ -45,7 +45,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     F-03 & Pengiriman \textit{Packet} ke APNs & Jika terdapat \textit{packet} untuk perangkat iOS di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan APNs. \\ \hline
     F-04 & Pengiriman \textit{Packet} ke FCM & Jika terdapat \textit{packet} untuk perangkat Android dan Web di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan FCM. \\ \hline
     F05 & Menampilkan Penggunaan Sumber Daya & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan dalam bentuk \textit{response} HTTP. \\ \hline
-    F-06 & Menampilkan Status Kesehatan & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan kondisi layanan yang berhubungan dengan sistem (SQL Server dan Kafka) dalam bentuk \textit{response} HTTP. \\ \hline
+    F-06 & Menampilkan Status Kesehatan & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan kondisi layanan yang berhubungan dengan sistem (sistem basis data dan antrian pesan) dalam bentuk \textit{response} HTTP. \\ \hline
     F-07 & Menampilkan Konfigurasi & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan konfigurasi sistem dalam bentuk \textit{response} HTTP. \\ \hline
     F-08 & Menampilkan \textit{Log} & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan isi \textit{log} sistem dalam bentuk \textit{response} HTTP. \\ \hline
 \end{longtable}
@@ -88,15 +88,15 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \tableUcDesc
 {t:skenario_pembuatan_packet}
 {UC-01}
-{Pembuatan Packet}
+{Pembuatan \textit{Packet}}
 {Scheduler}
-{Terdapat batch yang belum dan boleh dibuatkan packet}
-{Packet dibuat untuk batch tersebut}
+{Terdapat \textit{batch} yang belum dan boleh dibuatkan \textit{packet}}
+{\textit{Packet} dibuat untuk \textit{batch} tersebut}
 {
 \begin{enumerate}
-    \item Aktor memeriksa apakah terdapat batch yang belum dan boleh dibuatkan packet.
-    \item Aktor membuatkan data packet dari batch tersebut.
-    \item Aktor menyimpan data packet dan memperbarui data batch.
+    \item Aktor memeriksa apakah terdapat \textit{batch} yang belum dan boleh dibuatkan \textit{packet}.
+    \item Aktor membuatkan data \textit{packet} dari batch tersebut.
+    \item Aktor menyimpan data \textit{packet} dan memperbarui data \textit{batch}.
 \end{enumerate}
 }
 {-}
@@ -106,56 +106,51 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \tableUcDesc
 {t:skenario_menambahkan_packet_ke_antrian}
 {UC-02}
-{Menambahkan Packet ke Antrian}
+{Menambahkan \textit{Packet} ke Antrian}
 {Scheduler}
-{Terdapat packet yang belum dan sudah waktunya dikirim}
-{Packet ditambahkan ke antrian}
+{Terdapat \textit{packet} yang belum dan sudah waktunya dikirim}
+{\textit{Packet} ditambahkan ke antrian}
 {
 \begin{enumerate}
-    \item Aktor memeriksa apakah terdapat packet yang belum dan sudah waktunya dikirim.
-    \item Aktor menambahkan packet ke dalam antrian dengan spesifikasi topik sebagai berikut:
-    \begin{enumerate}
-        \item Topik "android" untuk packet dengan target perangkat Android.
-        \item Topik "web" untuk packet dengan target perangkat Web.
-        \item Topik "ios" untuk packet dengan target perangkat iOS.
-    \end{enumerate}
-    \item Aktor memperbarui data packet (status sedang menunggu).
+    \item Aktor memeriksa apakah terdapat \textit{packet} yang belum dan sudah waktunya dikirim.
+    \item Aktor menambahkan \textit{packet} ke dalam antrian dengan pembagian topik berdasarkan tipe target perangkat.
+    \item Aktor memperbarui data \textit{packet} (status sedang menunggu).
 \end{enumerate}
 }
 {-}
 
 \paragraph{Pengiriman Packet ke APNs}
-\par Pada kasus ini, Sender APN akan menunggu \textit{Kafka} mengirimkan packet yang ada di antrian topik "ios". Setelah packet diterima, packet akan dikirimkan ke layanan APNs. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_apns}.
+\par Pada kasus ini, Sender APN akan menunggu sistem antrian pesan untuk mengirimkan \textit{packet} yang ada di antrian topik iOS. Setelah packet diterima, packet akan dikirimkan ke layanan APNs. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_apns}.
 \tableUcDesc
 {t:skenario_pengiriman_packet_ke_apns}
 {UC-03}
-{Pengiriman Packet ke APNs}
+{Pengiriman \textit{Packet} ke APNs}
 {Sender APN}
-{Terdapat packet di antrian topik "ios"}
-{Packet diterima oleh layanan APNs}
+{Terdapat \textit{packet} di antrian topik iOS}
+{\textit{Packet} diterima oleh layanan APNs}
 {
 \begin{enumerate}
-    \item Aktor menerima packet dari antrian topik "ios".
-    \item Aktor mengirimkan request notifikasi ke layanan APNs berdasarkan data packet.
-    \item Aktor memperbarui data packet berdasarkan response dari APNs (berhasil atau gagal dan alasan gagal).
+    \item Aktor menerima \textit{packet} dari antrian topik iOS.
+    \item Aktor mengirimkan \textit{request push notification} ke layanan APNs berdasarkan data \textit{packet}.
+    \item Aktor memperbarui data \textit{packet} berdasarkan \textit{response} dari APNs (berhasil atau gagal dan alasan gagal).
 \end{enumerate}
 }
 {-}
 
 \paragraph{Pengiriman Packet ke FCM}
-\par Pada kasus ini, Sender FCM akan menunggu \textit{Kafka} mengirimkan packet yang ada di antrian topik "android" dan "web". Setelah packet diterima, packet akan dikirimkan ke layanan FCM. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_fcm}.
+\par Pada kasus ini, Sender FCM akan menunggu sistem antrian pesan untuk mengirimkan \textit{packet} yang ada di antrian topik Android dan Web. Setelah \textit{packet} diterima, \textit{packet} akan dikirimkan ke layanan FCM. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_fcm}.
 \tableUcDesc
 {t:skenario_pengiriman_packet_ke_fcm}
 {UC-04}
-{Pengiriman Packet ke FCM}
+{Pengiriman \textit{Packet} ke FCM}
 {Sender FCM}
-{Terdapat packet di antrian topik "android" atau "web"}
+{Terdapat \textit{packet} di antrian topik Android atau Web}
 {Packet diterima oleh layanan FCM}
 {
 \begin{enumerate}
-    \item Aktor menerima packet dari antrian topik "android" atau "web".
-    \item Aktor mengirimkan request notifikasi ke layanan FCM berdasarkan data packet.
-    \item Aktor memperbarui data packet berdasarkan response dari FCM (berhasil atau gagal dan alasan gagal).
+    \item Aktor menerima packet dari antrian topik Android atau Web.
+    \item Aktor mengirimkan \textit{request push notification} ke layanan FCM berdasarkan data \textit{packet}.
+    \item Aktor memperbarui data \textit{packet} berdasarkan \textit{response} dari FCM (berhasil atau gagal dan alasan gagal).
 \end{enumerate}
 }
 {-}
@@ -167,13 +162,13 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {UC-05}
 {Menampilkan Penggunaan Sumber Daya}
 {Scheduler, Sender APN, Sender FCM}
-{Aktor menerima request HTTP}
-{Aktor mengembalikan response HTTP}
+{Aktor menerima \textit{request} HTTP}
+{Aktor mengembalikan \textit{response} HTTP}
 {
 	\begin{enumerate}
-		\item Aktor menerima request HTTP untuk melihat penggunaan sumber daya.
+		\item Aktor menerima \textit{request} HTTP untuk melihat penggunaan sumber daya.
 		\item Aktor memeriksa metrik penggunaan sumber daya dari sistem operasi.
-		\item Aktor mengembalikan hasil pemeriksaan penggunaan sumber daya dalam bentuk response HTTP.
+		\item Aktor mengembalikan hasil pemeriksaan penggunaan sumber daya dalam bentuk \textit{response} HTTP.
 	\end{enumerate}
 }
 {-}
@@ -189,9 +184,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {Aktor mengembalikan response HTTP}
 {
 	\begin{enumerate}
-		\item Aktor menerima request HTTP untuk melihat status kesehatan.
+		\item Aktor menerima \textit{request} HTTP untuk melihat status kesehatan.
 		\item Aktor memeriksa apakah aktor dapat terhubung ke layanan-layanan yang dibutuhkan oleh aktor untuk beroperasi.
-		\item Aktor mengembalikan status (bisa diakses atau tidak) layanan-layanan yang dibutuhkan dalam bentuk response HTTP.
+		\item Aktor mengembalikan status (bisa diakses atau tidak) layanan-layanan yang dibutuhkan dalam bentuk \textit{response} HTTP.
 	\end{enumerate}
 }
 {-}
@@ -203,14 +198,14 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {UC-07}
 {Menampilkan Konfigurasi}
 {Scheduler, Sender APN, Sender FCM}
-{Aktor menerima request HTTP}
-{Aktor mengembalikan response HTTP}
+{Aktor menerima \textit{request} HTTP}
+{Aktor mengembalikan \textit{response} HTTP}
 {
 	\begin{enumerate}
-		\item Aktor menerima request HTTP untuk melihat konfigurasi aplikasi.
+		\item Aktor menerima \textit{request} HTTP untuk melihat konfigurasi aplikasi.
 		\item Aktor memeriksa konfigurasi \textit{Spring} yang ada di aplikasi.
 		\item Aktor memeriksa \textit{environment variable} yang ada di sistem operasi.
-		\item Aktor mengembalikan konfigurasi \textit{Spring} dan \textit{environment variable} yang ada dalam bentuk response HTTP.
+		\item Aktor mengembalikan konfigurasi \textit{Spring} dan \textit{environment variable} yang ada dalam bentuk \textit{response} HTTP.
 	\end{enumerate}
 }
 {-}
@@ -220,38 +215,31 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \tableUcDesc
 {t:skenario_menampilkan_log}
 {UC-08}
-{Menampilkan Log}
+{Menampilkan \textit{Log}}
 {Scheduler, Sender APN, Sender FCM}
-{Aktor menerima request HTTP}
-{Aktor mengembalikan response HTTP}
+{Aktor menerima \textit{request} HTTP}
+{Aktor mengembalikan \textit{response} HTTP}
 {
 \begin{enumerate}
-	\item Aktor menerima request HTTP untuk melihat log aplikasi.
-	\item Aktor mencari lokasi file log yang digunakan aplikasi untuk menyimpan log.
-	\item Aktor mengembalikan isi file log dalam bentuk response HTTP.
+	\item Aktor menerima \textit{request} HTTP untuk melihat log aplikasi.
+	\item Aktor mencari lokasi file \textit{log} yang digunakan aplikasi untuk menyimpan \textit{log}.
+	\item Aktor mengembalikan isi file \textit{log} dalam bentuk \textit{response} HTTP.
 \end{enumerate}
 }
 {-}
 
 \section{Perancangan Sistem}
-\par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan
-arsitektur, basis data, antrian pesan, dan proses.
+\par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan arsitektur, basis data, antrian pesan, dan proses.
 
 \subsection{Perancangan Arsitektur} \label{s:perancangan_arsitektur}
-\par Aplikasi \textit{push notification} terpusat akan dibagi menjadi 3 modul, yaitu Scheduler,
-Sender APN, dan Sender FCM.
-Aplikasi dibangun dengan bahasa pemrograman Java, dengan kerangka kerja
-Spring.
-Aplikasi saling terhubung lewat Kafka dan SQL Server.
-Secara garis besar, aplikasi ini memiliki rancangan
-arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
+\par Push Notification Terpusat akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Aplikasi dibangun dengan bahasa pemrograman Java, dengan kerangka kerja Spring. Aplikasi saling terhubung lewat sistem basis data (SQL Server) dan sistem antrian pesan (Kafka). Secara garis besar, aplikasi ini memiliki rancangan arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \begin{figure}[H]
 	\caption{Arsitektur Pengiriman Notifikasi} \label{f:arsitektur_aplikasi}
     \includegraphics[width=1\textwidth]{bab3/figures/arsitektur_pengiriman_notifikasi.jpg}
 \end{figure}
 
 \subsection{Perancangan Basis Data}
-\par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification} terpusat. Sistem basis data yang digunakan adalah SQL Server 2012.
+\par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification} terpusat. Sistem basis data yang digunakan adalah SQL Server.
 
 \subsubsection{Tabel User}
 \par Tabel user digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user}.
@@ -436,7 +424,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \end{longtable}
 
 \subsection{Perancangan Antrian Pesan}
-\par Subbab ini membahas bagaimana rancangan antrian pesan yang akan digunakan. Sistem antrian pesan yang digunakan adalah Apache Kafka.
+\par Subbab ini membahas bagaimana rancangan antrian pesan yang akan digunakan. Sistem antrian pesan yang digunakan adalah Kafka.
 
 \subsubsection{Perancangan Skema}
 \par Berdasarkan rancangan arsitektur pada Subbab \ref{s:perancangan_arsitektur}, Scheduler akan mengirimkan \textit{packet} ke Sender APN dan Sender FCM lewat antrian pesan. Pertukaran data \textit{packet} di antrian pesan akan menggunakan format JSON. Skema JSON dapat dilihat pada Kode Sumber \ref{json:packet}.
@@ -458,7 +446,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \subsubsection{Proses Pembuatan Packet}
 \par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat. Proses pembuatan dapat dilihat di diagram alir pada Gambar \ref{flowchart_pembuatan_packet}.
 \begin{figure}[hb]
-	\caption{Diagram Alir Proses Pembuatan \textit{Packet}} \label{flowchart_pembuatan_packet}
+	\caption{Diagram Alir Proses Pembuatan Packet} \label{flowchart_pembuatan_packet}
     \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_pembuatan_packet.jpg}
 \end{figure}
 
@@ -467,7 +455,7 @@ arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
 \par Proses ini bertujuan untuk mengantrikan \textit{packet} yang sudah waktunya untuk dikirim.
 Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS). Proses pengantrian dapat dilihat di diagram alir pada Gambar \ref{flowchart_menambahkan_packet_ke_antrian}.
 \begin{figure}[hb]
-	\caption{Diagram Alir Proses Menambahkan \textit{Packet} ke Antrian} \label{flowchart_menambahkan_packet_ke_antrian}
+	\caption{Diagram Alir Proses Menambahkan Packet ke Antrian} \label{flowchart_menambahkan_packet_ke_antrian}
     \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_menambahkan_packet_ke_antrian.jpg}
 \end{figure}
 
@@ -475,13 +463,13 @@ Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "ios" ke perangkat pengguna yang berbasis iOS lewat layanan APNs. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada
 Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 \begin{figure}[hb]
-	\caption{Diagram Alir Proses Pengiriman \textit{Packet} ke APNs} \label{flowchart_pengiriman_packet_ke_apns}
+	\caption{Diagram Alir Proses Pengiriman Packet ke APNs} \label{flowchart_pengiriman_packet_ke_apns}
     \centering\includegraphics[width=0.6\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_apns.jpg}
 \end{figure}
 
 \subsubsection{Proses Pengiriman Packet ke FCM}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada Gambar \ref{flowchart_pengiriman_packet_ke_fcm}.
 \begin{figure}[hb]
-	\caption{Diagram Alir Proses Pengiriman \textit{Packet} ke FCM} \label{flowchart_pengiriman_packet_ke_fcm}
+	\caption{Diagram Alir Proses Pengiriman Packet ke FCM} \label{flowchart_pengiriman_packet_ke_fcm}
     \centering\includegraphics[width=0.6\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_fcm.jpg}
 \end{figure}

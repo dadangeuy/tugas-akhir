@@ -151,7 +151,7 @@
 \lstinputlisting[label=code:pengiriman_packet_ke_fcm, caption=Implementasi Java untuk Pengiriman Packet ke FCM, language=Java] {bab4/java/pengiriman_packet_ke_fcm.java}
 
 \subsection{Implementasi Pemantauan Aplikasi}
-\par Proses pemantauan aplikasi (menampilkan penggunaan sumber daya, menampilkan status kesehatan, menampilkan konfigurasi, menampilkan log) diimplementasikan dengan menggunakan library Actuator yang sudah terintegrasi dengan kerangka kerja Spring. Untuk keamanan, API Actuator dilindungi dengan metode autentikasi HTTP Basic. Setiap modul aplikasi (Scheduler, Sender APN, dan Sender FCM) menggunakan konfigurasi Actuator yang sama. Hasil implementasi konfigurasi dan API endpoint dapat dilihat pada Kode Sumber \ref{yaml:actuator} dan Tabel \ref{t:api_actuator}.
+\par Proses pemantauan aplikasi (menampilkan penggunaan sumber daya, menampilkan status kesehatan, menampilkan konfigurasi, menampilkan \textit{log}) diimplementasikan dengan menggunakan pustaka Actuator yang sudah terintegrasi dengan kerangka kerja Spring. Untuk keamanan, API Actuator dilindungi dengan metode autentikasi HTTP Basic. Setiap modul aplikasi (Scheduler, Sender APN, dan Sender FCM) menggunakan konfigurasi Actuator yang sama. Hasil implementasi konfigurasi dan API endpoint dapat dilihat pada Kode Sumber \ref{yaml:actuator} dan Tabel \ref{t:api_actuator}.
 \lstinputlisting[label=yaml:actuator, caption=Implementasi Java untuk Konfigurasi Actuator] {bab4/yaml/actuator.yml}
 
 \begin{longtable}{|p{3cm}|p{4.5cm}|p{1.5cm}|}
