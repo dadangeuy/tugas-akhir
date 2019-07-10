@@ -242,37 +242,37 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification} terpusat. Sistem basis data yang digunakan adalah SQL Server. Conceptual Data Model dapat dilihat pada \nameref{lampiran:cdm}.
 
 \subsubsection{Tabel User}
-\par Tabel user digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user}.
+\par Tabel User digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
  	\caption{Tabel User} \label{tabel_user} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     User ID & uuid & ID tabel \\ \hline
     Name & varchar(150) & Nama dari akun ITS \\ \hline
-    Nickname & varchar(20) & - \\ \hline
-    Username & varchar(255) & - \\ \hline
-    Password & varchar(256) & - \\ \hline
+%    Nickname & varchar(20) & - \\ \hline
+%    Username & varchar(255) & - \\ \hline
+%    Password & varchar(256) & - \\ \hline
     Email & varchar(255) & NRP/NIP/no telepon dari akun ITS \\ \hline
-    Email Verified & numeric(1) & - \\ \hline
-    Scope & varchar(4000) & - \\ \hline
-    Alternate Email & varchar(255) & - \\ \hline
-    Alternate Email Verified & numeric(1) & - \\ \hline
-    Phone & varchar(18) & - \\ \hline
-    Phone Verified & numeric(1) & - \\ \hline
-    Enabled & numeric(1) & - \\ \hline
-    Picture & varbinary(max) & - \\ \hline
-    Gender & char(1) & - \\ \hline
-    Birth Date & date & - \\ \hline
-    Zone Info & varchar(40) & - \\ \hline
-    Locale & varchar(10) & - \\ \hline
-    Integra ID & numeric(12) & - \\ \hline
-    Regional ID & varchar(25) & - \\ \hline
-    Must Change Password & numeric(1) & - \\ \hline
-    Sandbox & numeric(1) & - \\ \hline
-    Locked & datetime & - \\ \hline
-    Suspended & datetime & - \\ \hline
-    Has Suspended & numeric(1) & - \\ \hline
-    Group ID & int & - \\ \hline
-    Auth Method ID & numeric(2) & - \\ \hline
+%    Email Verified & numeric(1) & - \\ \hline
+%    Scope & varchar(4000) & - \\ \hline
+%    Alternate Email & varchar(255) & - \\ \hline
+%    Alternate Email Verified & numeric(1) & - \\ \hline
+%    Phone & varchar(18) & - \\ \hline
+%    Phone Verified & numeric(1) & - \\ \hline
+%    Enabled & numeric(1) & - \\ \hline
+%    Picture & varbinary(max) & - \\ \hline
+%    Gender & char(1) & - \\ \hline
+%    Birth Date & date & - \\ \hline
+%    Zone Info & varchar(40) & - \\ \hline
+%    Locale & varchar(10) & - \\ \hline
+%    Integra ID & numeric(12) & - \\ \hline
+%    Regional ID & varchar(25) & - \\ \hline
+%    Must Change Password & numeric(1) & - \\ \hline
+%    Sandbox & numeric(1) & - \\ \hline
+%    Locked & datetime & - \\ \hline
+%    Suspended & datetime & - \\ \hline
+%    Has Suspended & numeric(1) & - \\ \hline
+%    Group ID & int & - \\ \hline
+%    Auth Method ID & numeric(2) & - \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
@@ -306,31 +306,31 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     Client ID & uuid & ID tabel \\ \hline
     Client Name & varchar(100) & Nama aplikasi ITS \\ \hline
-    Client Description & varchar(250) & - \\ \hline
-    Client Secret & varchar(255) & - \\ \hline
-    Expires At & datetime & - \\ \hline
-    Logo & varchar(100) & - \\ \hline
-    Redirect URI & varchar(2000) & - \\ \hline
-    Post Logout Redirect URIS & varchar(2048) & - \\ \hline
-    Front Channel Logout URI & varchar(255) & - \\ \hline
-    Front Channel Logout Session Required & numeric(1) & - \\ \hline
-    Back Channel Logout URI & varchar(255) & - \\ \hline
-    Back Channel Logout Session Required & numeric(1) & - \\ \hline
-    Base URI & varchar(255) & - \\ \hline
-    API Base URI & varchar(255) & - \\ \hline
-    Application Type & char(1) & - \\ \hline
-    Contact Name & varchar(255) & - \\ \hline
-    Contact Email & varchar(255) & - \\ \hline
-    Preauthorized & numeric(1) & - \\ \hline
-    Grant Types & varchar(80) & - \\ \hline
-    Scope & varchar(4000) & - \\ \hline
-    Sandbox & numeric(1) & - \\ \hline
+%    Client Description & varchar(250) & - \\ \hline
+%    Client Secret & varchar(255) & - \\ \hline
+%    Expires At & datetime & - \\ \hline
+%    Logo & varchar(100) & - \\ \hline
+%    Redirect URI & varchar(2000) & - \\ \hline
+%    Post Logout Redirect URIS & varchar(2048) & - \\ \hline
+%    Front Channel Logout URI & varchar(255) & - \\ \hline
+%    Front Channel Logout Session Required & numeric(1) & - \\ \hline
+%    Back Channel Logout URI & varchar(255) & - \\ \hline
+%    Back Channel Logout Session Required & numeric(1) & - \\ \hline
+%    Base URI & varchar(255) & - \\ \hline
+%    API Base URI & varchar(255) & - \\ \hline
+%    Application Type & char(1) & - \\ \hline
+%    Contact Name & varchar(255) & - \\ \hline
+%    Contact Email & varchar(255) & - \\ \hline
+%    Preauthorized & numeric(1) & - \\ \hline
+%    Grant Types & varchar(80) & - \\ \hline
+%    Scope & varchar(4000) & - \\ \hline
+%    Sandbox & numeric(1) & - \\ \hline
     Is Moderated & numeric(1) & Status moderasi dari aplikasi ITS (1/0) \\ \hline
-    Visible & numeric(1) & - \\ \hline
-    Category ID & int & - \\ \hline
-    Auth Type ID & char(1) & - \\ \hline
-    User ID & uuid & - \\ \hline
-    Provider ID & uuid & - \\ \hline
+%    Visible & numeric(1) & - \\ \hline
+%    Category ID & int & - \\ \hline
+%    Auth Type ID & char(1) & - \\ \hline
+%    User ID & uuid & - \\ \hline
+%    Provider ID & uuid & - \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
@@ -428,7 +428,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 
 \subsubsection{Perancangan Skema}
 \par Berdasarkan rancangan arsitektur pada Subbab \ref{s:perancangan_arsitektur}, Scheduler akan mengirimkan \textit{packet} ke Sender APN dan Sender FCM lewat antrian pesan. Pertukaran data \textit{packet} di antrian pesan akan menggunakan format JSON. Skema JSON dapat dilihat pada Kode Sumber \ref{json:packet}.
-\lstinputlisting[label=json:packet, caption=Skema JSON Packet, language=SQL] {bab3/json/packet.json}
+\lstinputlisting[label=json:packet, caption=Skema JSON \textit{Packet}, language=SQL] {bab3/json/packet.json}
 
 \subsubsection{Perancangan Topik}
 \par Berdasarkan rancangan arsitektur pada Subbab \ref{s:perancangan_arsitektur}, antrian \textit{packet} akan dipisah berdasarkan tipe perangkat penerima \textit{packet}. Rincian pembagian topik dapat dilihat pada Tabel \ref{t:pembagian_topik_antrian}.
