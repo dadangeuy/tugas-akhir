@@ -447,7 +447,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat. Proses pembuatan dapat dilihat di diagram alir pada Gambar \ref{flowchart_pembuatan_packet}.
 \begin{figure}[hb]
 	\caption{Diagram Alir Proses Pembuatan Packet} \label{flowchart_pembuatan_packet}
-    \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_pembuatan_packet.jpg}
+    \centering\includegraphics[width=1\textwidth]{bab3/flowchart/flowchart-pembuatan_packet.jpg}
 \end{figure}
 
 \subsubsection{Proses Menambahkan Packet ke Antrian}
@@ -456,7 +456,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS). Proses pengantrian dapat dilihat di diagram alir pada Gambar \ref{flowchart_menambahkan_packet_ke_antrian}.
 \begin{figure}[hb]
 	\caption{Diagram Alir Proses Menambahkan Packet ke Antrian} \label{flowchart_menambahkan_packet_ke_antrian}
-    \centering\includegraphics[width=1\textwidth]{bab3/figures/flowchart_menambahkan_packet_ke_antrian.jpg}
+    \centering\includegraphics[width=1\textwidth]{bab3/flowchart/flowchart-menambahkan_packet_ke_antrian.jpg}
 \end{figure}
 
 \subsubsection{Proses Pengiriman Packet ke APNs}
@@ -464,12 +464,40 @@ Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (
 Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 \begin{figure}[hb]
 	\caption{Diagram Alir Proses Pengiriman Packet ke APNs} \label{flowchart_pengiriman_packet_ke_apns}
-    \centering\includegraphics[width=0.6\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_apns.jpg}
+    \centering\includegraphics[width=0.6\textwidth]{bab3/flowchart/flowchart-pengiriman_packet_ke_apns.jpg}
 \end{figure}
 
 \subsubsection{Proses Pengiriman Packet ke FCM}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada Gambar \ref{flowchart_pengiriman_packet_ke_fcm}.
 \begin{figure}[hb]
 	\caption{Diagram Alir Proses Pengiriman Packet ke FCM} \label{flowchart_pengiriman_packet_ke_fcm}
-    \centering\includegraphics[width=0.6\textwidth]{bab3/figures/flowchart_pengiriman_packet_ke_fcm.jpg}
+    \centering\includegraphics[width=0.6\textwidth]{bab3/flowchart/flowchart-pengiriman_packet_ke_fcm.jpg}
+\end{figure}
+
+\subsubsection{Proses Menampilkan Penggunaan Sumber Daya}
+\par Proses ini bertujuan untuk menampilkan penggunaan sumber daya (seperti CPU dan Memori) yang digunakan oleh aplikasi. Proses menampilkan penggunaan sumber daya dapat dilihat di diagram alir pada Gambar \ref{fc:sumber_daya}.
+\begin{figure}[hb]
+	\caption{Diagram Alir Proses Menampilkan Penggunaan Sumber Daya} \label{fc:sumber_daya}
+	\centering\includegraphics[width=0.3\textwidth]{bab3/flowchart/flowchart-menampilkan_penggunaan_sumber_daya.jpg}
+\end{figure}
+
+\subsubsection{Proses Menampilkan Status Kesehatan}
+\par Proses ini bertujuan untuk menampilkan status kesehatan aplikasi dengan layanan-layanan yang dibutuhkan oleh aplikasi, yaitu sistem basis data dan sistem antrian pesan. Proses menampilkan status kesehatan dapat di diagram alir pada Gambar \ref{fc:kesehatan}.
+\begin{figure}[hb]
+	\caption{Diagram Alir Proses Menampilkan Status Kesehatan} \label{fc:kesehatan}
+	\centering\includegraphics[width=0.6\textwidth]{bab3/flowchart/flowchart-menampilkan_kesehatan.jpg}
+\end{figure}
+
+\subsubsection{Proses Menampilkan Konfigurasi}
+\par Proses ini bertujuan untuk menampilkan konfigurasi aplikasi dan lingkungan aplikasi yang digunakan untuk menjalankan aplikasi. Proses menampilkan konfigurasi dapat dilihat di diagram alir pada Gambar \ref{fc:konfigurasi}.
+\begin{figure}[hb]
+	\caption{Diagram Alir Proses Menampilkan Konfigurasi} \label{fc:konfigurasi}
+	\centering\includegraphics[width=0.3\textwidth]{bab3/flowchart/flowchart-menampilkan_konfigurasi.jpg}
+\end{figure}
+
+\subsubsection{Menampilkan Log}
+\par Proses ini bertujuan untuk menampilkan \textit{log} yang dikeluarkan oleh aplikasi. Proses menampilkan \textit{log} dapat dilihat di diagram alir pada Gambar \ref{fc:log}.
+\begin{figure}[hb]
+	\caption{Diagram Alir Proses Menampilkan Log} \label{fc:log}
+	\centering\includegraphics[width=0.3\textwidth]{bab3/flowchart/flowchart-menampilkan_log.jpg}
 \end{figure}
