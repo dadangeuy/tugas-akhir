@@ -246,12 +246,12 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
  	\caption{Tabel User} \label{tabel_user} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    User ID & uuid & Primary key tabel \\ \hline
-    Name & varchar(150) & - \\ \hline
+    User ID & uuid & ID tabel \\ \hline
+    Name & varchar(150) & Nama dari akun ITS \\ \hline
     Nickname & varchar(20) & - \\ \hline
     Username & varchar(255) & - \\ \hline
     Password & varchar(256) & - \\ \hline
-    Email & varchar(255) & - \\ \hline
+    Email & varchar(255) & NRP/NIP/no telepon dari akun ITS \\ \hline
     Email Verified & numeric(1) & - \\ \hline
     Scope & varchar(4000) & - \\ \hline
     Alternate Email & varchar(255) & - \\ \hline
@@ -282,8 +282,8 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Group} \label{tabel_group} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    Group ID & uuid & Primary key tabel \\ \hline
-    Name & varchar(100) & - \\ \hline
+    Group ID & uuid & ID tabel \\ \hline
+    Name & varchar(100) & Nama kelompok \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
@@ -304,8 +304,8 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Client} \label{tabel_client} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    Client ID & uuid & Primary key tabel \\ \hline
-    Client Name & varchar(100) & - \\ \hline
+    Client ID & uuid & ID tabel \\ \hline
+    Client Name & varchar(100) & Nama aplikasi ITS \\ \hline
     Client Description & varchar(250) & - \\ \hline
     Client Secret & varchar(255) & - \\ \hline
     Expires At & datetime & - \\ \hline
@@ -325,7 +325,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     Grant Types & varchar(80) & - \\ \hline
     Scope & varchar(4000) & - \\ \hline
     Sandbox & numeric(1) & - \\ \hline
-    Is Moderated & numeric(1) & - \\ \hline
+    Is Moderated & numeric(1) & Status moderasi dari aplikasi ITS (1/0) \\ \hline
     Visible & numeric(1) & - \\ \hline
     Category ID & int & - \\ \hline
     Auth Type ID & char(1) & - \\ \hline
@@ -336,39 +336,39 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{longtable}
 
 \subsubsection{Tabel Certificate}
-\par Tabel certificate digunakan untuk menyimpan data sertifikat yang digunakan untuk autentikasi ke layanan APNs dan FCM. Rincian atribut dapat dilihat pada Tabel \ref{tabel_certificate}.
+\par Tabel Certificate digunakan untuk menyimpan data sertifikat yang digunakan untuk autentikasi ke layanan APNs dan FCM. Rincian atribut dapat dilihat pada Tabel \ref{tabel_certificate}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Certificate} \label{tabel_certificate} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    Certificate ID & uuid & Primary key tabel \\ \hline
-    Client ID & uuid & Foreign key tabel client \\ \hline
+    Certificate ID & uuid & ID tabel \\ \hline
+    Client ID & uuid & ID Aplikasi yang menggunakan sertifikat \\ \hline
     Bundle ID & varchar(255) & Bundle ID untuk aplikasi iOS \\ \hline
     Certificate Key & text & File sertifikat yang sudah diencode dengan base64 \\ \hline
-    Type & char(1) & Tipe sertifikat (FCM atau APNs) \\ \hline
+    Type & char(1) & Tipe sertifikat (FCM(1) atau APNs(2)) \\ \hline
     Password & varchar(255) & Kata sandi untuk sertifikat iOS \\ \hline
 \end{longtable}
 
 \subsubsection{Tabel Device}
-\par Tabel device digunakan untuk menyimpan data perangkat pengguna aplikasi yang terdaftar di layanan APNs dan FCM. Rincian atribut dapat dilihat pada Tabel \ref{tabel_device}.
+\par Tabel Device digunakan untuk menyimpan data perangkat pengguna aplikasi yang terdaftar di layanan APNs dan FCM. Rincian atribut dapat dilihat pada Tabel \ref{tabel_device}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Device} \label{tabel_device} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    Device ID & uuid & Primary key tabel \\ \hline
-    Client ID & uuid & Client tempat perangkat terdaftar \\ \hline
-    User ID & uuid & User pemilik perangkat \\ \hline
+    Device ID & uuid & ID tabel \\ \hline
+    Client ID & uuid & ID aplikasi tempat perangkat terdaftar \\ \hline
+    User ID & uuid & ID pengguna pemilik perangkat \\ \hline
     Device Token & varchar(255) & Token yang terdaftar di layanan APNs dan FCM \\ \hline
-    Device Type & char(1) & Jenis perangkat (Android, Web, atau iOS) \\ \hline
+    Device Type & char(1) & Jenis perangkat (Android(A), Web(W), atau iOS(I)) \\ \hline
     Active & numeric(1) & Perangkat aktif atau tidak \\ \hline
-    Registration Date & datetime & - \\ \hline
-    Invalidate Date & datetime & - \\ \hline
+    Registration Date & datetime & Waktu dan tanggal perangkat didaftarkan \\ \hline
+    Invalidate Date & datetime & Waktu dan tanggal perangkat dihapus \\ \hline
 \end{longtable}
 
 \subsubsection{Tabel Batch}
-\par Tabel batch digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_batch}.
+\par Tabel Batch digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_batch}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Batch} \label{tabel_batch} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    Batch ID & uuid & Primary key tabel \\ \hline
+    Batch ID & uuid & ID tabel \\ \hline
     Title & varchar(255) & Judul notifikasi \\ \hline
     Body & varchar(255) & Isi pesan notifikasi \\ \hline
     Image & varchar(255) & Nama atau URL Gambar \\ \hline
@@ -376,49 +376,49 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     Action & varchar(255) & Nama aksi yang dijalankan jika notifikasi dibuka \\ \hline
     Additional Data & varchar(255) & Data tambahan dengan format JSON \\ \hline
     Delivery Date & datetime & Waktu notifikasi dikirim \\ \hline
-    Started Date & datetime & Waktu batch mulai diproses \\ \hline
-    Finished Date & datetime & Waktu batch selesai diproses \\ \hline
-    Is Allowed & numeric(1) & Batch boleh diproses atau tidak \\ \hline
-    User Sender ID & uuid & User pembuat batch \\ \hline
-    Client Sender ID & uuid & Client pembuat batch \\ \hline
-    Client Destination ID & uuid & Client tujuan penerima notifikasi \\ \hline
+    Started Date & datetime & Waktu \textit{batch} mulai diproses \\ \hline
+    Finished Date & datetime & Waktu \textit{batch} selesai diproses \\ \hline
+    Is Allowed & numeric(1) & \textit{Batch} boleh diproses atau tidak \\ \hline
+    User Sender ID & uuid & ID pengguna pembuat \textit{batch} \\ \hline
+    Client Sender ID & uuid & ID aplikasi pembuat \textit{batch} \\ \hline
+    Client Destination ID & uuid & ID aplikasi penerima notifikasi \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
 
 \subsubsection{Tabel User Destination}
-\par Tabel user destination digunakan untuk menyimpan data pengguna yang menjadi target penerima notifikasi dalam satu \textit{batch}. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user_destination}.
+\par Tabel User Destination digunakan untuk menyimpan data pengguna yang menjadi target penerima notifikasi dalam satu \textit{batch}. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user_destination}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel User Destination} \label{tabel_user_destination} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    Batch ID & uuid & Batch notifikasi \\ \hline
-    User ID & uuid & Pengguna penerima notifikasi \\ \hline
+    Batch ID & uuid & ID \textit{batch} yang dituju \\ \hline
+    User ID & uuid & ID pengguna penerima notifikasi \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
 
 \subsubsection{Tabel Group Destination}
-\par Tabel group destination digunakan untuk menyimpan data kelompok yang menjadi target penerima notifikasi dalam satu \textit{batch}. Rincian atribut dapat dilihat pada Tabel \ref{tabel_group_destination}.
+\par Tabel Group Destination digunakan untuk menyimpan data kelompok yang menjadi target penerima notifikasi dalam satu \textit{batch}. Rincian atribut dapat dilihat pada Tabel \ref{tabel_group_destination}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Group Destination} \label{tabel_group_destination} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    Batch ID & uuid & Batch notifikasi \\ \hline
-    Group ID & uuid & Grup penerima notifikasi \\ \hline
+    Batch ID & uuid & ID \textit{batch} yang dituju \\ \hline
+    Group ID & uuid & ID kelompok penerima notifikasi \\ \hline
     Created At & datetime & Tanggal dan waktu dibuat \\ \hline
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
 
 \subsubsection{Tabel Packet} \label{s:tabel_packet}
-\par Tabel packet digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_packet}.
+\par Tabel Packet digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_packet}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Packet} \label{tabel_packet} \\ \hline
 	{Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-	Packet ID & uuid & Primary key tabel \\ \hline
-	Batch ID & uuid & Batch notifikasi \\ \hline
-	Device Token ID & uuid & Perangkat penerima notifikasi \\ \hline
+	Packet ID & uuid & ID tabel \\ \hline
+	Batch ID & uuid & ID \textit{batch} yang digunakan \\ \hline
+	Device Token ID & uuid & ID perangkat penerima notifikasi \\ \hline
 	Sent At & datetime & Waktu notifikasi diterima oleh APNs atau FCM \\ \hline
 	Reason & varchar(255) & Penyebab jika terjadi kegagalan \\ \hline
-	Packet Status & numeric(1) & Status pengiriman packet (dibuat, menunggu, berhasil, atau gagal) \\ \hline
+	Packet Status & numeric(1) & Status pengiriman packet (dibuat(1), menunggu(2), berhasil(3), atau gagal(4)) \\ \hline
 	Created At & datetime & Tanggal dan waktu dibuat \\ \hline
 	Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
