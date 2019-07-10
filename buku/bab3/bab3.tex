@@ -61,7 +61,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     NF-04 & Durabilitas & Aplikasi dapat mengirimkan \textit{push notification} saat salah satu layanan dimatikan sementara. \\ \hline
 \end{longtable}
 
-\subsubsection{Diagram Kasus Penggunaan}
+\subsubsection{Kasus Penggunaan}
 \par Subbab ini membahas kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya. Diagram kasus penggunaan untuk setiap modul (Scheduler, Sender APN, dan Sender FCM) aplikasi \textit{push notification} terpusat dapat dilihat pada Gambar \ref{diagram_kasus_penggunaan}.
 \begin{figure}[H]
 	\caption{Diagram Kasus Penggunaan} \label{diagram_kasus_penggunaan}
@@ -239,7 +239,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{figure}
 
 \subsection{Perancangan Basis Data}
-\par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification} terpusat. Sistem basis data yang digunakan adalah SQL Server.
+\par Subbab ini membahas bagaimana rancangan basis data yang digunakan pada aplikasi \textit{push notification} terpusat. Sistem basis data yang digunakan adalah SQL Server. Conceptual Data Model dapat dilihat pada \nameref{lampiran:cdm}.
 
 \subsubsection{Tabel User}
 \par Tabel user digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user}.
@@ -386,21 +386,6 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
 
-\subsubsection{Tabel Packet} \label{s:tabel_packet}
-\par Tabel packet digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_packet}.
-\begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
-	\caption{Tabel Packet} \label{tabel_packet} \\ \hline
-    {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
-    Packet ID & uuid & Primary key tabel \\ \hline
-    Batch ID & uuid & Batch notifikasi \\ \hline
-    Device Token ID & uuid & Perangkat penerima notifikasi \\ \hline
-    Sent At & datetime & Waktu notifikasi diterima oleh APNs atau FCM \\ \hline
-    Reason & varchar(255) & Penyebab jika terjadi kegagalan \\ \hline
-    Packet Status & numeric(1) & Status pengiriman packet (dibuat, menunggu, berhasil, atau gagal) \\ \hline
-    Created At & datetime & Tanggal dan waktu dibuat \\ \hline
-    Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
-\end{longtable}
-
 \subsubsection{Tabel User Destination}
 \par Tabel user destination digunakan untuk menyimpan data pengguna yang menjadi target penerima notifikasi dalam satu \textit{batch}. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user_destination}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
@@ -423,6 +408,21 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
 \end{longtable}
 
+\subsubsection{Tabel Packet} \label{s:tabel_packet}
+\par Tabel packet digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_packet}.
+\begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
+	\caption{Tabel Packet} \label{tabel_packet} \\ \hline
+	{Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+	Packet ID & uuid & Primary key tabel \\ \hline
+	Batch ID & uuid & Batch notifikasi \\ \hline
+	Device Token ID & uuid & Perangkat penerima notifikasi \\ \hline
+	Sent At & datetime & Waktu notifikasi diterima oleh APNs atau FCM \\ \hline
+	Reason & varchar(255) & Penyebab jika terjadi kegagalan \\ \hline
+	Packet Status & numeric(1) & Status pengiriman packet (dibuat, menunggu, berhasil, atau gagal) \\ \hline
+	Created At & datetime & Tanggal dan waktu dibuat \\ \hline
+	Update At & datetime & Tanggal dan waktu diperbarui \\ \hline
+\end{longtable}
+
 \subsection{Perancangan Antrian Pesan}
 \par Subbab ini membahas bagaimana rancangan antrian pesan yang akan digunakan. Sistem antrian pesan yang digunakan adalah Kafka.
 
@@ -435,9 +435,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|}
 	\caption{Pembagian Topik Antrian} \label{t:pembagian_topik_antrian} \\ \hline
 	\rowcolor{lightgray} Perangkat & Topik & Deskripsi \\ \hline
-	Android & android & Berisi \textit{packet} untuk perangkat Android dengan format JSON. \\ \hline
-	Web & web & Berisi \textit{packet} untuk perangkat Web dengan format JSON. \\ \hline
-	iOS & ios & Berisi \textit{packet} untuk perangkat iOS dengan format JSON. \\ \hline
+	Android & android & Berisi \textit{packet} untuk perangkat Android. \\ \hline
+	Web & web & Berisi \textit{packet} untuk perangkat Web. \\ \hline
+	iOS & ios & Berisi \textit{packet} untuk perangkat iOS. \\ \hline
 \end{longtable}
 
 \subsection{Perancangan Proses}
