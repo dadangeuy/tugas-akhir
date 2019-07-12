@@ -19,8 +19,8 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Antrian \textit{packet} pada Push Notification Terpusat disimpan dalam sebuah struktur data yang ada di sistem. Konsekuensinya, jika sistem \textit{down}, seluruh \textit{packet} yang berada diantrian akan hilang. Selain itu, karena semua pesan disimpan di sistem, sistem akan kehabisan memori dan \textit{crash} jika jumlah pesan yang diantrikan terlalu banyak.
 
 \subsection{Deskripsi Umum Sistem}
-\par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Pada tugas akhir ini, aplikasi akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM.
-\par Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{packet}, Sender APN bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
+\par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Alur pengiriman \textit{push notification} diawali dengan pengguna memasukkan data \textit{batch} (notifikasi yang dikirim ke beberapa pengguna atau kelompok pengguna) ke sistem basis data, lalu sistem akan mengolah data \textit{batch} menjadi \textit{packet-packet} (notifikasi yang dikirim ke satu perangkat pengguna). Setelah \textit{packet} dibuat, sistem akan mengirimkan \textit{packet} ke perangkat pengguna lewat layanan APNs dan FCM.
+\par Pada tugas akhir ini, aplikasi akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{packet}, Sender APN bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
 \par Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan. Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, dan diagram kasus penggunaan.
@@ -364,7 +364,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{longtable}
 
 \subsubsection{Tabel Batch}
-\par Tabel Batch digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_batch}.
+\par Tabel Batch digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa pengguna atau kelompok pengguna. Rincian atribut dapat dilihat pada Tabel \ref{tabel_batch}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Batch} \label{tabel_batch} \\ \hline
     {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline

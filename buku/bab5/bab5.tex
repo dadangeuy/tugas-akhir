@@ -66,7 +66,7 @@
 \end{longtable}
 
 \subsection{Pengujian Pengiriman Packet ke APNs}
-\par Pengujian pengiriman \textit{packet} ke APNs dilakukan untuk mengetahui apakah Sender APN berhasil mengirimkan \textit{packet} ke layanan APNs dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_apn}.
+\par Pengujian pengiriman \textit{packet} ke APNs dilakukan untuk mengetahui apakah Sender APN berhasil mengirimkan \textit{packet} ke layanan APNs dengan tepat. Hasil uji dan notifikasi dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_apn} dan Gambar \ref{f:ss_ios}.
 \begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Pengiriman \textit{Packet} ke APNs} \label{t:uji_pengiriman_packet_apn} \\ \hline
 	\textbf{Kode} & FT-03 \\ \hline
@@ -82,9 +82,13 @@
 	\textbf{Hasil yang diperoleh} & Notifikasi diterima oleh perangkat iOS \\ \hline
 	\textbf{Hasil pengujian} & Berhasil \\ \hline
 \end{longtable}
+\begin{figure}[H]
+	\caption{Hasil Notifikasi di Perangkat iOS} \label{f:ss_ios}
+	\centering\includegraphics[width=0.5\textwidth]{bab5/figures/ss_ios.jpg}
+\end{figure}
 
 \subsection{Pengujian Pengiriman Packet ke FCM}
-\par Pengujian pengiriman \textit{packet} ke FCM dilakukan untuk mengetahui apakah Sender FCM berhasil mengirimkan \textit{packet} ke layanan FCM dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_fcm}.
+\par Pengujian pengiriman \textit{packet} ke FCM dilakukan untuk mengetahui apakah Sender FCM berhasil mengirimkan \textit{packet} ke layanan FCM dengan tepat. Hasil uji dan notifikasi dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_fcm} dan Gambar \ref{f:ss_android}.
 \begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Pengiriman \textit{Packet} ke FCM} \label{t:uji_pengiriman_packet_fcm} \\ \hline
 	\textbf{Kode} & FT-04 \\ \hline
@@ -100,6 +104,10 @@
 	\textbf{Hasil yang diperoleh} & Notifikasi diterima oleh perangkat Android \\ \hline
 	\textbf{Hasil pengujian} & Berhasil \\ \hline
 \end{longtable}
+\begin{figure}[H]
+	\caption{Hasil Notifikasi di Perangkat Android} \label{f:ss_android}
+	\centering\includegraphics[width=0.5\textwidth]{bab5/figures/ss_android.png}
+\end{figure}
 
 \subsection{Pengujian Menampilkan Penggunaan Sumber Daya}
 \par Pengujian menampilkan penggunaan sumber daya dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan penggunaan sumber daya dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_penggunaan_sumber_daya}.
@@ -287,8 +295,8 @@
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{3cm}|p{1.5cm}|}
 	\caption{Rangkuman Hasil Uji Non Fungsional} \label{t:eval_nf} \\ \hline
 	\rowcolor{lightgray} Kode Kebutuhan & Aspek & Kode Uji & Hasil \\ \hline
-	NF-01 & Performa & NFT-01, NFT-02, NFT-03 & Berhasil \\ \hline
-	NF-02 & Keandalan & NFT-04, NFT-05, NFT-06, NFT-07, NFT-08, NFT-09 & Berhasil \\ \hline
-	NF-03 & Ketersediaan & NFT-10, NFT-11, NFT-12 & Berhasil \\ \hline
-	NF-04 & Durabilitas & NFT-13, NFT-14 & Berhasil \\ \hline
+	NF-01 & Performa & NFT-01, NFT-02, NFT-03 & Terpenuhi \\ \hline
+	NF-02 & Keandalan & NFT-04, NFT-05, NFT-06, NFT-07, NFT-08, NFT-09 & Terpenuhi \\ \hline
+	NF-03 & Ketersediaan & NFT-10, NFT-11, NFT-12 & Terpenuhi \\ \hline
+	NF-04 & Durabilitas & NFT-13, NFT-14 & Terpenuhi \\ \hline
 \end{longtable}
