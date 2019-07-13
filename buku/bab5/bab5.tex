@@ -1,29 +1,48 @@
 \chapter{PENGUJIAN DAN EVALUASI}
-\par Bab ini membahas pengujian dan evaluasi terhadap perangkat lunak yang telah diimplementasikan, dengan menggunakan metode \textit{blackbox}.
+\par Bab ini membahas pengujian dan evaluasi terhadap perangkat lunak yang telah diimplementasikan dengan menggunakan metode \textit{blackbox}.
 
 \section{Lingkungan Pengujian}
-\par Lingkungan yang digunakan untuk menguji tugas akhir ini memiliki spesifikasi perangkat keras dan lunak yang ditunjukkan pada tabel \ref{5:tabel_spesifikasi_server}, \ref{5:tabel_spesifikasi_perangkat_android}, dan \ref{5:tabel_spesifikasi_perangkat_ios}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
-	\caption{Spesifikasi Server} \label{5:tabel_spesifikasi_server} \\ \hline
+\par Lingkungan yang digunakan untuk menguji tugas akhir ini memiliki spesifikasi perangkat keras dan lunak yang ditunjukkan pada Tabel \ref{t:spec-server}, \ref{t:spec-android}, \ref{t:spec-android-2}, \ref{t:spec-android-3} dan \ref{t:spec-ios}. Implementasi aplikasi android yang digunakan untuk pengujian dapat dilihat pada \nameref{lampiran:implementasi-android}.
+\begin{longtable}{|p{3cm}|p{6cm}|}
+	\caption{Spesifikasi Server} \label{t:spec-server} \\ \hline
     \rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
     CPU & Intel(R) Xeon(R) CPU E5-2690 v4 \\ \hline
     CPU Core & 4 \\ \hline
     Memory & 8 GB \\ \hline
     Sistem Operasi & Ubuntu 18.04 \\ \hline
 \end{longtable}
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
-	\caption{Spesifikasi Perangkat Android} \label{5:tabel_spesifikasi_perangkat_android} \\ \hline
+\begin{longtable}{|p{3cm}|p{6cm}|}
+	\caption{Spesifikasi Perangkat Android 1} \label{t:spec-android} \\ \hline
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
     CPU & Snapdragon 636 \\ \hline
     Memory & 3 GB \\ \hline
     Sistem Operasi & Android 9 (Pie) \\ \hline
+    Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
-	\caption{Spesifikasi Perangkat iOS} \label{5:tabel_spesifikasi_perangkat_ios} \\ \hline
+\pagebreak
+\begin{longtable}{|p{3cm}|p{6cm}|}
+\caption{Spesifikasi Perangkat Android 2} \label{t:spec-android-2} \\ \hline
+\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+CPU & Snapdragon 625 \\ \hline
+Memory & 4 GB \\ \hline
+Sistem Operasi & Android 7 (Nougat) \\ \hline
+Aplikasi & Push Notification Dev versi 1.0 \\ \hline
+\end{longtable}
+\begin{longtable}{|p{3cm}|p{6cm}|}
+\caption{Spesifikasi Perangkat Android 3} \label{t:spec-android-3} \\ \hline
+\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+CPU & Snapdragon 616 \\ \hline
+Memory & 3 GB \\ \hline
+Sistem Operasi & - \\ \hline
+Aplikasi & Push Notification Dev versi 1.0 \\ \hline
+\end{longtable}
+\begin{longtable}{|p{3cm}|p{6cm}|}
+	\caption{Spesifikasi Perangkat iOS} \label{t:spec-ios} \\ \hline
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
     CPU & Apple A10 Fusion \\ \hline
     Memory & 3 GB \\ \hline
     Sistem Operasi & iOS 12 \\ \hline
+    Aplikasi & MyITS Wali versi 1.0.2 \\ \hline
 \end{longtable}
 
 \section{Pengujian Fungsional}
@@ -31,156 +50,156 @@
 
 \subsection{Pengujian Pembuatan Packet}
 \par Pengujian Pembuatan Packet dilakukan untuk mengetahui apakah Scheduler berhasil membuatkan data \textit{packet} dari \textit{batch} dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pembuatan_packet}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Pembuatan \textit{Packet}} \label{t:uji_pembuatan_packet} \\ \hline
-	\textbf{Kode} & FT-01 \\ \hline
-	\textbf{Nama} & Pengujian Pembuatan Packet \\ \hline
-	\textbf{Tujuan} & Menguji apakah sistem mampu membuatkan data \textit{packet} dari data \textit{batch} \\ \hline
-	\textbf{Kondisi Awal} & Scheduler aktif \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & FT-01 \\ \hline
+	Nama & Pengujian Pembuatan Packet \\ \hline
+	Tujuan & Menguji apakah sistem mampu membuatkan data \textit{packet} dari data \textit{batch} \\ \hline
+	Kondisi Awal & Scheduler aktif \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Pengguna menambahkan data \textit{batch} baru lewat halaman kirim notifikasi di modul manajemen.
 		\item Setelah 30 detik, data \textit{packet} akan disimpan di sistem basis data.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Data \textit{packet} tersimpan di sistem basis data \\ \hline
-	\textbf{Hasil yang diperoleh} & Data \textit{packet} tersimpan di sistem basis data \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Data \textit{packet} tersimpan di sistem basis data \\ \hline
+	Hasil yang diperoleh & Data \textit{packet} tersimpan di sistem basis data \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Menambahkan Packet ke Antrian}
 \par Pengujian menambahkan \textit{packet} dilakukan untuk mengetahui apakah Scheduler berhasil menambahkan \textit{packet} ke antrian dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pembuatan_antrian}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menambahkan \textit{Packet} ke Antrian} \label{t:uji_pembuatan_antrian} \\ \hline
-	\textbf{Kode} & FT-02 \\ \hline
-	\textbf{Nama} & Pengujian Pembuatan Antrian \\ \hline
-	\textbf{Tujuan} & Menguji apakah sistem mampu membuatkan data antrian dari data \textit{packet} \\ \hline
-	\textbf{Kondisi Awal} & Scheduler aktif \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & FT-02 \\ \hline
+	Nama & Pengujian Pembuatan Antrian \\ \hline
+	Tujuan & Menguji apakah sistem mampu membuatkan data antrian dari data \textit{packet} \\ \hline
+	Kondisi Awal & Scheduler aktif \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Pengguna menambahkan data \textit{batch} baru lewat halaman kirim notifikasi di modul manajemen.
 		\item 30 detik setelah waktu pengiriman \textit{batch}, data \textit{packet} untuk \textit{batch} akan tersimpan di sistem antrian pesan.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Data \textit{packet} tersimpan di sistem antrian pesan. \\ \hline
-	\textbf{Hasil yang diperoleh} & Data \textit{packet} tersimpan di sistem antrian pesan. \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Data \textit{packet} tersimpan di sistem antrian pesan. \\ \hline
+	Hasil yang diperoleh & Data \textit{packet} tersimpan di sistem antrian pesan. \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Pengiriman Packet ke APNs}
 \par Pengujian pengiriman \textit{packet} ke APNs dilakukan untuk mengetahui apakah Sender APN berhasil mengirimkan \textit{packet} ke layanan APNs dengan tepat. Hasil uji dan notifikasi dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_apn} dan Gambar \ref{f:ss_ios}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Pengiriman \textit{Packet} ke APNs} \label{t:uji_pengiriman_packet_apn} \\ \hline
-	\textbf{Kode} & FT-03 \\ \hline
-	\textbf{Nama} & Pengujian Pembuatan Packet \\ \hline
-	\textbf{Tujuan} & Menguji apakah sistem mampu mengirim \textit{packet} lewat layanan APNs \\ \hline
-	\textbf{Kondisi Awal} & Scheduler dan Sender APN aktif \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & FT-03 \\ \hline
+	Nama & Pengujian Pembuatan Packet \\ \hline
+	Tujuan & Menguji apakah sistem mampu mengirim \textit{packet} lewat layanan APNs \\ \hline
+	Kondisi Awal & Scheduler dan Sender APN aktif \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Pengguna menambahkan data \textit{batch} baru untuk perangkat iOS lewat halaman kirim notifikasi di modul Manajemen.
 		\item 1 menit setelah waktu pengiriman \textit{batch}, notifikasi akan diterima oleh perangkat iOS.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Notifikasi diterima oleh perangkat iOS \\ \hline
-	\textbf{Hasil yang diperoleh} & Notifikasi diterima oleh perangkat iOS \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Notifikasi diterima oleh perangkat iOS \\ \hline
+	Hasil yang diperoleh & Notifikasi diterima oleh perangkat iOS \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 \begin{figure}[H]
-	\centering\includegraphics[width=0.5\textwidth]{bab5/figures/ss_ios.jpg}
+	\centering\includegraphics[width=0.4\textwidth]{bab5/img/notifikasi-ios.jpg}
 	\caption{Hasil Notifikasi di Perangkat iOS} \label{f:ss_ios}
 \end{figure}
 
 \subsection{Pengujian Pengiriman Packet ke FCM}
-\par Pengujian pengiriman \textit{packet} ke FCM dilakukan untuk mengetahui apakah Sender FCM berhasil mengirimkan \textit{packet} ke layanan FCM dengan tepat. Hasil uji dan notifikasi dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_fcm} dan Gambar \ref{f:ss_android}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\par Pengujian pengiriman \textit{packet} ke FCM dilakukan untuk mengetahui apakah Sender FCM berhasil mengirimkan \textit{packet} ke layanan FCM dengan tepat. Hasil uji dan notifikasi dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_fcm} dan Gambar \ref{img:notifikasi-android}, \ref{img:notifikasi-android-2}, dan \ref{img:notifikasi-android-3}.
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Pengiriman \textit{Packet} ke FCM} \label{t:uji_pengiriman_packet_fcm} \\ \hline
-	\textbf{Kode} & FT-04 \\ \hline
-	\textbf{Nama} & Pengujian Pengiriman Packet ke FCM \\ \hline
-	\textbf{Tujuan} & Menguji apakah sistem mampu mengirim \textit{packet} lewat layanan FCM \\ \hline
-	\textbf{Kondisi Awal} & Scheduler dan Sender FCM aktif \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & FT-04 \\ \hline
+	Nama & Pengujian Pengiriman Packet ke FCM \\ \hline
+	Tujuan & Menguji apakah sistem mampu mengirim \textit{packet} lewat layanan FCM \\ \hline
+	Kondisi Awal & Scheduler dan Sender FCM aktif \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Pengguna menambahkan data \textit{batch} baru untuk perangkat Android lewat halaman kirim notifikasi di modul Manajemen.
 		\item 1 menit setelah waktu pengiriman \textit{batch}, notifikasi akan diterima oleh perangkat Android.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Notifikasi diterima oleh perangkat Android \\ \hline
-	\textbf{Hasil yang diperoleh} & Notifikasi diterima oleh perangkat Android \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Notifikasi diterima oleh perangkat Android \\ \hline
+	Hasil yang diperoleh & Notifikasi diterima oleh perangkat Android \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 \begin{figure}[H]
-	\centering\includegraphics[width=0.5\textwidth]{bab5/figures/ss_android.png}
-	\caption{Hasil Notifikasi di Perangkat Android} \label{f:ss_android}
+	\centering\includegraphics[width=1\textwidth]{bab5/img/notifikasi-android_all.jpg}
+	\caption{Hasil Notifikasi di Perangkat Android 1, 2, dan 3} \label{img:notifikasi-android}
 \end{figure}
 
 \subsection{Pengujian Menampilkan Penggunaan Sumber Daya}
 \par Pengujian menampilkan penggunaan sumber daya dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan penggunaan sumber daya dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_penggunaan_sumber_daya}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menampilkan Penggunaan Sumber Daya} \label{t:uji_menampilkan_penggunaan_sumber_daya} \\ \hline
-	\textbf{Kode} & FT-05 \\ \hline
-	\textbf{Nama} & Pengujian Menampilkan Penggunaan Sumber Daya \\ \hline
-	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan penggunaan sumber daya \\ \hline
-	\textbf{Kondisi Awal} & Scheduler, Sender APN, dan Sender FCM aktif \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & FT-05 \\ \hline
+	Nama & Pengujian Menampilkan Penggunaan Sumber Daya \\ \hline
+	Tujuan & Menguji apakah sistem mampu menampilkan penggunaan sumber daya \\ \hline
+	Kondisi Awal & Scheduler, Sender APN, dan Sender FCM aktif \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Pengguna mengakses \textit{endpoint} /actuator/metrics/jvm.memory.used.
 		\item Sistem mengembalikan metrik penggunaan memori JVM dalam bentuk JSON.
 		\item Pengguna mengakses \textit{endpoint} /actuator/metrics/system.cpu.usage.
 		\item Sistem mengembalikan metrik penggunaan CPU dalam bentuk JSON.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Aplikasi menampilkan metrik penggunaan Memori dan CPU \\ \hline
-	\textbf{Hasil yang diperoleh} & Aplikasi menampilkan metrik penggunaan Memori dan CPU \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Aplikasi menampilkan metrik penggunaan Memori dan CPU \\ \hline
+	Hasil yang diperoleh & Aplikasi menampilkan metrik penggunaan Memori dan CPU \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Menampilkan Status Kesehatan}
 \par Pengujian menampilkan status kesehatan dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan status kesehatan dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_status_kesehatan}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menampilkan Status Kesehatan} \label{t:uji_menampilkan_status_kesehatan} \\ \hline
-	\textbf{Kode} & FT-06 \\ \hline
-	\textbf{Nama} & Pengujian Menampilkan Status Kesehatan \\ \hline
-	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan status kesehatan \\ \hline
-	\textbf{Kondisi Awal} & Scheduler, Sender APN, dan Sender FCM aktif \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & FT-06 \\ \hline
+	Nama & Pengujian Menampilkan Status Kesehatan \\ \hline
+	Tujuan & Menguji apakah sistem mampu menampilkan status kesehatan \\ \hline
+	Kondisi Awal & Scheduler, Sender APN, dan Sender FCM aktif \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Pengguna mengakses \textit{endpoint} /actuator/health.
 		\item Sistem mengembalikan metrik kesehatan layanan sistem basis data dan antrian pesan dalam bentuk JSON.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Sistem menampilkan status kesehatan sistem basis data dan antrian pesan \\ \hline
-	\textbf{Hasil yang diperoleh} & Sistem menampilkan status kesehatan sistem basis data dan antrian pesan \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Sistem menampilkan status kesehatan sistem basis data dan antrian pesan \\ \hline
+	Hasil yang diperoleh & Sistem menampilkan status kesehatan sistem basis data dan antrian pesan \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Menampilkan Konfigurasi}
 \par Pengujian menampilkan konfigurasi dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan konfigurasi dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_konfigurasi}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menampilkan Konfigurasi} \label{t:uji_menampilkan_konfigurasi} \\ \hline
-	\textbf{Kode} & FT-07 \\ \hline
-	\textbf{Nama} & Pengujian Menampilkan Konfigurasi \\ \hline
-	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan konfigurasi \\ \hline
-	\textbf{Kondisi Awal} & Scheduler, Sender APN, dan Sender FCM aktif \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & FT-07 \\ \hline
+	Nama & Pengujian Menampilkan Konfigurasi \\ \hline
+	Tujuan & Menguji apakah sistem mampu menampilkan konfigurasi \\ \hline
+	Kondisi Awal & Scheduler, Sender APN, dan Sender FCM aktif \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Pengguna mengakses \textit{endpoint} /actuator/env.
 		\item Sistem mengembalikan konfigurasi sistem dalam bentuk JSON.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Sistem menampilkan konfigurasi yang digunakan \\ \hline
-	\textbf{Hasil yang diperoleh} & Sistem menampilkan konfigurasi yang digunakan \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Sistem menampilkan konfigurasi yang digunakan \\ \hline
+	Hasil yang diperoleh & Sistem menampilkan konfigurasi yang digunakan \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Menampilkan Log}
 \par Pengujian menampilkan \textit{log} dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan \textit{log} dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_log}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menampilkan \textit{Log}} \label{t:uji_menampilkan_log} \\ \hline
-	\textbf{Kode} & FT-08 \\ \hline
-	\textbf{Nama} & Pengujian Menampilkan \textit{Log} \\ \hline
-	\textbf{Tujuan} & Menguji apakah sistem mampu menampilkan \textit{log} \\ \hline
-	\textbf{Kondisi Awal} & Scheduler, Sender APN, dan Sender FCM aktif \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & FT-08 \\ \hline
+	Nama & Pengujian Menampilkan \textit{Log} \\ \hline
+	Tujuan & Menguji apakah sistem mampu menampilkan \textit{log} \\ \hline
+	Kondisi Awal & Scheduler, Sender APN, dan Sender FCM aktif \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Pengguna mengakses \textit{endpoint} /actuator/logfile.
 		\item Sistem mengembalikan isi \textit{log} sistem bentuk teks.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Sistem menampilkan isi \textit{log} \\ \hline
-	\textbf{Hasil yang diperoleh} & Sistem menampilkan isi \textit{log} \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Sistem menampilkan isi \textit{log} \\ \hline
+	Hasil yang diperoleh & Sistem menampilkan isi \textit{log} \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 
 \section{Pengujian Non Fungsional}
@@ -244,38 +263,38 @@
 
 \subsubsection{Pengujian Mematikan Sementara Sender APN}
 \par Pengujian mematikan sementara Sender APN dilakukan dengan cara mematikan Sender APN selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_apn_mati}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Sender APN} \label{t:nft_sender_apn_mati} \\ \hline
-	\textbf{Kode} & NFT-13 \\ \hline
-	\textbf{Nama} & Pengujian Mematikan Sementara Sender APN \\ \hline
-	\textbf{Tujuan} & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender APN mati sementara \\ \hline
-	\textbf{Kondisi Awal} & Sistem dalam keadaan berjalan \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & NFT-13 \\ \hline
+	Nama & Pengujian Mematikan Sementara Sender APN \\ \hline
+	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender APN mati sementara \\ \hline
+	Kondisi Awal & Sistem dalam keadaan berjalan \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Aktor membuat \textit{batch} baru lewat halaman kirim notifikasi pada modul manajemen.
 		\item Sender APN dimatikan selama 5 menit.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Notifikasi diterima oleh perangkat iOS \\ \hline
-	\textbf{Hasil yang diperoleh} & Notifikasi diterima oleh perangkat iOS \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Notifikasi diterima oleh perangkat iOS \\ \hline
+	Hasil yang diperoleh & Notifikasi diterima oleh perangkat iOS \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 
 \subsubsection{Pengujian Mematikan Sementara Sender FCM}
 \par Pengujian mematikan sementara Sender FCM dilakukan dengan cara mematikan Sender FCM selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_fcm_mati}.
-\begin{longtable}{|p{3cm}|p{6.5cm}|}
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Sender FCM} \label{t:nft_sender_fcm_mati} \\ \hline
-	\textbf{Kode} & NFT-14 \\ \hline
-	\textbf{Nama} & Pengujian Mematikan Sementara Sender FCM \\ \hline
-	\textbf{Tujuan} & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender FCM mati sementara \\ \hline
-	\textbf{Kondisi Awal} & Sistem dalam keadaan berjalan \\ \hline
-	\textbf{Langkah Pengujian} &  
+	Kode & NFT-14 \\ \hline
+	Nama & Pengujian Mematikan Sementara Sender FCM \\ \hline
+	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender FCM mati sementara \\ \hline
+	Kondisi Awal & Sistem dalam keadaan berjalan \\ \hline
+	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Aktor membuat \textit{batch} baru lewat halaman kirim notifikasi pada modul manajemen.
 		\item Sender FCM dimatikan selama 5 menit.
 	\end{enumerate} \\ \hline
-	\textbf{Hasil yang diharapkan} & Notifikasi diterima oleh perangkat Android \\ \hline
-	\textbf{Hasil yang diperoleh} & Notifikasi diterima oleh perangkat Android \\ \hline
-	\textbf{Hasil pengujian} & Berhasil \\ \hline
+	Hasil yang diharapkan & Notifikasi diterima oleh perangkat Android \\ \hline
+	Hasil yang diperoleh & Notifikasi diterima oleh perangkat Android \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 
 \section{Evaluasi Hasil Pengujian}
