@@ -207,7 +207,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 
 \subsection{Pengujian Performa}
 \par Pengujian performa dilakukan untuk mengetahui seberapa cepat sistem dalam mengirim \textit{packet} ke layanan APNs dan FCM. Kasus uji dibagi berdasarkan jumlah \textit{packet} yang dikirim secara bersamaan, dengan pengulangan sebanyak 5 kali.
-\par Metrik keberhasilan menggunakan durasi waktu pembuatan dan pengiriman \textit{packet}. Durasi pembuatan \textit{packet} dihitung dari waktu \textit{batch} tersimpan di database, hingga waktu \textit{batch} selesai diolah. Durasi pengiriman \textit{packet} dihitung dari waktu \textit{batch} dikirim, hingga waktu \textit{packet} terakhir dikirim.
+\par Metrik keberhasilan menggunakan durasi waktu pembuatan dan pengiriman \textit{packet}. Durasi pembuatan \textit{packet} dihitung dari waktu \textit{batch} tersimpan di sistem basis data, hingga waktu \textit{batch} selesai diolah. Durasi pengiriman \textit{packet} dihitung dari waktu \textit{batch} dikirim, hingga waktu \textit{packet} terakhir dikirim.
 
 \subsubsection{Pengujian Performa untuk 2.000 Packet}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 perangkat iOS dan 1.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-2k}.
@@ -387,7 +387,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian mematikan sementara Sender APN dilakukan dengan cara mematikan Sender APN selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_apn_mati}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Sender APN} \label{t:nft_sender_apn_mati} \\ \hline
-	Kode & NFT-13 \\ \hline
+	Kode & NFDT-01 \\ \hline
 	Nama & Pengujian Mematikan Sementara Sender APN \\ \hline
 	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender APN mati sementara \\ \hline
 	Kondisi Awal & Sistem dalam keadaan berjalan \\ \hline
@@ -405,7 +405,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian mematikan sementara Sender FCM dilakukan dengan cara mematikan Sender FCM selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_fcm_mati}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Sender FCM} \label{t:nft_sender_fcm_mati} \\ \hline
-	Kode & NFT-14 \\ \hline
+	Kode & NFDT-02 \\ \hline
 	Nama & Pengujian Mematikan Sementara Sender FCM \\ \hline
 	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender FCM mati sementara \\ \hline
 	Kondisi Awal & Sistem dalam keadaan berjalan \\ \hline
