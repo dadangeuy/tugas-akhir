@@ -203,59 +203,181 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
 
 \section{Pengujian Non Fungsional}
-\par Pengujian non fungsional dilakukan untuk mengetahui apakah sistem yang dibangun sudah memenuhi kebutuhan non fungsional yang diperlukan.
+\par Pengujian non fungsional dilakukan untuk mengetahui apakah sistem yang dibangun sudah memenuhi standar yang ditentukan, dari aspek performa, keandalan, ketersediaan, dan durabilitas. Skenario pengujian dilakukan dengan mengirim \textit{packet} dengan jumlah besar ke perangkat uji.
 
 \subsection{Pengujian Performa}
-\par Pengujian performa dilakukan untuk mengetahui seberapa cepat sistem dalam mengirim \textit{packet} ke layanan APNs dan FCM. Hasil uji dapat dilihat pada Tabel \ref{t:performa}.
-\begin{longtable}{|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|}
-	\caption{Hasil Uji Performa Pengiriman \textit{Packet}} \label{t:performa} \\ \hline
-	\rowcolor{lightgray} & \multicolumn{2}{c|}{Jumlah Perangkat} & \multicolumn{3}{c|}{Waktu Pengolahan \textit{Packet}} \\ \hhline{~|*5{-}|}
-	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & iOS & Android & Pembuatan & Pengiriman & Total \\ \hline
-	NFT-01 & 1.000 & 1.000 & 00:00:04 & 00:02:13 & 00:02:17 \\ \hline
-	NFT-02 & 10.000 & 10.000 & 00:00:25 & 00:12:09 & 00:12:34 \\ \hline
-	NFT-03 & 100.000 & 100.000 & 00:03:46 & 01:57:46 & 02:01:32 \\ \hline
+\par Pengujian performa dilakukan untuk mengetahui seberapa cepat sistem dalam mengirim \textit{packet} ke layanan APNs dan FCM. Kasus uji dibagi berdasarkan jumlah \textit{packet} yang dikirim secara bersamaan, dengan pengulangan sebanyak 5 kali.
+\par Metrik keberhasilan menggunakan durasi waktu pembuatan dan pengiriman \textit{packet}. Durasi pembuatan \textit{packet} dihitung dari waktu \textit{batch} tersimpan di database, hingga waktu \textit{batch} selesai diolah. Durasi pengiriman \textit{packet} dihitung dari waktu \textit{batch} dikirim, hingga waktu \textit{packet} terakhir dikirim.
+
+\subsubsection{Pengujian Performa untuk 2.000 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 perangkat iOS dan 1.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-2k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Performa Pengiriman 2.000 \textit{Packet}} \label{t:performa-2k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan Packet} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	NFPT-01 & 00:00:04 & 00:02:13 & 00:02:17 \\ \hline 
+	NFPT-02 & - & - & - \\ \hline
+	NFPT-03 & - & - & - \\ \hline
+	NFPT-04 & - & - & - \\ \hline
+	NFPT-05 & - & - & - \\ \hline
+\end{longtable}
+
+\subsubsection{Pengujian Performa untuk 20.000 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 10.000 perangkat iOS dan 10.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-20k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Performa Pengiriman 20.000 \textit{Packet}} \label{t:performa-20k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Lama Pengolahan Packet} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	NFPT-06 & 00:00:25 & 00:12:09 & 00:12:34 \\ \hline 
+	NFPT-07 & - & - & - \\ \hline
+	NFPT-08 & - & - & - \\ \hline
+	NFPT-09 & - & - & - \\ \hline
+	NFPT-10 & - & - & - \\ \hline
+\end{longtable}
+
+\subsubsection{Pengujian Performa untuk 200.000 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 100.000 perangkat iOS dan 100.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-200k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+\caption{Hasil Uji Performa Pengiriman 200.000 \textit{Packet}} \label{t:performa-200k} \\ \hline
+\rowcolor{lightgray} & \multicolumn{3}{c|}{Lama Pengolahan Packet} \\ \hhline{~|*3{-}|}
+\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	NFPT-11 & 00:03:46 & 01:57:46 & 02:01:32 \\ \hline 
+	NFPT-12 & - & - & - \\ \hline
+	NFPT-13 & - & - & - \\ \hline
+	NFPT-14 & - & - & - \\ \hline
+	NFPT-15 & - & - & - \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Keandalan}
-\par Pengujian keandalan dilakukan untuk mengetahui tingkat keberhasilan pengiriman \textit{packet} ke perangkat pengguna.
+\par Pengujian keandalan dilakukan untuk mengetahui tingkat keberhasilan pengiriman \textit{packet} ke perangkat pengguna. Kasus uji dibagi berdasarkan jenis perangkat, dan jumlah \textit{packet} yang diuji, dengan pengulangan sebanyak 5 kali.
 
 \subsubsection{Pengujian Keandalan Pengiriman Packet ke Perangkat iOS}
-\par Pengujian keandalan pengiriman \textit{packet} ke perangkat iOS dilakukan untuk mengetahui tingkat keberhasilan pengiriman \textit{packet} ke layanan APNs dan perangkat iOS. Hasil uji dapat dilihat pada Tabel \ref{t:keandalan_ios}, dan analisis kegagalan pada Tabel \ref{t:analisis_ios}.
-\begin{longtable}{|p{1.3cm}|p{3cm}|p{2cm}|p{2cm}|}
-	\caption{Hasil Uji Keandalan Pengiriman \textit{Packet} ke Perangkat iOS} \label{t:keandalan_ios} \\ \hline
-	\rowcolor{lightgray} &  & \multicolumn{2}{c|}{Jumlah Packet Diterima} \\ \hhline{~|~|*2{-}|}
-	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & APNs & iOS \\ \hline
-	NFT-04 & 1.000 & 1.000 & 1.000 \\ \hline
-	NFT-05 & 10.000 & 10.000 & 9.984 \\ \hline
-	NFT-06 & 100.000 & 100.000 & 99.848 \\ \hline
+\par Pengujian keandalan pengiriman \textit{packet} ke perangkat iOS dilakukan untuk mengetahui tingkat keberhasilan pengiriman \textit{packet} ke layanan APNs dan perangkat iOS berdasarkan jumlah \textit{packet} yang dikirim secara bersamaan.
+\par Metrik keberhasilan menggunakan jumlah \textit{packet} yang diterima oleh APNs dan perangkat iOS. Jumlah \textit{packet} yang diterima oleh APNs berasal dari jumlah \textit{packet} yang berhasil atau gagal dengan \textit{error} ApnsClientException. Jumlah \textit{packet} yang diterima oleh perangkat iOS berasal dari jumlah \textit{packet} yang berhasil.
+
+\paragraph{Pengujian Keandalan Pengiriman 1.000 Packet ke Perangkat iOS}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-1k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 1.000 Packet ke Perangkat iOS} \label{t:keandalan-ios-1k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{2}{c|}{Jumlah Packet Diterima} \\ \hhline{~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & APNs & iOS \\ \hline
+	NFAT-01 & 1.000 & 1.000 \\ \hline
+	NFAT-02 & - & - \\ \hline
+	NFAT-03 & - & - \\ \hline
+	NFAT-04 & - & - \\ \hline
+	NFAT-05 & - & - \\ \hline
 \end{longtable}
-\begin{longtable}{|p{1.3cm}|p{3cm}|p{1cm}|p{3cm}|}
-	\caption{Analisis Kegagalan pada Hasil Uji Keandalan Pengiriman \textit{Packet} ke Perangkat iOS} \label{t:analisis_ios} \\ \hline
-	\rowcolor{lightgray} Kode & \textit{Error} & Jumlah & Penyebab \\ \hline
-	NFT-05 & TooManyRequests & 16 & \textit{Request} diblokir oleh APNs karena terlalu banyak mengirim notifikasi ke satu perangkat \\ \hline
-	NFT-06 & TooManyRequests & 152 & \textit{Request} diblokir oleh APNs karena terlalu banyak mengirim notifikasi ke satu perangkat \\ \hline
+
+\paragraph{Pengujian Keandalan Pengiriman 10.000 Packet ke Perangkat iOS}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 10.000 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-10k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 10.000 Packet ke Perangkat iOS} \label{t:keandalan-ios-10k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{2}{c|}{Jumlah Packet Diterima} \\ \hhline{~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & APNs & iOS \\ \hline
+	NFAT-06 & 10.000 & 9.984 \\ \hline
+	NFAT-07 & - & - \\ \hline
+	NFAT-08 & - & - \\ \hline
+	NFAT-09 & - & - \\ \hline
+	NFAT-10 & - & - \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 100.000 Packet ke Perangkat iOS}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 100.000 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-100k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 100.000 Packet ke Perangkat iOS} \label{t:keandalan-ios-100k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{2}{c|}{Jumlah Packet Diterima} \\ \hhline{~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & APNs & iOS \\ \hline
+	NFAT-11 & 100.000 & 99.848 \\ \hline
+	NFAT-12 & - & - \\ \hline
+	NFAT-13 & - & - \\ \hline
+	NFAT-14 & - & - \\ \hline
+	NFAT-15 & - & - \\ \hline
 \end{longtable}
 
 \subsubsection{Pengujian Keandalan Pengiriman Packet ke Perangkat Android}
-\par Pengujian keandalan pengiriman packet ke perangkat android dilakukan untuk mengetahui tingkat keberhasilan sistem dalam mengirim \textit{packet} ke layanan FCM dan perangkat Android yang digunakan untuk pengujian. Hasil uji dapat dilihat pada Tabel \ref{t:keandalan_android}.
-\begin{longtable}{|p{1.3cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
-	\caption{Hasil Uji Keandalan Pengiriman \textit{Packet} ke Perangkat Android} \label{t:keandalan_android} \\ \hline
-	\rowcolor{lightgray} &  & \multicolumn{2}{c|}{Packet Diterima} \\ \hhline{~|~|*2{-}|}
-	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Perangkat} & FCM & Android \\ \hline
-	NFT-07 & 1.000 & 1.000 & 1.000 \\ \hline
-	NFT-08 & 10.000 & 10.000 & 10.000 \\ \hline
-	NFT-09 & 100.000 & 100.000 & 100.000 \\ \hline
+\par Pengujian keandalan pengiriman \textit{packet} ke perangkat Android dilakukan untuk mengetahui tingkat keberhasilan pengiriman \textit{packet} ke layanan FCM dan perangkat Android berdasarkan jumlah \textit{packet} yang dikirim secara bersamaan.
+\par Metrik keberhasilan menggunakan jumlah \textit{packet} yang diterima oleh FCM dan perangkat Android. Jumlah \textit{packet} yang diterima oleh FCM berasal dari jumlah \textit{packet} yang berhasil atau gagal dengan \textit{error} FirebaseMessagingException. Jumlah \textit{packet} yang diterima oleh perangkat Android berasal dari jumlah \textit{packet} yang berhasil.
+
+\paragraph{Pengujian Keandalan Pengiriman 1.000 Packet ke Perangkat Android}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-1k}.
+\begin{longtable}{|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 1.000 Packet ke Perangkat Android} \label{t:keandalan-android-1k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{4}{c|}{Jumlah Packet Diterima} \\ \hhline{~|*4{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & FCM & Android 1 & Android 2 & Android 3 \\ \hline
+	NFAT-16 & 1.000 & 333 & 334 & 333 \\ \hline
+	NFAT-17 & - & - & - & - \\ \hline
+	NFAT-18 & - & - & - & - \\ \hline
+	NFAT-19 & - & - & - & - \\ \hline
+	NFAT-20 & - & - & - & - \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 10.000 Packet ke Perangkat Android}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 10.000 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-10k}.
+\begin{longtable}{|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 10.000 Packet ke Perangkat Android} \label{t:keandalan-android-10k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{4}{c|}{Jumlah Packet Diterima} \\ \hhline{~|*4{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & FCM & Android 1 & Android 2 & Android 3 \\ \hline
+	NFAT-21 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
+	NFAT-22 & - & - & - & - \\ \hline
+	NFAT-23 & - & - & - & - \\ \hline
+	NFAT-24 & - & - & - & - \\ \hline
+	NFAT-25 & - & - & - & - \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 100.000 Packet ke Perangkat Android}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 100.000 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-100k}.
+\begin{longtable}{|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 100.000 Packet ke Perangkat Android} \label{t:keandalan-android-100k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{4}{c|}{Jumlah Packet Diterima} \\ \hhline{~|*4{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & FCM & Android 1 & Android 2 & Android 3 \\ \hline
+	NFAT-26 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
+	NFAT-27 & - & - & - & - \\ \hline
+	NFAT-28 & - & - & - & - \\ \hline
+	NFAT-29 & - & - & - & - \\ \hline
+	NFAT-30 & - & - & - & - \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Ketersediaan}
-\par Pengujian ketersediaan dilakukan untuk mengetahui apakah sistem tetap bekerja normal saat sedang mengirimkan \textit{packet} dalam jumlah besar. Hasil uji dapat dilihat pada tabel \ref{t:ketersediaan}.
-\begin{longtable}{|p{1.3cm}|p{2.2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
-	\caption{Hasil Uji Ketersediaan Layanan} \label{t:ketersediaan} \\ \hline
-	\rowcolor{lightgray} & & \multicolumn{3}{c|}{\textit{Downtime}} \\ \hhline{~|~|*3{-}|}
-	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & \multirow{-2}{*}{Jumlah Packet} & Scheduler & Sender APN & Sender FCM \\ \hline
-	NFT-10 & 2.000 & - & - & - \\ \hline
-	NFT-11 & 20.000 & - & - & - \\ \hline
-	NFT-12 & 200.000 & - & - & - \\ \hline
+\par Pengujian ketersediaan dilakukan untuk mengetahui apakah sistem tetap bekerja normal saat sedang mengirimkan \textit{packet} dalam jumlah besar.
+\par Metrik keberhasilan menggunakan jumlah server mengalami \textit{down} (berhenti beroperasi). Pengecekan kondisi \textit{down} dilakukan dengan mengecek status kesehatan lewat API Actuator setiap 15 menit.
+
+\subsubsection{Pengujian Ketersediaan untuk Pengiriman 2.000 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 perangkat iOS dan 1.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:ketersediaan-2k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Ketersediaan Layanan untuk Pengiriman 2.000 Packet} \label{t:ketersediaan-2k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
+	NFTT-01 & 0 & 0 & 0 \\ \hline
+	NFTT-02 & 0 & 0 & 0 \\ \hline
+	NFTT-03 & 0 & 0 & 0 \\ \hline
+	NFTT-04 & 0 & 0 & 0 \\ \hline
+	NFTT-05 & 0 & 0 & 0 \\ \hline
+\end{longtable}
+
+\subsubsection{Pengujian Ketersediaan untuk Pengiriman 20.000 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 10.000 perangkat iOS dan 10.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:ketersediaan-20k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Ketersediaan Layanan untuk Pengiriman 20.000 Packet} \label{t:ketersediaan-20k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
+	NFTT-06 & 0 & 0 & 0 \\ \hline
+	NFTT-07 & 0 & 0 & 0 \\ \hline
+	NFTT-08 & 0 & 0 & 0 \\ \hline
+	NFTT-09 & 0 & 0 & 0 \\ \hline
+	NFTT-10 & 0 & 0 & 0 \\ \hline
+\end{longtable}
+
+\subsubsection{Pengujian Ketersediaan untuk Pengiriman 200.000 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 100.000 perangkat iOS dan 100.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:ketersediaan-200k}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Ketersediaan Layanan untuk Pengiriman 200.000 Packet} \label{t:ketersediaan-200k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
+	NFTT-11 & 0 & 0 & 0 \\ \hline
+	NFTT-12 & 0 & 0 & 0 \\ \hline
+	NFTT-13 & 0 & 0 & 0 \\ \hline
+	NFTT-14 & 0 & 0 & 0 \\ \hline
+	NFTT-15 & 0 & 0 & 0 \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Durabilitas}
@@ -298,6 +420,9 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
 
 \section{Evaluasi Hasil Pengujian}
+%TODO
+
+\subsection{Evaluasi Hasil Pengujian Fungsional}
 \par Berdasarkan hasil uji, Aplikasi Push Notification Terpusat yang dibangun pada tugas akhir ini sudah memenuhi semua kebutuhan fungsional dan non fungsional yang ada. Rangkuman hasil uji untuk kebutuhan fungsional dan non fungsional dapat dilihat pada Tabel \ref{t:eval_f} dan Tabel \ref{t:eval_nf}.
 \begin{longtable}{|p{1.5cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
 	\caption{Rangkuman Hasil Uji Fungsional} \label{t:eval_f} \\ \hline
@@ -311,6 +436,22 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	F-07 & Menampilkan Konfigurasi & FT-07 & Berhasil \\ \hline
 	F-08 & Menampilkan \textit{Log} & FT-08 & Berhasil \\ \hline
 \end{longtable}
+
+\subsection{Evaluasi Hasil Pengujian Non Fungsional}
+%TODO
+
+\subsubsection{Evaluasi Hasil Pengujian Performa}
+%TODO
+
+\subsubsection{Evaluasi Hasil Pengujian Keandalan}
+%TODO
+
+\subsubsection{Evaluasi Hasil Pengujian Ketersediaan}
+%TODO
+
+\subsubsection{Evaluasi Hasil Pengujian Durabilitas}
+%TODO
+
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{3cm}|p{1.5cm}|}
 	\caption{Rangkuman Hasil Uji Non Fungsional} \label{t:eval_nf} \\ \hline
 	\rowcolor{lightgray} Kode Kebutuhan & Aspek & Kode Uji & Hasil \\ \hline
