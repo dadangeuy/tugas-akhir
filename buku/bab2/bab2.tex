@@ -94,9 +94,9 @@
 \begin{longtable}{|p{4.5cm}|p{4.5cm}|}
 	\caption{Perbandingan Penggunaan Antrian Pesan} \label{t:perbandingan-antrian-pesan} \\ \hline
 	\rowcolor{lightgray} Tanpa Antrian Pesan & Dengan Antrian Pesan \\ \hline
-	Client dapat melihat langsung hasil \textit{request} & Client hanya mengetahui jika \textit{request} sudah tersimpan dan akan dijalankan \\ \hline
-	Jika \textit{request} gagal, \textit{client} bertanggung jawab untuk mengulang operasi & Jika \textit{request} gagal, \textit{server} bertanggung jawab untuk mengulang operasi \\ \hline
-	Spesifikasi sistem harus mencukupi penggunaan sumber daya & Penggunaan sumber daya dapat menyesuaikan spesifikasi sistem \\ \hline
+	Client dapat melihat langsung hasil \textit{request}. & Client hanya mengetahui jika \textit{request} sudah tersimpan dan akan dijalankan. \\ \hline
+	Jika \textit{request} gagal, \textit{client} bertanggung jawab untuk mengulang operasi. & Jika \textit{request} gagal, \textit{server} bertanggung jawab untuk mengulang operasi. \\ \hline
+	Spesifikasi sistem harus mencukupi penggunaan sumber daya. & Penggunaan sumber daya dapat menyesuaikan spesifikasi sistem. \\ \hline
 \end{longtable}
 
 \section{Apache Kafka}
@@ -105,10 +105,10 @@
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Antrian Pesan Push Notification Terpusat dengan Apache Kafka} \label{t:perbandingan_kafka} \\ \hline
 	\rowcolor{lightgray} & Push Notification Terpusat & Apache Kafka \\ \hline
-	Penyimpanan pesan & \textit{Non Persistence}, disimpan dalam sistem (RAM) & \textit{Persistence}, disimpan dalam media penyimpanan perangkat (HDD atau SSD) \\ \hline
-	Jumlah pesan maksimum & Dapat menangani 1.000 pesan tanpa gagal & Dapat menangani 1.000.000 pesan tanpa gagal \\ \hline
-	Arsitektur antrian & Satu antrian untuk semua pesan & Antrian dibagi berdasarkan topik dan partisi \\ \hline
-	Urutan pengambilan pesan & Terurut berdasarkan waktu ditambahkan & Jika di satu partisi, terurut berdasarkan waktu ditambahkan. Jika berbeda partisi, berdasarkan partisi manapun yang tidak kosong. \\ \hline
+	Penyimpanan pesan & \textit{Non Persistence}, disimpan dalam sistem, akan hilang jika sistem mati. & \textit{Persistence}, disimpan dalam media penyimpanan perangkat, tetap tersimpan meskipun sistem mati. \\ \hline
+	Jumlah pesan maksimum & Dapat menangani 1.000 pesan tanpa gagal. & Dapat menangani 1.000.000 pesan tanpa gagal. \\ \hline
+	Arsitektur antrian & Satu antrian untuk semua pesan. & Antrian dibagi berdasarkan topik dan partisi. \\ \hline
+	Urutan pengambilan pesan & Terurut berdasarkan waktu ditambahkan. & Jika di satu partisi, terurut berdasarkan waktu ditambahkan. Jika berbeda partisi, berdasarkan partisi manapun yang tidak kosong. \\ \hline
 \end{longtable}
 \begin{figure}[H]
 \centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-mq_pnt.jpg}
@@ -126,27 +126,36 @@
 \par Pada tugas akhir ini, Zookeeper merupakan layanan yang dibutuhkan oleh Kafka untuk beroperasi. Kafka menggunakan Zookeeper untuk mengatur koordinasi \textit{producer} dan \textit{consumer} dengan antrian pesan.
 
 \section{Java}
-\par Java adalah bahasa pemrograman yang umum, konkuren, berbasis kelas, dan berbasis objek \cite{java-online}.
-\par Pada tugas akhir ini, Java merupakan bahasa pemrograman yang digunakan untuk implementasi Push Notification Terpusat. Alasan pemilihan Java adalah sebagai berikut:
+\par Java adalah bahasa pemrograman yang umum, konkuren, berbasis kelas, dan berbasis objek \cite{java-online}. Pada tugas akhir ini, implementasi Push Notification Terpusat akan menggunakan bahasa pemrograman Java. Alasan pemilihan Java adalah sebagai berikut:
 \begin{enumerate}
-	\item Mudah untuk dikembangkan
-	\item Java didukung penuh oleh pengembang Kafka. Untuk bahasa lain, didukung oleh individu atau tim yang tidak resmi.
-	\item Dokumentasi resmi Kafka menggunakan bahasa pemrograman Java.
+	\item Bahasa yang digunakan pada Push Notification Terpusat.
+	\item Mudah dan cepat untuk dikembangkan.
+	\item Dukungan pustaka untuk Kafka dan SQL Server.
 \end{enumerate}
 
 \section{Spring}
-\par Spring adalah sebuah \textit{platform} yang menyediakan dukungan infrastruktur lengkap untuk mengembangkan aplikasi Java \cite{spring-online}. Spring merupakan kerangka kerja yang digunakan untuk mengembangkan Push Notification Terpusat.
+\par Spring adalah kerangka kerja yang menyediakan dukungan infrastruktur lengkap untuk mengembangkan aplikasi Java \cite{spring-online}. Pada tugas akhir ini, implementasi Push Notification Terpusat akan menggunakan bantuan kerangka kerja Spring. Alasan pemilihan Spring adalah sebagai berikut:
 \begin{enumerate}
-	\item Dukungan pustaka untuk SQL Server dan Kafka.
+	\item Memiliki fitur \textit{Dependency Injection}, sehingga proses inisialisasi objek disembunyikan didalam kerangka kerja.
+	\item Memiliki fitur \textit{Object Relational Mapping}, sehingga model kelas yang ada di implementasi sistem dapat terintegrasi dengan tabel yang ada di sistem basis data.
+	\item Dukungan pustaka untuk Kafka dan SQL Server.
+	\item Dukungan pustaka Actuator yang dapat digunakan untuk \textit{monitoring} aplikasi.
 \end{enumerate}
 
 \section{Actuator}
 \par Actuator berisi sekumpulan fitur tambahan untuk pemantauan dan pengaturan aplikasi yang sudah ditahap \textit{production}. Aplikasi bisa dipantau dan diatur dengan menggunakan \textit{endpoint} HTTP atau JMX \cite{actuator-online}.
-\par Pada tugas akhir ini, Actuator merupakan pustaka yang digunakan dalam implementasi pemantauan Push Notification Terpusat.
+\par Pada tugas akhir ini, Actuator merupakan pustaka yang digunakan dalam implementasi pemantauan Push Notification Terpusat. Fitur-fitur Actuator yang akan digunakan pada Push Notification Terpusat dapat dilihat pada Tabel \ref{t:fitur-actuator}.
+\begin{longtable}{|p{2cm}|p{6cm}|}
+	\caption{Fitur Actuator yang Digunakan pada Push Notification Terpusat} \label{t:fitur-actuator} \\ \hline
+ 	\rowcolor{lightgray} Nama Fitur & Deskripsi \\ \hline
+	\textit{Metrics} & Untuk menampilkan metrik yang berhubungan dengan sumber daya sistem yang terpakai, seperti CPU dan Memori. \\ \hline
+	\textit{Health} & Untuk menampilkan status kesehatan aplikasi, dan layanan-layanan yang berhubungan dengan aplikasi, seperti sistem basis data dan sistem antrian pesan. \\ \hline
+	\textit{Environment} & Untuk menampilkan konfigurasi Spring dan lingkungan sistem. \\ \hline
+	\textit{Logfile} & Untuk menampilkan \textit{log} yang dikeluarkan oleh sistem. \\ \hline
+\end{longtable}
 
 \section{JSON}
-\par JSON adalah format pertukaran data yang ringan, berbasis teks, dan independen \cite{json-online}.
-\par Pada tugas akhir ini, JSON merupakan format pertukaran data yang digunakan oleh Kafka untuk menyimpan data, dan pustaka Actuator untuk menampilkan \textit{response}.
+\par JSON adalah format pertukaran data yang ringan, berbasis teks, dan independen \cite{json-online}. Pada tugas akhir ini, JSON merupakan format pertukaran data yang digunakan oleh Kafka untuk menyimpan data, dan pustaka Actuator untuk menampilkan \textit{response}.
 
 \section{Docker}
 \par Docker adalah \textit{platform} terbuka untuk membangun, mengirim, dan menjalankan aplikasi. Docker memungkinkan pengembang untuk memisahkan kebutuhan infrastruktur dari aplikasi, sehingga proses pengembangan aplikasi bisa lebih cepat \cite{docker-online}.
@@ -170,6 +179,8 @@
 \begin{longtable}{|p{2cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Penggunaan Docker Compose} \label{t:perbandingan_docker_compose} \\ \hline
 	\rowcolor{lightgray} & Tanpa Compose & Dengan Compose \\ \hline
+	Konfigurasi & Ditambahkan dalam opsi setiap kali menjalankan \textit{container} & Disimpan dalam file \\ \hline
+	Cara menjalankan & Untuk setiap \textit{container}, jalankan perintah "docker run <image>" untuk menjalankan \textit{container} & Jalankan perintah "docker-compose up" untuk menjalankan semua \textit{container} \\ \hline
 \end{longtable}
 
 \section{YAML}
