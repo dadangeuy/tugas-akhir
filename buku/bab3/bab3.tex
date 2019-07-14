@@ -6,17 +6,18 @@
 Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, dan spesifikasi kebutuhan perangkat lunak.
 
 \subsection{Analisis Permasalahan}
-\par Subbab ini membahas permasalahan yang dihadapi oleh aplikasi push notification terpusat saat ini serta penyebab dan dampak dari masalah tersebut.
+\par Subbab ini membahas permasalahan yang dihadapi oleh Push Notification Terpusat saat ini, berupa penyebab, dampak, dan solusi dari masalah tersebut.
 
 \subsubsection{Keandalan Antrian Pesan}
-\par Arsitektur antrian pesan pada Push Notification Terpusat dapat dilihat pada Gambar \ref{arsitektur_message_queue_lama}. Terdapat beberapa \textit{thread} yang menambahkan dan mengambil pesan dari antrian secara bersamaan. Berdasarkan analisis yang penulis lakukan, struktur data \textit{linked list} yang digunakan oleh antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}. Konsekuensinya, pesan yang berada di antrian bisa saja hilang tanpa ada \textit{error} yang terdeteksi oleh sistem. Potongan kode implementasi antrian pesan dapat dilihat pada \nameref{lampiran:queue_service}.
-\begin{figure}[H]
-	\includegraphics[width=1\textwidth]{bab3/figures/arsitektur_message_queue_lama.jpg}
-	\caption{Arsitektur Lama untuk Antrian Pesan} \label{arsitektur_message_queue_lama}
-\end{figure}
+\par Proses pengolahan pesan yang ada di antrian saat ini dilakukan dengan membuat beberapa \textit{thread} yang bertindak sebagai \textit{producer} dan \textit{consumer} dari antrian pesan. \textit{Thread} tersebut akan menambahkan dan mengambil pesan dari antrian secara bersamaan.
+\par Berdasarkan analisis yang penulis lakukan, struktur data \textit{linked list} yang digunakan oleh antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}.
+\par Konsekuensinya, bisa saja terjadi kasus \textit{race condition} yang menyebabkan pesan yang berada di antrian hilang tanpa ada \textit{error} yang terdeteksi oleh sistem. Potongan kode implementasi antrian pesan dapat dilihat pada \nameref{lampiran:queue_service}.
+\par Salah satu solusi yang dapat digunakan untuk menyelesaikan masalah ini adalah dengan menggunakan Kafka sebagai perantara pesan. Arsitektur Kafka membagi antrian pesan berdasarkan topik dan partisi. Antrian pesan yang berada di satu topik dan partisi akan diolah secara \textit{synchronous}, dan jika berbeda topik atau partisi akan diolah secara \textit{asynchronous}. Arsitektur Kafka menjamin setiap antrian pesan hanya akan digunakan oleh satu \textit{producer} dan \textit{consumer} pada satu waktu, sehingga kasus \textit{race condition} dapat dihindarkan.
 
 \subsubsection{Durabilitas Penyimpanan Antrian}
-\par Antrian \textit{packet} pada Push Notification Terpusat disimpan dalam sebuah struktur data yang ada di sistem. Konsekuensinya, jika sistem \textit{down}, seluruh \textit{packet} yang berada diantrian akan hilang. Selain itu, karena semua pesan disimpan di sistem, sistem akan kehabisan memori dan \textit{crash} jika jumlah pesan yang diantrikan terlalu banyak.
+\par Proses penyimpanan pesan yang ada di antrian saat ini dilakukan dengan menyimpan pesan ke dalam sebuah struktur data \textit{linked list} yang ada di sistem.
+\par Konsekuensinya, jika sistem mati, seluruh pesan yang berada diantrian akan hilang. Selain itu, karena semua pesan disimpan di sistem, sistem akan kehabisan memori dan \textit{crash} jika jumlah pesan yang diantrikan terlalu banyak.
+\par Salah satu solusi yang dapat digunakan untuk menyelesaikan masalah ini adalah dengan menggunakan Kafka sebagai media penyimpanan antrian. Dengan memindahkan antrian pesan ke Kafka, maka antrian pesan tetap dapat berjalan meskipun sistem sedang mati. Kafka juga menyimpan data antrian pesan kedalam media penyimpanan server, sehingga meskipun Kafka mati, pesan tetap tersimpan dan dapat diolah kembali.
 
 \subsection{Deskripsi Umum Sistem}
 \par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Alur pengiriman \textit{push notification} diawali dengan pengelola memasukkan data \textit{batch} (notifikasi yang dikirim ke beberapa pengguna atau kelompok pengguna) ke sistem basis data, lalu sistem akan mengolah data \textit{batch} menjadi \textit{packet-packet} (notifikasi yang dikirim ke satu perangkat pengguna). Setelah \textit{packet} dibuat, sistem akan mengirimkan \textit{packet} ke perangkat pengguna lewat layanan APNs dan FCM.
