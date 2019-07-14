@@ -34,17 +34,59 @@
 \par Android adalah sistem operasi perangkat bergerak yang dikembangkan oleh Google untuk ponsel, pakaian, tablet, televisi, dan kendaraan \cite{android-online}.
 \par Pada tugas akhir ini, perangkat dengan sistem operasi Android merupakan salah satu target penerima \textit{push notification} yang dikirim oleh Push Notification Terpusat.
 
-\section{Apple Push Notification Service (APNs)}
-\par Apple Push Notification Service adalah layanan pengiriman notifikasi jarak jauh yang kuat, cepat dan sangat efisien, yang dapat digunakan oleh pengembang aplikasi untuk menyebarkan informasi ke perangkat iOS, watchOS, tvOS, dan macOS \cite{apns-online}.
-\par Push notification yang menargetkan perangkat iOS akan dikirim ke layanan Apple Push Notification Service oleh Push Notification Terpusat.
+\section{Apple Push Notification Service}
+\par Apple Push Notification Service atau APNs adalah layanan pengiriman notifikasi jarak jauh yang kuat, cepat dan sangat efisien, yang dapat digunakan oleh pengembang aplikasi untuk menyebarkan informasi ke perangkat iOS, watchOS, tvOS, dan macOS. Ukuran maksimum notifikasi yang dapat dikirim adalah 4 Kb, dan wajib menggunakan protokol TLS, dengan alur yang dapat dilihat pada Gambar \ref{img:apns-certificate} \cite{apns-online}.
+\begin{figure}[H]
+	\centering\includegraphics[width=0.7\textwidth]{bab2/img/activity-apns_certificate_connection.jpg}
+	\caption{Alur Autentikasi APNs}
+	\label{img:apns-certificate}
+\end{figure}
+\par Untuk dapat menerima dan mengontrol remote notification, aplikasi harus memenuhi syarat sebagai berikut.
+\begin{enumerate}
+	\item Mengaktifkan kemampuan push notifications dengan cara memindah switch posisi \textit{off} menjadi \textit{on} pada jendela \textit{Project editor} > \textit{Target} > \textit{Capabilities}.
+	\item Melakukan registrasi aplikasi kepada APNs dengan cara menerima token yang bersifat unik untuk tiap perangkat yang berbeda.
+	\item Sistem akan menampilkan perangkat ke aplikasi Anda dengan memanggil metode di delegasi aplikasi. Aplikasi mengirimkan token perangkat ke penyedia yang terkait dengan aplikasi.
+\end{enumerate}
+\par Contoh program yang digunakan untuk mengirim notifikasi ke perangkat iOS lewat layanan APNs dapat dilihat pada Kode Sumber \ref{json:contoh-apns}. Hasil notifikasi yang diterima oleh pengguna dapat dilihat pada Gambar \ref{img:contoh-hasil-apns}.
+\lstinputlisting[label=json:contoh-apns, caption={Contoh Push Notification APNs}] {bab2/json/apns.json}
+\begin{figure}[H]
+	\centering\includegraphics[width=0.5\textwidth]{bab2/img/apns.png}
+	\caption{Pratinjau Notifikasi pada iOS}
+	\label{img:contoh-hasil-apns}
+\end{figure}
+\par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat iOS akan dikirim dengan menggunakan layanan Apple Push Notification Service.
 
-\section{Firebase Cloud Messaging (FCM)}
-\par Firebase Cloud Messaging adalah solusi pengiriman pesan lintas platform yang dapat diandalkan untuk mengirimkan pesan dan dapat digunakan tanpa biaya \cite{fcm-online}.
-\par \textit{Push notification} yang menargetkan perangkat Android akan dikirim ke layanan Firebase Cloud Messaging oleh Push Notification Terpusat.
+\section{Firebase Cloud Messaging}
+\par Firebase Cloud Messaging atau FCM adalah solusi pengiriman pesan lintas platform yang dapat diandalkan untuk mengirimkan pesan dan dapat digunakan tanpa biaya. FCM memiliki kemampuan sebagai berikut \cite{fcm-online}:
+\begin{enumerate}
+	\item Mengirimkan notifikasi atau pesan data
+	\par Mengirim pesan notifikasi yang ditampilkan kepada pengguna. Atau mengirim pesan data dan menentukan sepenuhnya apa yang terjadi dalam kode aplikasi.
+	\item Penargetan pesan serbaguna
+	\par Mendistribusikan pesan ke aplikasi klien dengan salah satu dari tiga cara — ke satu perangkat, ke grup perangkat, atau ke perangkat yang berlangganan topik.
+	\item Mengirim pesan dari aplikasi \textit{client}
+	\par Mengirim notifikasi, chat, dan pesan lain dari perangkat ke server melalui saluran koneksi FCM yang andal dan hemat baterai.
+\end{enumerate}
+\par Untuk mengimplementasikan FCM, pengembang harus mengikuti langkah-langkah berikut:
+\begin{enumerate}
+	\item Menyiapkan FCM SDK
+	\par Menyiapkan Firebase dan FCM pada aplikasi sesuai petunjuk penyiapan untuk \textit{platform} (Android atau Web).
+	\item Mengembangkan aplikasi klien
+	\par Menambahkan penanganan pesan, logika langganan topik, atau fitur opsional lain ke aplikasi \textit{client}. Selama pengembangan, dapat dilakukan pengujian untuk mengirim pesan dengan mudah menggunakan \textit{Firebase Console}.
+	\item Mengembangkan server aplikasi
+	\par Tentukan apakah pengembangan nantinya menggunakan Admin SDK atau salah satu server \textit{protocol} untuk membuat logika pengiriman, yaitu logika untuk mengautentikasi, membuat permintaan pengiriman, menangani respons, dan sebagainya.
+\end{enumerate}
+\par Contoh program yang digunakan untuk mengirim notifikasi ke perangkat Android lewat layanan FCM dapat dilihat pada Kode Sumber \ref{json:contoh-fcm}. Hasil notifikasi yang diterima oleh pengguna dapat dilihat pada Gambar \ref{img:contoh-hasil-fcm}.
+\lstinputlisting[label=json:contoh-fcm, caption={Contoh Push Notification FCM}] {bab2/json/fcm.json}
+\begin{figure}[H]
+	\centering\includegraphics[width=0.5\textwidth]{bab2/img/fcm.png}
+	\caption{Pratinjau Notifikasi pada Android}
+	\label{img:contoh-hasil-fcm}
+\end{figure}
+\par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat Android dan Web akan dikirim ke layanan FCM oleh Push Notification Terpusat.
 
 \section{Microsoft SQL Server}
-\par Microsoft SQL Server adalah sistem basis data relasional yang bahasa pemrograman utamanya menggunakan MS-SQL dan Transact-SQL \cite{sqlserver-thesis}.
-\par Pada tugas akhir ini, Microsoft SQL Server merupakan sistem basis data yang digunakan oleh Push Notification Terpusat.
+\par Microsoft SQL Server atau SQL Server adalah sistem basis data relasional yang bahasa pemrograman utamanya menggunakan MS-SQL dan Transact-SQL \cite{sqlserver-thesis}.
+\par Pada tugas akhir ini, SQL Server merupakan sistem basis data yang digunakan oleh Push Notification Terpusat. SQL Server dipilih karena data-data yang dibutuhkan oleh Push Notification Terpusat (seperti data pengguna, perangkat yang digunakan, aplikasi yang ada, dan sebagainya) sudah tersimpan dalam SQL Server yang ada di server ITS.
 
 \section{Message Queue}
 \par \textit{Message queue} atau antrian pesan adalah metode komunikasi antar layanan secara asynchronous yang digunakan dalam arsitektur \textit{serverless} dan \textit{microservices}. Setiap pesan disimpan dalam antrian sampai pesan tersebut selesai diproses dan dihapus. Setiap pesan hanya diproses satu kali, oleh satu consumer \cite{message-queue-online}.
