@@ -1,19 +1,38 @@
 \chapter{DASAR TEORI}
 \par Bab ini menjelaskan dasar teori yang penulis gunakan sebagai landasan pengerjaan tugas akhir. Bab ini akan menjelaskan secara umum terkait istilah dan kakas bantu yang digunakan dalam pembuatan tugas akhir ini.
 
-\section{Penelitian Terkait}
-\par Tugas akhir ini merupakan pengembangan dari penelitian "Rancang Bangun Aplikasi Push Notification Terpusat".
+\section{Penelitian Sebelumnya}
+\par Tugas akhir ini merupakan pengembangan lanjutan dari penelitian "Rancang Bangun Aplikasi Push Notification Terpusat". Penelitian tersebut menghasilkan aplikasi yang bernama Push Notification Terpusat. Aplikasi tersebut digunakan untuk mengirim \textit{push notification} ke perangkat pengguna di ITS.
+\par Akan tetapi, aplikasi yang telah dibangun masih memiliki kelemahan dari sisi keandalan aplikasi. Hasil uji dapat dilihat pada Tabel \ref{t:hasil_uji_sebelum}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2.5cm}|}
+	\caption{Hasil Uji Penelitian Sebelumnya \cite{application-thesis}} \label{t:hasil_uji_sebelum} \\ \hline
+	\rowcolor{lightgray} Kode Uji & Jumlah Pengguna & Tingkat Keberhasilan & Rata-Rata \textit{Response Time} (detik) \\ \hline
+	RT001 & 100 & 100\% & 0,334 \\ \hline
+	RT002 & 500 & 100\% & 2,326 \\ \hline
+	RT003 & 1000 & 100\% & 4,664 \\ \hline
+	RT004 & 2000 & 80,7\% & 8,889 \\ \hline
+	RT005 & 3000 & 63,8\% & 10,552 \\ \hline
+\end{longtable}
+\par Berdasarkan hasil uji, dapat disimpulkan bahwa aplikasi yang dibangun sebelumnya hanya dapat menangani maksimum seribu pengguna. Jumlah ini dianggap belum dapat memenuhi kebutuhan karena target pengguna aplikasi ini adalah mahasiswa, dosen, dan karyawan yang ada di ITS.
+\par Oleh karena itu, pengembangan yang diterapkan pada tugas akhir ini akan berfokus untuk meningkatkan keandalan aplikasi, agar aplikasi dapat menangani hingga 100 ribu pengguna.
 
 \section{Push Notification Terpusat}
-\par Push Notification Terpusat merupakan aplikasi yang dibuat untuk memudahkan penyebaran informasi di lingkungan ITS sebagai pengganti media cetak \cite{application-thesis}. Aplikasi ini dapat mengirimkan push notification secara langsung atau terjadwal ke perangkat pengguna (Android dan iOS) \cite{application-thesis}. Push Notification Terpusat merupakan aplikasi yang akan dikembangkan dalam tugas akhir ini.
+\par Push Notification Terpusat merupakan aplikasi yang dibuat untuk memudahkan penyebaran informasi di lingkungan ITS sebagai pengganti media cetak. Aplikasi ini dapat mengirimkan push notification secara langsung atau terjadwal ke perangkat pengguna (Android dan iOS) \cite{application-thesis}. Arsitektur aplikasi saat ini dapat dilihat pada Gambar \ref{img:arsitektur-pnt_lama}.
+\begin{figure}[H]
+	\centering\includegraphics[width=0.8\textwidth]{bab2/img/arsitektur-push_notification_terpusat_lama.jpg}
+	\caption{Arsitektur Push Notification Terpusat Saat Ini}
+	\label{img:arsitektur-pnt_lama}
+\end{figure}
+\par Aplikasi terdiri dari 2 modul, yaitu manajemen dan \textit{engine}. Modul manajemen bertanggung jawab untuk menangani interaksi pengelola dengan sistem lewat halaman berbasis web, sementara modul \textit{engine} bertanggung jawab untuk mengirimkan \textit{push notification}.
+\par Pengembangan yang dilakukan pada tugas akhir ini berfokus di keandalan pengiriman \textit{push notification}, sehingga hanya modul \textit{engine} saja yang akan mengalami perubahan. 
 
 \section{iOS}
 \par iOS adalah sistem operasi perangkat bergerak yang dikembangkan oleh Apple untuk perangkat iPhone, iPad, dan iPod \cite{ios-online}.
-\par Pada tugas akhir ini, perangkat dengan sistem operasi iOS merupakan salah satu target penerima push notification yang dikirim oleh aplikasi push notification terpusat.
+\par Pada tugas akhir ini, perangkat dengan sistem operasi iOS merupakan salah satu target penerima \textit{push notification} yang dikirim oleh Push Notification Terpusat.
 
 \section{Android}
 \par Android adalah sistem operasi perangkat bergerak yang dikembangkan oleh Google untuk ponsel, pakaian, tablet, televisi, dan kendaraan \cite{android-online}.
-\par Pada tugas akhir ini, perangkat dengan sistem operasi Android merupakan salah satu target penerima push notification yang dikirim oleh Push Notification Terpusat.
+\par Pada tugas akhir ini, perangkat dengan sistem operasi Android merupakan salah satu target penerima \textit{push notification} yang dikirim oleh Push Notification Terpusat.
 
 \section{Apple Push Notification Service (APNs)}
 \par Apple Push Notification Service adalah layanan pengiriman notifikasi jarak jauh yang kuat, cepat dan sangat efisien, yang dapat digunakan oleh pengembang aplikasi untuk menyebarkan informasi ke perangkat iOS, watchOS, tvOS, dan macOS \cite{apns-online}.
