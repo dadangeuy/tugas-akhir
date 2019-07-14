@@ -21,7 +21,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 
 \subsection{Deskripsi Umum Sistem}
 \par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Alur pengiriman \textit{push notification} diawali dengan pengelola memasukkan data \textit{batch} (notifikasi yang dikirim ke beberapa pengguna atau kelompok pengguna) ke sistem basis data, lalu sistem akan mengolah data \textit{batch} menjadi \textit{packet-packet} (notifikasi yang dikirim ke satu perangkat pengguna). Setelah \textit{packet} dibuat, sistem akan mengirimkan \textit{packet} ke perangkat pengguna lewat layanan APNs dan FCM.
-\par Pada tugas akhir ini, aplikasi akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{packet}, Sender APN bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
+\par Pada tugas akhir ini, modul \textit{engine} pada Push Notification Terpusat akan dipecah menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{packet}, Sender APN bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
 \par Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan. Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, dan diagram kasus penggunaan.
@@ -31,6 +31,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{7cm}|}
     \caption{Aktor pada Sistem} \label{t:aktor} \\ \hline
     \rowcolor{lightgray} Aktor & Tugas \\ \hline
+    Manajemen & Membuat \textit{batch} dan melakukan pemantauan. \\ \hline
     Scheduler & Membuat dan menjadwalkan pengiriman \textit{packet}. \\ \hline
     Sender APN & Mengirimkan \textit{packet} untuk perangkat iOS. \\ \hline
     Sender FCM & Mengirimkan \textit{packet} notifikasi untuk perangkat Android dan Web. \\ \hline
@@ -63,10 +64,18 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{longtable}
 
 \subsubsection{Kasus Penggunaan}
-\par Subbab ini membahas kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya. Diagram kasus penggunaan untuk setiap modul (Scheduler, Sender APN, dan Sender FCM) aplikasi \textit{push notification} terpusat dapat dilihat pada Gambar \ref{diagram_kasus_penggunaan}.
+\par Subbab ini membahas kasus penggunaan perangkat lunak secara rinci. Kasus penggunaan dibuat berdasarkan hasil analisis yang pada subbab sebelumnya. Diagram kasus penggunaan modul Scheduler, Sender APN, dan Sender FCM dapat dilihat pada Gambar \ref{img:uc-scheduler}, \ref{img:uc-sender_apn}, dan \ref{img:uc-sender_fcm}.
 \begin{figure}[H]
-    \includegraphics[width=1\textwidth]{bab3/figures/diagram_kasus_penggunaan.jpg}
-    \caption{Diagram Kasus Penggunaan} \label{diagram_kasus_penggunaan}
+    \centering\includegraphics[width=0.7\textwidth]{bab3/img/usecase-scheduler.jpg}
+    \caption{Diagram Kasus Penggunaan Scheduler} \label{img:uc-scheduler}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=0.7\textwidth]{bab3/img/usecase-sender_apn.jpg}
+	\caption{Diagram Kasus Penggunaan Sender APN} \label{img:uc-sender_apn}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=0.7\textwidth]{bab3/img/usecase-sender_fcm.jpg}
+	\caption{Diagram Kasus Penggunaan Sender FCM} \label{img:uc-sender_fcm}
 \end{figure}
 
 % template tabel deskripsi kasus penggunaan
@@ -90,14 +99,15 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {t:skenario_pembuatan_packet}
 {UC-01}
 {Pembuatan \textit{Packet}}
-{Scheduler}
+{Manajemen}
 {Terdapat \textit{batch} yang belum dan boleh dibuatkan \textit{packet}}
 {\textit{Packet} dibuat untuk \textit{batch} tersebut}
 {
 \begin{enumerate}
-    \item Aktor memeriksa apakah terdapat \textit{batch} yang belum dan boleh dibuatkan \textit{packet}.
-    \item Aktor membuatkan data \textit{packet} dari batch tersebut.
-    \item Aktor menyimpan data \textit{packet} dan memperbarui data \textit{batch}.
+	\item Aktor menambahkan data \textit{batch} baru ke sistem basis data.
+    \item Scheduler mendeteksi data \textit{batch} yang belum dan boleh dibuatkan \textit{packet}.
+    \item Scheduler membuatkan data \textit{packet} dari \textit{batch} tersebut.
+    \item Scheduler menyimpan data \textit{packet} dan memperbarui data waktu pengolahan \textit{batch}.
 \end{enumerate}
 }
 {-}
@@ -108,14 +118,16 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {t:skenario_menambahkan_packet_ke_antrian}
 {UC-02}
 {Menambahkan \textit{Packet} ke Antrian}
-{Scheduler}
+{Manajemen}
 {Terdapat \textit{packet} yang belum dan sudah waktunya dikirim}
 {\textit{Packet} ditambahkan ke antrian}
 {
 \begin{enumerate}
-    \item Aktor memeriksa apakah terdapat \textit{packet} yang belum dan sudah waktunya dikirim.
-    \item Aktor menambahkan \textit{packet} ke dalam antrian dengan pembagian topik berdasarkan tipe target perangkat.
-    \item Aktor memperbarui data \textit{packet} (status sedang menunggu).
+    \item Aktor menambahkan data \textit{batch} baru ke sistem basis data.
+    \item Scheduler membuatkan \textit{packet} untuk \textit{batch} tersebut.
+    \item Scheduler mendeteksi data \textit{packet} yang belum dan sudah waktunya dikirim.
+    \item Scheduler memperbarui data status \textit{packet} menjadi menunggu untuk diolah.
+    \item Scheduler menambahkan \textit{packet} ke antrian dengan menggunakan tipe perangkat sebagai topik.
 \end{enumerate}
 }
 {-}
@@ -126,14 +138,15 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {t:skenario_pengiriman_packet_ke_apns}
 {UC-03}
 {Pengiriman \textit{Packet} ke APNs}
-{Sender APN}
+{Scheduler}
 {Terdapat \textit{packet} di antrian topik iOS}
 {\textit{Packet} diterima oleh layanan APNs}
 {
 \begin{enumerate}
-    \item Aktor menerima \textit{packet} dari antrian topik iOS.
-    \item Aktor mengirimkan \textit{request push notification} ke layanan APNs berdasarkan data \textit{packet}.
-    \item Aktor memperbarui data \textit{packet} berdasarkan \textit{response} dari APNs (berhasil atau gagal dan alasan gagal).
+	\item Aktor menambahkan \textit{packet} ke antrian topik iOS.
+    \item Sender APN menerima \textit{packet} dari antrian topik iOS.
+    \item Sender APN mengirimkan \textit{request push notification} ke layanan APNs berdasarkan data \textit{packet}.
+    \item Sender APN memperbarui data \textit{packet} berdasarkan \textit{response} dari APNs (berhasil atau gagal dan alasan gagal).
 \end{enumerate}
 }
 {-}
@@ -144,69 +157,70 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {t:skenario_pengiriman_packet_ke_fcm}
 {UC-04}
 {Pengiriman \textit{Packet} ke FCM}
-{Sender FCM}
+{Scheduler}
 {Terdapat \textit{packet} di antrian topik Android atau Web}
 {Packet diterima oleh layanan FCM}
 {
 \begin{enumerate}
-    \item Aktor menerima packet dari antrian topik Android atau Web.
-    \item Aktor mengirimkan \textit{request push notification} ke layanan FCM berdasarkan data \textit{packet}.
-    \item Aktor memperbarui data \textit{packet} berdasarkan \textit{response} dari FCM (berhasil atau gagal dan alasan gagal).
+	\item Aktor menambahkan \textit{packet} ke antrian topik Android atau Web.
+    \item Sender FCM menerima packet dari antrian topik Android atau Web.
+    \item Sender FCM mengirimkan \textit{request push notification} ke layanan FCM berdasarkan data \textit{packet}.
+    \item Sender FCM memperbarui data \textit{packet} berdasarkan \textit{response} dari FCM (berhasil atau gagal dan alasan gagal).
 \end{enumerate}
 }
 {-}
 
 \paragraph{Menampilkan Penggunaan Sumber Daya}
-\par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan aplikasi dengan menggunakan REST API. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_penggunaan_sumber_daya}.
+\par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan aplikasi. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_penggunaan_sumber_daya}.
 \tableUcDesc
 {t:skenario_menampilkan_penggunaan_sumber_daya}
 {UC-05}
 {Menampilkan Penggunaan Sumber Daya}
-{Scheduler, Sender APN, Sender FCM}
-{Aktor menerima \textit{request} HTTP}
-{Aktor mengembalikan \textit{response} HTTP}
+{Manajemen}
+{Aktor mengirimkan \textit{request} HTTP untuk melihat penggunaan sumber daya}
+{Sistem mengembalikan \textit{response} HTTP}
 {
-	\begin{enumerate}
-		\item Aktor menerima \textit{request} HTTP untuk melihat penggunaan sumber daya.
-		\item Aktor memeriksa metrik penggunaan sumber daya dari sistem operasi.
-		\item Aktor mengembalikan hasil pemeriksaan penggunaan sumber daya dalam bentuk \textit{response} HTTP.
-	\end{enumerate}
+\begin{enumerate}
+	\item Aktor mengirimkan \textit{request} HTTP untuk melihat penggunaan sumber daya.
+	\item Scheduler, Sender APN, atau Sender FCM memeriksa metrik penggunaan sumber daya dari sistem operasi.
+	\item Scheduler, Sender APN, atau Sender FCM mengembalikan hasil pemeriksaan penggunaan sumber daya dalam bentuk \textit{response} HTTP.
+\end{enumerate}
 }
 {-}
 
 \paragraph{Menampilkan Status Kesehatan}
-\par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan status kesehatan aplikasi dan layanan yang terhubung dengan aplikasi dengan menggunakan REST API. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_status_kesehatan}.
+\par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan status kesehatan aplikasi dan layanan yang terhubung dengan aplikasi. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_status_kesehatan}.
 \tableUcDesc
 {t:skenario_menampilkan_status_kesehatan}
 {UC-06}
 {Menampilkan Status Kesehatan}
-{Scheduler, Sender APN, Sender FCM}
-{Aktor menerima request HTTP}
-{Aktor mengembalikan response HTTP}
+{Manajemen}
+{Manajemen mengirimkan \textit{request} HTTP untuk melihat status kesehatan}
+{Sistem mengembalikan \textit{response} HTTP}
 {
-	\begin{enumerate}
-		\item Aktor menerima \textit{request} HTTP untuk melihat status kesehatan.
-		\item Aktor memeriksa apakah aktor dapat terhubung ke layanan-layanan yang dibutuhkan oleh aktor untuk beroperasi.
-		\item Aktor mengembalikan status (bisa diakses atau tidak) layanan-layanan yang dibutuhkan dalam bentuk \textit{response} HTTP.
-	\end{enumerate}
+\begin{enumerate}
+	\item Aktor mengirimkan \textit{request} HTTP untuk melihat status kesehatan.
+	\item Scheduler, Sender APN, atau Sender FCM memeriksa apakah aktor dapat terhubung ke layanan-layanan yang dibutuhkan oleh aktor untuk beroperasi.
+	\item Scheduler, Sender APN, atau Sender FCM mengembalikan status (bisa diakses atau tidak) layanan-layanan yang dibutuhkan dalam bentuk \textit{response} HTTP.
+\end{enumerate}
 }
 {-}
 
 \paragraph{Menampilkan Konfigurasi}
-\par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan konfigurasi aplikasi dengan menggunakan REST API. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_konfigurasi}.
+\par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan konfigurasi aplikasi. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_konfigurasi}.
 \tableUcDesc
 {t:skenario_menampilkan_konfigurasi}
 {UC-07}
 {Menampilkan Konfigurasi}
-{Scheduler, Sender APN, Sender FCM}
-{Aktor menerima \textit{request} HTTP}
-{Aktor mengembalikan \textit{response} HTTP}
+{Manajemen}
+{Aktor mengirimkan \textit{request} HTTP untuk melihat konfigurasi}
+{Sistem mengembalikan \textit{response} HTTP}
 {
 	\begin{enumerate}
-		\item Aktor menerima \textit{request} HTTP untuk melihat konfigurasi aplikasi.
-		\item Aktor memeriksa konfigurasi \textit{Spring} yang ada di aplikasi.
-		\item Aktor memeriksa \textit{environment variable} yang ada di sistem operasi.
-		\item Aktor mengembalikan konfigurasi \textit{Spring} dan \textit{environment variable} yang ada dalam bentuk \textit{response} HTTP.
+		\item Aktor mengirimkan \textit{request} HTTP untuk melihat konfigurasi aplikasi.
+		\item Scheduler, Sender APN, atau Sender FCM memeriksa konfigurasi \textit{Spring} yang digunakan.
+		\item Scheduler, Sender APN, atau Sender FCM memeriksa \textit{environment variable} yang ada di sistem operasi.
+		\item Scheduler, Sender APN, atau Sender FCM mengembalikan konfigurasi \textit{Spring} dan \textit{environment variable} yang ada dalam bentuk \textit{response} HTTP.
 	\end{enumerate}
 }
 {-}
@@ -217,14 +231,14 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {t:skenario_menampilkan_log}
 {UC-08}
 {Menampilkan \textit{Log}}
-{Scheduler, Sender APN, Sender FCM}
-{Aktor menerima \textit{request} HTTP}
-{Aktor mengembalikan \textit{response} HTTP}
+{Manajemen}
+{Aktor mengirimkan \textit{request} HTTP untuk melihat \textit{log}}
+{Sistem mengembalikan \textit{response} HTTP}
 {
 \begin{enumerate}
-	\item Aktor menerima \textit{request} HTTP untuk melihat log aplikasi.
-	\item Aktor mencari lokasi file \textit{log} yang digunakan aplikasi untuk menyimpan \textit{log}.
-	\item Aktor mengembalikan isi file \textit{log} dalam bentuk \textit{response} HTTP.
+	\item Aktor mengirimkan \textit{request} HTTP untuk melihat log aplikasi.
+	\item Scheduler, Sender APN, atau Sender FCM mencari lokasi file \textit{log} yang digunakan untuk menyimpan \textit{log}.
+	\item Scheduler, Sender APN, atau Sender FCM mengembalikan isi file \textit{log} dalam bentuk \textit{response} HTTP.
 \end{enumerate}
 }
 {-}
@@ -233,8 +247,8 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan arsitektur, basis data, antrian pesan, dan proses.
 
 \subsection{Perancangan Arsitektur} \label{s:perancangan_arsitektur}
-\par Push Notification Terpusat akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Modul Push Notification Terpusat diimplementasikan dengan bahasa pemrograman Java, dengan kerangka kerja Spring. Aplikasi saling terhubung lewat sistem antrian pesan (Kafka) dan sistem basis data (SQL Server).
-\par Untuk menjalankan sistem, modul Push Notification Terpusat, Kafka, dan Zookeeper dijalankan menggunakan Docker, dan SQL Server menggunakan server basis data ITS. Secara garis besar, aplikasi ini memiliki rancangan arsitektur yang dapat dilihat pada Gambar \ref{img:arsitektur_baru}.
+\par Modul engine pada Push Notification Terpusat akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Modul Push Notification Terpusat diimplementasikan dengan bahasa pemrograman Java, dengan kerangka kerja Spring. Aplikasi saling terhubung lewat sistem antrian pesan (Kafka) dan sistem basis data (SQL Server).
+\par Untuk menjalankan sistem, modul Push Notification Terpusat, Kafka, dan Zookeeper akan dijalankan menggunakan Docker, dan SQL Server menggunakan server basis data ITS. Secara garis besar, aplikasi ini memiliki rancangan arsitektur yang dapat dilihat pada Gambar \ref{img:arsitektur_baru}.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{bab3/img/arsitektur-push_notification_terpusat_baru.jpg}
     \caption{Arsitektur Pengiriman Notifikasi} \label{img:arsitektur_baru}
