@@ -50,3 +50,7 @@
 	sensitive=true,
 	stringstyle={\color{black}\ttfamily},
 }
+
+\renewcommand*{\finalnamedelim}{%
+	\ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+	\addspace dan\space}%
