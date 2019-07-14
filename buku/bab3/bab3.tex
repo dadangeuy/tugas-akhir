@@ -19,7 +19,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Antrian \textit{packet} pada Push Notification Terpusat disimpan dalam sebuah struktur data yang ada di sistem. Konsekuensinya, jika sistem \textit{down}, seluruh \textit{packet} yang berada diantrian akan hilang. Selain itu, karena semua pesan disimpan di sistem, sistem akan kehabisan memori dan \textit{crash} jika jumlah pesan yang diantrikan terlalu banyak.
 
 \subsection{Deskripsi Umum Sistem}
-\par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Alur pengiriman \textit{push notification} diawali dengan pengguna memasukkan data \textit{batch} (notifikasi yang dikirim ke beberapa pengguna atau kelompok pengguna) ke sistem basis data, lalu sistem akan mengolah data \textit{batch} menjadi \textit{packet-packet} (notifikasi yang dikirim ke satu perangkat pengguna). Setelah \textit{packet} dibuat, sistem akan mengirimkan \textit{packet} ke perangkat pengguna lewat layanan APNs dan FCM.
+\par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Alur pengiriman \textit{push notification} diawali dengan pengelola memasukkan data \textit{batch} (notifikasi yang dikirim ke beberapa pengguna atau kelompok pengguna) ke sistem basis data, lalu sistem akan mengolah data \textit{batch} menjadi \textit{packet-packet} (notifikasi yang dikirim ke satu perangkat pengguna). Setelah \textit{packet} dibuat, sistem akan mengirimkan \textit{packet} ke perangkat pengguna lewat layanan APNs dan FCM.
 \par Pada tugas akhir ini, aplikasi akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{packet}, Sender APN bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
@@ -232,10 +232,11 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan arsitektur, basis data, antrian pesan, dan proses.
 
 \subsection{Perancangan Arsitektur} \label{s:perancangan_arsitektur}
-\par Push Notification Terpusat akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Aplikasi dibangun dengan bahasa pemrograman Java, dengan kerangka kerja Spring. Aplikasi saling terhubung lewat sistem basis data (SQL Server) dan sistem antrian pesan (Kafka). Secara garis besar, aplikasi ini memiliki rancangan arsitektur yang dapat dilihat pada Gambar \ref{f:arsitektur_aplikasi}.
+\par Push Notification Terpusat akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Modul Push Notification Terpusat diimplementasikan dengan bahasa pemrograman Java, dengan kerangka kerja Spring. Aplikasi saling terhubung lewat sistem antrian pesan (Kafka) dan sistem basis data (SQL Server).
+\par Untuk menjalankan sistem, modul Push Notification Terpusat, Kafka, dan Zookeeper dijalankan menggunakan Docker, dan SQL Server menggunakan server basis data ITS. Secara garis besar, aplikasi ini memiliki rancangan arsitektur yang dapat dilihat pada Gambar \ref{img:arsitektur_baru}.
 \begin{figure}[H]
-    \includegraphics[width=1\textwidth]{bab3/figures/arsitektur_pengiriman_notifikasi.jpg}
-    \caption{Arsitektur Pengiriman Notifikasi} \label{f:arsitektur_aplikasi}
+    \includegraphics[width=1\textwidth]{bab3/img/arsitektur-push_notification_terpusat_baru.jpg}
+    \caption{Arsitektur Pengiriman Notifikasi} \label{img:arsitektur_baru}
 \end{figure}
 
 \subsection{Perancangan Basis Data}
@@ -265,7 +266,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 %    Zone Info & varchar(40) & - \\ \hline
 %    Locale & varchar(10) & - \\ \hline
 %    Integra ID & numeric(12) & - \\ \hline
-%    Regional ID & varchar(25) & - \\ \hline
+%    Registration ID & varchar(25) & - \\ \hline
 %    Must Change Password & numeric(1) & - \\ \hline
 %    Sandbox & numeric(1) & - \\ \hline
 %    Locked & datetime & - \\ \hline
@@ -501,3 +502,20 @@ Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 	\centering\includegraphics[width=0.3\textwidth]{bab3/flowchart/flowchart-menampilkan_log.jpg}
 	\caption{Diagram Alir Proses Menampilkan Log} \label{fc:log}
 \end{figure}
+
+\subsection{Perancangan API Endpoint}
+\par Pemantauan Scheduler, Sender APN, dan Sender FCM menggunakan pustaka Actuator. Rincian API Endpoint yang digunakan untuk melihat hasil pemantauan dapat dilihat pada Tabel \ref{t:rancangan_api}.
+\begin{longtable}[H]{|p{0.5cm}|p{3.5cm}|p{1.2cm}|p{3.5cm}|}
+	\caption{Perancangan API Endpoint} \label{t:rancangan_api} \\ \hline
+	\rowcolor{lightgray} No & Endpoint URI & Method & Deskripsi \\ \hline
+	1 & /actuator/metrics/\newline process.uptime & GET & Menampilkan lama waktu sistem berjalan \\ \hline
+	2 & /actuator/metrics/\newline process.cpu.usage & GET & Menampilkan penggunaan CPU oleh JVM \\ \hline
+	3 & /actuator/metrics/\newline system.cpu.usage & GET & Menampilkan penggunaan CPU oleh sistem \\ \hline
+	4 & /actuator/metrics/\newline system.cpu.count & GET & Menampilkan jumlah \textit{processor} yang bisa digunakan JVM \\ \hline
+	5 & /actuator/metrics/\newline jvm.memory.used & GET & Menampilkan jumlah memori yang sedang digunakan \\ \hline
+	6 & /actuator/metrics/\newline jvm.memory.max & GET & Menampilkan jumlah memori maksimum yang bisa digunakan \\ \hline
+	7 & /actuator/metrics/\newline jvm.memory.committed & GET & Menampilkan jumlah memori yang digunakan oleh JVM \\ \hline
+	8 & /actuator/health & GET & Menampilkan status kondisi kesehatan sistem basis data dan antrian pesan \\ \hline
+	9 & /actuator/env & GET & Menampilkan konfigurasi sistem \\ \hline
+	10 & /actuator/logfile & GET & Menampilkan isi \textit{log} \\ \hline
+\end{longtable}
