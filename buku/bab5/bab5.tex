@@ -420,19 +420,39 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Durabilitas}
-\par Pengujian durabilitas dilakukan untuk mengetahui apakah sistem tetap bekerja normal saat salah satu layanan mati. Pengujian dibagi menjadi 2 skenario, yaitu saat Sender APN dimatikan dan Sender FCM dimatikan.
+\par Pengujian durabilitas dilakukan untuk mengetahui apakah pesan yang sudah berada di sistem antrian pesan tetap dapat terkirim jika salah satu komponen aplikasi mati sementara. Pengujian dibagi menjadi 3 skenario, yaitu saat Kafka dimatikan, Sender APN dimatikan dan Sender FCM dimatikan.
+
+\subsubsection{Pengujian Mematikan Sementara Kafka}
+\par Pengujian mematikan sementara Kafka dilakukan dengan cara mematikan Kafka selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_kafka_mati}.
+\begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
+	\caption{Hasil Uji Mematikan Sementara Kafka} \label{t:nft_kafka_mati} \\ \hline
+	Kode & NFDT-01 \\ \hline
+	Nama & Pengujian Mematikan Sementara Kafka \\ \hline
+	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender FCM mati sementara \\ \hline
+	Kondisi Awal & Sistem dalam keadaan berjalan \\ \hline
+	Langkah Pengujian &  
+	\begin{enumerate}
+		\item Aktor membuat \textit{batch} baru lewat halaman kirim notifikasi pada modul manajemen.
+		\item Kafka menerima \textit{packet} dari \textit{batch}
+		\item Kafka dimatikan selama 5 menit.
+	\end{enumerate} \\ \hline
+	Hasil yang diharapkan & Notifikasi diterima oleh perangkat Android \\ \hline
+	Hasil yang diperoleh & Notifikasi diterima oleh perangkat Android \\ \hline
+	Hasil pengujian & Berhasil \\ \hline
+\end{longtable}
 
 \subsubsection{Pengujian Mematikan Sementara Sender APN}
 \par Pengujian mematikan sementara Sender APN dilakukan dengan cara mematikan Sender APN selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_apn_mati}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Sender APN} \label{t:nft_sender_apn_mati} \\ \hline
-	Kode & NFDT-01 \\ \hline
+	Kode & NFDT-02 \\ \hline
 	Nama & Pengujian Mematikan Sementara Sender APN \\ \hline
 	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender APN mati sementara \\ \hline
 	Kondisi Awal & Sistem dalam keadaan berjalan \\ \hline
 	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Aktor membuat \textit{batch} baru lewat halaman kirim notifikasi pada modul manajemen.
+		\item Kafka menerima \textit{packet} dari \textit{batch}
 		\item Sender APN dimatikan selama 5 menit.
 	\end{enumerate} \\ \hline
 	Hasil yang diharapkan & Notifikasi diterima oleh perangkat iOS \\ \hline
@@ -444,13 +464,14 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Pengujian mematikan sementara Sender FCM dilakukan dengan cara mematikan Sender FCM selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_fcm_mati}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Sender FCM} \label{t:nft_sender_fcm_mati} \\ \hline
-	Kode & NFDT-02 \\ \hline
+	Kode & NFDT-03 \\ \hline
 	Nama & Pengujian Mematikan Sementara Sender FCM \\ \hline
 	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender FCM mati sementara \\ \hline
 	Kondisi Awal & Sistem dalam keadaan berjalan \\ \hline
 	Langkah Pengujian &  
 	\begin{enumerate}
 		\item Aktor membuat \textit{batch} baru lewat halaman kirim notifikasi pada modul manajemen.
+		\item Kafka menerima \textit{packet} dari \textit{batch}
 		\item Sender FCM dimatikan selama 5 menit.
 	\end{enumerate} \\ \hline
 	Hasil yang diharapkan & Notifikasi diterima oleh perangkat Android \\ \hline
@@ -462,8 +483,8 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Evaluasi hasil pengujian membahas apakah kebutuhan fungsional dan non fungsional aplikasi sudah terpenuhi berdasarkan hasil pengujian yang dilakukan, penyebab kegagalan pada saat pengujian, serta perbandingan dengan aplikasi sebelumnya.
 
 \subsection{Evaluasi Hasil Pengujian Fungsional}
-\par Berdasarkan hasil uji, Aplikasi Push Notification Terpusat yang dibangun pada tugas akhir ini sudah memenuhi semua kebutuhan fungsional dan non fungsional yang ada. Rangkuman hasil uji untuk kebutuhan fungsional dapat dilihat pada Tabel \ref{t:eval_f}.
-\begin{longtable}{|p{1.5cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
+\par Berdasarkan hasil uji, dapat dikatakan bahwa aplikasi Push Notification Terpusat yang dibangun pada tugas akhir ini sudah memenuhi semua fungsionalitas dibutuhkan. Rangkuman kebutuhan fungsional serta pengujian yang dilakukan dapat dilihat pada Tabel \ref{t:eval_f}.
+\begin{longtable}{|p{1.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|}
 	\caption{Rangkuman Hasil Uji Fungsional} \label{t:eval_f} \\ \hline
 	\rowcolor{lightgray} Kode Kebutuhan & Nama Kebutuhan & Kode Uji & Hasil \\ \hline
 	F-01 & Pembuatan \textit{Packet} & FT-01 & Berhasil \\ \hline
@@ -476,27 +497,78 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	F-08 & Menampilkan \textit{Log} & FT-08 & Berhasil \\ \hline
 \end{longtable}
 
-\subsection{Evaluasi Hasil Pengujian Non Fungsional}
-%TODO
+\subsection{Evaluasi Perbandingan Hasil Pengujian Performa}
+\par Evaluasi hasil pengujian performa dilakukan dengan membandingkan hasil uji pada penelitian sebelumnya dengan yang didapatkan pada tugas akhir ini. Pada penelitian sebelumnya, performa diukur dengan menghitung rata-rata waktu yang dibutuhkan untuk mengirim \textit{request} ke layanan APNs dan FCM. Sebagai pembanding yang sepadan, performa pada tugas akhir ini akan diukur dengan menghitung rata-rata total waktu yang dibutuhkan untuk pembuatan dan pengiriman \textit{packet} ke layanan APNs dan FCM.
+\par Berdasarkan hasil uji, dapat dikatakan bahwa waktu yang dibutuhkan oleh sistem untuk mengirim notifikasi menjadi jauh lebih stabil dan cepat. Waktu rata-rata pengiriman cenderung stabil di kisaran 0,05 detik, berbeda dengan sebelumnya, dimana waktu rata-rata ikut bertambah seiring dengan bertambahnya jumlah notifikasi. Pada kasus uji pengiriman 2.000 notifikasi, sistem terbukti mampu mengirim notifikasi 136 kali lebih cepat dari sebelumnya.
+\par Peningkatan kestabilan disebabkan oleh pemecahan modul Engine menjadi Scheduler, Kafka, Sender APN, dan Sender FCM, sehingga pembagian sumber daya untuk proses penjadwalan, pengantrian, dan pengiriman menjadi lebih baik. Peningkatan kecepatan disebabkan oleh arsitektur antrian pesan yang digunakan oleh Kafka, yang memungkinkan pemrosesan data secara bersamaan dengan membagi antrian berdasarkan topik dan partisi.
+\par Rincian hasil uji performa dari penelitian sebelumnya dan yang dilakukan pada tugas akhir ini dapat dilihat pada Tabel \ref{t:performa-lama} dan \ref{t:performa-baru}.
+\begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|}
+	\caption{Rata-Rata Hasil Uji Performa Penelitian Sebelumnya} \label{t:performa-lama} \\ \hline
+	\rowcolor{lightgray} No & Jumlah Notifikasi & Rata-Rata per Notifikasi (detik) \\ \hline
+	1 & 100 & 0,334 \\ \hline
+	2 & 500 & 2,326 \\ \hline
+	3 & 1.000 & 4,664 \\ \hline
+	4 & 2.000 & 8,889 \\ \hline
+	5 & 3.000 & 10,552 \\ \hline
+\end{longtable}
+\begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|p{2.5cm}|}
+	\caption{Rata-Rata Hasil Uji Performa} \label{t:performa-baru} \\ \hline
+	\rowcolor{lightgray} No & Jumlah Notifikasi & Rata-Rata Total (menit) & Rata-Rata per Notifikasi (detik) \\ \hline
+	1 & 2.000 & 2,15 & 0,065 \\ \hline
+	2 & 20.000 & 17,5 & 0,053 \\ \hline
+	3 & 200.000 & 172,37 & 0,052 \\ \hline
+\end{longtable}
 
-\subsubsection{Evaluasi Hasil Pengujian Performa}
-%TODO
+\subsection{Evaluasi Perbandingan Hasil Pengujian Keandalan}
+\par Evaluasi hasil pengujian keandalan dilakukan dengan membandingkan hasil uji pada penelitian sebelumnya dengan yang didapatkan pada tugas akhir ini. Pada penelitian sebelumnya, keandalan diukur dengan menghitung seberapa banyak \textit{request} yang berhasil dikirimkan ke layanan APNs dan FCM. Sebagai pembanding yang sepadan, keandalan pada tugas akhir ini akan diukur dengan menghitung seberapa banyak \textit{packet} yang diterima oleh layanan APNs dan FCM.
+\par Berdasarkan hasil uji, dapat dikatakan bahwa tingkat keberhasilan pengiriman notifikasi menjadi jauh lebih baik dari sebelumnya. Aplikasi berhasil mengirim 200.000 notifikasi dengan tingkat keberhasilan 99,99 persen, yang berarti hanya ada 1 notifikasi yang gagal diterima oleh APNs. Sementara aplikasi pada penelitian sebelumnya hanya mampu mengirim 63,8 persen pesan dari 3.000 notifikasi yang dikirim.
+\par Peningkatan tingkat keberhasilan pengiriman notifikasi ini disebabkan oleh arsitektur antrian pesan yang digunakan oleh Kafka, yang menjamin bahwa hanya ada 1 \textit{consumer} yang dapat menggunakan antrian yang ada pada topik dan antrian yang sama, sehingga tidak ada \textit{consumer} yang berebut untuk mengambil pesan.
+\par Rincian hasil uji performa dari penelitian sebelumnya dan yang dilakukan pada tugas akhir ini dapat dilihat pada Tabel \ref{t:keandalan-lama} dan \ref{t:keandalan-baru}.
+\begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|}
+	\caption{Hasil Uji Keberhasilan pada Penelitian Sebelumnya} \label{t:keandalan-lama} \\ \hline
+	\rowcolor{lightgray} No & Jumlah Notifikasi & Tingkat Keberhasilan \\ \hline
+	1 & 100 & 100\% \\ \hline
+	2 & 500 & 100\% \\ \hline
+	3 & 1000 & 100\% \\ \hline
+	4 & 2.000 & 80,7\% \\ \hline
+	5 & 3.000 & 63,8\% \\ \hline
+\end{longtable}
+\begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|}
+	\caption{Hasil Uji Keberhasilan} \label{t:keandalan-baru} \\ \hline
+	\rowcolor{lightgray} No & Jumlah Notifikasi & Tingkat Keberhasilan \\ \hline
+	1 & 2.000 & 100\% \\ \hline
+	2 & 20.000 & 100\% \\ \hline
+	3 & 200.000 & 99,99\% \\ \hline
+\end{longtable}
 
-\subsubsection{Evaluasi Hasil Pengujian Keandalan}
-%TODO
+\subsection{Evaluasi Kegagalan pada Hasil Pengujian Keandalan}
+\par Pada pengujian keandalan, sebagian besar notifikasi gagal dikirim karena permintaan notifikasi ditolak oleh layanan APNs dan FCM karena dianggap \textit{spam} akibat terlalu banyak mengirim notifikasi ke satu perangkat. Selain itu, koneksi internet yang lambat atau terputus juga menjadi penyebab sebagian notifikasi gagal dikirim. Rincian \textit{error} dan penyebabnya dapat dilihat pada Tabel \ref{t:penyebab-gagal}.
+\begin{longtable}{|p{0.5cm}|p{4.5cm}|p{4cm}|}
+	\caption{Penyebab Kegagalan pada Hasil Uji Keandalan} \label{t:penyebab-gagal} \\ \hline
+	\rowcolor{lightgray} No & \textit{Error} & Penyebab \\ \hline
+	1 & ApnsClientException: TooManyRequests & APNs memblokir \textit{request} karena dianggap spam. \\ \hline
+	2 & IOException: Stream closed before a reply was received & Gagal menerima \textit{response}, disebabkan oleh koneksi lambat atau terputus. \\ \hline
+	3 & FirebaseMessagingException: The service is currently unavailable & FCM memblokir \textit{request} karena dianggap spam. \\ \hline
+\end{longtable}
 
-\subsubsection{Evaluasi Hasil Pengujian Ketersediaan}
-%TODO
+\subsection{Evaluasi Hasil Pengujian Ketersediaan}
+\par Evaluasi hasil pengujian ketersediaan dilakukan dengan menghitung jumlah server mengalami \textit{down} ketika sedang mengirim notifikasi dalam jumlah besar. Berdasarkan hasil uji, sistem tidak mengalami \textit{down} sama sekali saat digunakan untuk mengirim hingga 200.000 notifikasi.
+\par Tidak adanya \textit{down} ini disebabkan oleh penggunaan antrian pesan dalam pengiriman notifikasi. Dengan penggunaan antrian pesan, sistem hanya akan mengolah tugas yang mampu untuk dikerjakan, sehingga beban komputasi tidak akan melebihi kapasitas server. Rangkuman hasil uji ketersediaan dapat dilihat pada Tabel \ref{t:rangkuman-ketersediaan}.
+\begin{longtable}{|p{0.5cm}|p{3cm}|p{3cm}|}
+	\caption{Rangkuman Hasil Uji Ketersediaan} \label{t:rangkuman-ketersediaan} \\ \hline
+	\rowcolor{lightgray} No & Jumlah Notifikasi & Rata-Rata Jumlah \textit{Down} \\ \hline
+	1 & 2.000 & 0 \\ \hline
+	2 & 20.000 & 0 \\ \hline
+	3 & 200.000 & 0 \\ \hline
+\end{longtable}
 
-\subsubsection{Evaluasi Hasil Pengujian Durabilitas}
-%TODO
-
-% \begin{longtable}{|p{1.5cm}|p{2cm}|p{3cm}|p{1.5cm}|}
-%	\caption{Rangkuman Hasil Uji Non Fungsional} \label{t:eval_nf} \\ \hline
-%	\rowcolor{lightgray} Kode Kebutuhan & Aspek & Kode Uji & Hasil \\ \hline
-%	NF-01 & Performa & NFT-01, NFT-02, NFT-03 & Terpenuhi \\ \hline
-%	NF-02 & Keandalan & NFT-04, NFT-05, NFT-06, NFT-07, NFT-08, NFT-09 & Terpenuhi \\ \hline
-%	NF-03 & Ketersediaan & NFT-10, NFT-11, NFT-12 & Terpenuhi \\ \hline
-%	NF-04 & Durabilitas & NFT-13, NFT-14 & Terpenuhi \\ \hline
-%\end{longtable}
-
+\subsection{Evaluasi Hasil Pengujian Durabilitas}
+\par Evaluasi hasil pengujian durabilitas dilakukan dengan menghitung berapa banyak pesan yang tidak terkirim saat salah satu komponen yang ada di sistem dimatikan sementara.
+\par Berdasarkan hasil uji, \textit{packet} yang sudah disimpan di Kafka tetap berhasil terkirim meskipun Kafka, Sender APN, atau Sender FCM dimatikan saat proses pengiriman \textit{packet} sedang berlangsung. Rangkuman hasil uji dapat dilihat pada Tabel \ref{t:rangkuman-durabilitas}.
+\begin{longtable}{|p{0.5cm}|p{3.5cm}|p{2cm}|}
+	\caption{Rangkuman Hasil Uji Durabilitas} \label{t:rangkuman-durabilitas} \\ \hline
+	\rowcolor{lightgray} No & Komponen yang Mati & Hasil \\ \hline 
+	1 & Kafka & Berhasil \\ \hline
+	2 & Sender APN & Berhasil \\ \hline
+	3 & Sender FCM & Berhasil \\ \hline
+\end{longtable}
