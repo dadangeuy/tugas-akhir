@@ -323,9 +323,9 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Pengujian keandalan pengiriman \textit{packet} ke perangkat Android dilakukan untuk mengetahui tingkat keberhasilan pengiriman \textit{packet} ke layanan FCM dan perangkat Android berdasarkan jumlah \textit{packet} yang dikirim secara bersamaan.
 \par Metrik keberhasilan menggunakan jumlah \textit{packet} yang diterima oleh Sender FCM, FCM dan perangkat Android 1, 2, dan 3, dengan ketentuan sebagai berikut:
 \begin{enumerate}
-	\item Jumlah \textit{packet} yang diterima oleh Sender FCM berasal dari jumlah \textit{packet} yang berhasil atau gagal.
-	\item Jumlah \textit{packet} yang diterima oleh FCM berasal dari jumlah \textit{packet} yang berhasil atau gagal dengan \textit{error} FirebaseMessagingException.
-	\item Jumlah \textit{packet} yang diterima oleh perangkat Android berasal dari jumlah \textit{packet} yang berhasil.
+	\item Jumlah \textit{packet} yang diterima oleh Sender FCM adalah jumlah \textit{packet} yang berhasil atau gagal.
+	\item Jumlah \textit{packet} yang diterima oleh FCM adalah jumlah \textit{packet} yang berhasil atau gagal dengan \textit{error} FirebaseMessagingException.
+	\item Jumlah \textit{packet} yang diterima oleh perangkat Android adalah jumlah \textit{packet} yang berhasil.
 \end{enumerate}
 
 
@@ -462,7 +462,7 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 %TODO
 
 \subsection{Evaluasi Hasil Pengujian Fungsional}
-\par Berdasarkan hasil uji, Aplikasi Push Notification Terpusat yang dibangun pada tugas akhir ini sudah memenuhi semua kebutuhan fungsional dan non fungsional yang ada. Rangkuman hasil uji untuk kebutuhan fungsional dan non fungsional dapat dilihat pada Tabel \ref{t:eval_f} dan Tabel \ref{t:eval_nf}.
+\par Berdasarkan hasil uji, Aplikasi Push Notification Terpusat yang dibangun pada tugas akhir ini sudah memenuhi semua kebutuhan fungsional dan non fungsional yang ada. Rangkuman hasil uji untuk kebutuhan fungsional dapat dilihat pada Tabel \ref{t:eval_f}.
 \begin{longtable}{|p{1.5cm}|p{3cm}|p{1.5cm}|p{1.5cm}|}
 	\caption{Rangkuman Hasil Uji Fungsional} \label{t:eval_f} \\ \hline
 	\rowcolor{lightgray} Kode Kebutuhan & Nama Kebutuhan & Kode Uji & Hasil \\ \hline
