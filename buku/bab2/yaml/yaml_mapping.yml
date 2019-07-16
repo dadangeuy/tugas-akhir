@@ -1,0 +1,5 @@
+animal: pets
+pets:
+ - Cat
+ - Dog
+ - Goldfish
