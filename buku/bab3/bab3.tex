@@ -11,7 +11,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \subsubsection{Keandalan Antrian Pesan}
 \par Proses pengolahan pesan yang ada di antrian saat ini dilakukan dengan membuat beberapa \textit{thread} yang bertindak sebagai \textit{producer} dan \textit{consumer} dari antrian pesan. \textit{Thread} tersebut akan menambahkan dan mengambil pesan dari antrian secara bersamaan.
 \par Berdasarkan analisis yang penulis lakukan, struktur data \textit{linked list} yang digunakan oleh antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}.
-\par Konsekuensinya, bisa saja terjadi kasus \textit{race condition} yang menyebabkan pesan yang berada di antrian hilang tanpa ada \textit{error} yang terdeteksi oleh sistem. Potongan kode implementasi antrian pesan dapat dilihat pada \nameref{lampiran:queue_service}.
+\par Konsekuensinya, bisa saja terjadi kasus \textit{race condition} yang menyebabkan pesan yang berada di antrian hilang tanpa ada \textit{error} yang terdeteksi oleh sistem. \textit{Race condition} adalah kondisi dimana beberapa proses mengakses sumber daya yang sama pada saat bersamaan, sehingga hasil akhir bergantung pada proses mana yang terakhir selesai dieksekusi. Potongan kode implementasi antrian pesan dapat dilihat pada \nameref{lampiran:queue_service}.
 \par Salah satu solusi yang dapat digunakan untuk menyelesaikan masalah ini adalah dengan menggunakan Kafka sebagai perantara pesan. Arsitektur Kafka membagi antrian pesan berdasarkan topik dan partisi. Antrian pesan yang berada di satu topik dan partisi akan diolah secara \textit{synchronous}, dan jika berbeda topik atau partisi akan diolah secara \textit{asynchronous}. Arsitektur Kafka menjamin setiap antrian pesan hanya akan digunakan oleh satu \textit{producer} dan \textit{consumer} pada satu waktu, sehingga kasus \textit{race condition} dapat dihindarkan.
 
 \subsubsection{Durabilitas Penyimpanan Antrian}
@@ -261,7 +261,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Untuk menjalankan sistem, modul Push Notification Terpusat, Kafka, dan Zookeeper akan dijalankan menggunakan Docker, dan SQL Server menggunakan server basis data ITS. Secara garis besar, aplikasi ini memiliki rancangan arsitektur yang dapat dilihat pada Gambar \ref{img:arsitektur_baru}.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{bab3/img/arsitektur-push_notification_terpusat_baru.jpg}
-    \caption{Arsitektur Pengiriman Notifikasi} \label{img:arsitektur_baru}
+    \caption{Rancangan Arsitektur Push Notification Terpusat} \label{img:arsitektur_baru}
 \end{figure}
 
 \subsection{Perancangan Basis Data}
