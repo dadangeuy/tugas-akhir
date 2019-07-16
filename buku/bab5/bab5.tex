@@ -211,6 +211,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 
 \subsubsection{Pengujian Performa untuk 2.000 Packet}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 perangkat iOS dan 1.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-2k}.
+\clearpage
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 	\caption{Hasil Uji Performa Pengiriman 2.000 \textit{Packet}} \label{t:performa-2k} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
@@ -237,6 +238,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 
 \subsubsection{Pengujian Performa untuk 200.000 Packet}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 100.000 perangkat iOS dan 100.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-200k}.
+\clearpage
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 \caption{Hasil Uji Performa Pengiriman 200.000 \textit{Packet}} \label{t:performa-200k} \\ \hline
 \rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
@@ -345,6 +347,7 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 
 \paragraph{Pengujian Keandalan Pengiriman 10.000 Packet ke Perangkat Android}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 10.000 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-10k}.
+\clearpage
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
 	\caption{Hasil Uji Keandalan Pengiriman 10.000 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-10k} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
@@ -370,6 +373,7 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	NFAT-24 & 100.000 & 100.000 & 33.333 & 33.333 & 33.333 \\ \hline
 	NFAT-25 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
 \end{longtable}
+\clearpage
 \begin{longtable}{|p{1.5cm}|p{1.5cm}|p{5cm}|}
 	\caption{\textit{Error} pada Hasil Uji Keandalan Pengiriman 100.000 \textit{Packet} ke Perangkat Android} \label{t:error-keandalan-android-100k} \\ \hline
 	\rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
@@ -524,7 +528,7 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Berdasarkan hasil uji, dapat dikatakan bahwa tingkat keberhasilan pengiriman notifikasi menjadi jauh lebih baik dari sebelumnya. Aplikasi berhasil mengirim 200.000 notifikasi dengan tingkat keberhasilan 99,99 persen, yang berarti hanya ada 1 notifikasi yang gagal diterima oleh APNs. Sementara aplikasi pada penelitian sebelumnya hanya mampu mengirim 63,8 persen pesan dari 3.000 notifikasi yang dikirim.
 \par Peningkatan tingkat keberhasilan pengiriman notifikasi ini disebabkan oleh arsitektur antrian pesan yang digunakan oleh Kafka, yang menjamin bahwa hanya ada 1 \textit{consumer} yang dapat menggunakan antrian yang ada pada topik dan antrian yang sama, sehingga tidak ada \textit{consumer} yang berebut untuk mengambil pesan.
 \par Rincian hasil uji performa dari penelitian sebelumnya dan yang dilakukan pada tugas akhir ini dapat dilihat pada Tabel \ref{t:keandalan-lama} dan \ref{t:keandalan-baru}.
-\begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|}
+\begin{longtable}{|p{0.5cm}|p{3cm}|p{4cm}|}
 	\caption{Hasil Uji Keberhasilan pada Penelitian Sebelumnya} \label{t:keandalan-lama} \\ \hline
 	\rowcolor{lightgray} No & Jumlah Notifikasi & Tingkat Keberhasilan \\ \hline
 	1 & 100 & 100\% \\ \hline
@@ -533,7 +537,7 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	4 & 2.000 & 80,7\% \\ \hline
 	5 & 3.000 & 63,8\% \\ \hline
 \end{longtable}
-\begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|}
+\begin{longtable}{|p{0.5cm}|p{3cm}|p{4cm}|}
 	\caption{Hasil Uji Keberhasilan} \label{t:keandalan-baru} \\ \hline
 	\rowcolor{lightgray} No & Jumlah Notifikasi & Tingkat Keberhasilan \\ \hline
 	1 & 2.000 & 100\% \\ \hline
@@ -565,6 +569,7 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \subsection{Evaluasi Hasil Pengujian Durabilitas}
 \par Evaluasi hasil pengujian durabilitas dilakukan dengan menghitung berapa banyak pesan yang tidak terkirim saat salah satu komponen yang ada di sistem dimatikan sementara.
 \par Berdasarkan hasil uji, \textit{packet} yang sudah disimpan di Kafka tetap berhasil terkirim meskipun Kafka, Sender APN, atau Sender FCM dimatikan saat proses pengiriman \textit{packet} sedang berlangsung. Rangkuman hasil uji dapat dilihat pada Tabel \ref{t:rangkuman-durabilitas}.
+\clearpage
 \begin{longtable}{|p{0.5cm}|p{3.5cm}|p{2cm}|}
 	\caption{Rangkuman Hasil Uji Durabilitas} \label{t:rangkuman-durabilitas} \\ \hline
 	\rowcolor{lightgray} No & Komponen yang Mati & Hasil \\ \hline 

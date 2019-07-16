@@ -81,6 +81,7 @@
 	\label{img:contoh-hasil-fcm}
 \end{figure}
 \par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat Android dan Web akan dikirim ke layanan FCM oleh Push Notification Terpusat.
+\clearpage
 
 % \section{Microsoft SQL Server}
 % \par Microsoft SQL Server atau SQL Server adalah sistem basis data relasional yang bahasa pemrograman utamanya menggunakan MS-SQL dan Transact-SQL \cite{sqlserver-online}.
@@ -143,8 +144,9 @@
 \section{Actuator}
 \par Actuator berisi sekumpulan fitur tambahan untuk pemantauan dan pengaturan aplikasi yang sudah ditahap \textit{production}. Aplikasi bisa dipantau dan diatur dengan menggunakan \textit{endpoint} HTTP atau JMX \cite{actuator-online}.
 \par Pada tugas akhir ini, Actuator merupakan pustaka yang digunakan dalam implementasi pemantauan Push Notification Terpusat. Fitur-fitur Actuator yang akan digunakan pada Push Notification Terpusat dapat dilihat pada Tabel \ref{t:fitur-actuator}.
+\clearpage
 \begin{longtable}{|p{2cm}|p{6cm}|}
-	\caption{Fitur Actuator yang Digunakan pada Push Notification Terpusat} \label{t:fitur-actuator} \\ \hline
+	\caption{Fitur Actuator yang Digunakan} \label{t:fitur-actuator} \\ \hline
  	\rowcolor{lightgray} Nama Fitur & Deskripsi \\ \hline
 	\textit{Metrics} & Untuk menampilkan metrik yang berhubungan dengan sumber daya sistem yang terpakai, seperti CPU dan Memori. \\ \hline
 	\textit{Health} & Untuk menampilkan status kesehatan aplikasi, dan layanan-layanan yang berhubungan dengan aplikasi, seperti sistem basis data dan sistem antrian pesan. \\ \hline
@@ -161,6 +163,7 @@
 		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_object.jpg}
 		\caption{Struktur JSON \textit{Object}}
 	\end{figure}
+	\clearpage
 	\item \textit{Array}
 	\par Struktur \textit{array} direpresentasikan sebagai pasangan kurung siku, berisi beberapa nilai, yang dipisahkan dengan koma.
 	\begin{figure}[H]
@@ -195,6 +198,7 @@
 \section{Docker}
 \par Docker adalah \textit{platform} terbuka untuk membangun, mengirim, dan menjalankan aplikasi. Docker memungkinkan pengembang untuk memisahkan kebutuhan infrastruktur dari aplikasi, sehingga proses pengembangan aplikasi bisa lebih cepat \cite{docker-online}.
 \par Pada tugas akhir ini, Docker akan digunakan untuk menjalankan Push Notification Terpusat, Kafka, dan Zookeeper. Perbandingan penggunaan Docker dapat dilihat pada Tabel \ref{t:perbandingan_docker}, dan arsitektur Docker pada Gambar \ref{img:arsitektur-docker}.
+\clearpage
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Penggunaan Docker} \label{t:perbandingan_docker} \\ \hline
 	\rowcolor{lightgray} & Tanpa Docker & Dengan Docker \\ \hline
@@ -228,6 +232,7 @@
 	\item \textit{Mapping}
 	\par \textit{Mapping} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai dalam bentuk pasangan nama dan nilai.
 \end{enumerate}
+\clearpage
 \lstinputlisting[label=yaml:scalar, caption=Contoh Nilai \textit{Scalar} pada YAML] {bab2/yaml/yaml_scalar.yml}
 \lstinputlisting[label=yaml:sequence, caption=Contoh Nilai Sequence pada YAML] {bab2/yaml/yaml_sequence.yml}
 \lstinputlisting[label=yaml:mapping, caption=Contoh Nilai Mapping pada YAML] {bab2/yaml/yaml_mapping.yml}

@@ -93,6 +93,8 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{longtable}
 }
 
+\clearpage
+
 \paragraph{Pembuatan Packet}
 \par Pada kasus ini, Scheduler akan mencari batch yang belum dan boleh dibuatkan \textit{packet} secara berkala. Jika ada, Scheduler akan membuatkan \textit{packet} untuk \textit{batch} tersebut. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pembuatan_packet}.
 \tableUcDesc
@@ -111,6 +113,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{enumerate}
 }
 {-}
+\clearpage
 
 \paragraph{Menambahkan Packet ke Antrian}
 \par Pada kasus ini, Scheduler akan mencari \textit{packet} yang belum dan sudah waktunya dikirim secara berkala. Jika ada, Scheduler akan menambahkan \textit{packet} tersebut ke antrian pesan dengan topik yang dibagi berdasarkan jenis perangkat penerima. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menambahkan_packet_ke_antrian}.
@@ -131,6 +134,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{enumerate}
 }
 {-}
+\clearpage
 
 \paragraph{Pengiriman Packet ke APNs}
 \par Pada kasus ini, Sender APN akan menunggu sistem antrian pesan untuk mengirimkan \textit{packet} yang ada di antrian topik iOS. Setelah packet diterima, packet akan dikirimkan ke layanan APNs. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_apns}.
@@ -150,6 +154,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{enumerate}
 }
 {-}
+\clearpage
 
 \paragraph{Pengiriman Packet ke FCM}
 \par Pada kasus ini, Sender FCM akan menunggu sistem antrian pesan untuk mengirimkan \textit{packet} yang ada di antrian topik Android dan Web. Setelah \textit{packet} diterima, \textit{packet} akan dikirimkan ke layanan FCM. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_fcm}.
@@ -169,6 +174,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{enumerate}
 }
 {-}
+\clearpage
 
 \paragraph{Menampilkan Penggunaan Sumber Daya}
 \par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan aplikasi. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_penggunaan_sumber_daya}.
@@ -187,6 +193,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{enumerate}
 }
 {-}
+\clearpage
 
 \paragraph{Menampilkan Status Kesehatan}
 \par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan status kesehatan aplikasi dan layanan yang terhubung dengan aplikasi. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_status_kesehatan}.
@@ -205,6 +212,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{enumerate}
 }
 {-}
+\clearpage
 
 \paragraph{Menampilkan Konfigurasi}
 \par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan konfigurasi aplikasi. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_konfigurasi}.
@@ -224,6 +232,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 	\end{enumerate}
 }
 {-}
+\clearpage
 
 \paragraph{Menampilkan Log}
 \par Pada kasus ini, Scheduler, Sender APN, dan Sender FCM dapat menampilkan \textit{log} yang dikeluarkan oleh aplikasi dengan menggunakan REST API. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_menampilkan_log}.
@@ -242,6 +251,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \end{enumerate}
 }
 {-}
+\clearpage
 
 \section{Perancangan Sistem}
 \par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan arsitektur, basis data, antrian pesan, dan proses.
@@ -428,7 +438,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Tabel Packet digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_packet}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Packet} \label{tabel_packet} \\ \hline
-	{Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+	\rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
 	Packet ID & uuid & ID tabel \\ \hline
 	Batch ID & uuid & ID \textit{batch} yang digunakan \\ \hline
 	Device Token ID & uuid & ID perangkat penerima notifikasi \\ \hline
@@ -462,9 +472,10 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \subsubsection{Proses Pembuatan Packet}
 \par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat. Proses pembuatan dapat dilihat di diagram alir pada Gambar \ref{flowchart_pembuatan_packet}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.6\textwidth]{bab3/img/flowchart-pembuatan_packet.jpg}
+	\centering\includegraphics[width=0.8\textwidth]{bab3/img/flowchart-pembuatan_packet.jpg}
 	\caption{Diagram Alir Proses Pembuatan Packet} \label{flowchart_pembuatan_packet}
 \end{figure}
+\clearpage
 
 \subsubsection{Proses Menambahkan Packet ke Antrian}
 \label{3:proses_menambahkan_packet_ke_antrian}
@@ -474,28 +485,32 @@ Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (
     \centering\includegraphics[width=1\textwidth]{bab3/img/flowchart-menambahkan_packet_ke_antrian.jpg}
     \caption{Diagram Alir Proses Menambahkan Packet ke Antrian} \label{flowchart_menambahkan_packet_ke_antrian}
 \end{figure}
+\clearpage
 
 \subsubsection{Proses Pengiriman Packet ke APNs}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "ios" ke perangkat pengguna yang berbasis iOS lewat layanan APNs. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada
 Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 \begin{figure}[H]
-    \centering\includegraphics[width=0.5\textwidth]{bab3/img/flowchart-pengiriman_packet_ke_apns.jpg}
+    \centering\includegraphics[width=0.6\textwidth]{bab3/img/flowchart-pengiriman_packet_ke_apns.jpg}
     \caption{Diagram Alir Proses Pengiriman Packet ke APNs} \label{flowchart_pengiriman_packet_ke_apns}
 \end{figure}
+\clearpage
 
 \subsubsection{Proses Pengiriman Packet ke FCM}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada Gambar \ref{flowchart_pengiriman_packet_ke_fcm}.
 \begin{figure}[H]
-    \centering\includegraphics[width=0.5\textwidth]{bab3/img/flowchart-pengiriman_packet_ke_fcm.jpg}
+    \centering\includegraphics[width=0.6\textwidth]{bab3/img/flowchart-pengiriman_packet_ke_fcm.jpg}
     \caption{Diagram Alir Proses Pengiriman Packet ke FCM} \label{flowchart_pengiriman_packet_ke_fcm}
 \end{figure}
+\clearpage
 
 \subsubsection{Proses Menampilkan Penggunaan Sumber Daya}
 \par Proses ini bertujuan untuk menampilkan penggunaan sumber daya (seperti CPU dan Memori) yang digunakan oleh aplikasi. Proses menampilkan penggunaan sumber daya dapat dilihat di diagram alir pada Gambar \ref{fc:sumber_daya}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.2\textwidth]{bab3/img/flowchart-menampilkan_penggunaan_sumber_daya.jpg}
+	\centering\includegraphics[width=0.4\textwidth]{bab3/img/flowchart-menampilkan_penggunaan_sumber_daya.jpg}
 	\caption{Diagram Alir Proses Menampilkan Penggunaan Sumber Daya} \label{fc:sumber_daya}
 \end{figure}
+\clearpage
 
 \subsubsection{Proses Menampilkan Status Kesehatan}
 \par Proses ini bertujuan untuk menampilkan status kesehatan aplikasi dengan layanan-layanan yang dibutuhkan oleh aplikasi, yaitu sistem basis data dan sistem antrian pesan. Proses menampilkan status kesehatan dapat di diagram alir pada Gambar \ref{fc:kesehatan}.
@@ -503,20 +518,23 @@ Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 	\centering\includegraphics[width=0.5\textwidth]{bab3/img/flowchart-menampilkan_kesehatan.jpg}
 	\caption{Diagram Alir Proses Menampilkan Status Kesehatan} \label{fc:kesehatan}
 \end{figure}
+\clearpage
 
 \subsubsection{Proses Menampilkan Konfigurasi}
 \par Proses ini bertujuan untuk menampilkan konfigurasi aplikasi dan lingkungan aplikasi yang digunakan untuk menjalankan aplikasi. Proses menampilkan konfigurasi dapat dilihat di diagram alir pada Gambar \ref{fc:konfigurasi}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.2\textwidth]{bab3/img/flowchart-menampilkan_konfigurasi.jpg}
+	\centering\includegraphics[width=0.4\textwidth]{bab3/img/flowchart-menampilkan_konfigurasi.jpg}
 	\caption{Diagram Alir Proses Menampilkan Konfigurasi} \label{fc:konfigurasi}
 \end{figure}
+\clearpage
 
 \subsubsection{Menampilkan Log}
 \par Proses ini bertujuan untuk menampilkan \textit{log} yang dikeluarkan oleh aplikasi. Proses menampilkan \textit{log} dapat dilihat di diagram alir pada Gambar \ref{fc:log}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.2\textwidth]{bab3/img/flowchart-menampilkan_log.jpg}
+	\centering\includegraphics[width=0.4\textwidth]{bab3/img/flowchart-menampilkan_log.jpg}
 	\caption{Diagram Alir Proses Menampilkan Log} \label{fc:log}
 \end{figure}
+\clearpage
 
 \subsection{Perancangan API Endpoint}
 \par Pemantauan Scheduler, Sender APN, dan Sender FCM menggunakan pustaka Actuator. Rincian API Endpoint yang digunakan untuk melihat hasil pemantauan dapat dilihat pada Tabel \ref{t:rancangan_api}.
