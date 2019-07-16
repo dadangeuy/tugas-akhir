@@ -153,7 +153,44 @@
 \end{longtable}
 
 \section{JSON}
-\par JSON adalah format pertukaran data yang ringan, berbasis teks, dan independen \cite{json-online}. Pada tugas akhir ini, JSON merupakan format pertukaran data yang digunakan oleh Kafka untuk menyimpan data, dan pustaka Actuator untuk menampilkan \textit{response}.
+\par JSON adalah format pertukaran data yang ringan, berbasis teks, dan independen. Nilai pada JSON dapat berupa \textit{object}, \textit{array}, \textit{number}, \textit{string}, \textit{true}, \textit{false}, atau \textit{null}. Struktur yang digunakan JSON untuk mengekspresikan nilai adalah sebagai berikut:
+\begin{enumerate}
+	\item \textit{Object}
+	\par Struktur \textit{object} direpresentasikan sebagai pasangan kurung kurawal, berisi beberapa pasangan nama dan nilai.
+	\begin{figure}[H]
+		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_object.jpg}
+		\caption{Struktur JSON \textit{Object}}
+	\end{figure}
+	\item \textit{Array}
+	\par Struktur \textit{array} direpresentasikan sebagai pasangan kurung siku, berisi beberapa nilai, yang dipisahkan dengan koma.
+	\begin{figure}[H]
+		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_array.jpg}
+		\caption{Struktur JSON \textit{Array}}
+	\end{figure}
+	\item \textit{Number}
+	\par Struktur \textit{number} terdiri dari urutan bilangan desimal tanpa nol didepan. Nilai dapat memiliki tanda - dan + didepan, dan bagian pecahan diawali dengan titik. Bilangan yang tidak bisa direpresentasikan kedalam urutan bilangan desimal, seperti \textit{infinity} dan \textit{NaN}, tidak diizinkan.
+	\begin{figure}[H]
+		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_number.jpg}
+		\caption{Struktur JSON \textit{Number}}
+	\end{figure}
+	\item \textit{String}
+	\par Struktur \textit{string} direpresentasikan sebagai urutan karakter \textit{unicode} yang dibungkus dengan tanda kutip. Terdapat beberapa karakter yang harus di \textit{escape} agar dapat digunakan, yaitu:
+	\begin{enumerate}
+		\item \textbackslash " untuk karakter " (U+0022).
+		\item \textbackslash\textbackslash\space untuk karakter \textbackslash\space (U+005C).
+		\item \textbackslash / untuk karakter / (U+002F).
+		\item \textbackslash b untuk karakter \textit{backspace} (U+0008).
+		\item \textbackslash f untuk karakter \textit{form feed} (U+000C).
+		\item \textbackslash n untuk karakter \textit{line feed} (U+000A).
+		\item \textbackslash r untuk karakter \textit{return} (U+000D).
+		\item \textbackslash t untuk karakter tabulasi (U+0009).
+	\end{enumerate}
+	\begin{figure}[H]
+		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_string.jpg}
+		\caption{Struktur JSON \textit{String}}
+	\end{figure}
+\end{enumerate}
+\par Pada tugas akhir ini, JSON merupakan format pertukaran data yang digunakan oleh Kafka untuk menyimpan data, dan pustaka Actuator untuk menampilkan \textit{response}.
 
 \section{Docker}
 \par Docker adalah \textit{platform} terbuka untuk membangun, mengirim, dan menjalankan aplikasi. Docker memungkinkan pengembang untuk memisahkan kebutuhan infrastruktur dari aplikasi, sehingga proses pengembangan aplikasi bisa lebih cepat \cite{docker-online}.
