@@ -19,8 +19,9 @@
 \noindent\textbf{Abstrak} \\
 \itshape
 \par Push notification adalah pesan yang muncul di perangkat pengguna lewat aplikasi yang terpasang dalam perangkat tersebut. Push notification pada umumnya digunakan untuk menyebarkan informasi seperti promo, pengingat pembayaran, berita terbaru, dan sebagainya.
-\par Pengiriman push notification di Institut Teknologi Sepuluh Nopember menggunakan layanan aplikasi Push Notification Terpusat. Push Notification Terpusat adalah layanan pengiriman push notification berbasis web yang dikembangkan untuk memudahkan manajemen dan penyebaran informasi ke pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember.
-\par Pada tugas akhir ini, Push Notification Terpusat akan dikembangkan dengan menggunakan Kafka sebagai message queue. Aplikasi akan diimplementasikan dengan bahasa pemrograman Java dan kerangka kerja Spring.
+\par Pengiriman push notification di Institut Teknologi Sepuluh Nopember menggunakan aplikasi Push Notification Terpusat. Push Notification Terpusat adalah layanan pengiriman push notification berbasis web yang dikembangkan untuk memudahkan manajemen dan penyebaran informasi ke pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember.
+\par Pengiriman push notification dilakukan dengan cara mengirim request HTTP ke layanan Apple Push Notification Service dan Firebase Cloud Messaging. Karena jumlah push notification yang dikirim bisa sangat banyak, Push Notification Terpusat menggunakan arsitektur message queue untuk mencegah sistem kehabisan sumber daya.
+\par Berdasarkan hasil uji, message queue yang digunakan Push Notification Terpusat hanya mampu menangani sekitar 1.500 push notification. Pada tugas akhir ini, Push Notification Terpusat akan dikembangkan dengan menggunakan Kafka sebagai message queue. Aplikasi akan diimplementasikan dengan bahasa pemrograman Java dan kerangka kerja Spring.
 \par Pengujian pada tugas akhir ini meliputi pengujian fungsional dan non fungsional dengan menggunakan metode \textit{blackbox}. Dari hasil uji, sistem yang dibuat dapat memenuhi kebutuhan fungsional yang ada di aplikasi sebelumnya dengan performa, keandalan, ketersediaan, dan durabilitas yang lebih baik dari sebelumnya.
 
 \vspace*{1em}
@@ -48,7 +49,8 @@
 \itshape
 \par Push notification is a message that shown in user device using an installed application inside the device. Push notification usually is used to distribute information like promo, payment reminder, new news, et cetera.
 \par Institut Teknologi Sepuluh Nopember use Centralized Push Notification application to send \textit{push notification}. Centralized Push Notification is a push notification management service based on web platform, developed to simplify management and distributing information to user of application in Institut Teknologi Sepuluh Nopember.
-\par In this undergraduate thesis, writer will improve Centralized Push Notification using Kafka as message queue. The application will be implemented in Java as programming language and Spring as framework.
+\par Push notification delivery is done by sending an HTTP request to Apple Push Notification Service and Firebase Cloud Messaging. Because of the amount of push notification sent can be very large, Centralized Push Notification use message queue architecture to prevent the system from running out of resource.
+\par Based on the test result, the message queue used by Centralized Push Notification is only able to handle aroung 1.500 push notification. In this undergraduate thesis, writer will improve Centralized Push Notification using Kafka as message queue. The application will be implemented in Java as programming language and Spring as framework.
 \par Testing in this undergraduate thesis include functional and non functional test using blackbox method. From the test result, the new system can fulfill all functional requirement from the old system, with better performance, realibility, availability, and durability.
 
 \vspace*{1em}
