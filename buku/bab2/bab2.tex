@@ -29,7 +29,7 @@
 	RT004 & 2000 & 80,7\% & 8,889 \\ \hline
 	RT005 & 3000 & 63,8\% & 10,552 \\ \hline
 \end{longtable}
-\par Berdasarkan hasil uji, dapat disimpulkan bahwa aplikasi yang dibangun sebelumnya hanya dapat menangani hingga seribu pengguna. Jumlah ini dianggap belum dapat memenuhi kebutuhan, karena target pengguna aplikasi ini adalah mahasiswa, dosen, dan karyawan yang ada di ITS.
+\par Berdasarkan hasil uji, dapat dikatakan bahwa aplikasi yang dibangun sebelumnya hanya dapat menangani sekitar 1.500 pengguna. Jumlah ini dianggap belum dapat memenuhi kebutuhan, karena target pengguna aplikasi ini adalah mahasiswa, dosen, dan karyawan yang ada di ITS.
 \par Oleh karena itu, pengembangan yang dilakukan pada tugas akhir ini akan berfokus pada perbaikan modul Engine untuk meningkatkan keandalan pengiriman notifikasi.
 
 \section{Apple Push Notification Service}
@@ -56,16 +56,16 @@
 
 \section{Firebase Cloud Messaging}
 \par Firebase Cloud Messaging atau FCM adalah solusi pengiriman pesan lintas platform yang dapat diandalkan untuk mengirimkan pesan dan dapat digunakan tanpa biaya. FCM memiliki kemampuan sebagai berikut \cite{fcm-online}:
-\begin{enumerate}
+\begin{enumerate}[listparindent=2.5em]
 	\item Mengirimkan notifikasi atau pesan data
 	\par Mengirim pesan notifikasi yang ditampilkan kepada pengguna. Atau mengirim pesan data dan menentukan sepenuhnya apa yang terjadi dalam kode aplikasi.
 	\item Penargetan pesan serbaguna
-	\par Mendistribusikan pesan ke aplikasi klien dengan salah satu dari tiga cara — ke satu perangkat, ke grup perangkat, atau ke perangkat yang berlangganan topik.
+	\par Mendistribusikan pesan ke aplikasi klien dengan salah satu dari tiga cara, ke satu perangkat, ke grup perangkat, atau ke perangkat yang berlangganan topik.
 	\item Mengirim pesan dari aplikasi \textit{client}
 	\par Mengirim notifikasi, chat, dan pesan lain dari perangkat ke server melalui saluran koneksi FCM yang andal dan hemat baterai.
 \end{enumerate}
 \par Untuk mengimplementasikan FCM, pengembang harus mengikuti langkah-langkah berikut:
-\begin{enumerate}
+\begin{enumerate}[listparindent=2.5em]
 	\item Menyiapkan FCM SDK
 	\par Menyiapkan Firebase dan FCM pada aplikasi sesuai petunjuk penyiapan untuk \textit{platform} (Android atau Web).
 	\item Mengembangkan aplikasi klien
@@ -125,21 +125,31 @@
 \par Pada tugas akhir ini, Zookeeper merupakan layanan yang dibutuhkan oleh Kafka untuk beroperasi. Kafka menggunakan Zookeeper untuk mengatur koordinasi \textit{producer} dan \textit{consumer} dengan antrian pesan.
 
 \section{Java}
-\par Java adalah bahasa pemrograman yang umum, konkuren, berbasis kelas, dan berbasis objek \cite{java-online}. Pada tugas akhir ini, implementasi Push Notification Terpusat akan menggunakan bahasa pemrograman Java. Alasan pemilihan Java adalah sebagai berikut:
-\begin{enumerate}
-	\item Bahasa yang digunakan pada Push Notification Terpusat.
-	\item Mudah dan cepat untuk dikembangkan.
-	\item Dukungan pustaka untuk Kafka dan SQL Server.
+\par Java adalah bahasa pemrograman yang umum, konkuren, berbasis kelas, dan berbasis objek \cite{java-online}. Beberapa fitur Java yang akan digunakan dalam implementasi tugas akhir ini adalah sebagai berikut:
+\begin{enumerate}[listparindent=2.5em]
+	\item Anotasi
+	\par Anotasi adalah penanda untuk memberikan informasi tambahan tentang program. Beberapa contoh penggunaan anotasi adalah untuk dokumentasi program, memberi informasi \textit{error} ke compiler, serialisasi data, dan \textit{mapping} kelas dengan basis data. 
+	\par Penulisan anotasi diawali dengan karakter '@', nama anotasi, dan pasangan nama-nilai yang dibungkus dengan tanda kurung. Contoh penggunaan anotasi dapat dilihat pada Kode Sumber \ref{java:annotation}.
+	\item Lambda
+	\par Lambda adalah ekspresi untuk inisiasi interface fungsional (kelas interface dengan satu fungsi abstrak). Lambda digunakan untuk implementasi fungsi tanpa harus membuat kelas, yang dapat diperlakukan seperti objek.
+	\par Penulisan lambda diawali dengan parameter fungsi yang dibungkus dengan tanda kurung, karakter '->', dan implementasi fungsi yang dibungkus dengan kurung kurawal. Contoh penggunaan lambda dapat dilihat pada Kode Sumber \ref{java:lambda}.
 \end{enumerate}
+\lstinputlisting[label=java:annotation, caption=Contoh Penggunaan Anotasi pada Java, language=Java] {bab2/java/annotation.java}
+\lstinputlisting[label=java:lambda, caption=Contoh Penggunaan Lambda pada Java, language=Java] {bab2/java/lambda.java}
 
 \section{Spring}
-\par Spring adalah kerangka kerja yang menyediakan dukungan infrastruktur lengkap untuk mengembangkan aplikasi Java \cite{spring-online}. Pada tugas akhir ini, implementasi Push Notification Terpusat akan menggunakan bantuan kerangka kerja Spring. Alasan pemilihan Spring adalah sebagai berikut:
-\begin{enumerate}
-	\item Memiliki fitur \textit{Dependency Injection}, sehingga proses inisialisasi objek disembunyikan didalam kerangka kerja.
-	\item Memiliki fitur \textit{Object Relational Mapping}, sehingga model kelas yang ada di implementasi sistem dapat terintegrasi dengan tabel yang ada di sistem basis data.
-	\item Dukungan pustaka untuk Kafka dan SQL Server.
-	\item Dukungan pustaka Actuator yang dapat digunakan untuk \textit{monitoring} aplikasi.
+\par Spring adalah kerangka kerja yang menyediakan dukungan infrastruktur lengkap untuk mengembangkan aplikasi Java \cite{spring-online}. Beberapa fitur Spring yang akan digunakan dalam implementasi tugas akhir ini adalah sebagai berikut:
+\begin{enumerate}[listparindent=2.5em]
+	\item \textit{Dependency Injection}
+	\par \textit{Dependency injection} atau DI adalah proses untuk mendefinisikan objek dan dependensinya (objek lain yang dibutuhkan oleh objek tersebut). DI digunakan untuk memisahkan proses inisiasi objek dari proses bisnis, sehingga baris kode menjadi lebih rapih.
+	\par Pada kerangka kerja Spring, implementasi DI adalah dengan menambahkan objek yang dibutuhkan ke \textit{constructor} atau \textit{setter} kelas. Contoh implementasi dapat dilihat pada Kode Sumber \ref{java:di-constructor}.
+	\item \textit{Scheduling}
+	\par \textit{Scheduling} adalah proses untuk mendefinisikan kapan sebuah fungsi akan dijalankan secara periodik. \textit{Scheduling} digunakan untuk proses-proses yang dilakukan berulang kali.
+	\par Pada kerangka kerja Spring, implementasi \textit{scheduling} adalah dengan menambahkan anotasi @Scheduled disebuah fungsi, dengan parameter berapa lama waktu yang dibutuhkan untuk menjalankan fungsi tersebut kembali. Contoh implementasi dapat dilihat pada Kode Sumber \ref{java:scheduling}.
 \end{enumerate}
+\lstinputlisting[label=java:di-constructor, caption=Contoh Implementasi \textit{Dependency Injection} pada Spring, language=Java] {bab2/java/di-constructor.java}
+\lstinputlisting[label=java:scheduling, caption=Contoh Implementasi Scheduling pada Spring, language=Java] {bab2/java/scheduling.java}
+% DI, @Component, @Service, @Transactional, @Scheduled, @Cacheable, @KafkaListeners, Actuator
 
 \section{Actuator}
 \par Actuator berisi sekumpulan fitur tambahan untuk pemantauan dan pengaturan aplikasi yang sudah ditahap \textit{production}. Aplikasi bisa dipantau dan diatur dengan menggunakan \textit{endpoint} HTTP atau JMX \cite{actuator-online}.
@@ -171,7 +181,7 @@
 		\caption{Struktur JSON \textit{Array}}
 	\end{figure}
 	\item \textit{Number}
-	\par Struktur \textit{number} terdiri dari urutan bilangan desimal tanpa nol didepan. Nilai dapat memiliki tanda - dan + didepan, dan bagian pecahan diawali dengan titik. Bilangan yang tidak bisa direpresentasikan kedalam urutan bilangan desimal, seperti \textit{infinity} dan \textit{NaN}, tidak diizinkan.
+	\par Struktur \textit{number} terdiri dari urutan bilangan desimal tanpa nol didepan. Nilai dapat memiliki tanda - dan + didepan, dan bagian pecahan diawali dengan titik. Bilangan yang tidak bisa direpresentasikan sebagai bilangan desimal, seperti \textit{infinity} dan \textit{NaN}, tidak diizinkan.
 	\begin{figure}[H]
 		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_number.jpg}
 		\caption{Struktur JSON \textit{Number}}
@@ -224,16 +234,15 @@
 
 \section{YAML}
 \par YAML adalah bahasa untuk serialisasi data yang dirancang agar mudah dipahami oleh manusia dan bisa berjalan dengan bahasa pemrograman modern \cite{yaml-online}. Nilai pada YAML dapat berupa \textit{scalar}, \textit{sequence}, dan \textit{mapping}. Struktur yang digunakan YAML untuk mengekspresikan nilai adalah sebagai berikut:
-\begin{enumerate}
+\begin{enumerate}[listparindent=2.5em]
 	\item \textit{Scalar}
-	\par \textit{Scalar} adalah struktur digunakan untuk merepresentasikan sebuah teks atau bilangan. Nilai \textit{scalar} bisa saja dibungkus dengan tanda petik, namun tidak diwajibkan.
+	\par \textit{Scalar} adalah struktur digunakan untuk merepresentasikan sebuah teks atau bilangan. Nilai \textit{scalar} bisa saja dibungkus dengan tanda petik, namun tidak diwajibkan. Contoh \textit{scalar} dapat dilihat pada Kode Sumber \ref{yaml:scalar}.
 	\item \textit{Sequence}
-	\par \textit{Sequence} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai yang dipisah dengan karakter \textit{dash} (-).
+	\par \textit{Sequence} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai yang dipisah dengan karakter \textit{dash} (-). Contoh \textit{sequence} dapat dilihat pada Kode Sumber \ref{yaml:sequence}.
 	\item \textit{Mapping}
-	\par \textit{Mapping} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai dalam bentuk pasangan nama dan nilai.
+	\par \textit{Mapping} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai dalam bentuk pasangan nama dan nilai. Contoh \textit{mapping} dapat dilihat pada Kode Sumber \ref{yaml:mapping}.
 \end{enumerate}
-\clearpage
+\par Pada tugas akhir ini, YAML merupakan bahasa yang digunakan oleh Spring dan Docker Compose untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan aplikasi.
 \lstinputlisting[label=yaml:scalar, caption=Contoh Nilai \textit{Scalar} pada YAML] {bab2/yaml/yaml_scalar.yml}
 \lstinputlisting[label=yaml:sequence, caption=Contoh Nilai \textit{Sequence} pada YAML] {bab2/yaml/yaml_sequence.yml}
 \lstinputlisting[label=yaml:mapping, caption=Contoh Nilai \textit{Mapping} pada YAML] {bab2/yaml/yaml_mapping.yml}
-\par Pada tugas akhir ini, YAML merupakan bahasa yang digunakan oleh Spring dan Docker Compose untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan aplikasi.
