@@ -83,12 +83,19 @@
 \par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat Android dan Web akan dikirim ke layanan FCM oleh Push Notification Terpusat.
 \clearpage
 
-% \section{Microsoft SQL Server}
-% \par Microsoft SQL Server atau SQL Server adalah sistem basis data relasional yang bahasa pemrograman utamanya menggunakan MS-SQL dan Transact-SQL \cite{sqlserver-online}.
-% \par Pada tugas akhir ini, SQL Server merupakan sistem basis data yang digunakan oleh Push Notification Terpusat. SQL Server dipilih karena data-data yang dibutuhkan oleh Push Notification Terpusat (seperti data pengguna, perangkat yang digunakan, aplikasi yang ada, dan sebagainya) sudah tersimpan dalam SQL Server yang ada di server ITS.
+\section{Microsoft SQL Server}
+\par Microsoft SQL Server atau SQL Server adalah sebuah sistem manajemen basis data relasional (RDBMS) yang merupakan produk dari Microsoft. Bahasa \textit{query} utamanya adalah Transact-SQL yang merupakan implementasi dari SQL standar ANSI/ISO yang digunakan oleh Microsoft dan Sybase. SQL Server banyak digunakan pada dunia bisnis, pendidikan, dan juga pemerintahan sebagai solusi penyimpanan data \cite{sql-server-online}.
+\par SQL Server dan Sybase/ASE dapat berkomunikasi lewat jaringan menggunakan protokol TDS (\textit{Tabular Data Stream}). Selain itu, SQL Server juga mendukung ODBC (\textit{Open Database Connectivity}) dan mempunyai \textit{driver} JDBC untuk bahasa pemrograman Java. Fitur lain dari SQL Server yaitu kemampuannya untuk membuat basis data \textit{mirroring} dan \textit{clustering}.
 
 \section{Message Queue}
-\par \textit{Message queue} atau antrian pesan adalah metode komunikasi antar layanan secara asynchronous yang digunakan dalam arsitektur \textit{serverless} dan \textit{microservices}. Setiap pesan disimpan dalam antrian sampai pesan tersebut selesai diproses dan dihapus. Setiap pesan hanya diproses satu kali, oleh satu consumer \cite{message-queue-online}.
+\par \textit{Message queue} atau antrian pesan adalah metode komunikasi untuk pertukaran pesan antar sistem, dengan cara menyediakan media penyimpanan pesan sementara ketika sistem yang dituju sedang sibuk.
+\par Arsitektur antrian pesan terdiri dari \textit{producer} yang membuat dan mengirim pesan ke antrian, dan \textit{consumer} yang mengambil dan mengolah pesan dari antrian. Arsitektur antrian pesan dapat dilihat pada Gambar \ref{img:arsitektur-mq_pnt} \cite{message-queue-online}.
+\begin{figure}[H]
+	\centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-mq_pnt.jpg}
+	\caption{Arsitektur Antrian Pesan}
+	\label{img:arsitektur-mq_pnt}
+\end{figure}
+\clearpage
 \par Pada tugas akhir ini, antrian pesan merupakan metode yang digunakan untuk menangani pengiriman \textit{push notification}. Perbandingan tanpa dan dengan antrian pesan dapat dilihat pada Tabel \ref{t:perbandingan-antrian-pesan}.
 \begin{longtable}{|p{4.5cm}|p{4.5cm}|}
 	\caption{Perbandingan Penggunaan Antrian Pesan} \label{t:perbandingan-antrian-pesan} \\ \hline
@@ -99,8 +106,17 @@
 \end{longtable}
 
 \section{Apache Kafka}
-\par Apache Kafka atau Kafka merupakan layanan terdistribusi untuk data streaming. Pada dasarnya, Kafka merupakan sistem \textit{publish/subscribe messaging}, dimana terdapat satu atau lebih sistem yang meng-\textit{generate} data untuk suatu topik tertentu secara \textit{real-time} di Kafka (disebut sebagai \textit{Producers}). Kemudian, topik tersebut dapat dibaca oleh satu atau lebih sistem yang membutuhkan data-data dari topik tersebut secara \textit{real-time} (disebut sebagai Consumers) \cite{kafka-online}.
-\par Pada tugas akhir ini, Kafka akan digunakan sebagai pengganti antrian pesan Push Notification Terpusat. Tabel perbandingan antrian pesan Push Notification Terpusat dengan Apache Kafka dapat dilihat pada Tabel \ref{t:perbandingan_kafka}, dan arsitektur antrian pesan Push Notification Terpusat dan Apache Kafka pada Gambar \ref{img:arsitektur-mq_pnt} dan \ref{img:arsitektur-mq_kafka}.
+\par Apache Kafka atau Kafka adalah layanan terdistribusi untuk data \textit{streaming}. Kafka pada dasarnya merupakan pengembangan dari arsitektur \textit{message queue}, dimana terdapat \textit{producer} dan \textit{consumer} yang memproduksi dan mengambil pesan dari dan ke antrian. Perbedaannya, Kafka membagi antrian berdasarkan topik dan partisi. Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
+\par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}).
+\clearpage
+\begin{figure}[H]
+	\centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-mq_kafka.jpg}
+	\caption{Arsitektur Antrian Pesan Apache Kafka}
+	\label{img:arsitektur-mq_kafka}
+\end{figure}
+\par Untuk menjalankan Kafka, pengembang perlu menjalankan Apache Zookeeper terlebih dahulu. Apache Zookeeper atau Zookeeper merupakan aplikasi yang digunakan oleh Kafka untuk mengatur sinkronisasi \textit{producer}, \textit{consumer}, dengan topik dan partisi antrian.
+\par Pada tugas akhir ini, Kafka akan digunakan sebagai pengganti antrian pesan Push Notification Terpusat. Tabel perbandingan antrian pesan Push Notification Terpusat dengan Apache Kafka dapat dilihat pada Tabel \ref{t:perbandingan_kafka}.
+\clearpage
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Antrian Pesan Push Notification Terpusat dengan Apache Kafka} \label{t:perbandingan_kafka} \\ \hline
 	\rowcolor{lightgray} & Push Notification Terpusat & Apache Kafka \\ \hline
@@ -109,20 +125,10 @@
 	Arsitektur antrian & Satu antrian untuk semua pesan. & Antrian dibagi berdasarkan topik dan partisi. \\ \hline
 	Urutan pengambilan pesan & Terurut berdasarkan waktu ditambahkan. & Jika di satu partisi, terurut berdasarkan waktu ditambahkan. Jika berbeda partisi, berdasarkan partisi manapun yang tidak kosong. \\ \hline
 \end{longtable}
-\begin{figure}[H]
-\centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-mq_pnt.jpg}
-\caption{Arsitektur Antrian Pesan Push Notification Terpusat}
-\label{img:arsitektur-mq_pnt}
-\end{figure}
-\begin{figure}[H]
-	\centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-mq_kafka.jpg}
-	\caption{Arsitektur Antrian Pesan Apache Kafka}
-	\label{img:arsitektur-mq_kafka}
-\end{figure}
 
-\section{Apache Zookeeper}
-\par Apache Zookeeper atau Zookeeper adalah layanan tersentralisasi untuk mengatur konfigurasi, penamaan, sinkronisasi sistem terdistribusi, untuk sekelompok layanan \cite{zookeeper-online}.
-\par Pada tugas akhir ini, Zookeeper merupakan layanan yang dibutuhkan oleh Kafka untuk beroperasi. Kafka menggunakan Zookeeper untuk mengatur koordinasi \textit{producer} dan \textit{consumer} dengan antrian pesan.
+% \section{Apache Zookeeper}
+% \par Apache Zookeeper atau Zookeeper adalah layanan koordinasi untuk aplikasi terdistribusi. Zookeeper mengatur hal-hal umum dalam aplikasi terdistribusi, seperti penamaan, konfigurasi, sinkronisasi, dan pengelompokan layanan \cite{zookeeper-online}.
+% \par Pada tugas akhir ini, Zookeeper merupakan layanan yang dibutuhkan oleh Kafka untuk beroperasi. Kafka menggunakan Zookeeper untuk mengatur koordinasi \textit{producer} dan \textit{consumer} dengan antrian pesan.
 
 \section{Java}
 \par Java adalah bahasa pemrograman yang umum, konkuren, berbasis kelas, dan berbasis objek \cite{java-online}. Beberapa fitur Java yang akan digunakan dalam implementasi tugas akhir ini adalah sebagai berikut:
@@ -154,7 +160,6 @@
 \section{Actuator}
 \par Actuator berisi sekumpulan fitur tambahan untuk pemantauan dan pengaturan aplikasi yang sudah ditahap \textit{production}. Aplikasi bisa dipantau dan diatur dengan menggunakan \textit{endpoint} HTTP atau JMX \cite{actuator-online}.
 \par Pada tugas akhir ini, Actuator merupakan pustaka yang digunakan dalam implementasi pemantauan Push Notification Terpusat. Fitur-fitur Actuator yang akan digunakan pada Push Notification Terpusat dapat dilihat pada Tabel \ref{t:fitur-actuator}.
-\clearpage
 \begin{longtable}{|p{2cm}|p{6cm}|}
 	\caption{Fitur Actuator yang Digunakan} \label{t:fitur-actuator} \\ \hline
  	\rowcolor{lightgray} Nama Fitur & Deskripsi \\ \hline
@@ -169,11 +174,11 @@
 \begin{enumerate}
 	\item \textit{Object}
 	\par Struktur \textit{object} direpresentasikan sebagai pasangan kurung kurawal, berisi beberapa pasangan nama dan nilai.
+	\clearpage
 	\begin{figure}[H]
 		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_object.jpg}
 		\caption{Struktur JSON \textit{Object}}
 	\end{figure}
-	\clearpage
 	\item \textit{Array}
 	\par Struktur \textit{array} direpresentasikan sebagai pasangan kurung siku, berisi beberapa nilai, yang dipisahkan dengan koma.
 	\begin{figure}[H]
@@ -208,13 +213,11 @@
 \section{Docker}
 \par Docker adalah \textit{platform} terbuka untuk membangun, mengirim, dan menjalankan aplikasi. Docker memungkinkan pengembang untuk memisahkan kebutuhan infrastruktur dari aplikasi, sehingga proses pengembangan aplikasi bisa lebih cepat \cite{docker-online}.
 \par Pada tugas akhir ini, Docker akan digunakan untuk menjalankan Push Notification Terpusat, Kafka, dan Zookeeper. Perbandingan penggunaan Docker dapat dilihat pada Tabel \ref{t:perbandingan_docker}, dan arsitektur Docker pada Gambar \ref{img:arsitektur-docker}.
-\clearpage
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Penggunaan Docker} \label{t:perbandingan_docker} \\ \hline
 	\rowcolor{lightgray} & Tanpa Docker & Dengan Docker \\ \hline
 	Proses \textit{deployment} & Membutuhkan konfigurasi khusus untuk setiap sistem operasi & Dapat langsung dijalankan di sistem operasi manapun \\ \hline
 	Pembatasan sumber daya & Tidak terbatas & Penggunaan CPU dan Memori bisa dibatasi \\ \hline
-	Sekuritas & Bergantung pada konfigurasi sistem operasi & \textit{Isolated}, bergantung pada konfigurasi Docker \\ \hline
 \end{longtable}
 \begin{figure}[H]
 \centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-docker.jpg}
@@ -225,6 +228,7 @@
 \section{Docker Compose}
 \par Docker Compose adalah alat untuk mendefinisikan dan menjalankan beberapa \textit{container} aplikasi menggunakan Docker. Dengan Docker Compose, pengembang bisa menggunakan file berbasis YAML untuk mengatur konfigurasi layanan aplikasi, dan menggunakannya untuk membuat dan menjalankan layanan aplikasi \cite{docker-compose-online}.
 \par Pada tugas akhir ini, Docker Compose akan digunakan untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan Push Notification Terpusat, Kafka, dan Zookeeper. Perbandingan penggunaan Docker Compose dapat dilihat pada Tabel \ref{t:perbandingan_docker_compose}.
+\clearpage
 \begin{longtable}{|p{2cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Penggunaan Docker Compose} \label{t:perbandingan_docker_compose} \\ \hline
 	\rowcolor{lightgray} & Tanpa Compose & Dengan Compose \\ \hline
@@ -242,7 +246,8 @@
 	\item \textit{Mapping}
 	\par \textit{Mapping} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai dalam bentuk pasangan nama dan nilai. Contoh \textit{mapping} dapat dilihat pada Kode Sumber \ref{yaml:mapping}.
 \end{enumerate}
-\par Pada tugas akhir ini, YAML merupakan bahasa yang digunakan oleh Spring dan Docker Compose untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan aplikasi.
+\clearpage
 \lstinputlisting[label=yaml:scalar, caption=Contoh Nilai \textit{Scalar} pada YAML] {bab2/yaml/yaml_scalar.yml}
 \lstinputlisting[label=yaml:sequence, caption=Contoh Nilai \textit{Sequence} pada YAML] {bab2/yaml/yaml_sequence.yml}
 \lstinputlisting[label=yaml:mapping, caption=Contoh Nilai \textit{Mapping} pada YAML] {bab2/yaml/yaml_mapping.yml}
+\par Pada tugas akhir ini, YAML merupakan bahasa yang digunakan oleh Spring dan Docker Compose untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan aplikasi.
