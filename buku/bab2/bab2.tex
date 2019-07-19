@@ -135,13 +135,13 @@
 \begin{enumerate}[listparindent=2.5em]
 	\item Anotasi
 	\par Anotasi adalah penanda untuk memberikan informasi tambahan tentang program. Beberapa contoh penggunaan anotasi adalah untuk dokumentasi program, memberi informasi \textit{error} ke compiler, serialisasi data, dan \textit{mapping} kelas dengan basis data. 
-	\par Penulisan anotasi diawali dengan karakter '@', nama anotasi, dan pasangan nama-nilai yang dibungkus dengan tanda kurung. Contoh penggunaan anotasi dapat dilihat pada Kode Sumber \ref{java:annotation}.
+	\par Penulisan anotasi diawali dengan karakter '@', nama anotasi, dan pasangan nama-nilai yang dibungkus dengan tanda kurung. Contoh implementasi anotasi dapat dilihat pada Kode Sumber \ref{java:annotation}.
 	\item Lambda
 	\par Lambda adalah ekspresi untuk inisiasi interface fungsional (kelas interface dengan satu fungsi abstrak). Lambda digunakan untuk implementasi fungsi tanpa harus membuat kelas, yang dapat diperlakukan seperti objek.
-	\par Penulisan lambda diawali dengan parameter fungsi yang dibungkus dengan tanda kurung, karakter '->', dan implementasi fungsi yang dibungkus dengan kurung kurawal. Contoh penggunaan lambda dapat dilihat pada Kode Sumber \ref{java:lambda}.
+	\par Penulisan lambda diawali dengan parameter fungsi yang dibungkus dengan tanda kurung, karakter '->', dan implementasi fungsi yang dibungkus dengan kurung kurawal. Contoh implementasi lambda dapat dilihat pada Kode Sumber \ref{java:lambda}.
 \end{enumerate}
-\lstinputlisting[label=java:annotation, caption=Contoh Penggunaan Anotasi pada Java, language=Java] {bab2/java/annotation.java}
-\lstinputlisting[label=java:lambda, caption=Contoh Penggunaan Lambda pada Java, language=Java] {bab2/java/lambda.java}
+\lstinputlisting[label=java:annotation, caption=Contoh Implementasi Anotasi pada Java, language=Java] {bab2/java/annotation.java}
+\lstinputlisting[label=java:lambda, caption=Contoh Implementasi Lambda pada Java, language=Java] {bab2/java/lambda.java}
 
 \section{Spring}
 \par Spring adalah kerangka kerja yang menyediakan dukungan infrastruktur lengkap untuk mengembangkan aplikasi Java \cite{spring-online}. Beberapa fitur Spring yang akan digunakan dalam implementasi tugas akhir ini adalah sebagai berikut:
@@ -171,10 +171,9 @@
 
 \section{JSON}
 \par JSON adalah format pertukaran data yang ringan, berbasis teks, dan independen. Nilai pada JSON dapat berupa \textit{object}, \textit{array}, \textit{number}, \textit{string}, \textit{true}, \textit{false}, atau \textit{null} \cite{json-online}. Struktur yang digunakan JSON untuk mengekspresikan nilai adalah sebagai berikut:
-\begin{enumerate}
+\begin{enumerate}[listparindent=2.5em]
 	\item \textit{Object}
 	\par Struktur \textit{object} direpresentasikan sebagai pasangan kurung kurawal, berisi beberapa pasangan nama dan nilai.
-	\clearpage
 	\begin{figure}[H]
 		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_object.jpg}
 		\caption{Struktur JSON \textit{Object}}
@@ -228,7 +227,6 @@
 \section{Docker Compose}
 \par Docker Compose adalah alat untuk mendefinisikan dan menjalankan beberapa \textit{container} aplikasi menggunakan Docker. Dengan Docker Compose, pengembang bisa menggunakan file berbasis YAML untuk mengatur konfigurasi layanan aplikasi, dan menggunakannya untuk membuat dan menjalankan layanan aplikasi \cite{docker-compose-online}.
 \par Pada tugas akhir ini, Docker Compose akan digunakan untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan Push Notification Terpusat, Kafka, dan Zookeeper. Perbandingan penggunaan Docker Compose dapat dilihat pada Tabel \ref{t:perbandingan_docker_compose}.
-\clearpage
 \begin{longtable}{|p{2cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Penggunaan Docker Compose} \label{t:perbandingan_docker_compose} \\ \hline
 	\rowcolor{lightgray} & Tanpa Compose & Dengan Compose \\ \hline
@@ -246,7 +244,6 @@
 	\item \textit{Mapping}
 	\par \textit{Mapping} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai dalam bentuk pasangan nama dan nilai. Contoh \textit{mapping} dapat dilihat pada Kode Sumber \ref{yaml:mapping}.
 \end{enumerate}
-\clearpage
 \lstinputlisting[label=yaml:scalar, caption=Contoh Nilai \textit{Scalar} pada YAML] {bab2/yaml/yaml_scalar.yml}
 \lstinputlisting[label=yaml:sequence, caption=Contoh Nilai \textit{Sequence} pada YAML] {bab2/yaml/yaml_sequence.yml}
 \lstinputlisting[label=yaml:mapping, caption=Contoh Nilai \textit{Mapping} pada YAML] {bab2/yaml/yaml_mapping.yml}
