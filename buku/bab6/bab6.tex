@@ -3,9 +3,9 @@
 
 \section{Kesimpulan}
 \begin{enumerate}
-	\item Implementasi antrian pesan dengan Kafka dapat dilakukan dengan menggunakan Docker untuk menjalankan Kafka dan Zookeeper, lalu menggunakan Spring untuk mengirim dan mengambil pesan dari antrian.
+	\item Implementasi antrian pesan dengan Kafka dapat dilakukan dengan menjalankan Zookeeper dan Kafka, lalu menggunakan kerangka kerja Spring untuk membuat layanan yang mengirim dan mengambil pesan ke dan dari antrian Kafka.
 	\item Implementasi penjadwalan pengiriman \textit{push notification} dapat dilakukan dengan menyimpan data \textit{push notification} ke sistem basis data, lalu membuat layanan penjadwalan yang mengambil dan mengirim \textit{push notification} dari sistem basis data secara periodik.
-	\item Implementasi pengiriman \textit{push notification} ke perangkat Android dapat dilakukan dengan mengirim \textit{request push notification} ke layanan FCM, sedangkan pengiriman ke perangkat iOS dapat dilakukan dengan mengirim \textit{request push notification} ke layanan APNs.
+	\item Implementasi pengiriman \textit{push notification} ke perangkat Android dapat dilakukan dengan mengirim request ke layanan FCM, sedangkan pengiriman \textit{push notification} ke perangkat iOS dapat dilakukan dengan mengirim \textit{request} ke layanan APNs.
 	\item Implementasi pemantauan aplikasi dapat dilakukan dengan menggunakan fitur \textit{metrics}, \textit{health}, \textit{environment}, dan \textit{logfile} pada pustaka Actuator.
 \end{enumerate}
 

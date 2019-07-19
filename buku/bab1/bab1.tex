@@ -12,7 +12,7 @@
 \section {Rumusan Masalah}
 Rumusan masalah yang diangkat pada tugas akhir ini adalah sebagai berikut:
 \begin {enumerate}
-\item Bagaimana implementasi \textit{message queue} dengan Kafka?
+\item Bagaimana implementasi antrian pesan dengan Kafka?
 \item Bagaimana implementasi penjadwalan pengiriman \textit{push notification}?
 \item Bagaimana implementasi pengiriman \textit{push notification} ke perangkat pengguna?
 \item Bagaimana implementasi pemantauan aplikasi?
@@ -35,42 +35,42 @@ Tujuan yang akan dicapai dalam tugas akhir ini adalah sebagai berikut:
 \end{enumerate}
 
 \section{Manfaat}
-Tugas akhir ini diharapkan dapat mengembangkan aplikasi push notification terpusat, sehingga dapat menjadi layanan penyebaran informasi yang dapat diandalkan dan dapat memudahkan pengelola untuk memantau kondisi layanan.
+\par Tugas akhir ini diharapkan dapat mengembangkan aplikasi push notification terpusat, sehingga dapat menjadi layanan penyebaran informasi yang dapat diandalkan dan dapat memudahkan pengelola untuk memantau kondisi layanan.
 
 \section {Metodologi}
-Pembuatan tugas akhir ini dilakukan dengan menggunakan metodologi sebagai berikut:
-\begin{enumerate}
-\item Studi literatur\\
-Pada tahap ini, akan dicari studi literatur yang relevan untuk dijadikan referensi dalam pengerjaan tugas akhir, antara lain mengenai Java, Spring, Firebase Cloud Messaging, Apple Push Notification Service, dan Apache Kafka.
-\item Analisis dan Perancangan Sistem\\
-Tahap ini meliputi perumusan kebutuhan fungsional, kebutuhan non-fungsional, kasus penggunaan, diagram aktivitas, diagram kelas, dan diagram sekuens.
-\item Implementasi\\
-Aplikasi ini diimplementasikan dengan menggunakan kakas bantu sebagai berikut:
-\begin{enumerate}
-\item Sistem basis data menggunakan SQL Server.
-\item Sistem antrian pesan menggunakan Apache Kafka.
-\item Aplikasi dibuat menggunakan bahasa pemrograman Java dengan kerangka kerja Spring.
-\item Pembuatan aplikasi menggunakan IDE Intellij IDEA.
-\end{enumerate}
-\item Uji Coba dan Evaluasi\\
-Pengujian dilakukan dengan mengirimkan push notification dalam jumlah besar untuk mengetahui tingkat keberhasilan dan kecepatan pengiriman notifikasi dengan model pengujian \textit{blackbox} testing.
-\item Penyusunan buku\\
-Pada tahap ini dilakukan penyusunan laporan yang menjelaskan dasar teori dan metode yang digunakan dalam tugas akhir ini serta hasil dari implementasi aplikasi perangkat lunak yang telah dibuat.
+\par Pembuatan tugas akhir ini dilakukan dengan menggunakan metodologi sebagai berikut:
+\begin{enumerate}[listparindent=2.5em]
+	\item Studi literatur
+	\par Pada tahap ini, akan dicari studi literatur yang relevan untuk dijadikan referensi dalam pengerjaan tugas akhir, antara lain mengenai Java, Spring, Firebase Cloud Messaging, Apple Push Notification Service, dan Apache Kafka.
+	\item Analisis dan perancangan sistem
+	\par Tahap ini meliputi perumusan kebutuhan fungsional, kebutuhan non-fungsional, kasus penggunaan, diagram aktivitas, diagram kelas, dan diagram sekuens.
+	\item Implementasi
+	\par Aplikasi ini diimplementasikan dengan menggunakan kakas bantu sebagai berikut:
+	\begin{enumerate}
+		\item Sistem basis data menggunakan SQL Server.
+		\item Sistem antrian pesan menggunakan Apache Kafka.
+		\item Aplikasi dibuat menggunakan bahasa pemrograman Java dengan kerangka kerja Spring.
+		\item Pembuatan aplikasi menggunakan IDE Intellij IDEA.
+	\end{enumerate}
+    \item Uji coba dan evaluasi
+    \par Pengujian dilakukan dengan mengirimkan push notification dalam jumlah besar untuk mengetahui tingkat keberhasilan dan kecepatan pengiriman notifikasi dengan model pengujian \textit{blackbox}.
+    \item Penyusunan buku
+    \par Pada tahap ini dilakukan penyusunan laporan yang menjelaskan dasar teori dan metode yang digunakan dalam tugas akhir ini serta hasil dari implementasi aplikasi perangkat lunak yang telah dibuat.
 \end{enumerate}
 
 \section {Sistematika Penulisan}
 Sistematika penulisan yang digunakan dalam laporan tugas akhir ini adalah sebagai berikut:
-\begin{enumerate}
-\item Bab 1 : PENDAHULUAN
-\par Bab ini menjelaskan konteks tugas akhir yang akan dikerjakan, termasuk latar belakang, rumusan masalah, batasan masalah, tujuan, manfaat, metodologi, dan sistematika penulisan.
-\item Bab 2 : DASAR TEORI
-\par Bab ini menjelaskan dasar teori yang akan digunakan dalam proses pengerjaan tugas akhir.
-\item Bab 3 : ANALISIS DAN PERANCANGAN SISTEM
-\par Bab ini menjelaskan tentang analisis permasalahan, deskripsi umum sistem, spesifikasi kebutuhan perangkat lunak, lingkungan perancangan, perancangan arsitektur sistem, dan diagram kelas berdasarkan dasar teori yang dijelaskan pada bab 2.
-\item Bab 4 : IMPLEMENTASI SISTEM
-\par Bab ini menjelaskan implementasi dari perancangan dan implementasi fitur-fitur penunjang aplikasi yang dijelaskan pada bab 3.
-\item Bab 5 : PENGUJIAN DAN EVALUASI
-\par Bab ini menjelaskan hasil pengujian dan evaluasi dengan metode \textit{blackbox} untuk mengetahui nilai fungsionalitas dari perangkat lunak yang telah diimplementasikan pada bab 4.
-\item Bab 6 : PENUTUP
-\par Bab ini berisi kesimpulan yang telah didapat dari hasil pengujian dan evaluasi yang telah dilakukan.
+\begin{enumerate}[listparindent=2.5em]
+	\item Bab 1 : PENDAHULUAN
+	\par Bab ini menjelaskan konteks tugas akhir yang akan dikerjakan, termasuk latar belakang, rumusan masalah, batasan masalah, tujuan, manfaat, metodologi, dan sistematika penulisan.
+	\item Bab 2 : DASAR TEORI
+	\par Bab ini menjelaskan dasar teori yang akan digunakan dalam proses pengerjaan tugas akhir.
+	\item Bab 3 : ANALISIS DAN PERANCANGAN SISTEM
+	\par Bab ini menjelaskan tentang analisis permasalahan, deskripsi umum sistem, spesifikasi kebutuhan perangkat lunak, lingkungan perancangan, perancangan arsitektur sistem, dan diagram kelas berdasarkan dasar teori yang dijelaskan pada bab 2.
+	\item Bab 4 : IMPLEMENTASI SISTEM
+	\par Bab ini menjelaskan implementasi dari perancangan dan implementasi fitur-fitur penunjang aplikasi yang dijelaskan pada bab 3.
+	\item Bab 5 : PENGUJIAN DAN EVALUASI
+	\par Bab ini menjelaskan hasil pengujian dan evaluasi dengan metode \textit{blackbox} untuk mengetahui nilai fungsionalitas dari perangkat lunak yang telah diimplementasikan pada bab 4.
+	\item Bab 6 : PENUTUP
+	\par Bab ini berisi kesimpulan yang telah didapat dari hasil pengujian dan evaluasi yang telah dilakukan.
 \end{enumerate}
