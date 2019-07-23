@@ -262,7 +262,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Subbab ini akan membahas tahapan perancangan sistem yang dibagi menjadi beberapa bagian, yaitu perancangan arsitektur, basis data, antrian pesan, dan proses.
 
 \subsection{Perancangan Arsitektur} \label{s:perancangan_arsitektur}
-\par Modul engine pada Push Notification Terpusat akan dibagi menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Modul Push Notification Terpusat diimplementasikan dengan bahasa pemrograman Java, dengan kerangka kerja Spring. Aplikasi saling terhubung lewat sistem antrian pesan (Kafka) dan sistem basis data (SQL Server).
+\par Modul Engine pada Gambar \ref{img:arsitektur-pnt_lama} yang ada di penelitian sebelumnya, pada tugas akhir ini diubah menjadi 3 modul terpisah, yaitu Scheduler, Sender APN, dan Sender FCM. Modul-modul ini akan diimplementasikan dengan bahasa pemrograman Java, dengan kerangka kerja Spring. Aplikasi saling terhubung lewat sistem antrian pesan (Kafka) dan sistem basis data (SQL Server).
 \par Untuk menjalankan sistem, modul Push Notification Terpusat, Kafka, dan Zookeeper akan dijalankan menggunakan Docker, dan SQL Server menggunakan server basis data ITS. Secara garis besar, aplikasi ini memiliki rancangan arsitektur yang dapat dilihat pada Gambar \ref{img:arsitektur_baru}.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{bab3/img/arsitektur-push_notification_terpusat_baru.jpg}

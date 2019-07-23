@@ -91,7 +91,7 @@
 \par Antrian pesan atau \textit{message queue} adalah metode komunikasi untuk pertukaran pesan antar sistem, dengan cara menyediakan media penyimpanan pesan sementara ketika sistem yang dituju sedang sibuk.
 \par Arsitektur antrian pesan terdiri dari \textit{producer} yang membuat dan mengirim pesan ke antrian, dan \textit{consumer} yang mengambil dan mengolah pesan dari antrian. Arsitektur antrian pesan dapat dilihat pada Gambar \ref{img:arsitektur-mq_pnt} \cite{message-queue-online}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-mq_pnt.jpg}
+	\centering\includegraphics[width=1\textwidth]{bab2/img/arsitektur-mq_pnt.jpg}
 	\caption{Arsitektur Antrian Pesan}
 	\label{img:arsitektur-mq_pnt}
 \end{figure}
@@ -109,7 +109,7 @@
 \par Apache Kafka atau Kafka adalah layanan terdistribusi untuk data \textit{streaming} \cite{kafka-online}. Kafka pada dasarnya merupakan pengembangan dari arsitektur antrian pesan, dimana terdapat \textit{producer} dan \textit{consumer} yang memproduksi dan mengambil pesan dari dan ke antrian. Perbedaannya, Kafka membagi antrian berdasarkan topik dan partisi.
 \par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}). Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.85\textwidth]{bab2/img/arsitektur-mq_kafka.jpg}
+	\centering\includegraphics[width=1\textwidth]{bab2/img/arsitektur-mq_kafka.jpg}
 	\caption{Arsitektur Antrian Pesan Apache Kafka}
 	\label{img:arsitektur-mq_kafka}
 \end{figure}
@@ -139,8 +139,8 @@
 	\par Lambda adalah ekspresi untuk inisiasi interface fungsional (kelas interface dengan satu fungsi abstrak). Lambda digunakan untuk implementasi fungsi tanpa harus membuat kelas, yang dapat diperlakukan seperti objek.
 	\par Penulisan lambda diawali dengan parameter fungsi yang dibungkus dengan tanda kurung, karakter '->', dan implementasi fungsi yang dibungkus dengan kurung kurawal. Contoh implementasi lambda dapat dilihat pada Kode Sumber \ref{java:lambda}.
 \end{enumerate}
-\lstinputlisting[label=java:annotation, caption=Contoh Implementasi Anotasi pada Java, language=Java] {bab2/java/annotation.java}
 \clearpage
+\lstinputlisting[label=java:annotation, caption=Contoh Implementasi Anotasi pada Java, language=Java] {bab2/java/annotation.java}
 \lstinputlisting[label=java:lambda, caption=Contoh Implementasi Lambda pada Java, language=Java] {bab2/java/lambda.java}
 
 \section{Spring}
@@ -175,24 +175,11 @@
 \par JSON adalah format pertukaran data yang ringan, berbasis teks, dan independen. Nilai pada JSON dapat berupa \textit{object}, \textit{array}, \textit{number}, \textit{string}, \textit{true}, \textit{false}, atau \textit{null} \cite{json-online}. Struktur yang digunakan JSON untuk mengekspresikan nilai adalah sebagai berikut:
 \begin{enumerate}[listparindent=2.5em]
 	\item \textit{Object}
-	\par Struktur \textit{object} direpresentasikan sebagai pasangan kurung kurawal, berisi beberapa pasangan nama dan nilai.
-	\begin{figure}[H]
-		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_object.jpg}
-		\caption{Struktur JSON \textit{Object}}
-	\end{figure}
+	\par Struktur \textit{object} direpresentasikan sebagai pasangan kurung kurawal, berisi beberapa pasangan nama dan nilai. Alur struktur \textit{object} dapat dilihat pada Gambar \ref{img:json-object}.
 	\item \textit{Array}
-	\par Struktur \textit{array} direpresentasikan sebagai pasangan kurung siku, berisi beberapa nilai, yang dipisahkan dengan koma.
-	\clearpage
-	\begin{figure}[H]
-		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_array.jpg}
-		\caption{Struktur JSON \textit{Array}}
-	\end{figure}
+	\par Struktur \textit{array} direpresentasikan sebagai pasangan kurung siku, berisi beberapa nilai, yang dipisahkan dengan koma. Alur struktur \textit{array} dapat dilihat pada Gambar \ref{img:json-array}.
 	\item \textit{Number}
-	\par Struktur \textit{number} terdiri dari urutan bilangan desimal tanpa nol didepan. Nilai dapat memiliki tanda - dan + didepan, dan bagian pecahan diawali dengan titik. Bilangan yang tidak bisa direpresentasikan sebagai bilangan desimal, seperti \textit{infinity} dan \textit{NaN}, tidak diizinkan.
-	\begin{figure}[H]
-		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_number.jpg}
-		\caption{Struktur JSON \textit{Number}}
-	\end{figure}
+	\par Struktur \textit{number} terdiri dari urutan bilangan desimal tanpa nol didepan. Nilai dapat memiliki tanda - dan + didepan, dan bagian pecahan diawali dengan titik. Bilangan yang tidak bisa direpresentasikan sebagai bilangan desimal, seperti \textit{infinity} dan \textit{NaN}, tidak diizinkan. Alur struktur \textit{number} dapat dilihat pada Gambar \ref{img:json-number}.
 	\item \textit{String}
 	\par Struktur \textit{string} direpresentasikan sebagai urutan karakter \textit{unicode} yang dibungkus dengan tanda kutip. Terdapat beberapa karakter yang harus di \textit{escape} agar dapat digunakan, yaitu:
 	\begin{enumerate}
@@ -205,12 +192,26 @@
 		\item \textbackslash r untuk karakter \textit{return} (U+000D).
 		\item \textbackslash t untuk karakter tabulasi (U+0009).
 	\end{enumerate}
-	\begin{figure}[H]
-		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_string.jpg}
-		\caption{Struktur JSON \textit{String}}
-	\end{figure}
+    \par Alur struktur \textit{string} dapat dilihat pada Gambar \ref{img:json-string}.
 \end{enumerate}
 \par Pada tugas akhir ini, JSON merupakan format pertukaran data yang digunakan oleh Kafka untuk menyimpan data, dan pustaka Actuator untuk menampilkan \textit{response}.
+\begin{figure}[H]
+	\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_object.jpg}
+	\caption{Struktur JSON \textit{Object}} \label{img:json-object}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_array.jpg}
+	\caption{Struktur JSON \textit{Array}} \label{img:json-array}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_number.jpg}
+	\caption{Struktur JSON \textit{Number}} \label{img:json-number}
+\end{figure}
+\clearpage
+\begin{figure}[H]
+\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_string.jpg}
+\caption{Struktur JSON \textit{String}} \label{img:json-string}
+\end{figure}
 
 \section{Docker}
 \par Docker adalah \textit{platform} terbuka untuk membangun, mengirim, dan menjalankan aplikasi. Docker memungkinkan pengembang untuk memisahkan kebutuhan infrastruktur dari aplikasi, sehingga proses pengembangan aplikasi bisa lebih cepat \cite{docker-online}.
@@ -249,7 +250,7 @@
 	\item \textit{Mapping}
 	\par \textit{Mapping} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai dalam bentuk pasangan nama dan nilai. Contoh \textit{mapping} dapat dilihat pada Kode Sumber \ref{yaml:mapping}.
 \end{enumerate}
+\par Pada tugas akhir ini, YAML merupakan bahasa yang digunakan oleh Spring dan Docker Compose untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan aplikasi.
 \lstinputlisting[label=yaml:scalar, caption=Contoh Nilai \textit{Scalar} pada YAML] {bab2/yaml/yaml_scalar.yml}
 \lstinputlisting[label=yaml:sequence, caption=Contoh Nilai \textit{Sequence} pada YAML] {bab2/yaml/yaml_sequence.yml}
 \lstinputlisting[label=yaml:mapping, caption=Contoh Nilai \textit{Mapping} pada YAML] {bab2/yaml/yaml_mapping.yml}
-\par Pada tugas akhir ini, YAML merupakan bahasa yang digunakan oleh Spring dan Docker Compose untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan aplikasi.
