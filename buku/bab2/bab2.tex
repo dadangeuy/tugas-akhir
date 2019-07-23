@@ -2,10 +2,10 @@
 \par Bab ini menjelaskan dasar teori yang penulis gunakan sebagai landasan pengerjaan tugas akhir. Bab ini akan menjelaskan secara umum terkait istilah dan kakas bantu yang digunakan dalam pembuatan tugas akhir ini.
 
 \section{Penelitian Sebelumnya}
-\par Tugas akhir ini merupakan pengembangan dari penelitian "Rancang Bangun Aplikasi Push Notification Terpusat". Penelitian tersebut menghasilkan aplikasi yang bernama Push Notification Terpusat.
+\par Tugas akhir ini merupakan pengembangan dari penelitian "Rancang Bangun Aplikasi Push Notification Terpusat" \cite{application-thesis}. Penelitian tersebut menghasilkan aplikasi yang bernama Push Notification Terpusat.
 \par Push Notification Terpusat merupakan aplikasi yang dibuat untuk memudahkan penyebaran informasi di lingkungan ITS sebagai pengganti media cetak. Aplikasi ini dapat mengirim notifikasi secara langsung atau terjadwal ke perangkat pengguna (Android dan iOS). Arsitektur aplikasi dapat dilihat pada Gambar \ref{img:arsitektur-pnt_lama}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.8\textwidth]{bab2/img/arsitektur-push_notification_terpusat_lama.jpg}
+	\centering\includegraphics[width=1\textwidth]{bab2/img/arsitektur-push_notification_terpusat_lama.jpg}
 	\caption{Arsitektur Push Notification Terpusat Saat Ini}
 	\label{img:arsitektur-pnt_lama}
 \end{figure}
@@ -35,7 +35,7 @@
 \section{Apple Push Notification Service}
 \par Apple Push Notification Service atau APNs adalah layanan pengiriman notifikasi jarak jauh yang kuat, cepat dan sangat efisien, yang dapat digunakan oleh pengembang aplikasi untuk menyebarkan informasi ke perangkat iOS, watchOS, tvOS, dan macOS. Ukuran maksimum notifikasi yang dapat dikirim adalah 4 Kb, dan wajib menggunakan protokol TLS, dengan alur yang dapat dilihat pada Gambar \ref{img:apns-certificate} \cite{apns-online}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.7\textwidth]{bab2/img/activity-apns_certificate_connection.jpg}
+	\centering\includegraphics[width=1\textwidth]{bab2/img/activity-apns_certificate_connection.jpg}
 	\caption{Alur Autentikasi APNs}
 	\label{img:apns-certificate}
 \end{figure}
@@ -46,13 +46,13 @@
 	\item Sistem akan menampilkan perangkat ke aplikasi Anda dengan memanggil metode di delegasi aplikasi. Aplikasi mengirimkan token perangkat ke penyedia yang terkait dengan aplikasi.
 \end{enumerate}
 \par Contoh program yang digunakan untuk mengirim notifikasi ke perangkat iOS lewat layanan APNs dapat dilihat pada Kode Sumber \ref{json:contoh-apns}. Hasil notifikasi yang diterima oleh pengguna dapat dilihat pada Gambar \ref{img:contoh-hasil-apns}.
+\par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat iOS akan dikirim dengan menggunakan layanan Apple Push Notification Service.
 \lstinputlisting[label=json:contoh-apns, caption={Contoh Push Notification APNs}] {bab2/json/apns.json}
 \begin{figure}[H]
-	\centering\includegraphics[width=0.5\textwidth]{bab2/img/apns.jpg}
+	\centering\includegraphics[width=0.8\textwidth]{bab2/img/apns.jpg}
 	\caption{Pratinjau Notifikasi pada iOS}
 	\label{img:contoh-hasil-apns}
 \end{figure}
-\par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat iOS akan dikirim dengan menggunakan layanan Apple Push Notification Service.
 
 \section{Firebase Cloud Messaging}
 \par Firebase Cloud Messaging atau FCM adalah solusi pengiriman pesan lintas platform yang dapat diandalkan untuk mengirimkan pesan dan dapat digunakan tanpa biaya. FCM memiliki kemampuan sebagai berikut \cite{fcm-online}:
@@ -74,14 +74,13 @@
 	\par Tentukan apakah pengembangan nantinya menggunakan Admin SDK atau salah satu server \textit{protocol} untuk membuat logika pengiriman, yaitu logika untuk mengautentikasi, membuat permintaan pengiriman, menangani respons, dan sebagainya.
 \end{enumerate}
 \par Contoh program yang digunakan untuk mengirim notifikasi ke perangkat Android lewat layanan FCM dapat dilihat pada Kode Sumber \ref{json:contoh-fcm}. Hasil notifikasi yang diterima oleh pengguna dapat dilihat pada Gambar \ref{img:contoh-hasil-fcm}.
+\par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat Android dan Web akan dikirim ke layanan FCM oleh Push Notification Terpusat.
 \lstinputlisting[label=json:contoh-fcm, caption={Contoh Push Notification FCM}] {bab2/json/fcm.json}
 \begin{figure}[H]
-	\centering\includegraphics[width=0.5\textwidth]{bab2/img/fcm.jpg}
+	\centering\includegraphics[width=0.8\textwidth]{bab2/img/fcm.jpg}
 	\caption{Pratinjau Notifikasi pada Android}
 	\label{img:contoh-hasil-fcm}
 \end{figure}
-\par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat Android dan Web akan dikirim ke layanan FCM oleh Push Notification Terpusat.
-\clearpage
 
 \section{Microsoft SQL Server}
 \par Microsoft SQL Server atau SQL Server adalah sebuah sistem manajemen basis data relasional (RDBMS) yang merupakan produk dari Microsoft. Bahasa \textit{query} utamanya adalah Transact-SQL yang merupakan implementasi dari SQL standar ANSI/ISO yang digunakan oleh Microsoft dan Sybase. SQL Server banyak digunakan pada dunia bisnis, pendidikan, dan juga pemerintahan sebagai solusi penyimpanan data \cite{sql-server-online}.
@@ -95,7 +94,6 @@
 	\caption{Arsitektur Antrian Pesan}
 	\label{img:arsitektur-mq_pnt}
 \end{figure}
-\clearpage
 \par Pada tugas akhir ini, antrian pesan merupakan metode yang digunakan untuk menangani pengiriman \textit{push notification}. Perbandingan tanpa dan dengan antrian pesan dapat dilihat pada Tabel \ref{t:perbandingan-antrian-pesan}.
 \begin{longtable}{|p{4.5cm}|p{4.5cm}|}
 	\caption{Perbandingan Penggunaan Antrian Pesan} \label{t:perbandingan-antrian-pesan} \\ \hline
@@ -108,15 +106,13 @@
 \section{Apache Kafka}
 \par Apache Kafka atau Kafka adalah layanan terdistribusi untuk data \textit{streaming}. Kafka pada dasarnya merupakan pengembangan dari arsitektur antrian pesan, dimana terdapat \textit{producer} dan \textit{consumer} yang memproduksi dan mengambil pesan dari dan ke antrian. Perbedaannya, Kafka membagi antrian berdasarkan topik dan partisi. Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
 \par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}).
-\clearpage
 \begin{figure}[H]
-	\centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-mq_kafka.jpg}
+	\centering\includegraphics[width=0.85\textwidth]{bab2/img/arsitektur-mq_kafka.jpg}
 	\caption{Arsitektur Antrian Pesan Apache Kafka}
 	\label{img:arsitektur-mq_kafka}
 \end{figure}
 \par Untuk menjalankan Kafka, pengembang perlu menjalankan Apache Zookeeper terlebih dahulu. Apache Zookeeper atau Zookeeper merupakan aplikasi yang digunakan oleh Kafka untuk mengatur sinkronisasi \textit{producer}, \textit{consumer}, dengan topik dan partisi antrian.
 \par Pada tugas akhir ini, Kafka akan digunakan sebagai pengganti antrian pesan Push Notification Terpusat. Tabel perbandingan antrian pesan Push Notification Terpusat dengan Apache Kafka dapat dilihat pada Tabel \ref{t:perbandingan_kafka}.
-\clearpage
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Antrian Pesan Push Notification Terpusat dengan Apache Kafka} \label{t:perbandingan_kafka} \\ \hline
 	\rowcolor{lightgray} & Push Notification Terpusat & Apache Kafka \\ \hline
@@ -141,6 +137,7 @@
 	\par Penulisan lambda diawali dengan parameter fungsi yang dibungkus dengan tanda kurung, karakter '->', dan implementasi fungsi yang dibungkus dengan kurung kurawal. Contoh implementasi lambda dapat dilihat pada Kode Sumber \ref{java:lambda}.
 \end{enumerate}
 \lstinputlisting[label=java:annotation, caption=Contoh Implementasi Anotasi pada Java, language=Java] {bab2/java/annotation.java}
+\clearpage
 \lstinputlisting[label=java:lambda, caption=Contoh Implementasi Lambda pada Java, language=Java] {bab2/java/lambda.java}
 
 \section{Spring}
@@ -159,15 +156,17 @@
 
 \section{Actuator}
 \par Actuator berisi sekumpulan fitur tambahan untuk pemantauan dan pengaturan aplikasi yang sudah ditahap \textit{production}. Aplikasi bisa dipantau dan diatur dengan menggunakan \textit{endpoint} HTTP atau JMX \cite{actuator-online}.
-\par Pada tugas akhir ini, Actuator merupakan pustaka yang digunakan dalam implementasi pemantauan Push Notification Terpusat. Fitur-fitur Actuator yang akan digunakan pada Push Notification Terpusat dapat dilihat pada Tabel \ref{t:fitur-actuator}.
-\begin{longtable}{|p{2cm}|p{6cm}|}
-	\caption{Fitur Actuator yang Digunakan} \label{t:fitur-actuator} \\ \hline
- 	\rowcolor{lightgray} Nama Fitur & Deskripsi \\ \hline
-	\textit{Metrics} & Untuk menampilkan metrik yang berhubungan dengan sumber daya sistem yang terpakai, seperti CPU dan Memori. \\ \hline
-	\textit{Health} & Untuk menampilkan status kesehatan aplikasi, dan layanan-layanan yang berhubungan dengan aplikasi, seperti sistem basis data dan sistem antrian pesan. \\ \hline
-	\textit{Environment} & Untuk menampilkan konfigurasi Spring dan lingkungan sistem. \\ \hline
-	\textit{Logfile} & Untuk menampilkan \textit{log} yang dikeluarkan oleh sistem. \\ \hline
-\end{longtable}
+\par Pada tugas akhir ini, Actuator merupakan pustaka yang digunakan dalam implementasi pemantauan Push Notification Terpusat. Fitur-fitur Actuator yang akan digunakan pada Push Notification Terpusat adalah sebagai berkut:
+\begin{enumerate}[listparindent=2.5em]
+	\item \textit{Metrics}
+	\par Untuk menampilkan metrik yang berhubungan dengan sumber daya sistem yang terpakai, seperti CPU dan Memori.
+	\item \textit{Health}
+	\par Untuk menampilkan status kesehatan aplikasi, dan layanan-layanan yang berhubungan dengan aplikasi, seperti sistem basis data dan sistem antrian pesan.
+	\item \textit{Environment}
+	\par Untuk menampilkan konfigurasi Spring dan lingkungan sistem.
+	\item \textit{Logfile}
+	\par Untuk menampilkan \textit{log} yang dikeluarkan oleh sistem.
+\end{enumerate}
 
 \section{JSON}
 \par JSON adalah format pertukaran data yang ringan, berbasis teks, dan independen. Nilai pada JSON dapat berupa \textit{object}, \textit{array}, \textit{number}, \textit{string}, \textit{true}, \textit{false}, atau \textit{null} \cite{json-online}. Struktur yang digunakan JSON untuk mengekspresikan nilai adalah sebagai berikut:
@@ -175,19 +174,19 @@
 	\item \textit{Object}
 	\par Struktur \textit{object} direpresentasikan sebagai pasangan kurung kurawal, berisi beberapa pasangan nama dan nilai.
 	\begin{figure}[H]
-		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_object.jpg}
+		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_object.jpg}
 		\caption{Struktur JSON \textit{Object}}
 	\end{figure}
 	\item \textit{Array}
 	\par Struktur \textit{array} direpresentasikan sebagai pasangan kurung siku, berisi beberapa nilai, yang dipisahkan dengan koma.
 	\begin{figure}[H]
-		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_array.jpg}
+		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_array.jpg}
 		\caption{Struktur JSON \textit{Array}}
 	\end{figure}
 	\item \textit{Number}
 	\par Struktur \textit{number} terdiri dari urutan bilangan desimal tanpa nol didepan. Nilai dapat memiliki tanda - dan + didepan, dan bagian pecahan diawali dengan titik. Bilangan yang tidak bisa direpresentasikan sebagai bilangan desimal, seperti \textit{infinity} dan \textit{NaN}, tidak diizinkan.
 	\begin{figure}[H]
-		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_number.jpg}
+		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_number.jpg}
 		\caption{Struktur JSON \textit{Number}}
 	\end{figure}
 	\item \textit{String}
@@ -203,7 +202,7 @@
 		\item \textbackslash t untuk karakter tabulasi (U+0009).
 	\end{enumerate}
 	\begin{figure}[H]
-		\centering\includegraphics[width=0.5\textwidth]{bab2/img/json_string.jpg}
+		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_string.jpg}
 		\caption{Struktur JSON \textit{String}}
 	\end{figure}
 \end{enumerate}
@@ -219,7 +218,7 @@
 	Pembatasan sumber daya & Tidak terbatas & Penggunaan CPU dan Memori bisa dibatasi \\ \hline
 \end{longtable}
 \begin{figure}[H]
-\centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-docker.jpg}
+\centering\includegraphics[width=0.9\textwidth]{bab2/img/arsitektur-docker.jpg}
 \caption{Arsitektur Docker}
 \label{img:arsitektur-docker}
 \end{figure}

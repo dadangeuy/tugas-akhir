@@ -5,5 +5,4 @@ public class SimpleMovieLister {
     public SimpleMovieLister(MovieFinder movieFinder) {
         this.movieFinder = movieFinder;
     }
-    // business logic that actually uses the injected MovieFinder is omitted...
 }
