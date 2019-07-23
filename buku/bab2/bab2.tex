@@ -104,8 +104,8 @@
 \end{longtable}
 
 \section{Apache Kafka}
-\par Apache Kafka atau Kafka adalah layanan terdistribusi untuk data \textit{streaming}. Kafka pada dasarnya merupakan pengembangan dari arsitektur antrian pesan, dimana terdapat \textit{producer} dan \textit{consumer} yang memproduksi dan mengambil pesan dari dan ke antrian. Perbedaannya, Kafka membagi antrian berdasarkan topik dan partisi. Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
-\par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}).
+\par Apache Kafka atau Kafka adalah layanan terdistribusi untuk data \textit{streaming} \cite{kafka-online}. Kafka pada dasarnya merupakan pengembangan dari arsitektur antrian pesan, dimana terdapat \textit{producer} dan \textit{consumer} yang memproduksi dan mengambil pesan dari dan ke antrian. Perbedaannya, Kafka membagi antrian berdasarkan topik dan partisi.
+\par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}). Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
 \begin{figure}[H]
 	\centering\includegraphics[width=0.85\textwidth]{bab2/img/arsitektur-mq_kafka.jpg}
 	\caption{Arsitektur Antrian Pesan Apache Kafka}
@@ -179,6 +179,7 @@
 	\end{figure}
 	\item \textit{Array}
 	\par Struktur \textit{array} direpresentasikan sebagai pasangan kurung siku, berisi beberapa nilai, yang dipisahkan dengan koma.
+	\clearpage
 	\begin{figure}[H]
 		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_array.jpg}
 		\caption{Struktur JSON \textit{Array}}
