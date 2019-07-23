@@ -23,6 +23,7 @@
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2.5cm}|}
 	\caption{Hasil Uji Penelitian Sebelumnya} \label{t:hasil_uji_sebelum} \\ \hline
 	\rowcolor{lightgray} Kode Uji & Jumlah Pengguna & Tingkat Keberhasilan & Rata-Rata \textit{Response Time} (detik) \\ \hline
+	\endhead
 	RT001 & 100 & 100\% & 0,334 \\ \hline
 	RT002 & 500 & 100\% & 2,326 \\ \hline
 	RT003 & 1000 & 100\% & 4,664 \\ \hline
@@ -98,6 +99,7 @@
 \begin{longtable}{|p{4.5cm}|p{4.5cm}|}
 	\caption{Perbandingan Penggunaan Antrian Pesan} \label{t:perbandingan-antrian-pesan} \\ \hline
 	\rowcolor{lightgray} Tanpa Antrian Pesan & Dengan Antrian Pesan \\ \hline
+	\endhead
 	Client dapat melihat langsung hasil \textit{request}. & Client hanya mengetahui jika \textit{request} sudah tersimpan dan akan dijalankan. \\ \hline
 	Jika \textit{request} gagal, \textit{client} bertanggung jawab untuk mengulang operasi. & Jika \textit{request} gagal, \textit{server} bertanggung jawab untuk mengulang operasi. \\ \hline
 	Spesifikasi sistem harus mencukupi penggunaan sumber daya. & Penggunaan sumber daya dapat menyesuaikan spesifikasi sistem. \\ \hline
@@ -115,7 +117,8 @@
 \par Pada tugas akhir ini, Kafka akan digunakan sebagai pengganti antrian pesan Push Notification Terpusat. Tabel perbandingan antrian pesan Push Notification Terpusat dengan Apache Kafka dapat dilihat pada Tabel \ref{t:perbandingan_kafka}.
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Antrian Pesan Push Notification Terpusat dengan Apache Kafka} \label{t:perbandingan_kafka} \\ \hline
-	\rowcolor{lightgray} & Push Notification Terpusat & Apache Kafka \\ \hline
+	\rowcolor{lightgray} Kategori & Push Notification Terpusat & Apache Kafka \\ \hline
+	\endhead
 	Penyimpanan pesan & \textit{Non Persistence}, disimpan dalam sistem, akan hilang jika sistem mati. & \textit{Persistence}, disimpan dalam media penyimpanan perangkat, tetap tersimpan meskipun sistem mati. \\ \hline
 	Jumlah pesan maksimum & Dapat menangani 1.000 pesan tanpa gagal. & Dapat menangani 1.000.000 pesan tanpa gagal. \\ \hline
 	Arsitektur antrian & Satu antrian untuk semua pesan. & Antrian dibagi berdasarkan topik dan partisi. \\ \hline
@@ -214,7 +217,8 @@
 \par Pada tugas akhir ini, Docker akan digunakan untuk menjalankan Push Notification Terpusat, Kafka, dan Zookeeper. Perbandingan penggunaan Docker dapat dilihat pada Tabel \ref{t:perbandingan_docker}, dan arsitektur Docker pada Gambar \ref{img:arsitektur-docker}.
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Penggunaan Docker} \label{t:perbandingan_docker} \\ \hline
-	\rowcolor{lightgray} & Tanpa Docker & Dengan Docker \\ \hline
+	\rowcolor{lightgray} Kategori & Tanpa Docker & Dengan Docker \\ \hline
+	\endhead
 	Proses \textit{deployment} & Membutuhkan konfigurasi khusus untuk setiap sistem operasi & Dapat langsung dijalankan di sistem operasi manapun \\ \hline
 	Pembatasan sumber daya & Tidak terbatas & Penggunaan CPU dan Memori bisa dibatasi \\ \hline
 \end{longtable}
@@ -229,7 +233,8 @@
 \par Pada tugas akhir ini, Docker Compose akan digunakan untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan Push Notification Terpusat, Kafka, dan Zookeeper. Perbandingan penggunaan Docker Compose dapat dilihat pada Tabel \ref{t:perbandingan_docker_compose}.
 \begin{longtable}{|p{2cm}|p{3.5cm}|p{3.5cm}|}
 	\caption{Perbandingan Penggunaan Docker Compose} \label{t:perbandingan_docker_compose} \\ \hline
-	\rowcolor{lightgray} & Tanpa Compose & Dengan Compose \\ \hline
+	\rowcolor{lightgray} Kategori & Tanpa Compose & Dengan Compose \\ \hline
+	\endhead
 	Konfigurasi & Ditambahkan dalam opsi setiap kali menjalankan \textit{container} & Disimpan dalam file \\ \hline
 	Cara menjalankan & Untuk setiap \textit{container}, jalankan perintah "docker run <image>" untuk menjalankan \textit{container} & Jalankan perintah "docker-compose up" untuk menjalankan semua \textit{container} \\ \hline
 \end{longtable}

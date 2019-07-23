@@ -6,6 +6,7 @@
 \begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Spesifikasi Server} \label{tabel_spesifikasi_server} \\ \hline
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endhead
 	CPU & AMD Ryzen 5 2500U \\ \hline
 	CPU Core & 4 \\ \hline
 	Memory & 12 GB \\ \hline
@@ -15,6 +16,7 @@
 \begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Spesifikasi Perangkat Android} \label{tabel_spesifikasi_perangkat_android} \\ \hline
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endhead
 	CPU & Snapdragon 636 \\ \hline
 	Memory & 3 GB \\ \hline
 	Sistem Operasi & Android 9 (Pie) \\ \hline
@@ -22,6 +24,7 @@
 \begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Spesifikasi Perangkat iOS} \label{tabel_spesifikasi_perangkat_ios} \\ \hline
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endhead
 	CPU & Apple A10 Fusion \\ \hline
 	Memory & 3 GB \\ \hline
 	Sistem Operasi & iOS 12 \\ \hline
@@ -30,22 +33,22 @@
 \section{Implementasi Basis Data}
 \par Subbab ini membahas struktur tabel yang digunakan, meliputi tujuan pembuatan tabel, Kode yang digunakan untuk membuat tabel, dan gambar tabel yang telah dibuat.
 
-\subsection{Implementasi Tabel User}
-\par Tabel user digunakan untuk menyimpan data pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:user_account} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_user_account}.
-\lstinputlisting[label=code:user_account, caption=Implementasi Tabel User, language=SQL]{bab4/sql/user_account.sql}
-\clearpage
-\begin{figure}[H]
-    \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_user_account.jpg}
-    \caption{Tabel User (user\_account)}
-    \label{tabel_user_account}
-\end{figure}
-\clearpage
+%\subsection{Implementasi Tabel User}
+%\par Tabel user digunakan untuk menyimpan data pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:user_account} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_user_account}.
+%\lstinputlisting[label=code:user_account, caption=Implementasi Tabel User, language=SQL]{bab4/sql/user_account.sql}
+%\clearpage
+%\begin{figure}[H]
+%    \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_user_account.jpg}
+%    \caption{Tabel User (user\_account)}
+%    \label{tabel_user_account}
+%\end{figure}
+%\clearpage
 
 \subsection{Implementasi Tabel Group}
 \par Tabel group digunakan untuk menyimpan data kelompok pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_group} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_group}.
 \lstinputlisting[label=code:pn_group, caption=Implementasi Tabel Group, language=SQL]{bab4/sql/pn_group.sql}
 \begin{figure}[H]
-    \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_group.jpg}
+    \centering\includegraphics[width=0.45\textwidth]{bab4/figures/tabel_pn_group.jpg}
     \caption{Tabel Group (pn\_group)}
     \label{tabel_pn_group}
 \end{figure}
@@ -59,14 +62,14 @@
     \label{tabel_pn_group_member}
 \end{figure}
 
-\subsection{Implementasi Tabel Client}
-\par Tabel client digunakan untuk menyimpan data aplikasi. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:oauth_client} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_oauth_client}.
-\lstinputlisting[label=code:oauth_client, caption=Implementasi Tabel Client, language=SQL]{bab4/sql/oauth_client.sql}
-\begin{figure}[H]
-    \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_oauth_client.jpg}
-    \caption{Tabel Client (oauth\_client)}
-    \label{tabel_oauth_client}
-\end{figure}
+%\subsection{Implementasi Tabel Client}
+%\par Tabel client digunakan untuk menyimpan data aplikasi. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:oauth_client} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_oauth_client}.
+%\lstinputlisting[label=code:oauth_client, caption=Implementasi Tabel Client, language=SQL]{bab4/sql/oauth_client.sql}
+%\begin{figure}[H]
+%    \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_oauth_client.jpg}
+%    \caption{Tabel Client (oauth\_client)}
+%    \label{tabel_oauth_client}
+%\end{figure}
 
 \subsection{Implementasi Tabel Certificate}
 \par Tabel certificate digunakan untuk menyimpan data sertifikat client untuk autentikasi ke layanan APNs dan FCM. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_certificate} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_certificate}.
@@ -81,7 +84,7 @@
 \par Tabel device digunakan untuk menyimpan data perangkat pengguna yang terdaftar di layanan APNs dan FCM. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:device_token} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_device_token}.
 \lstinputlisting[label=code:device_token, caption=Implementasi Tabel Device, language=SQL]{bab4/sql/device_token.sql}
 \begin{figure}[H]
-    \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_device_token.jpg}
+    \centering\includegraphics[width=0.45\textwidth]{bab4/figures/tabel_device_token.jpg}
     \caption{Tabel Device (device\_token)}
     \label{tabel_device_token}
 \end{figure}
@@ -97,12 +100,14 @@
 
 \subsection{Implementasi Tabel Packet}
 \par Tabel packet digunakan untuk menyimpan data notifikasi yang akan dikirim ke satu perangkat. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_packet} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_packet}.
+\clearpage
 \lstinputlisting[label=code:pn_packet, caption=Implementasi Tabel Packet, language=SQL]{bab4/sql/pn_packet.sql}
 \begin{figure}[H]
     \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_packet.jpg}
     \caption{Tabel Packet (pn\_packet)}
     \label{tabel_pn_packet}
 \end{figure}
+\clearpage
 
 \subsection{Implementasi Tabel User Destination}
 \par Tabel user destination digunakan untuk menyimpan data pengguna yang akan menerima notifikasi dari suatu batch. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_user_destination} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_user_destination}.
@@ -135,6 +140,7 @@
 
 \section{Implementasi Proses dan Kasus Penggunaan}
 \par Subbab ini membahas implementasi proses yang dibuat berdasarkan hasil analisa dan rancangan yang telah dilakukan.
+\clearpage
 
 \subsection{Implementasi Pembuatan Packet}
 \par Proses pembuatan \textit{packet} dilakukan secara berkala oleh modul Scheduler setiap 30 detik. \textit{Packet} yang telah dibuat akan disimpan di sistem basis data. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pembuatan_packet}.
@@ -154,4 +160,5 @@
 
 \subsection{Implementasi Pemantauan Aplikasi}
 \par Proses pemantauan aplikasi (menampilkan penggunaan sumber daya, menampilkan status kesehatan, menampilkan konfigurasi, menampilkan \textit{log}) diimplementasikan dengan menggunakan pustaka Actuator yang sudah terintegrasi dengan kerangka kerja Spring. Untuk keamanan, API Actuator dilindungi dengan metode autentikasi HTTP Basic. Setiap modul aplikasi (Scheduler, Sender APN, dan Sender FCM) menggunakan konfigurasi Actuator yang sama. Hasil implementasi konfigurasi Actuator dapat dilihat pada Kode Sumber \ref{yaml:actuator}.
+\clearpage
 \lstinputlisting[label=yaml:actuator, caption=Implementasi YAML untuk Konfigurasi Actuator] {bab4/yaml/actuator.yml}
