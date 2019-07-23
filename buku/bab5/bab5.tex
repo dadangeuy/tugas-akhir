@@ -337,7 +337,48 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\item Jumlah \textit{packet} yang diterima oleh APNs adalah jumlah \textit{packet} yang berhasil atau gagal dengan \textit{error} ApnsClientException.
 	\item Jumlah \textit{packet} yang diterima oleh perangkat iOS adalah jumlah \textit{packet} yang berhasil.
 \end{enumerate}
-   
+
+\paragraph{Pengujian Keandalan Pengiriman 50 Packet ke Perangkat iOS}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 50 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-50}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 50 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-50} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endhead
+	NFAT-01 & 50 & 50 & 50 \\ \hline
+	NFAT-02 & 50 & 50 & 50 \\ \hline
+	NFAT-03 & 50 & 50 & 50 \\ \hline
+	NFAT-04 & 50 & 50 & 50 \\ \hline
+	NFAT-05 & 50 & 50 & 50 \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 250 Packet ke Perangkat iOS}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 250 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-250}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 250 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-250} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endhead
+	NFAT-06 & 250 & 250 & 250 \\ \hline
+	NFAT-07 & 250 & 250 & 250 \\ \hline
+	NFAT-08 & 250 & 250 & 250 \\ \hline
+	NFAT-09 & 250 & 250 & 250 \\ \hline
+	NFAT-10 & 250 & 250 & 250 \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 500 Packet ke Perangkat iOS}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 500 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-500}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 500 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-500} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endhead
+	NFAT-11 & 500 & 500 & 500 \\ \hline
+	NFAT-12 & 500 & 500 & 500 \\ \hline
+	NFAT-13 & 500 & 500 & 500 \\ \hline
+	NFAT-14 & 500 & 500 & 500 \\ \hline
+	NFAT-15 & 500 & 500 & 500 \\ \hline
+\end{longtable}
 
 \paragraph{Pengujian Keandalan Pengiriman 1.000 Packet ke Perangkat iOS}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-1k}.
@@ -346,11 +387,25 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
-	NFAT-01 & 1.000 & 1.000 & 1.000 \\ \hline
-	NFAT-02 & 1.000 & 1.000 & 1.000 \\ \hline
-	NFAT-03 & 1.000 & 1.000 & 1.000 \\ \hline
-	NFAT-04 & 1.000 & 1.000 & 1.000 \\ \hline
-	NFAT-05 & 1.000 & 1.000 & 1.000 \\ \hline
+	NFAT-16 & 1.000 & 1.000 & 1.000 \\ \hline
+	NFAT-17 & 1.000 & 1.000 & 1.000 \\ \hline
+	NFAT-18 & 1.000 & 1.000 & 1.000 \\ \hline
+	NFAT-19 & 1.000 & 1.000 & 1.000 \\ \hline
+	NFAT-20 & 1.000 & 1.000 & 1.000 \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 1.500 Packet ke Perangkat iOS}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.500 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-1500}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 1500 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-1500} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endhead
+	NFAT-21 & 1500 & 1500 & 1500 \\ \hline
+	NFAT-22 & 1500 & 1500 & 1500 \\ \hline
+	NFAT-23 & 1500 & 1500 & 1500 \\ \hline
+	NFAT-24 & 1500 & 1500 & 1500 \\ \hline
+	NFAT-25 & 1500 & 1500 & 1500 \\ \hline
 \end{longtable}
 
 \paragraph{Pengujian Keandalan Pengiriman 10.000 Packet ke Perangkat iOS}
@@ -360,21 +415,21 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
-	NFAT-06 & 10.000 & 10.000 & 9.984 \\ \hline
-	NFAT-07 & 10.000 & 10.000 & 9.992 \\ \hline
-	NFAT-08 & 10.000 & 10.000 & 9.984 \\ \hline
-	NFAT-09 & 10.000 & 10.000 & 9.992 \\ \hline
-	NFAT-10 & 10.000 & 10.000 & 9.984 \\ \hline
+	NFAT-26 & 10.000 & 10.000 & 9.984 \\ \hline
+	NFAT-27 & 10.000 & 10.000 & 9.992 \\ \hline
+	NFAT-28 & 10.000 & 10.000 & 9.984 \\ \hline
+	NFAT-29 & 10.000 & 10.000 & 9.992 \\ \hline
+	NFAT-30 & 10.000 & 10.000 & 9.984 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{1.5cm}|p{1.5cm}|p{4cm}|}
 	\caption{\textit{Error} pada Hasil Uji Keandalan Pengiriman 10.000 \textit{Packet} ke Perangkat iOS} \label{t:error-keandalan-ios-10k} \\ \hline
 	\rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
 	\endhead
-	NFAT-06 & 16 & ApnsClientException: TooManyRequests \\ \hline
-	NFAT-07 & 8 & ApnsClientException: TooManyRequests \\ \hline
-	NFAT-08 & 16 & ApnsClientException: TooManyRequests \\ \hline
-	NFAT-09 & 8 & ApnsClientException: TooManyRequests \\ \hline
-	NFAT-10 & 16 & ApnsClientException: TooManyRequests \\ \hline
+	NFAT-26 & 16 & ApnsClientException: TooManyRequests \\ \hline
+	NFAT-27 & 8 & ApnsClientException: TooManyRequests \\ \hline
+	NFAT-28 & 16 & ApnsClientException: TooManyRequests \\ \hline
+	NFAT-29 & 8 & ApnsClientException: TooManyRequests \\ \hline
+	NFAT-30 & 16 & ApnsClientException: TooManyRequests \\ \hline
 \end{longtable}
 
 \paragraph{Pengujian Keandalan Pengiriman 100.000 Packet ke Perangkat iOS}
@@ -384,22 +439,22 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
-	NFAT-11 & 100.000 & 99.996 & 99.866 \\ \hline
-	NFAT-12 & 100.000 & 100.000 & 99.848 \\ \hline
-	NFAT-13 & 100.000 & 100.000 & 99.856 \\ \hline
-	NFAT-14 & 100.000 & 100.000 & 99.872 \\ \hline
-	NFAT-15 & 100.000 & 100.000 & 99.840 \\ \hline
+	NFAT-31 & 100.000 & 99.996 & 99.866 \\ \hline
+	NFAT-32 & 100.000 & 100.000 & 99.848 \\ \hline
+	NFAT-33 & 100.000 & 100.000 & 99.856 \\ \hline
+	NFAT-34 & 100.000 & 100.000 & 99.872 \\ \hline
+	NFAT-35 & 100.000 & 100.000 & 99.840 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{1.5cm}|p{1.5cm}|p{4cm}|}
 \caption{\textit{Error} pada Hasil Uji Keandalan Pengiriman 100.000 \textit{Packet} ke Perangkat iOS} \label{t:error-keandalan-ios-100k} \\ \hline
 \rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
  & 130 & ApnsClientException: TooManyRequests \\ \hhline{~|*2{-}|}
-\multirow{-1}{*}{NFAT-11} & 4 & IOException: Stream closed before a reply was received \\ \hline
+\multirow{-1}{*}{NFAT-31} & 4 & IOException: Stream closed before a reply was received \\ \hline
 \endhead
-NFAT-12 & 152 & ApnsClientException: TooManyRequests \\ \hline
-NFAT-13 & 144 & ApnsClientException: TooManyRequests \\ \hline
-NFAT-14 & 128 & ApnsClientException: TooManyRequests \\ \hline
-NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
+NFAT-32 & 152 & ApnsClientException: TooManyRequests \\ \hline
+NFAT-33 & 144 & ApnsClientException: TooManyRequests \\ \hline
+NFAT-34 & 128 & ApnsClientException: TooManyRequests \\ \hline
+NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \end{longtable}
 
 \subsubsection{Pengujian Keandalan Pengiriman Packet ke Perangkat Android}
@@ -411,6 +466,51 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\item Jumlah \textit{packet} yang diterima oleh perangkat Android adalah jumlah \textit{packet} yang berhasil.
 \end{enumerate}
 
+\paragraph{Pengujian Keandalan Pengiriman 50 Packet ke Perangkat Android}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 50 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-50}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 50 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-50} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endhead
+	NFAT-36 & 50 & 50 & 16 & 17 & 17 \\ \hline
+	NFAT-37 & 50 & 50 & 16 & 17 & 17 \\ \hline
+	NFAT-38 & 50 & 50 & 16 & 17 & 17 \\ \hline
+	NFAT-39 & 50 & 50 & 16 & 17 & 17 \\ \hline
+	NFAT-40 & 50 & 50 & 16 & 17 & 17 \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 250 Packet ke Perangkat Android}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 250 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-250}.
+\clearpage
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 250 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-250} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endhead
+	NFAT-41 & 250 & 250 & 83 & 84 & 83 \\ \hline
+	NFAT-42 & 250 & 250 & 83 & 84 & 83 \\ \hline
+	NFAT-43 & 250 & 250 & 83 & 84 & 83 \\ \hline
+	NFAT-44 & 250 & 250 & 83 & 84 & 83 \\ \hline
+	NFAT-45 & 250 & 250 & 83 & 84 & 83 \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 500 Packet ke Perangkat Android}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 500 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-500}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 500 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-500} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endhead
+	NFAT-46 & 500 & 500 & 166 & 167 & 167 \\ \hline
+	NFAT-47 & 500 & 500 & 166 & 167 & 167 \\ \hline
+	NFAT-48 & 500 & 500 & 166 & 167 & 167 \\ \hline
+	NFAT-49 & 500 & 500 & 166 & 167 & 167 \\ \hline
+	NFAT-50 & 500 & 500 & 166 & 167 & 167 \\ \hline
+\end{longtable}
 
 \paragraph{Pengujian Keandalan Pengiriman 1.000 Packet ke Perangkat Android}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-1k}.
@@ -420,28 +520,41 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
 	\endhead
-	NFAT-16 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
-	NFAT-17 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
-	NFAT-18 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
-	NFAT-19 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
-	NFAT-20 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
+	NFAT-51 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
+	NFAT-52 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
+	NFAT-53 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
+	NFAT-54 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
+	NFAT-55 & 1.000 & 1.000 & 333 & 334 & 333 \\ \hline
+\end{longtable}
+
+\paragraph{Pengujian Keandalan Pengiriman 1.500 Packet ke Perangkat Android}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.500 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-1500}.
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
+	\caption{Hasil Uji Keandalan Pengiriman 1.500 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-1500} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endhead
+	NFAT-56 & 1.500 & 1.500 & 500 & 500 & 500 \\ \hline
+	NFAT-57 & 1.500 & 1.500 & 500 & 500 & 500 \\ \hline
+	NFAT-58 & 1.500 & 1.500 & 500 & 500 & 500 \\ \hline
+	NFAT-59 & 1.500 & 1.500 & 500 & 500 & 500 \\ \hline
+	NFAT-60 & 1.500 & 1.500 & 500 & 500 & 500 \\ \hline
 \end{longtable}
 
 \paragraph{Pengujian Keandalan Pengiriman 10.000 Packet ke Perangkat Android}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 10.000 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-10k}.
-
-\clearpage
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
 	\caption{Hasil Uji Keandalan Pengiriman 10.000 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-10k} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
 	\endhead
-	NFAT-21 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
-	NFAT-22 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
-	NFAT-23 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
-	NFAT-24 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
-	NFAT-25 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
+	NFAT-61 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
+	NFAT-62 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
+	NFAT-63 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
+	NFAT-64 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
+	NFAT-65 & 10.000 & 10.000 & 3.333 & 3.334 & 3.333 \\ \hline
 \end{longtable}
 
 \paragraph{Pengujian Keandalan Pengiriman 100.000 Packet ke Perangkat Android}
@@ -452,18 +565,18 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
 	\endhead
-	NFAT-21 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
-	NFAT-22 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
-	NFAT-23 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
-	NFAT-24 & 100.000 & 100.000 & 33.333 & 33.333 & 33.333 \\ \hline
-	NFAT-25 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
+	NFAT-66 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
+	NFAT-67 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
+	NFAT-68 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
+	NFAT-69 & 100.000 & 100.000 & 33.333 & 33.333 & 33.333 \\ \hline
+	NFAT-70 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
 \end{longtable}
 
 \begin{longtable}{|p{1.5cm}|p{1.5cm}|p{5cm}|}
 	\caption{\textit{Error} pada Hasil Uji Keandalan Pengiriman 100.000 \textit{Packet} ke Perangkat Android} \label{t:error-keandalan-android-100k} \\ \hline
 	\rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
 	\endhead
-	NFAT-24 & 1 & FirebaseMessagingException: The service is currently unavailable. \\ \hline
+	NFAT-69 & 1 & FirebaseMessagingException: The service is currently unavailable. \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Ketersediaan}
