@@ -534,51 +534,41 @@ NFAT-15 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \end{longtable}
 
 \subsection{Evaluasi Perbandingan Hasil Pengujian Performa}
-\par Evaluasi hasil pengujian performa dilakukan dengan membandingkan hasil uji pada penelitian sebelumnya dengan yang didapatkan pada tugas akhir ini. Pada penelitian sebelumnya, performa diukur dengan menghitung rata-rata waktu yang dibutuhkan untuk mengirim \textit{request} ke layanan APNs dan FCM. Sebagai pembanding yang sepadan, performa pada tugas akhir ini akan diukur dengan menghitung rata-rata total waktu yang dibutuhkan untuk pembuatan dan pengiriman \textit{packet} ke layanan APNs dan FCM.
-\par Berdasarkan hasil uji, dapat dikatakan bahwa waktu yang dibutuhkan oleh sistem untuk mengirim notifikasi menjadi jauh lebih stabil dan cepat. Waktu rata-rata pengiriman cenderung stabil di kisaran 0,05 detik, berbeda dengan sebelumnya, dimana waktu rata-rata ikut bertambah seiring dengan bertambahnya jumlah notifikasi. Pada kasus uji pengiriman 2.000 notifikasi, sistem terbukti mampu mengirim notifikasi 136 kali lebih cepat dari sebelumnya.
-\par Peningkatan kestabilan disebabkan oleh pemecahan modul Engine menjadi Scheduler, Kafka, Sender APN, dan Sender FCM, sehingga pembagian sumber daya untuk proses penjadwalan, pengantrian, dan pengiriman menjadi lebih baik. Peningkatan kecepatan disebabkan oleh arsitektur antrian pesan yang digunakan oleh Kafka, yang memungkinkan pemrosesan data secara bersamaan dengan membagi antrian berdasarkan topik dan partisi.
-\par Rincian hasil uji performa dari penelitian sebelumnya dan yang dilakukan pada tugas akhir ini dapat dilihat pada Tabel \ref{t:performa-lama} dan \ref{t:performa-baru}.
-\begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|}
-	\caption{Rata-Rata Hasil Uji Performa Penelitian Sebelumnya} \label{t:performa-lama} \\ \hline
-	\rowcolor{lightgray} No & Jumlah Notifikasi & Rata-Rata per Notifikasi (detik) \\ \hline
-	\endhead
-	1 & 100 & 0,334 \\ \hline
-	2 & 500 & 2,326 \\ \hline
-	3 & 1.000 & 4,664 \\ \hline
-	4 & 2.000 & 8,889 \\ \hline
-	5 & 3.000 & 10,552 \\ \hline
-\end{longtable}
+\par Evaluasi hasil pengujian performa dilakukan dengan membandingkan hasil uji pada penelitian sebelumnya dengan yang didapatkan pada tugas akhir ini. Pada penelitian sebelumnya, performa diukur dengan menghitung rata-rata waktu yang dibutuhkan untuk mengirim satu \textit{request} ke layanan APNs dan FCM. Sebagai pembanding yang sepadan, performa pada penelitian sebelumnya akan dikalikan dengan jumlah notifikasi yang dikirim.
+\par Berdasarkan hasil uji, untuk kasus uji kurang dari 100 notifikasi, aplikasi yang dibangun berjalan hingga 2 kali lebih lambat. Namun, untuk kasus uji lebih dari 500 notifikasi, aplikasi yang dibangun pada tugas akhir ini mampu mengirim hingga 138 kali lebih cepat.
+\par Untuk kasus uji dibawah 100 notifikasi, pengiriman berjalan lebih lambat karena notifikasi dibuat dan dikirim oleh Scheduler setiap 30 detik. Sementara itu, untuk kasus uji diatas 500, peningkatan kecepatan pengiriman disebabkan oleh arsitektur antrian pesan yang digunakan oleh Kafka, yang memungkinkan pemrosesan data secara bersamaan dengan membagi antrian berdasarkan topik dan partisi.
+\par Rincian perbandingan hasil uji performa dengan penelitian sebelumnya dapat dilihat pada Tabel \ref{t:perbandingan-performa}.
 \begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|p{2.5cm}|}
-	\caption{Rata-Rata Hasil Uji Performa} \label{t:performa-baru} \\ \hline
-	\rowcolor{lightgray} No & Jumlah Notifikasi & Rata-Rata Total (menit) & Rata-Rata per Notifikasi (detik) \\ \hline
+	\caption{Perbandingan Hasil Uji Performa dengan Penelitian Sebelumnya} \label{t:perbandingan-performa} \\ \hline
+	\rowcolor{lightgray} & & \multicolumn{2}{c|}{Rata-Rata Total} \\ \hhline{~~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{No} & \multirow{-2}{*}{Jumlah Notifikasi} & Lama & Baru \\ \hline
 	\endhead
-	1 & 2.000 & 2,15 & 0,065 \\ \hline
-	2 & 20.000 & 17,5 & 0,053 \\ \hline
-	3 & 200.000 & 172,37 & 0,052 \\ \hline
+	1 & 100 & 0:00:33 & 0:01:06 \\ \hline
+	2 & 500 & 0:19:23 & 0:01:58 \\ \hline
+	3 & 1.000 & 1:17:44 & 0:02:50 \\ \hline
+	4 & 2.000 & 4:56:18 & 0:02:09 \\ \hline
+	5 & 3.000 & 8:47:36 & 0:05:16 \\ \hline
+	6 & 20.000 & - & 0:17:30 \\ \hline
+	7 & 200.000 & - & 2:52:22 \\ \hline
 \end{longtable}
 
 \subsection{Evaluasi Perbandingan Hasil Pengujian Keandalan}
 \par Evaluasi hasil pengujian keandalan dilakukan dengan membandingkan hasil uji pada penelitian sebelumnya dengan yang didapatkan pada tugas akhir ini. Pada penelitian sebelumnya, keandalan diukur dengan menghitung seberapa banyak \textit{request} yang berhasil dikirimkan ke layanan APNs dan FCM. Sebagai pembanding yang sepadan, keandalan pada tugas akhir ini akan diukur dengan menghitung seberapa banyak \textit{packet} yang diterima oleh layanan APNs dan FCM.
-\par Berdasarkan hasil uji, dapat dikatakan bahwa tingkat keberhasilan pengiriman notifikasi menjadi jauh lebih baik dari sebelumnya. Aplikasi berhasil mengirim 200.000 notifikasi dengan tingkat keberhasilan 99,99 persen, yang berarti hanya ada 1 notifikasi yang gagal diterima oleh APNs. Sementara aplikasi pada penelitian sebelumnya hanya mampu mengirim 63,8 persen pesan dari 3.000 notifikasi yang dikirim.
+\par Berdasarkan hasil uji, dapat dikatakan bahwa tingkat keberhasilan pengiriman notifikasi menjadi jauh lebih baik dari sebelumnya. Aplikasi pada penelitian sebelumnya hanya mampu mengirim rata-rata 63,8 persen dari 3.000 notifikasi yang dikirim, yang berarti aplikasi hanya mampu mengirim hingga 1.900 notifikasi dalam satu waktu. Aplikasi pada tugas akhir ini berhasil mengirim 200.000 notifikasi dengan rata-rata tingkat keberhasilan 99,99 persen, yang berarti aplikasi mampu mengirim hingga 199.980 notifikasi dalam satu waktu.
 \par Peningkatan tingkat keberhasilan pengiriman notifikasi ini disebabkan oleh arsitektur antrian pesan yang digunakan oleh Kafka, yang menjamin bahwa hanya ada 1 \textit{consumer} yang dapat menggunakan antrian yang ada pada topik dan antrian yang sama, sehingga tidak ada \textit{consumer} yang berebut untuk mengambil pesan.
-\par Rincian hasil uji performa dari penelitian sebelumnya dan yang dilakukan pada tugas akhir ini dapat dilihat pada Tabel \ref{t:keandalan-lama} dan \ref{t:keandalan-baru}.
-\begin{longtable}{|p{0.5cm}|p{3cm}|p{4cm}|}
-	\caption{Hasil Uji Keberhasilan pada Penelitian Sebelumnya} \label{t:keandalan-lama} \\ \hline
-	\rowcolor{lightgray} No & Jumlah Notifikasi & Tingkat Keberhasilan \\ \hline
+\par Rincian perbandingan hasil uji keandalan dengan penelitian sebelumnya dapat dilihat pada Tabel \ref{t:perbandingan-keandalan}.
+\begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|p{2.5cm}|}
+	\caption{Perbandingan Hasil Uji Keandalan dengan Penelitian Sebelumnya} \label{t:perbandingan-keandalan} \\ \hline
+	\rowcolor{lightgray} & & \multicolumn{2}{c|}{Rata-Rata Tingkat Keberhasilan} \\ \hhline{~~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{No} & \multirow{-2}{*}{Jumlah Notifikasi} & Lama & Baru \\ \hline
 	\endhead
-	1 & 100 & 100\% \\ \hline
-	2 & 500 & 100\% \\ \hline
-	3 & 1000 & 100\% \\ \hline
-	4 & 2.000 & 80,7\% \\ \hline
-	5 & 3.000 & 63,8\% \\ \hline
-\end{longtable}
-\begin{longtable}{|p{0.5cm}|p{3cm}|p{4cm}|}
-	\caption{Hasil Uji Keberhasilan} \label{t:keandalan-baru} \\ \hline
-	\rowcolor{lightgray} No & Jumlah Notifikasi & Tingkat Keberhasilan \\ \hline
-	\endhead
-	1 & 2.000 & 100\% \\ \hline
-	2 & 20.000 & 100\% \\ \hline
-	3 & 200.000 & 99,99\% \\ \hline
+	1 & 100 & 100\% & 100\% \\ \hline
+	2 & 500 & 100\% & 100\% \\ \hline
+	3 & 1000 & 100\% & 100\% \\ \hline
+	4 & 2.000 & 80,7\% & 100\% \\ \hline
+	5 & 3.000 & 63,8\% & 100\% \\ \hline
+	6 & 20.000 & - & 100\% \\ \hline
+	7 & 200.000 & - & 99,99\% \\ \hline
 \end{longtable}
 
 \subsection{Evaluasi Kegagalan pada Hasil Pengujian Keandalan}
