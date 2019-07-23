@@ -87,8 +87,8 @@
 \par Microsoft SQL Server atau SQL Server adalah sebuah sistem manajemen basis data relasional (RDBMS) yang merupakan produk dari Microsoft. Bahasa \textit{query} utamanya adalah Transact-SQL yang merupakan implementasi dari SQL standar ANSI/ISO yang digunakan oleh Microsoft dan Sybase. SQL Server banyak digunakan pada dunia bisnis, pendidikan, dan juga pemerintahan sebagai solusi penyimpanan data \cite{sql-server-online}.
 \par SQL Server dan Sybase/ASE dapat berkomunikasi lewat jaringan menggunakan protokol TDS (\textit{Tabular Data Stream}). Selain itu, SQL Server juga mendukung ODBC (\textit{Open Database Connectivity}) dan mempunyai \textit{driver} JDBC untuk bahasa pemrograman Java. Fitur lain dari SQL Server yaitu kemampuannya untuk membuat basis data \textit{mirroring} dan \textit{clustering}.
 
-\section{Message Queue}
-\par \textit{Message queue} atau antrian pesan adalah metode komunikasi untuk pertukaran pesan antar sistem, dengan cara menyediakan media penyimpanan pesan sementara ketika sistem yang dituju sedang sibuk.
+\section{Antrian Pesan}
+\par Antrian pesan atau \textit{message queue} adalah metode komunikasi untuk pertukaran pesan antar sistem, dengan cara menyediakan media penyimpanan pesan sementara ketika sistem yang dituju sedang sibuk.
 \par Arsitektur antrian pesan terdiri dari \textit{producer} yang membuat dan mengirim pesan ke antrian, dan \textit{consumer} yang mengambil dan mengolah pesan dari antrian. Arsitektur antrian pesan dapat dilihat pada Gambar \ref{img:arsitektur-mq_pnt} \cite{message-queue-online}.
 \begin{figure}[H]
 	\centering\includegraphics[width=0.75\textwidth]{bab2/img/arsitektur-mq_pnt.jpg}
@@ -106,7 +106,7 @@
 \end{longtable}
 
 \section{Apache Kafka}
-\par Apache Kafka atau Kafka adalah layanan terdistribusi untuk data \textit{streaming}. Kafka pada dasarnya merupakan pengembangan dari arsitektur \textit{message queue}, dimana terdapat \textit{producer} dan \textit{consumer} yang memproduksi dan mengambil pesan dari dan ke antrian. Perbedaannya, Kafka membagi antrian berdasarkan topik dan partisi. Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
+\par Apache Kafka atau Kafka adalah layanan terdistribusi untuk data \textit{streaming}. Kafka pada dasarnya merupakan pengembangan dari arsitektur antrian pesan, dimana terdapat \textit{producer} dan \textit{consumer} yang memproduksi dan mengambil pesan dari dan ke antrian. Perbedaannya, Kafka membagi antrian berdasarkan topik dan partisi. Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
 \par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}).
 \clearpage
 \begin{figure}[H]
