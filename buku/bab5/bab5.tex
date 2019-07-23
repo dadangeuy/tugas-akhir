@@ -221,6 +221,52 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian performa dilakukan untuk mengetahui seberapa cepat sistem dalam mengirim \textit{packet} ke layanan APNs dan FCM. Kasus uji dibagi berdasarkan jumlah \textit{packet} yang dikirim secara bersamaan, dengan pengulangan sebanyak 5 kali.
 \par Metrik keberhasilan menggunakan durasi waktu pembuatan dan pengiriman \textit{packet}. Durasi pembuatan \textit{packet} dihitung dari waktu \textit{batch} tersimpan di sistem basis data, hingga waktu \textit{batch} selesai diolah. Durasi pengiriman \textit{packet} dihitung dari waktu \textit{batch} dikirim, hingga waktu \textit{packet} terakhir dikirim.
 
+\subsubsection{Pengujian Performa untuk 100 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 50 perangkat iOS dan 50 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-100}.
+
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Performa Pengiriman 100 \textit{Packet}} \label{t:performa-100} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endhead
+	NFPT-01 & 0:00:31 & 0:00:52 & 0:01:23 \\ \hline 
+	NFPT-02 & 0:00:30 & 0:00:51 & 0:01:21 \\ \hline
+	NFPT-03 & 0:00:16 & 0:00:56 & 0:01:11 \\ \hline
+	NFPT-04 & 0:00:07 & 0:00:37 & 0:00:44 \\ \hline
+	NFPT-05 & 0:00:07 & 0:00:42 & 0:00:48 \\ \hline
+\end{longtable}
+
+
+\subsubsection{Pengujian Performa untuk 500 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 250 perangkat iOS dan 250 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-500}.
+
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Performa Pengiriman 500 \textit{Packet}} \label{t:performa-500} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endhead
+	NFPT-06 & 0:00:25 & 0:01:05 & 0:01:29 \\ \hline 
+	NFPT-07 & 0:00:43 & 0:00:40 & 0:01:23 \\ \hline
+	NFPT-08 & 0:01:50 & 0:00:53 & 0:02:43 \\ \hline
+	NFPT-09 & 0:01:02 & 0:01:35 & 0:02:37 \\ \hline
+	NFPT-10 & 0:00:31 & 0:01:08 & 0:01:39 \\ \hline
+\end{longtable}
+
+\subsubsection{Pengujian Performa untuk 1.000 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 500 perangkat iOS dan 500 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-1k}.
+
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Performa Pengiriman 1.000 \textit{Packet}} \label{t:performa-1k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endhead
+	NFPT-11 & 0:00:21 & 0:02:12 & 0:02:33 \\ \hline 
+	NFPT-12 & 0:01:13 & 0:02:02 & 0:03:15 \\ \hline
+	NFPT-13 & 0:00:42 & 0:01:55 & 0:02:38 \\ \hline
+	NFPT-14 & 0:00:52 & 0:02:06 & 0:02:59 \\ \hline
+	NFPT-15 & 0:00:46 & 0:01:57 & 0:02:43 \\ \hline
+\end{longtable}
+
 \subsubsection{Pengujian Performa untuk 2.000 Packet}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 perangkat iOS dan 1.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-2k}.
 
@@ -229,11 +275,26 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 	\endhead
-	NFPT-01 & 0:00:27 & 0:01:47 & 0:02:14 \\ \hline 
-	NFPT-02 & 0:00:15 & 0:01:34 & 0:01:49 \\ \hline
-	NFPT-03 & 0:00:28 & 0:01:50 & 0:02:18 \\ \hline
-	NFPT-04 & 0:00:05 & 0:02:14 & 0:02:19 \\ \hline
-	NFPT-05 & 0:00:25 & 0:01:39 & 0:02:04 \\ \hline
+	NFPT-16 & 0:00:27 & 0:01:47 & 0:02:14 \\ \hline 
+	NFPT-17 & 0:00:15 & 0:01:34 & 0:01:49 \\ \hline
+	NFPT-18 & 0:00:28 & 0:01:50 & 0:02:18 \\ \hline
+	NFPT-19 & 0:00:05 & 0:02:14 & 0:02:19 \\ \hline
+	NFPT-20 & 0:00:25 & 0:01:39 & 0:02:04 \\ \hline
+\end{longtable}
+
+\subsubsection{Pengujian Performa untuk 3.000 Packet}
+\par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.500 perangkat iOS dan 1.500 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-3k}.
+
+\begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
+	\caption{Hasil Uji Performa Pengiriman 3.000 \textit{Packet}} \label{t:performa-3k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endhead
+	NFPT-21 & 0:00:59 & 0:04:05 & 0:05:05 \\ \hline 
+	NFPT-22 & 0:01:14 & 0:04:10 & 0:05:24 \\ \hline
+	NFPT-23 & 0:01:09 & 0:04:35 & 0:05:44 \\ \hline
+	NFPT-24 & 0:00:52 & 0:04:17 & 0:05:09 \\ \hline
+	NFPT-25 & 0:00:43 & 0:04:13 & 0:04:56 \\ \hline
 \end{longtable}
 
 \subsubsection{Pengujian Performa untuk 20.000 Packet}
@@ -243,11 +304,11 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 	\endhead
-	NFPT-06 & 0:01:42 & 0:15:04 & 0:16:46 \\ \hline 
-	NFPT-07 & 0:01:27 & 0:21:34 & 0:23:01 \\ \hline
-	NFPT-08 & 0:00:48 & 0:12:10 & 0:12:58 \\ \hline
-	NFPT-09 & 0:01:08 & 0:16:17 & 0:17:25 \\ \hline
-	NFPT-10 & 0:01:02 & 0:16:17 & 0:17:18 \\ \hline
+	NFPT-26 & 0:01:42 & 0:15:04 & 0:16:46 \\ \hline 
+	NFPT-27 & 0:01:27 & 0:21:34 & 0:23:01 \\ \hline
+	NFPT-28 & 0:00:48 & 0:12:10 & 0:12:58 \\ \hline
+	NFPT-29 & 0:01:08 & 0:16:17 & 0:17:25 \\ \hline
+	NFPT-30 & 0:01:02 & 0:16:17 & 0:17:18 \\ \hline
 \end{longtable}
 
 \subsubsection{Pengujian Performa untuk 200.000 Packet}
@@ -258,11 +319,11 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 \rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 \endhead
-	NFPT-11 & 0:11:00 & 3:06:08 & 3:17:08 \\ \hline 
-	NFPT-12 & 0:10:25 & 2:44:55 & 2:55:20 \\ \hline
-	NFPT-13 & 0:08:47 & 3:11:12 & 3:20:00 \\ \hline
-	NFPT-14 & 0:08:39 & 2:38:49 & 2:47:28 \\ \hline
-	NFPT-15 & 0:04:09 & 1:57:47 & 2:01:56 \\ \hline
+	NFPT-31 & 0:11:00 & 3:06:08 & 3:17:08 \\ \hline 
+	NFPT-32 & 0:10:25 & 2:44:55 & 2:55:20 \\ \hline
+	NFPT-33 & 0:08:47 & 3:11:12 & 3:20:00 \\ \hline
+	NFPT-34 & 0:08:39 & 2:38:49 & 2:47:28 \\ \hline
+	NFPT-35 & 0:04:09 & 1:57:47 & 2:01:56 \\ \hline
 \end{longtable}
 
 \subsection{Pengujian Keandalan}
