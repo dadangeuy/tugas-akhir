@@ -100,14 +100,12 @@
 
 \subsection{Implementasi Tabel Packet}
 \par Tabel packet digunakan untuk menyimpan data notifikasi yang akan dikirim ke satu perangkat. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_packet} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_packet}.
-\clearpage
 \lstinputlisting[label=code:pn_packet, caption=Implementasi Tabel Packet, language=SQL]{bab4/sql/pn_packet.sql}
 \begin{figure}[H]
     \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_packet.jpg}
     \caption{Tabel Packet (pn\_packet)}
     \label{tabel_pn_packet}
 \end{figure}
-\clearpage
 
 \subsection{Implementasi Tabel User Destination}
 \par Tabel user destination digunakan untuk menyimpan data pengguna yang akan menerima notifikasi dari suatu batch. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_user_destination} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_user_destination}.
@@ -140,7 +138,6 @@
 
 \section{Implementasi Proses dan Kasus Penggunaan}
 \par Subbab ini membahas implementasi proses yang dibuat berdasarkan hasil analisa dan rancangan yang telah dilakukan.
-\clearpage
 
 \subsection{Implementasi Pembuatan Packet}
 \par Proses pembuatan \textit{packet} dilakukan secara berkala oleh modul Scheduler setiap 30 detik. \textit{Packet} yang telah dibuat akan disimpan di sistem basis data. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pembuatan_packet}.
@@ -160,5 +157,4 @@
 
 \subsection{Implementasi Pemantauan Aplikasi}
 \par Proses pemantauan aplikasi (menampilkan penggunaan sumber daya, menampilkan status kesehatan, menampilkan konfigurasi, menampilkan \textit{log}) diimplementasikan dengan menggunakan pustaka Actuator yang sudah terintegrasi dengan kerangka kerja Spring. Untuk keamanan, API Actuator dilindungi dengan metode autentikasi HTTP Basic. Setiap modul aplikasi (Scheduler, Sender APN, dan Sender FCM) menggunakan konfigurasi Actuator yang sama. Hasil implementasi konfigurasi Actuator dapat dilihat pada Kode Sumber \ref{yaml:actuator}.
-\clearpage
 \lstinputlisting[label=yaml:actuator, caption=Implementasi YAML untuk Konfigurasi Actuator] {bab4/yaml/actuator.yml}

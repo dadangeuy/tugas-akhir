@@ -2,15 +2,17 @@
 \par Bab ini membahas kesimpulan yang diperoleh selama pengerjaan tugas akhir dan saran yang dapat dilakukan untuk mengembangkan tugas akhir ini.
 
 \section{Kesimpulan}
+\par Dalam pengerjaan tugas akhir ini, setelah melalui tahap perancangan, implementasi, serta pengujian, diperoleh kesimpulan sebagai berikut:
 \begin{enumerate}
 	\item Implementasi antrian pesan dengan Kafka dapat dilakukan dengan menjalankan Zookeeper dan Kafka, lalu menggunakan kerangka kerja Spring untuk membuat layanan yang mengirim dan mengambil pesan ke dan dari antrian Kafka.
-	\item Implementasi penjadwalan pengiriman \textit{push notification} dapat dilakukan dengan menyimpan data \textit{push notification} ke sistem basis data, lalu membuat layanan penjadwalan yang mengambil dan mengirim \textit{push notification} dari sistem basis data secara periodik.
+	\item Implementasi penjadwalan pengiriman \textit{push notification} dapat dilakukan dengan menyimpan data \textit{push notification} ke basis data, lalu membuat layanan penjadwalan yang mengambil dan mengirim \textit{push notification} dari basis data secara periodik.
 	\item Implementasi pengiriman \textit{push notification} ke perangkat Android dapat dilakukan dengan mengirim request ke layanan FCM, sedangkan pengiriman \textit{push notification} ke perangkat iOS dapat dilakukan dengan mengirim \textit{request} ke layanan APNs.
-	\item Implementasi pemantauan aplikasi dapat dilakukan dengan menggunakan fitur \textit{metrics}, \textit{health}, \textit{environment}, dan \textit{logfile} pada pustaka Actuator.
-	\item Aplikasi Push Notification Terpusat yang dibangun dengan menggunakan Kafka sebagai antrian pesan mampu mengirim \textit{push notification} hingga 138 kali lebih cepat, dan mampu menangani pengiriman hingga 199.980 \textit{push notification} dalam satu waktu.
+	\item Implementasi pemantauan aplikasi berbasis kerangka kerja Spring dapat dilakukan dengan menggunakan fitur \textit{metrics}, \textit{health}, \textit{environment}, dan \textit{logfile} pada pustaka Actuator.
+	\item Penggunaan Kafka sebagai antrian pesan berhasil meningkatkan kecepatan pengiriman \textit{push notification} hingga 138 kali lebih cepat dan meningkatkan jumlah \textit{push notification} yang dapat dikirim dalam satu waktu hingga 199.980 \textit{push notification}.
 \end{enumerate}
 
 \section{Saran}
+\par Saran yang diberikan untuk pengembangan aplikasi Push Notification Terpusat berdasarkan hasil perancangan, implementasi, serta pengujian adalah sebagai berikut:
 \begin{enumerate}
     \item Memperbarui data perangkat yang sudah tidak aktif berdasarkan \textit{response} dari layanan APNs dan FCM ketika mengirim notifikasi.
     \item Menambahkan indeks untuk mempercepat pencarian di sistem basis data.
