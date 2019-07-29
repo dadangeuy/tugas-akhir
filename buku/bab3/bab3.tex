@@ -32,6 +32,10 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     \caption{Aktor pada Sistem} \label{t:aktor} \\ \hline
     \rowcolor{lightgray} Aktor & Tugas \\ \hline
     Manajemen & Membuat \textit{batch} dan melakukan pemantauan. \\ \hline
+    \endfirsthead
+    \hline
+    \rowcolor{lightgray} Aktor & Tugas \\ \hline
+    Manajemen & Membuat \textit{batch} dan melakukan pemantauan. \\ \hline
     \endhead
     Scheduler & Membuat dan menjadwalkan pengiriman \textit{packet}. \\ \hline
     Sender APN & Mengirimkan \textit{packet} untuk perangkat iOS. \\ \hline
@@ -42,6 +46,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Kebutuhan fungsional mendefinisikan hal-hal yang harus dilakukan oleh sistem berdasarkan masukan yang diterima, proses yang dilakukan, dan hasil yang dicapai. Kebutuhan fungsional aplikasi push notification terpusat dijelaskan pada Tabel \ref{t:fungsional}.
 \begin{longtable}{|p{1cm}|p{3cm}|p{5cm}|}
     \caption{Kebutuhan Fungsional Sistem} \label{t:fungsional} \\ \hline
+    \rowcolor{lightgray} Kode & {Kebutuhan} & Deskripsi \\ \hline
+    \endfirsthead
+    \hline
     \rowcolor{lightgray} Kode & {Kebutuhan} & Deskripsi \\ \hline
     \endhead
     F-01 & Pembuatan \textit{Packet} & Jika terdapat \textit{batch} yang belum dan boleh dibuatkan \textit{packet}, sistem dapat membuatkan \textit{packet} dari \textit{batch} tersebut. \\ \hline
@@ -58,6 +65,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Kebutuhan non fungsional mendefinisikan bagaimana sistem harus bekerja dalam kondisi tertentu. Kebutuhan non fungsional aplikasi push notification terpusat dijelaskan pada Tabel \ref{t:non_fungsional}.
 \begin{longtable}{|p{1.2cm}|p{2cm}|p{5.5cm}|}
 	\caption{Kebutuhan Non Fungsional Sistem} \label{t:non_fungsional} \\ \hline
+    \rowcolor{lightgray} Kode & Aspek & Deskripsi \\ \hline
+    \endfirsthead
+    \hline
     \rowcolor{lightgray} Kode & Aspek & Deskripsi \\ \hline
     \endhead
     NF-01 & Performa & Aplikasi dapat mengirimkan 100 ribu \textit{push notification} dalam waktu kurang dari 6 jam. \\ \hline
@@ -87,6 +97,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \newcommand\tableUcDesc[8] {
 \begin{longtable}{|p{2.5cm}|p{6.5cm}|}
 	\caption{Kasus Penggunaan #3} \label{#1} \\ \hline
+    \rowcolor{lightgray} Komponen & Deskripsi \\ \hline
+    \endfirsthead
+    \hline
     \rowcolor{lightgray} Komponen & Deskripsi \\ \hline
     \endhead
     Kode & #2 \\ \hline
@@ -255,6 +268,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \subsection{Perancangan Arsitektur} \label{s:perancangan_arsitektur}
 \par Modul Engine pada Gambar \ref{img:arsitektur-pnt_lama} yang ada di penelitian sebelumnya, pada tugas akhir ini diubah menjadi 3 modul terpisah, yaitu Scheduler, Sender APN, dan Sender FCM. Modul-modul ini akan diimplementasikan dengan bahasa pemrograman Java, dengan kerangka kerja Spring. Aplikasi saling terhubung lewat sistem antrian pesan (Kafka) dan sistem basis data (SQL Server).
 \par Untuk menjalankan sistem, modul Push Notification Terpusat, Kafka, dan Zookeeper akan dijalankan menggunakan Docker, dan SQL Server menggunakan server basis data ITS. Secara garis besar, aplikasi ini memiliki rancangan arsitektur yang dapat dilihat pada Gambar \ref{img:arsitektur_baru}.
+\clearpage
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{bab3/img/arsitektur-push_notification_terpusat_baru.jpg}
     \caption{Rancangan Arsitektur Push Notification Terpusat} \label{img:arsitektur_baru}
@@ -267,6 +281,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Tabel User digunakan untuk menyimpan data pengguna aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_user}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
  	\caption{Tabel User} \label{tabel_user} \\ \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     User ID & uuid & ID tabel \\ \hline
@@ -305,6 +322,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Group} \label{tabel_group} \\ \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     Group ID & uuid & ID tabel \\ \hline
     Name & varchar(100) & Nama kelompok \\ \hline
@@ -314,9 +334,11 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 
 \subsubsection{Tabel Group Member}
 \par Tabel group member digunakan untuk menyimpan data pengguna yang menjadi anggota dari suatu kelompok. Rincian atribut dapat dilihat pada Tabel \ref{tabel_group_member}.
-\clearpage
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Group Member} \label{tabel_group_member} \\ \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     Group ID & uuid & Grup tempat pengguna terdaftar \\ \hline
@@ -329,6 +351,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Tabel client digunakan untuk menyimpan data aplikasi yang ada di Institut Teknologi Sepuluh Nopember. Rincian atribut dapat dilihat pada Tabel \ref{tabel_client}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Client} \label{tabel_client} \\ \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     Client ID & uuid & ID tabel \\ \hline
@@ -367,6 +392,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Certificate} \label{tabel_certificate} \\ \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     Certificate ID & uuid & ID tabel \\ \hline
     Client ID & uuid & ID Aplikasi yang menggunakan sertifikat \\ \hline
@@ -380,6 +408,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Tabel Device digunakan untuk menyimpan data perangkat pengguna aplikasi yang terdaftar di layanan APNs dan FCM. Rincian atribut dapat dilihat pada Tabel \ref{tabel_device}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Device} \label{tabel_device} \\ \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     Device ID & uuid & ID tabel \\ \hline
@@ -396,6 +427,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Tabel Batch digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa pengguna atau kelompok pengguna. Rincian atribut dapat dilihat pada Tabel \ref{tabel_batch}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Batch} \label{tabel_batch} \\ \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     Batch ID & uuid & ID tabel \\ \hline
@@ -421,6 +455,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel User Destination} \label{tabel_user_destination} \\ \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     Batch ID & uuid & ID \textit{batch} yang dituju \\ \hline
     User ID & uuid & ID pengguna penerima notifikasi \\ \hline
@@ -433,6 +470,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Group Destination} \label{tabel_group_destination} \\ \hline
     \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+    \endfirsthead
+    \hline
+    \rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
     \endhead
     Batch ID & uuid & ID \textit{batch} yang dituju \\ \hline
     Group ID & uuid & ID kelompok penerima notifikasi \\ \hline
@@ -444,6 +484,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \par Tabel Packet digunakan untuk menyimpan data notifikasi yang dikirim ke satu perangkat. Rincian atribut dapat dilihat pada Tabel \ref{tabel_packet}.
 \begin{longtable}{|p{2cm}|p{2.5cm}|p{4.5cm}|}
 	\caption{Tabel Packet} \label{tabel_packet} \\ \hline
+	\rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} {Atribut} & {Tipe Data} & {Deskripsi} \\ \hline
 	\endhead
 	Packet ID & uuid & ID tabel \\ \hline
@@ -467,6 +510,9 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \begin{longtable}{|p{2cm}|p{2cm}|p{5cm}|}
 	\caption{Pembagian Topik Antrian} \label{t:pembagian_topik_antrian} \\ \hline
 	\rowcolor{lightgray} Perangkat & Topik & Deskripsi \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} Perangkat & Topik & Deskripsi \\ \hline
 	\endhead
 	Android & android & Berisi \textit{packet} untuk perangkat Android. \\ \hline
 	Web & web & Berisi \textit{packet} untuk perangkat Web. \\ \hline
@@ -475,8 +521,8 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 
 \subsection{Perancangan Proses}
 \par Subbab ini menjelaskan tentang rancangan, tujuan, dan diagram alir proses-proses yang ada pada aplikasi \textit{push notification} terpusat.
-\clearpage
 
+\clearpage
 \subsubsection{Proses Pembuatan Packet}
 \par Proses ini bertujuan untuk membuat \textit{packet} dari \textit{batch} yang baru dibuat. Proses pembuatan dapat dilihat di diagram alir pada Gambar \ref{flowchart_pembuatan_packet}.
 \begin{figure}[H]
@@ -484,6 +530,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 	\caption{Diagram Alir Proses Pembuatan Packet} \label{flowchart_pembuatan_packet}
 \end{figure}
 
+\clearpage
 \subsubsection{Proses Menambahkan Packet ke Antrian}
 \label{3:proses_menambahkan_packet_ke_antrian}
 \par Proses ini bertujuan untuk mengantrikan \textit{packet} yang sudah waktunya untuk dikirim.
@@ -493,6 +540,7 @@ Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (
 	\caption{Diagram Alir Proses Menambahkan Packet ke Antrian} \label{flowchart_menambahkan_packet_ke_antrian}
 \end{figure}
 
+\clearpage
 \subsubsection{Proses Pengiriman Packet ke APNs}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "ios" ke perangkat pengguna yang berbasis iOS lewat layanan APNs. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada
 Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
@@ -501,6 +549,7 @@ Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 	\caption{Diagram Alir Proses Pengiriman Packet ke APNs} \label{flowchart_pengiriman_packet_ke_apns}
 \end{figure}
 
+\clearpage
 \subsubsection{Proses Pengiriman Packet ke FCM}
 \par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada Gambar \ref{flowchart_pengiriman_packet_ke_fcm}.
 \begin{figure}[H]
@@ -508,21 +557,23 @@ Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 	\caption{Diagram Alir Proses Pengiriman Packet ke FCM} \label{flowchart_pengiriman_packet_ke_fcm}
 \end{figure}
 
+\clearpage
 \subsubsection{Proses Menampilkan Penggunaan Sumber Daya}
 \par Proses ini bertujuan untuk menampilkan penggunaan sumber daya (seperti CPU dan Memori) yang digunakan oleh aplikasi. Proses menampilkan penggunaan sumber daya dapat dilihat di diagram alir pada Gambar \ref{fc:sumber_daya}.
-\clearpage
 \begin{figure}[H]
 	\centering\includegraphics[width=0.4\textwidth]{bab3/img/flowchart-menampilkan_penggunaan_sumber_daya.jpg}
 	\caption{Diagram Alir Proses Menampilkan Penggunaan Sumber Daya} \label{fc:sumber_daya}
 \end{figure}
 
+\clearpage
 \subsubsection{Proses Menampilkan Status Kesehatan}
 \par Proses ini bertujuan untuk menampilkan status kesehatan aplikasi dengan layanan-layanan yang dibutuhkan oleh aplikasi, yaitu sistem basis data dan sistem antrian pesan. Proses menampilkan status kesehatan dapat di diagram alir pada Gambar \ref{fc:kesehatan}.
 \begin{figure}[H]
-	\centering\includegraphics[width=0.65\textwidth]{bab3/img/flowchart-menampilkan_kesehatan.jpg}
+	\centering\includegraphics[width=0.5\textwidth]{bab3/img/flowchart-menampilkan_kesehatan.jpg}
 	\caption{Diagram Alir Proses Menampilkan Status Kesehatan} \label{fc:kesehatan}
 \end{figure}
 
+\clearpage
 \subsubsection{Proses Menampilkan Konfigurasi}
 \par Proses ini bertujuan untuk menampilkan konfigurasi aplikasi dan lingkungan aplikasi yang digunakan untuk menjalankan aplikasi. Proses menampilkan konfigurasi dapat dilihat di diagram alir pada Gambar \ref{fc:konfigurasi}.
 \begin{figure}[H]
@@ -530,6 +581,7 @@ Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 	\caption{Diagram Alir Proses Menampilkan Konfigurasi} \label{fc:konfigurasi}
 \end{figure}
 
+\clearpage
 \subsubsection{Menampilkan Log}
 \par Proses ini bertujuan untuk menampilkan \textit{log} yang dikeluarkan oleh aplikasi. Proses menampilkan \textit{log} dapat dilihat di diagram alir pada Gambar \ref{fc:log}.
 \begin{figure}[H]
@@ -537,10 +589,14 @@ Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 	\caption{Diagram Alir Proses Menampilkan \textit{Log}} \label{fc:log}
 \end{figure}
 
+\clearpage
 \subsection{Perancangan API Endpoint}
 \par Pemantauan Scheduler, Sender APN, dan Sender FCM menggunakan pustaka Actuator. Rincian API Endpoint yang digunakan untuk melihat hasil pemantauan dapat dilihat pada Tabel \ref{t:rancangan_api}.
 \begin{longtable}[H]{|p{0.5cm}|p{3.5cm}|p{1.2cm}|p{3.5cm}|}
 	\caption{Perancangan API Endpoint} \label{t:rancangan_api} \\ \hline
+	\rowcolor{lightgray} No & Endpoint URI & Method & Deskripsi \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} No & Endpoint URI & Method & Deskripsi \\ \hline
 	\endhead
 	1 & /actuator/metrics/\newline process.uptime & GET & Menampilkan lama waktu sistem berjalan \\ \hline
