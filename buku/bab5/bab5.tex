@@ -845,7 +845,7 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Untuk kasus uji dibawah 100 notifikasi, pengiriman berjalan lebih lambat karena notifikasi dibuat dan dikirim oleh Scheduler setiap 30 detik. Sementara itu, untuk kasus uji diatas 500, peningkatan kecepatan pengiriman disebabkan oleh arsitektur antrian pesan yang digunakan oleh Kafka, yang memungkinkan pemrosesan data secara bersamaan dengan membagi antrian berdasarkan topik dan partisi.
 \par Rincian perbandingan hasil uji performa dengan penelitian sebelumnya dapat dilihat pada Tabel \ref{t:perbandingan-performa}.
 \begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|p{2.5cm}|}
-	\caption{Perbandingan Hasil Uji Performa dengan Penelitian Sebelumnya} \label{t:perbandingan-performa} \\ \hline
+	\caption{Perbandingan Hasil Uji Performa} \label{t:perbandingan-performa} \\ \hline
 	\rowcolor{lightgray} & & \multicolumn{2}{c|}{Rata-Rata Total} \\ \hhline{~~|*2{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{No} & \multirow{-2}{*}{Jumlah Notifikasi} & Lama & Baru \\ \hline
 	\endfirsthead
@@ -868,7 +868,7 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Peningkatan tingkat keberhasilan pengiriman notifikasi ini disebabkan oleh arsitektur antrian pesan yang digunakan oleh Kafka, yang menjamin bahwa hanya ada 1 \textit{consumer} yang dapat menggunakan antrian yang ada pada topik dan antrian yang sama, sehingga tidak ada \textit{consumer} yang berebut untuk mengambil pesan.
 \par Rincian perbandingan hasil uji keandalan dengan penelitian sebelumnya dapat dilihat pada Tabel \ref{t:perbandingan-keandalan}.
 \begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|p{2.5cm}|}
-	\caption{Perbandingan Hasil Uji Keandalan dengan Penelitian Sebelumnya} \label{t:perbandingan-keandalan} \\ \hline
+	\caption{Perbandingan Hasil Uji Keandalan} \label{t:perbandingan-keandalan} \\ \hline
 	\rowcolor{lightgray} & & \multicolumn{2}{c|}{Rata-Rata Tingkat Keberhasilan} \\ \hhline{~~|*2{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{No} & \multirow{-2}{*}{Jumlah Notifikasi} & Lama & Baru \\ \hline
 	\endfirsthead
