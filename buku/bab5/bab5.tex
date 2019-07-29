@@ -6,6 +6,9 @@
 \begin{longtable}{|p{3cm}|p{6cm}|}
 	\caption{Spesifikasi Server} \label{t:spec-server} \\ \hline
     \rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+    \endfirsthead
+    \hline
+    \rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
     \endhead
     CPU & Intel(R) Xeon(R) CPU E5-2690 v4 \\ \hline
     CPU Core & 4 \\ \hline
@@ -15,6 +18,9 @@
 \begin{longtable}{|p{3cm}|p{6cm}|}
 	\caption{Spesifikasi Perangkat Android 1} \label{t:spec-android} \\ \hline
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endhead
     CPU & Snapdragon 636 \\ \hline
     Memory & 3 GB \\ \hline
@@ -22,25 +28,34 @@
     Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{3cm}|p{6cm}|}
-\caption{Spesifikasi Perangkat Android 2} \label{t:spec-android-2} \\ \hline
-\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
-\endhead
-CPU & Snapdragon 625 \\ \hline
-Memory & 4 GB \\ \hline
-Sistem Operasi & Android 7 (Nougat) \\ \hline
-Aplikasi & Push Notification Dev versi 1.0 \\ \hline
+	\caption{Spesifikasi Perangkat Android 2} \label{t:spec-android-2} \\ \hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endhead
+	CPU & Snapdragon 625 \\ \hline
+	Memory & 4 GB \\ \hline
+	Sistem Operasi & Android 7 (Nougat) \\ \hline
+	Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{3cm}|p{6cm}|}
-\caption{Spesifikasi Perangkat Android 3} \label{t:spec-android-3} \\ \hline
-\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
-\endhead
-CPU & Snapdragon 616 \\ \hline
-Memory & 3 GB \\ \hline
-Sistem Operasi & Android 5.1.1 (Lollipop) \\ \hline
-Aplikasi & Push Notification Dev versi 1.0 \\ \hline
+	\caption{Spesifikasi Perangkat Android 3} \label{t:spec-android-3} \\ \hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+    \endfirsthead
+    \hline
+    \rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+    \endhead
+    CPU & Snapdragon 616 \\ \hline
+    Memory & 3 GB \\ \hline
+    Sistem Operasi & Android 5.1.1 (Lollipop) \\ \hline
+    Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{3cm}|p{6cm}|}
 	\caption{Spesifikasi Perangkat iOS} \label{t:spec-ios} \\ \hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endhead
     CPU & Apple A10 Fusion \\ \hline
@@ -56,7 +71,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian pembuatan \textit{packet} dilakukan untuk mengetahui apakah Scheduler berhasil membuatkan data \textit{packet} dari \textit{batch} dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pembuatan_packet}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Pembuatan \textit{Packet}} \label{t:uji_pembuatan_packet} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & FT-01 \\ \hline
 	Nama & Pengujian Pembuatan \textit{Packet} \\ \hline
 	Tujuan & Menguji apakah sistem mampu membuatkan data \textit{packet} dari data \textit{batch} \\ \hline
@@ -75,7 +90,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian menambahkan \textit{packet} dilakukan untuk mengetahui apakah Scheduler berhasil menambahkan \textit{packet} ke antrian dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_pembuatan_antrian}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menambahkan \textit{Packet} ke Antrian} \label{t:uji_pembuatan_antrian} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & FT-02 \\ \hline
 	Nama & Pengujian Pembuatan Antrian \\ \hline
 	Tujuan & Menguji apakah sistem mampu membuatkan data antrian dari data \textit{packet} \\ \hline
@@ -94,7 +109,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian pengiriman \textit{packet} ke APNs dilakukan untuk mengetahui apakah Sender APN berhasil mengirimkan \textit{packet} ke layanan APNs dengan tepat. Hasil uji dan notifikasi dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_apn} dan Gambar \ref{f:ss_ios}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Pengiriman \textit{Packet} ke APNs} \label{t:uji_pengiriman_packet_apn} \\
-	\endhead \hline
+	\endfirsthead \hline
 	Kode & FT-03 \\ \hline
 	Nama & Pengujian Pembuatan \textit{Packet} \\ \hline
 	Tujuan & Menguji apakah sistem mampu mengirim \textit{packet} lewat layanan APNs \\ \hline
@@ -117,7 +132,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian pengiriman \textit{packet} ke FCM dilakukan untuk mengetahui apakah Sender FCM berhasil mengirimkan \textit{packet} ke layanan FCM dengan tepat. Hasil uji dan notifikasi dapat dilihat pada Tabel \ref{t:uji_pengiriman_packet_fcm} dan Gambar \ref{img:notifikasi-android}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Pengiriman \textit{Packet} ke FCM} \label{t:uji_pengiriman_packet_fcm} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & FT-04 \\ \hline
 	Nama & Pengujian Pengiriman \textit{Packet} ke FCM \\ \hline
 	Tujuan & Menguji apakah sistem mampu mengirim \textit{packet} lewat layanan FCM \\ \hline
@@ -140,7 +155,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian menampilkan penggunaan sumber daya dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan penggunaan sumber daya dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_penggunaan_sumber_daya}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menampilkan Penggunaan Sumber Daya} \label{t:uji_menampilkan_penggunaan_sumber_daya} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & FT-05 \\ \hline
 	Nama & Pengujian Menampilkan Penggunaan Sumber Daya \\ \hline
 	Tujuan & Menguji apakah sistem mampu menampilkan penggunaan sumber daya \\ \hline
@@ -161,7 +176,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian menampilkan status kesehatan dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan status kesehatan dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_status_kesehatan}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menampilkan Status Kesehatan} \label{t:uji_menampilkan_status_kesehatan} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & FT-06 \\ \hline
 	Nama & Pengujian Menampilkan Status Kesehatan \\ \hline
 	Tujuan & Menguji apakah sistem mampu menampilkan status kesehatan \\ \hline
@@ -180,7 +195,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian menampilkan konfigurasi dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan konfigurasi dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_konfigurasi}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menampilkan Konfigurasi} \label{t:uji_menampilkan_konfigurasi} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & FT-07 \\ \hline
 	Nama & Pengujian Menampilkan Konfigurasi \\ \hline
 	Tujuan & Menguji apakah sistem mampu menampilkan konfigurasi \\ \hline
@@ -199,7 +214,7 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Pengujian menampilkan \textit{log} dilakukan untuk mengetahui apakah Scheduler, Sender APN, dan Sender FCM berhasil menampilkan \textit{log} dengan tepat. Hasil uji dapat dilihat pada Tabel \ref{t:uji_menampilkan_log}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Menampilkan \textit{Log}} \label{t:uji_menampilkan_log} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & FT-08 \\ \hline
 	Nama & Pengujian Menampilkan \textit{Log} \\ \hline
 	Tujuan & Menguji apakah sistem mampu menampilkan \textit{log} \\ \hline
@@ -228,6 +243,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\caption{Hasil Uji Performa Pengiriman 100 \textit{Packet}} \label{t:performa-100} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 	\endhead
 	NFPT-01 & 0:00:31 & 0:00:52 & 0:01:23 \\ \hline 
 	NFPT-02 & 0:00:30 & 0:00:51 & 0:01:21 \\ \hline
@@ -242,6 +261,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 	\caption{Hasil Uji Performa Pengiriman 500 \textit{Packet}} \label{t:performa-500} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 	\endhead
@@ -259,6 +282,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\caption{Hasil Uji Performa Pengiriman 1.000 \textit{Packet}} \label{t:performa-1k} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 	\endhead
 	NFPT-11 & 0:00:21 & 0:02:12 & 0:02:33 \\ \hline 
 	NFPT-12 & 0:01:13 & 0:02:02 & 0:03:15 \\ \hline
@@ -272,6 +299,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 	\caption{Hasil Uji Performa Pengiriman 2.000 \textit{Packet}} \label{t:performa-2k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 	\endhead
@@ -289,6 +320,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\caption{Hasil Uji Performa Pengiriman 3.000 \textit{Packet}} \label{t:performa-3k} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 	\endhead
 	NFPT-21 & 0:00:59 & 0:04:05 & 0:05:05 \\ \hline 
 	NFPT-22 & 0:01:14 & 0:04:10 & 0:05:24 \\ \hline
@@ -301,6 +336,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 10.000 perangkat iOS dan 10.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:performa-20k}.
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 	\caption{Hasil Uji Performa Pengiriman 20.000 \textit{Packet}} \label{t:performa-20k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 	\endhead
@@ -316,6 +355,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 \caption{Hasil Uji Performa Pengiriman 200.000 \textit{Packet}} \label{t:performa-200k} \\ \hline
+\rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
+\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
+\endfirsthead
+\hline
 \rowcolor{lightgray} & \multicolumn{3}{c|}{Durasi Pengolahan \textit{Packet}} \\ \hhline{~|*3{-}|}
 \rowcolor{lightgray} \multirow{-2}{*}{Kode} & Pembuatan & Pengiriman & Total \\ \hline
 \endhead
@@ -344,6 +387,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\caption{Hasil Uji Keandalan Pengiriman 50 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-50} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
 	NFAT-01 & 50 & 50 & 50 \\ \hline
 	NFAT-02 & 50 & 50 & 50 \\ \hline
@@ -356,6 +403,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 250 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-250}.
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 	\caption{Hasil Uji Keandalan Pengiriman 250 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-250} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
@@ -372,6 +423,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\caption{Hasil Uji Keandalan Pengiriman 500 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-500} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
 	NFAT-11 & 500 & 500 & 500 \\ \hline
 	NFAT-12 & 500 & 500 & 500 \\ \hline
@@ -384,6 +439,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 pengguna dengan perangkat iOS. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-ios-1k}.
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 	\caption{Hasil Uji Keandalan Pengiriman 1.000 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-1k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
@@ -400,6 +459,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\caption{Hasil Uji Keandalan Pengiriman 1500 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-1500} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
 	NFAT-21 & 1500 & 1500 & 1500 \\ \hline
 	NFAT-22 & 1500 & 1500 & 1500 \\ \hline
@@ -414,6 +477,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\caption{Hasil Uji Keandalan Pengiriman 10.000 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-10k} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
 	NFAT-26 & 10.000 & 10.000 & 9.984 \\ \hline
 	NFAT-27 & 10.000 & 10.000 & 9.992 \\ \hline
@@ -423,6 +490,9 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{1.5cm}|p{1.5cm}|p{4cm}|}
 	\caption{\textit{Error} pada Hasil Uji Keandalan Pengiriman 10.000 \textit{Packet} ke Perangkat iOS} \label{t:error-keandalan-ios-10k} \\ \hline
+	\rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
 	\endhead
 	NFAT-26 & 16 & ApnsClientException: TooManyRequests \\ \hline
@@ -438,6 +508,10 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 	\caption{Hasil Uji Keandalan Pengiriman 100.000 \textit{Packet} ke Perangkat iOS} \label{t:keandalan-ios-100k} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode} & Sender APN & APNs & iOS \\ \hline
 	\endhead
 	NFAT-31 & 100.000 & 99.996 & 99.866 \\ \hline
 	NFAT-32 & 100.000 & 100.000 & 99.848 \\ \hline
@@ -449,6 +523,11 @@ Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \caption{\textit{Error} pada Hasil Uji Keandalan Pengiriman 100.000 \textit{Packet} ke Perangkat iOS} \label{t:error-keandalan-ios-100k} \\ \hline
 \rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
  & 130 & ApnsClientException: TooManyRequests \\ \hhline{~|*2{-}|}
+\multirow{-1}{*}{NFAT-31} & 4 & IOException: Stream closed before a reply was received \\ \hline
+\endfirsthead
+\hline
+\rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
+& 130 & ApnsClientException: TooManyRequests \\ \hhline{~|*2{-}|}
 \multirow{-1}{*}{NFAT-31} & 4 & IOException: Stream closed before a reply was received \\ \hline
 \endhead
 NFAT-32 & 152 & ApnsClientException: TooManyRequests \\ \hline
@@ -473,6 +552,11 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
 	\endhead
 	NFAT-36 & 50 & 50 & 16 & 17 & 17 \\ \hline
 	NFAT-37 & 50 & 50 & 16 & 17 & 17 \\ \hline
@@ -486,6 +570,11 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \clearpage
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
 	\caption{Hasil Uji Keandalan Pengiriman 250 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-250} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
@@ -504,6 +593,11 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
 	\endhead
 	NFAT-46 & 500 & 500 & 166 & 167 & 167 \\ \hline
 	NFAT-47 & 500 & 500 & 166 & 167 & 167 \\ \hline
@@ -516,6 +610,11 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-1k}.
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
 	\caption{Hasil Uji Keandalan Pengiriman 1.000 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-1k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
@@ -534,6 +633,11 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
 	\endhead
 	NFAT-56 & 1.500 & 1.500 & 500 & 500 & 500 \\ \hline
 	NFAT-57 & 1.500 & 1.500 & 500 & 500 & 500 \\ \hline
@@ -546,6 +650,11 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 10.000 pengguna dengan perangkat Android. Hasil uji dapat diliat pada Tabel \ref{t:keandalan-android-10k}.
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|}
 	\caption{Hasil Uji Keandalan Pengiriman 10.000 \textit{Packet} ke Perangkat Android} \label{t:keandalan-android-10k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
@@ -564,6 +673,11 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
 	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{5}{c|}{Jumlah \textit{Packet} Diterima} \\ \hhline{~|*5{-}|}
+	\rowcolor{lightgray} & & & \multicolumn{3}{c|}{Android} \\ \hhline{~~~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-3}{*}{Kode} & \multirow{-2}{*}{Sender FCM} & \multirow{-2}{*}{FCM} & 1 & 2 & 3 \\ \hline
 	\endhead
 	NFAT-66 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
 	NFAT-67 & 100.000 & 100.000 & 33.333 & 33.334 & 33.333 \\ \hline
@@ -574,6 +688,9 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 
 \begin{longtable}{|p{1.5cm}|p{1.5cm}|p{5cm}|}
 	\caption{\textit{Error} pada Hasil Uji Keandalan Pengiriman 100.000 \textit{Packet} ke Perangkat Android} \label{t:error-keandalan-android-100k} \\ \hline
+	\rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} Kode & Jumlah & Alasan \\ \hline
 	\endhead
 	NFAT-69 & 1 & FirebaseMessagingException: The service is currently unavailable. \\ \hline
@@ -587,6 +704,10 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 perangkat iOS dan 1.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:ketersediaan-2k}.
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 	\caption{Hasil Uji Ketersediaan Layanan untuk Pengiriman 2.000 \textit{Packet}} \label{t:ketersediaan-2k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
 	\endhead
@@ -603,6 +724,10 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\caption{Hasil Uji Ketersediaan Layanan untuk Pengiriman 20.000 \textit{Packet}} \label{t:ketersediaan-20k} \\ \hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
 	\endhead
 	NFTT-06 & 0 & 0 & 0 \\ \hline
 	NFTT-07 & 0 & 0 & 0 \\ \hline
@@ -615,6 +740,10 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 100.000 perangkat iOS dan 100.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:ketersediaan-200k}.
 \begin{longtable}{|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|}
 	\caption{Hasil Uji Ketersediaan Layanan untuk Pengiriman 200.000 \textit{Packet}} \label{t:ketersediaan-200k} \\ \hline
+	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & \multicolumn{3}{c|}{Jumlah \textit{Down}} \\ \hhline{~|*3{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{Kode}  & Scheduler & Sender APN & Sender FCM \\ \hline
 	\endhead
@@ -632,7 +761,7 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Pengujian mematikan sementara Kafka dilakukan dengan cara mematikan Kafka selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_kafka_mati}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Kafka} \label{t:nft_kafka_mati} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & NFDT-01 \\ \hline
 	Nama & Pengujian Mematikan Sementara Kafka \\ \hline
 	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender FCM mati sementara \\ \hline
@@ -652,7 +781,7 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Pengujian mematikan sementara Sender APN dilakukan dengan cara mematikan Sender APN selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_apn_mati}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Sender APN} \label{t:nft_sender_apn_mati} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & NFDT-02 \\ \hline
 	Nama & Pengujian Mematikan Sementara Sender APN \\ \hline
 	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender APN mati sementara \\ \hline
@@ -672,7 +801,7 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Pengujian mematikan sementara Sender FCM dilakukan dengan cara mematikan Sender FCM selama 5 menit ditengah proses pengiriman \textit{packet}. Hasil uji dapat dilihat pada Tabel \ref{t:nft_sender_fcm_mati}.
 \begin{longtable}{|>{\columncolor{lightgray}}p{3cm}|p{6.5cm}|}
 	\caption{Hasil Uji Mematikan Sementara Sender FCM} \label{t:nft_sender_fcm_mati} \\ \hline
-	\endhead
+	\endfirsthead
 	Kode & NFDT-03 \\ \hline
 	Nama & Pengujian Mematikan Sementara Sender FCM \\ \hline
 	Tujuan & Mengetahui apakah sistem mampu mengirimkan \textit{push notification} jika Sender FCM mati sementara \\ \hline
@@ -696,6 +825,9 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \begin{longtable}{|p{1.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|}
 	\caption{Rangkuman Hasil Uji Fungsional} \label{t:eval_f} \\ \hline
 	\rowcolor{lightgray} Kode Kebutuhan & Nama Kebutuhan & Kode Uji & Hasil \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} Kode Kebutuhan & Nama Kebutuhan & Kode Uji & Hasil \\ \hline
 	\endhead
 	F-01 & Pembuatan \textit{Packet} & FT-01 & Berhasil \\ \hline
 	F-02 & Menambahkan \textit{Packet} ke Antrian & FT-02 & Berhasil \\ \hline
@@ -714,6 +846,10 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Rincian perbandingan hasil uji performa dengan penelitian sebelumnya dapat dilihat pada Tabel \ref{t:perbandingan-performa}.
 \begin{longtable}{|p{0.5cm}|p{3cm}|p{2.5cm}|p{2.5cm}|}
 	\caption{Perbandingan Hasil Uji Performa dengan Penelitian Sebelumnya} \label{t:perbandingan-performa} \\ \hline
+	\rowcolor{lightgray} & & \multicolumn{2}{c|}{Rata-Rata Total} \\ \hhline{~~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{No} & \multirow{-2}{*}{Jumlah Notifikasi} & Lama & Baru \\ \hline
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} & & \multicolumn{2}{c|}{Rata-Rata Total} \\ \hhline{~~|*2{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{No} & \multirow{-2}{*}{Jumlah Notifikasi} & Lama & Baru \\ \hline
 	\endhead
@@ -735,6 +871,10 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 	\caption{Perbandingan Hasil Uji Keandalan dengan Penelitian Sebelumnya} \label{t:perbandingan-keandalan} \\ \hline
 	\rowcolor{lightgray} & & \multicolumn{2}{c|}{Rata-Rata Tingkat Keberhasilan} \\ \hhline{~~|*2{-}|}
 	\rowcolor{lightgray} \multirow{-2}{*}{No} & \multirow{-2}{*}{Jumlah Notifikasi} & Lama & Baru \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} & & \multicolumn{2}{c|}{Rata-Rata Tingkat Keberhasilan} \\ \hhline{~~|*2{-}|}
+	\rowcolor{lightgray} \multirow{-2}{*}{No} & \multirow{-2}{*}{Jumlah Notifikasi} & Lama & Baru \\ \hline
 	\endhead
 	1 & 100 & 100\% & 100\% \\ \hline
 	2 & 500 & 100\% & 100\% \\ \hline
@@ -750,6 +890,9 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \begin{longtable}{|p{0.5cm}|p{4.5cm}|p{4cm}|}
 	\caption{Penyebab Kegagalan pada Hasil Uji Keandalan} \label{t:penyebab-gagal} \\ \hline
 	\rowcolor{lightgray} No & \textit{Error} & Penyebab \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} No & \textit{Error} & Penyebab \\ \hline
 	\endhead
 	1 & ApnsClientException: TooManyRequests & APNs memblokir \textit{request} karena dianggap spam. \\ \hline
 	2 & IOException: Stream closed before a reply was received & Gagal menerima \textit{response}, disebabkan oleh koneksi lambat atau terputus. \\ \hline
@@ -762,6 +905,9 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \begin{longtable}{|p{0.5cm}|p{3cm}|p{4cm}|}
 	\caption{Rangkuman Hasil Uji Ketersediaan} \label{t:rangkuman-ketersediaan} \\ \hline
 	\rowcolor{lightgray} No & Jumlah Notifikasi & Rata-Rata Jumlah \textit{Down} \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} No & Jumlah Notifikasi & Rata-Rata Jumlah \textit{Down} \\ \hline
 	\endhead
 	1 & 2.000 & 0 \\ \hline
 	2 & 20.000 & 0 \\ \hline
@@ -773,6 +919,9 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \par Berdasarkan hasil uji, \textit{packet} yang sudah disimpan di Kafka tetap berhasil terkirim meskipun Kafka, Sender APN, atau Sender FCM dimatikan saat proses pengiriman \textit{packet} sedang berlangsung. Rangkuman hasil uji dapat dilihat pada Tabel \ref{t:rangkuman-durabilitas}.
 \begin{longtable}{|p{0.5cm}|p{3.5cm}|p{2cm}|}
 	\caption{Rangkuman Hasil Uji Durabilitas} \label{t:rangkuman-durabilitas} \\ \hline
+	\rowcolor{lightgray} No & Komponen Dimatikan & Hasil \\ \hline 
+	\endfirsthead
+	\hline
 	\rowcolor{lightgray} No & Komponen Dimatikan & Hasil \\ \hline 
 	\endhead
 	1 & Kafka & Berhasil \\ \hline
