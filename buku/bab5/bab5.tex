@@ -4,7 +4,7 @@
 \section{Lingkungan Pengujian}
 \par Lingkungan yang digunakan untuk menguji tugas akhir ini memiliki spesifikasi perangkat keras dan lunak yang ditunjukkan pada Tabel \ref{t:spec-server}, \ref{t:spec-android}, \ref{t:spec-android-2}, \ref{t:spec-android-3}, dan \ref{t:spec-ios}. Implementasi aplikasi android yang digunakan untuk pengujian dapat dilihat pada \nameref{lampiran:implementasi-android}.
 \begin{longtable}{|p{3cm}|p{6cm}|}
-	\caption{Spesifikasi Server} \label{t:spec-server} \\ \hline
+	\caption{Spesifikasi Server Push Notification Terpusat, Kafka, dan Zookeeper} \label{t:spec-server} \\ \hline
     \rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
     \endfirsthead
     \hline
@@ -14,6 +14,22 @@
     CPU Core & 4 \\ \hline
     Memory & 8 GB \\ \hline
     Sistem Operasi & Ubuntu 18.04 \\ \hline
+    Aplikasi & \begin{enumerate}
+    	\item Kafka versi 2.3.0
+    	\item Zookeeper versi 3.5.5
+    \end{enumerate} \\ \hline
+\end{longtable}
+\begin{longtable}{|p{3cm}|p{6cm}|}
+	\caption{Spesifikasi Server SQL Server} \label{t:spec-server-basis-data} \\ \hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endfirsthead
+	\hline
+	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
+	\endhead
+	CPU & \textit{shared} \\ \hline
+	Memory & \textit{shared} \\ \hline
+	Sistem Operasi & Windows Server 2012 \\ \hline
+	Aplikasi & SQLServer versi 2012 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{3cm}|p{6cm}|}
 	\caption{Spesifikasi Perangkat Android 1} \label{t:spec-android} \\ \hline
@@ -698,7 +714,7 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 
 \subsection{Pengujian Ketersediaan}
 \par Pengujian ketersediaan dilakukan untuk mengetahui apakah sistem tetap bekerja normal saat sedang mengirimkan \textit{packet} dalam jumlah besar.
-\par Metrik keberhasilan menggunakan jumlah server mengalami \textit{down} (berhenti beroperasi). Pengecekan kondisi \textit{down} dilakukan dengan mengecek status kesehatan lewat API Actuator setiap 15 menit.
+\par Metrik keberhasilan menggunakan jumlah \textit{server} mengalami \textit{down} (berhenti beroperasi). Pengecekan kondisi \textit{down} dilakukan dengan mengecek status kesehatan lewat API Actuator setiap 15 menit.
 
 \subsubsection{Pengujian Ketersediaan untuk Pengiriman 2.000 Packet}
 \par Skenario pengujian dilakukan dengan membuat \textit{batch} yang menargetkan 1.000 perangkat iOS dan 1.000 perangkat Android. Rincian hasil uji dapat dilihat pada Tabel \ref{t:ketersediaan-2k}.
@@ -900,8 +916,8 @@ NFAT-35 & 160 & ApnsClientException: TooManyRequests \\ \hline
 \end{longtable}
 
 \subsection{Evaluasi Hasil Pengujian Ketersediaan}
-\par Evaluasi hasil pengujian ketersediaan dilakukan dengan menghitung jumlah server mengalami \textit{down} ketika sedang mengirim notifikasi dalam jumlah besar. Berdasarkan hasil uji, sistem tidak mengalami \textit{down} sama sekali saat digunakan untuk mengirim hingga 200.000 notifikasi.
-\par Tidak adanya \textit{down} ini disebabkan oleh penggunaan antrian pesan dalam pengiriman notifikasi. Dengan penggunaan antrian pesan, sistem hanya akan mengolah tugas yang mampu untuk dikerjakan, sehingga beban komputasi tidak akan melebihi kapasitas server. Rangkuman hasil uji ketersediaan dapat dilihat pada Tabel \ref{t:rangkuman-ketersediaan}.
+\par Evaluasi hasil pengujian ketersediaan dilakukan dengan menghitung jumlah \textit{server} mengalami \textit{down} ketika sedang mengirim notifikasi dalam jumlah besar. Berdasarkan hasil uji, sistem tidak mengalami \textit{down} sama sekali saat digunakan untuk mengirim hingga 200.000 notifikasi.
+\par Tidak adanya \textit{down} ini disebabkan oleh penggunaan antrian pesan dalam pengiriman notifikasi. Dengan penggunaan antrian pesan, sistem hanya akan mengolah tugas yang mampu untuk dikerjakan, sehingga beban komputasi tidak akan melebihi kapasitas \textit{server}. Rangkuman hasil uji ketersediaan dapat dilihat pada Tabel \ref{t:rangkuman-ketersediaan}.
 \begin{longtable}{|p{0.5cm}|p{3cm}|p{4cm}|}
 	\caption{Rangkuman Hasil Uji Ketersediaan} \label{t:rangkuman-ketersediaan} \\ \hline
 	\rowcolor{lightgray} No & Jumlah Notifikasi & Rata-Rata Jumlah \textit{Down} \\ \hline

@@ -43,11 +43,11 @@
 	\caption{Alur Autentikasi APNs}
 	\label{img:apns-certificate}
 \end{figure}
-\par Untuk dapat menerima dan mengontrol remote notification, aplikasi harus memenuhi syarat sebagai berikut.
+\par Untuk dapat menerima dan mengontrol \textit{remote notification}, aplikasi harus memenuhi syarat sebagai berikut.
 \begin{enumerate}
-	\item Mengaktifkan kemampuan push notifications dengan cara memindah switch posisi \textit{off} menjadi \textit{on} pada jendela \textit{Project editor} > \textit{Target} > \textit{Capabilities}.
-	\item Melakukan registrasi aplikasi kepada APNs dengan cara menerima token yang bersifat unik untuk tiap perangkat yang berbeda.
-	\item Sistem akan menampilkan perangkat ke aplikasi Anda dengan memanggil metode di delegasi aplikasi. Aplikasi mengirimkan token perangkat ke penyedia yang terkait dengan aplikasi.
+	\item Mengaktifkan kemampuan push notifications dengan cara memindah \textit{switch} posisi \textit{off} menjadi \textit{on} pada jendela \textit{Project editor} > \textit{Target} > \textit{Capabilities}.
+	\item Melakukan registrasi aplikasi kepada APNs dengan cara menerima \textit{token} yang bersifat unik untuk tiap perangkat yang berbeda.
+	\item Sistem akan menampilkan perangkat ke aplikasi Anda dengan memanggil metode di delegasi aplikasi. Aplikasi mengirimkan \textit{token} perangkat ke penyedia yang terkait dengan aplikasi.
 \end{enumerate}
 \par Contoh program yang digunakan untuk mengirim notifikasi ke perangkat iOS lewat layanan APNs dapat dilihat pada Kode Sumber \ref{json:contoh-apns}. Hasil notifikasi yang diterima oleh pengguna dapat dilihat pada Gambar \ref{img:contoh-hasil-apns}.
 \par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat iOS akan dikirim dengan menggunakan layanan Apple Push Notification Service.
@@ -59,14 +59,14 @@
 \end{figure}
 
 \section{Firebase Cloud Messaging}
-\par Firebase Cloud Messaging atau FCM adalah solusi pengiriman pesan lintas platform yang dapat diandalkan untuk mengirimkan pesan dan dapat digunakan tanpa biaya. FCM memiliki kemampuan sebagai berikut \cite{fcm-online}:
+\par Firebase Cloud Messaging atau FCM adalah solusi pengiriman pesan lintas \textit{platform} yang dapat diandalkan untuk mengirimkan pesan dan dapat digunakan tanpa biaya. FCM memiliki kemampuan sebagai berikut \cite{fcm-online}:
 \begin{enumerate}[listparindent=2.5em]
 	\item Mengirimkan notifikasi atau pesan data
 	\par Mengirim pesan notifikasi yang ditampilkan kepada pengguna. Atau mengirim pesan data dan menentukan sepenuhnya apa yang terjadi dalam kode aplikasi.
 	\item Penargetan pesan serbaguna
 	\par Mendistribusikan pesan ke aplikasi klien dengan salah satu dari tiga cara, ke satu perangkat, ke grup perangkat, atau ke perangkat yang berlangganan topik.
 	\item Mengirim pesan dari aplikasi \textit{client}
-	\par Mengirim notifikasi, chat, dan pesan lain dari perangkat ke server melalui saluran koneksi FCM yang andal dan hemat baterai.
+	\par Mengirim notifikasi, \textit{chat}, dan pesan lain dari perangkat ke \textit{server} melalui saluran koneksi FCM yang andal dan hemat baterai.
 \end{enumerate}
 \par Untuk mengimplementasikan FCM, pengembang harus mengikuti langkah-langkah berikut:
 \begin{enumerate}[listparindent=2.5em]
@@ -74,8 +74,8 @@
 	\par Menyiapkan Firebase dan FCM pada aplikasi sesuai petunjuk penyiapan untuk \textit{platform} (Android atau Web).
 	\item Mengembangkan aplikasi klien
 	\par Menambahkan penanganan pesan, logika langganan topik, atau fitur opsional lain ke aplikasi \textit{client}. Selama pengembangan, dapat dilakukan pengujian untuk mengirim pesan dengan mudah menggunakan \textit{Firebase Console}.
-	\item Mengembangkan server aplikasi
-	\par Tentukan apakah pengembangan nantinya menggunakan Admin SDK atau salah satu server \textit{protocol} untuk membuat logika pengiriman, yaitu logika untuk mengautentikasi, membuat permintaan pengiriman, menangani respons, dan sebagainya.
+	\item Mengembangkan \textit{server} aplikasi
+	\par Tentukan apakah pengembangan nantinya menggunakan Admin SDK atau salah satu \textit{server} \textit{protocol} untuk membuat logika pengiriman, yaitu logika untuk mengautentikasi, membuat permintaan pengiriman, menangani respons, dan sebagainya.
 \end{enumerate}
 \par Contoh program yang digunakan untuk mengirim notifikasi ke perangkat Android lewat layanan FCM dapat dilihat pada Kode Sumber \ref{json:contoh-fcm}. Hasil notifikasi yang diterima oleh pengguna dapat dilihat pada Gambar \ref{img:contoh-hasil-fcm}.
 \par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat Android dan Web akan dikirim ke layanan FCM oleh Push Notification Terpusat.
@@ -89,6 +89,7 @@
 \section{Microsoft SQL Server}
 \par Microsoft SQL Server atau SQL Server adalah sebuah sistem manajemen basis data relasional (RDBMS) yang merupakan produk dari Microsoft. Bahasa \textit{query} utamanya adalah Transact-SQL yang merupakan implementasi dari SQL standar ANSI/ISO yang digunakan oleh Microsoft dan Sybase. SQL Server banyak digunakan pada dunia bisnis, pendidikan, dan juga pemerintahan sebagai solusi penyimpanan data \cite{sql-server-online}.
 \par SQL Server dan Sybase/ASE dapat berkomunikasi lewat jaringan menggunakan protokol TDS (\textit{Tabular Data Stream}). Selain itu, SQL Server juga mendukung ODBC (\textit{Open Database Connectivity}) dan mempunyai \textit{driver} JDBC untuk bahasa pemrograman Java. Fitur lain dari SQL Server yaitu kemampuannya untuk membuat basis data \textit{mirroring} dan \textit{clustering}.
+\par Pada tugas akhir ini, SQL Server akan digunakan untuk penyimpanan dan pencarian data yang dibutuhkan oleh Push Notification Terpusat.
 
 \section{Antrian Pesan}
 \par Antrian pesan atau \textit{message queue} adalah metode komunikasi untuk pertukaran pesan antar sistem, dengan cara menyediakan media penyimpanan pesan sementara ketika sistem yang dituju sedang sibuk.
@@ -106,19 +107,19 @@
 	\hline
 	\rowcolor{lightgray} Tanpa Antrian Pesan & Dengan Antrian Pesan \\ \hline
 	\endhead
-	Client dapat melihat langsung hasil \textit{request}. & Client hanya mengetahui jika \textit{request} sudah tersimpan dan akan dijalankan. \\ \hline
+	\textit{Client} dapat melihat langsung hasil \textit{request}. & \textit{Client} hanya mengetahui jika \textit{request} sudah tersimpan dan akan dijalankan. \\ \hline
 	Jika \textit{request} gagal, \textit{client} bertanggung jawab untuk mengulang operasi. & Jika \textit{request} gagal, \textit{server} bertanggung jawab untuk mengulang operasi. \\ \hline
 	Spesifikasi sistem harus mencukupi penggunaan sumber daya. & Penggunaan sumber daya dapat menyesuaikan spesifikasi sistem. \\ \hline
 \end{longtable}
 
 \section{Apache Kafka}
 \par Apache Kafka atau Kafka adalah layanan terdistribusi untuk data \textit{streaming} \cite{kafka-online}. Kafka pada dasarnya merupakan pengembangan dari arsitektur antrian pesan, dimana terdapat \textit{producer} dan \textit{consumer} yang memproduksi dan mengambil pesan dari dan ke antrian. Perbedaannya, Kafka membagi antrian berdasarkan topik dan partisi.
-\par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}). Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
 \begin{figure}[H]
 	\centering\includegraphics[width=1\textwidth]{bab2/img/arsitektur-mq_kafka.jpg}
 	\caption{Arsitektur Antrian Pesan Apache Kafka}
 	\label{img:arsitektur-mq_kafka}
 \end{figure}
+\par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}). Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
 \par Untuk menjalankan Kafka, pengembang perlu menjalankan Apache Zookeeper terlebih dahulu. Apache Zookeeper atau Zookeeper merupakan aplikasi yang digunakan oleh Kafka untuk mengatur sinkronisasi \textit{producer}, \textit{consumer}, dengan topik dan partisi antrian.
 \par Pada tugas akhir ini, Kafka akan digunakan sebagai pengganti antrian pesan Push Notification Terpusat. Tabel perbandingan antrian pesan Push Notification Terpusat dengan Apache Kafka dapat dilihat pada Tabel \ref{t:perbandingan_kafka}.
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
@@ -142,10 +143,10 @@
 \par Java adalah bahasa pemrograman yang umum, konkuren, berbasis kelas, dan berbasis objek \cite{java-online}. Beberapa fitur Java yang akan digunakan dalam implementasi tugas akhir ini adalah sebagai berikut:
 \begin{enumerate}[listparindent=2.5em]
 	\item Lambda
-	\par Lambda adalah ekspresi untuk inisiasi interface fungsional (kelas interface dengan satu fungsi abstrak). Lambda digunakan untuk implementasi fungsi tanpa harus membuat kelas, yang dapat diperlakukan seperti objek.
+	\par Lambda adalah ekspresi untuk inisiasi \textit{interface} fungsional (kelas \textit{interface} dengan satu fungsi abstrak). Lambda digunakan untuk implementasi fungsi tanpa harus membuat kelas, yang dapat diperlakukan seperti objek.
 	\par Penulisan lambda diawali dengan parameter fungsi yang dibungkus dengan tanda kurung, karakter '->', dan implementasi fungsi yang dibungkus dengan kurung kurawal. Contoh implementasi lambda dapat dilihat pada Kode Sumber \ref{java:lambda}.
 	\item Anotasi
-	\par Anotasi adalah penanda untuk memberikan informasi tambahan tentang program. Beberapa contoh penggunaan anotasi adalah untuk dokumentasi program, memberi informasi \textit{error} ke compiler, serialisasi data, dan \textit{mapping} kelas dengan basis data. 
+	\par Anotasi adalah penanda untuk memberikan informasi tambahan tentang program. Beberapa contoh penggunaan anotasi adalah untuk dokumentasi program, memberi informasi \textit{error} ke \textit{compiler}, serialisasi data, dan \textit{mapping} kelas dengan basis data. 
 	\par Penulisan anotasi diawali dengan karakter '@', nama anotasi, dan pasangan nama-nilai yang dibungkus dengan tanda kurung. Contoh implementasi anotasi dapat dilihat pada Kode Sumber \ref{java:annotation}.
 \end{enumerate}
 \lstinputlisting[label=java:lambda, caption=Contoh Implementasi Lambda pada Java, language=Java] {bab2/java/lambda.java}
@@ -159,14 +160,14 @@
 	\par Pada kerangka kerja Spring, implementasi DI adalah dengan menambahkan objek yang dibutuhkan ke \textit{constructor} atau \textit{setter} kelas. Contoh implementasi dapat dilihat pada Kode Sumber \ref{java:di-constructor}.
 	\item \textit{Scheduling}
 	\par \textit{Scheduling} adalah proses untuk mendefinisikan kapan sebuah fungsi akan dijalankan secara periodik. \textit{Scheduling} digunakan untuk proses-proses yang dilakukan berulang kali.
-	\par Pada kerangka kerja Spring, implementasi \textit{scheduling} adalah dengan menambahkan anotasi @Scheduled disebuah fungsi, dengan parameter berapa lama waktu yang dibutuhkan untuk menjalankan fungsi tersebut kembali. Contoh implementasi dapat dilihat pada Kode Sumber \ref{java:scheduling}.
+	\par Pada kerangka kerja Spring, implementasi \textit{scheduling} adalah dengan menambahkan anotasi @Scheduled di sebuah fungsi, dengan parameter berapa lama waktu yang dibutuhkan untuk menjalankan fungsi tersebut kembali. Contoh implementasi dapat dilihat pada Kode Sumber \ref{java:scheduling}.
 \end{enumerate}
 \lstinputlisting[label=java:di-constructor, caption=Contoh Implementasi \textit{Dependency Injection} pada Spring, language=Java] {bab2/java/di-constructor.java}
 \lstinputlisting[label=java:scheduling, caption=Contoh Implementasi Scheduling pada Spring, language=Java] {bab2/java/scheduling.java}
 % DI, @Component, @Service, @Transactional, @Scheduled, @Cacheable, @KafkaListeners, Actuator
 
 \section{Actuator}
-\par Actuator berisi sekumpulan fitur tambahan untuk pemantauan dan pengaturan aplikasi yang sudah ditahap \textit{production}. Aplikasi bisa dipantau dan diatur dengan menggunakan \textit{endpoint} HTTP atau JMX \cite{actuator-online}.
+\par Actuator berisi sekumpulan fitur tambahan untuk pemantauan dan pengaturan aplikasi yang sudah di tahap \textit{production}. Aplikasi bisa dipantau dan diatur dengan menggunakan \textit{endpoint} HTTP atau JMX \cite{actuator-online}.
 \par Pada tugas akhir ini, Actuator merupakan pustaka yang digunakan dalam implementasi pemantauan Push Notification Terpusat. Fitur-fitur Actuator yang akan digunakan pada Push Notification Terpusat adalah sebagai berkut:
 \begin{enumerate}[listparindent=2.5em]
 	\item \textit{Metrics}
@@ -196,6 +197,7 @@
 	\end{figure}
 	\item \textit{Number}
 	\par Struktur \textit{number} terdiri dari urutan bilangan desimal tanpa nol didepan. Nilai dapat memiliki tanda - dan + didepan, dan bagian pecahan diawali dengan titik. Bilangan yang tidak bisa direpresentasikan sebagai bilangan desimal, seperti \textit{infinity} dan \textit{NaN}, tidak diizinkan. Alur struktur \textit{number} dapat dilihat pada Gambar \ref{img:json-number}.
+	\clearpage
 	\begin{figure}[H]
 		\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_number.jpg}
 		\caption{Struktur JSON \textit{Number}} \label{img:json-number}
@@ -213,6 +215,7 @@
 		\item \textbackslash t untuk karakter tabulasi (U+0009).
 	\end{enumerate}
     \par Alur struktur \textit{string} dapat dilihat pada Gambar \ref{img:json-string}.
+    \clearpage
     \begin{figure}[H]
     	\centering\includegraphics[width=0.9\textwidth]{bab2/img/json_string.jpg}
     	\caption{Struktur JSON \textit{String}} \label{img:json-string}
@@ -238,7 +241,6 @@
 \caption{Arsitektur Docker}
 \label{img:arsitektur-docker}
 \end{figure}
-\clearpage
 
 \section{Docker Compose}
 \par Docker Compose adalah alat untuk mendefinisikan dan menjalankan beberapa \textit{container} aplikasi menggunakan Docker. Dengan Docker Compose, pengembang bisa menggunakan file berbasis YAML untuk mengatur konfigurasi layanan aplikasi, dan menggunakannya untuk membuat dan menjalankan layanan aplikasi \cite{docker-compose-online}.
@@ -264,7 +266,7 @@
 	\item \textit{Mapping}
 	\par \textit{Mapping} adalah struktur yang digunakan untuk merepresentasikan kumpulan nilai dalam bentuk pasangan nama dan nilai. Contoh \textit{mapping} dapat dilihat pada Kode Sumber \ref{yaml:mapping}.
 \end{enumerate}
+\par Pada tugas akhir ini, YAML merupakan bahasa yang digunakan oleh Spring dan Docker Compose untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan aplikasi.
 \lstinputlisting[label=yaml:scalar, caption=Contoh Nilai \textit{Scalar} pada YAML] {bab2/yaml/yaml_scalar.yml}
 \lstinputlisting[label=yaml:sequence, caption=Contoh Nilai \textit{Sequence} pada YAML] {bab2/yaml/yaml_sequence.yml}
 \lstinputlisting[label=yaml:mapping, caption=Contoh Nilai \textit{Mapping} pada YAML] {bab2/yaml/yaml_mapping.yml}
-\par Pada tugas akhir ini, YAML merupakan bahasa yang digunakan oleh Spring dan Docker Compose untuk mendefinisikan konfigurasi yang digunakan untuk menjalankan aplikasi.

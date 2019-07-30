@@ -4,7 +4,7 @@
 \section{Lingkungan Implementasi}
 \par Lingkungan implementasi yang digunakan untuk mengembangkan tugas akhir ini memiliki spesifikasi perangkat keras dan lunak seperti ditampilkan pada Tabel \ref{tabel_spesifikasi_server}, Tabel \ref{tabel_spesifikasi_perangkat_android}, dan Tabel \ref{tabel_spesifikasi_perangkat_ios}.
 \begin{longtable}{|p{3cm}|p{6.5cm}|}
-	\caption{Spesifikasi Server} \label{tabel_spesifikasi_server} \\ \hline
+	\caption{Spesifikasi Server Push Notification Terpusat, Kafka, Zookeeper, dan SQL Server} \label{tabel_spesifikasi_server} \\ \hline
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endfirsthead
 	\hline
@@ -15,6 +15,11 @@
 	Memory & 12 GB \\ \hline
 	Sistem Operasi & Ubuntu 19.04 \\ \hline
 	IDE & Intellij IDEA \\ \hline
+	Aplikasi & \begin{enumerate}
+		\item Kafka versi 2.3.0
+		\item Zookeeper versi 3.5.5
+		\item SQLServer versi 2012
+	\end{enumerate} \\ \hline
 \end{longtable}
 \begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Spesifikasi Perangkat Android} \label{tabel_spesifikasi_perangkat_android} \\ \hline
@@ -26,6 +31,7 @@
 	CPU & Snapdragon 636 \\ \hline
 	Memory & 3 GB \\ \hline
 	Sistem Operasi & Android 9 (Pie) \\ \hline
+	Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
 \begin{longtable}{|p{3cm}|p{6.5cm}|}
 	\caption{Spesifikasi Perangkat iOS} \label{tabel_spesifikasi_perangkat_ios} \\ \hline
@@ -37,6 +43,7 @@
 	CPU & Apple A10 Fusion \\ \hline
 	Memory & 3 GB \\ \hline
 	Sistem Operasi & iOS 12 \\ \hline
+	Aplikasi & MyITS Wali versi 1.0.2 \\ \hline
 \end{longtable}
 
 \section{Implementasi Basis Data}
@@ -54,20 +61,20 @@
 %\clearpage
 
 \subsection{Implementasi Tabel Group}
-\par Tabel group digunakan untuk menyimpan data kelompok pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_group} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_group}.
+\par Tabel \textbf{group} digunakan untuk menyimpan data kelompok pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_group} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_group}.
 \lstinputlisting[label=code:pn_group, caption=Implementasi Tabel Group, language=SQL]{bab4/sql/pn_group.sql}
 \begin{figure}[H]
     \centering\includegraphics[width=0.45\textwidth]{bab4/figures/tabel_pn_group.jpg}
     \caption{Tabel Group (pn\_group)}
     \label{tabel_pn_group}
 \end{figure}
-\clearpage
 
 \subsection{Implementasi Tabel Group Member}
-\par Tabel group member digunakan untuk menyimpan data anggota kelompok pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_group_member} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_group_member}.
+\par Tabel \textbf{group member} digunakan untuk menyimpan data anggota kelompok pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_group_member} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_group_member}.
 \lstinputlisting[label=code:pn_group_member, caption=Implementasi Tabel Group Member, language=SQL]{bab4/sql/pn_group_member.sql}
+\clearpage
 \begin{figure}[H]
-    \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_group_member.jpg}
+    \centering\includegraphics[width=0.45\textwidth]{bab4/figures/tabel_pn_group_member.jpg}
     \caption{Tabel Group Member (pn\_group\_member)}
     \label{tabel_pn_group_member}
 \end{figure}
@@ -82,16 +89,17 @@
 %\end{figure}
 
 \subsection{Implementasi Tabel Certificate}
-\par Tabel certificate digunakan untuk menyimpan data sertifikat client untuk autentikasi ke layanan APNs dan FCM. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_certificate} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_certificate}.
+\par Tabel \textbf{certificate} digunakan untuk menyimpan data sertifikat \textit{client} untuk autentikasi ke layanan APNs dan FCM. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_certificate} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_certificate}.
 \lstinputlisting[label=code:pn_certificate, caption=Implementasi Tabel Certificate, language=SQL]{bab4/sql/pn_certificate.sql}
+\clearpage
 \begin{figure}[H]
-    \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_certificate.jpg}
+    \centering\includegraphics[width=0.45\textwidth]{bab4/figures/tabel_pn_certificate.jpg}
     \caption{Tabel Certificate (pn\_certificate)}
     \label{tabel_pn_certificate}
 \end{figure}
 
 \subsection{Implementasi Tabel Device}
-\par Tabel device digunakan untuk menyimpan data perangkat pengguna yang terdaftar di layanan APNs dan FCM. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:device_token} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_device_token}.
+\par Tabel \textbf{device} digunakan untuk menyimpan data perangkat pengguna yang terdaftar di layanan APNs dan FCM. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:device_token} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_device_token}.
 \lstinputlisting[label=code:device_token, caption=Implementasi Tabel Device, language=SQL]{bab4/sql/device_token.sql}
 \begin{figure}[H]
     \centering\includegraphics[width=0.45\textwidth]{bab4/figures/tabel_device_token.jpg}
@@ -100,7 +108,7 @@
 \end{figure}
 
 \subsection{Implementasi Tabel Batch}
-\par Tabel batch digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa pengguna atau kelompok pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_batch} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_batch}.
+\par Tabel \textbf{batch} digunakan untuk menyimpan data notifikasi yang akan dikirim ke beberapa pengguna atau kelompok pengguna. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_batch} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_batch}.
 \lstinputlisting[label=code:pn_batch, caption=Implementasi Tabel Batch, language=SQL]{bab4/sql/pn_batch.sql}
 \begin{figure}[H]
     \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_batch.jpg}
@@ -109,7 +117,7 @@
 \end{figure}
 
 \subsection{Implementasi Tabel Packet}
-\par Tabel packet digunakan untuk menyimpan data notifikasi yang akan dikirim ke satu perangkat. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_packet} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_packet}.
+\par Tabel \textbf{packet} digunakan untuk menyimpan data notifikasi yang akan dikirim ke satu perangkat. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_packet} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_packet}.
 \lstinputlisting[label=code:pn_packet, caption=Implementasi Tabel Packet, language=SQL]{bab4/sql/pn_packet.sql}
 \begin{figure}[H]
     \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_packet.jpg}
@@ -118,7 +126,7 @@
 \end{figure}
 
 \subsection{Implementasi Tabel User Destination}
-\par Tabel user destination digunakan untuk menyimpan data pengguna yang akan menerima notifikasi dari suatu batch. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_user_destination} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_user_destination}.
+\par Tabel \textbf{user destination} digunakan untuk menyimpan data pengguna yang akan menerima notifikasi dari suatu \textit{batch}. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_user_destination} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_user_destination}.
 \lstinputlisting[label=code:pn_user_destination, caption=Implementasi Tabel User Destination, language=SQL]{bab4/sql/pn_user_destination.sql}
 \begin{figure}[H]
     \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_user_destination.jpg}
@@ -127,7 +135,7 @@
 \end{figure}
 
 \subsection{Implementasi Tabel Group Destination}
-\par Tabel group destination digunakan untuk menyimpan data kelompok yang akan menerima notifikasi dari suatu batch. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_group_destination} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_group_destination}.
+\par Tabel \textbf{group destination} digunakan untuk menyimpan data kelompok yang akan menerima notifikasi dari suatu \textit{batch}. Kode yang digunakan untuk membuat tabel dapat dilihat pada Kode Sumber \ref{code:pn_group_destination} dan hasil tabel dapat dilihat pada Gambar \ref{tabel_pn_group_destination}.
 \lstinputlisting[label=code:pn_group_destination, caption=Implementasi Tabel Group Destination, language=SQL]{bab4/sql/pn_group_destination.sql}
 \begin{figure}[H]
     \centering\includegraphics[width=0.5\textwidth]{bab4/figures/tabel_pn_group_destination.jpg}
@@ -139,7 +147,7 @@
 \par Subbab ini membahas bagaimana mengimplementasikan antrian pesan dengan menggunakan Kafka, meliputi konfigurasi Kafka dan sistem lain yang dibutuhkan oleh Kafka.
 
 \subsection{Implementasi Zookeeper}
-\par Zookeeper dijalankan sebagai Docker Container dengan konfigurasi yang diatur oleh Docker Compose. Zookeeper dibutuhkan oleh Kafka untuk mengatur distribusi topik, consumer, dan sebagainya. Untuk keamanan, Zookeeper dilindungi dengan metode autentikasi SASL/Digest-MD5. Hasil implementasi dapat dilihat pada Kode Sumber \ref{yaml:zookeeper}.
+\par Zookeeper dijalankan sebagai Docker Container dengan konfigurasi yang diatur oleh Docker Compose. Zookeeper dibutuhkan oleh Kafka untuk mengatur distribusi topik, \textit{consumer}, dan sebagainya. Untuk keamanan, Zookeeper dilindungi dengan metode autentikasi SASL/Digest-MD5. Hasil implementasi dapat dilihat pada Kode Sumber \ref{yaml:zookeeper}.
 \lstinputlisting[label=yaml:zookeeper, caption=Konfigurasi Docker Compose untuk Zookeeper] {bab4/yaml/zookeeper.yml}
 
 \subsection{Implementasi Kafka}
@@ -154,7 +162,7 @@
 \lstinputlisting[label=code:pembuatan_packet, caption=Implementasi Java untuk Pembuatan \textit{Packet}, language=Java] {bab4/java/pembuatan_packet.java}
 
 \subsection{Implementasi Menambahkan Packet ke Antrian}
-\par Proses menambahkan \textit{packet} ke antrian dilakukan secara berkala oleh modul Scheduler setiap 30 detik dengan jeda awal 15 detik. Tujuan penambahan jeda awal adalah untuk mengoptimalkan penggunaan sumber daya \textit{server} dengan mencegah proses pembuatan dan mengantrikan packet berjalan bersamaan. \textit{Packet} yang siap dikirim akan diantrikan ke Kafka. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:menambahkan_packet_ke_antrian}.
+\par Proses menambahkan \textit{packet} ke antrian dilakukan secara berkala oleh modul Scheduler setiap 30 detik dengan jeda awal 15 detik. Tujuan penambahan jeda awal adalah untuk mengoptimalkan penggunaan sumber daya \textit{server} dengan mencegah proses pembuatan dan mengantrikan \textit{packet} berjalan bersamaan. \textit{Packet} yang siap dikirim akan diantrikan ke Kafka. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:menambahkan_packet_ke_antrian}.
 \lstinputlisting[label=code:menambahkan_packet_ke_antrian, caption=Implementasi Java untuk Menambahkan \textit{Packet} ke Antrian, language=Java] {bab4/java/menambahkan_packet_ke_antrian.java}
 
 \subsection{Implementasi Pengiriman Packet ke APNs}
@@ -162,7 +170,7 @@
 \lstinputlisting[label=code:pengiriman_packet_ke_apns, caption=Implementasi Java untuk Pengiriman \textit{Packet} ke APNs, language=Java] {bab4/java/pengiriman_packet_ke_apns.java}
 
 \subsection{Implementasi Pengiriman Packet ke FCM}
-\par Proses pengiriman packet dilakukan secara berkala oleh Sender FCM dengan cara menunggu Kafka untuk mengirimkan data packet yang berada diantrian topik "android" dan "web". Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pengiriman_packet_ke_fcm}.
+\par Proses pengiriman \textit{packet} dilakukan secara berkala oleh Sender FCM dengan cara menunggu Kafka untuk mengirimkan data \textit{packet} yang berada diantrian topik "android" dan "web". Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pengiriman_packet_ke_fcm}.
 \lstinputlisting[label=code:pengiriman_packet_ke_fcm, caption=Implementasi Java untuk Pengiriman \textit{Packet} ke FCM, language=Java] {bab4/java/pengiriman_packet_ke_fcm.java}
 
 \subsection{Implementasi Pemantauan Aplikasi}
