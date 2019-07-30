@@ -9,12 +9,12 @@
 	\caption{Arsitektur Push Notification Terpusat Saat Ini}
 	\label{img:arsitektur-pnt_lama}
 \end{figure}
-\par Modul Manajemen bertanggung jawab untuk menangani interaksi pengelola dengan sistem lewat halaman web, sementara modul Engine bertanggung jawab untuk mengirimkan notifikasi ke layanan FCM dan APNs.
+\par Modul Manajemen bertanggung jawab untuk menangani interaksi pengelola dengan sistem lewat halaman \textit{web}, sementara modul Engine bertanggung jawab untuk mengirimkan notifikasi ke layanan FCM dan APNs.
 \par Proses pengiriman notifikasi dengan menggunakan Push Notification Terpusat adalah sebagai berikut:
 \begin{enumerate}
 	\item Pengelola mengakses halaman kirim notifikasi pada modul manajemen.
 	\item Pengelola memasukkan data notifikasi, yaitu judul dan isi pesan, pengguna yang menerima notifikasi, dan aplikasi yang digunakan.
-	\item Manajemen menyimpan data yang dimasukan pengguna sebagai \textit{batch} ke basis data.
+	\item Manajemen menyimpan data yang dimasukan pengguna sebagai \textit{batch} di basis data.
 	\item Manajemen mengirimkan permintaan pengiriman \textit{batch} ke Engine.
 	\item Engine menambahkan \textit{batch} ke antrian.
 	\item Engine mengambil data \textit{batch} dari antrian, dan dikirim ke layanan FCM atau APNs.
@@ -33,7 +33,7 @@
 	RT004 & 2000 & 80,7\% & 8,889 \\ \hline
 	RT005 & 3000 & 63,8\% & 10,552 \\ \hline
 \end{longtable}
-\par Berdasarkan hasil uji, dapat dikatakan bahwa aplikasi yang dibangun sebelumnya hanya dapat menangani sekitar 1.500 pengguna. Jumlah ini dianggap belum dapat memenuhi kebutuhan, karena target pengguna aplikasi ini adalah mahasiswa, dosen, dan karyawan yang ada di ITS.
+\par Berdasarkan hasil uji, dapat dikatakan bahwa aplikasi yang dibangun sebelumnya hanya dapat menangani sekitar 1.900 pengguna. Jumlah ini dianggap belum dapat memenuhi kebutuhan, karena target pengguna aplikasi ini adalah mahasiswa, dosen, dan karyawan yang ada di ITS.
 \par Oleh karena itu, pengembangan yang dilakukan pada tugas akhir ini akan berfokus pada perbaikan modul Engine untuk meningkatkan keandalan pengiriman notifikasi.
 
 \section{Apple Push Notification Service}
@@ -45,7 +45,7 @@
 \end{figure}
 \par Untuk dapat menerima dan mengontrol \textit{remote notification}, aplikasi harus memenuhi syarat sebagai berikut.
 \begin{enumerate}
-	\item Mengaktifkan kemampuan push notifications dengan cara memindah \textit{switch} posisi \textit{off} menjadi \textit{on} pada jendela \textit{Project editor} > \textit{Target} > \textit{Capabilities}.
+	\item Mengaktifkan kemampuan \textit{push notification} dengan cara memindah \textit{switch} posisi \textit{off} menjadi \textit{on} pada jendela \textit{Project editor} > \textit{Target} > \textit{Capabilities}.
 	\item Melakukan registrasi aplikasi kepada APNs dengan cara menerima \textit{token} yang bersifat unik untuk tiap perangkat yang berbeda.
 	\item Sistem akan menampilkan perangkat ke aplikasi Anda dengan memanggil metode di delegasi aplikasi. Aplikasi mengirimkan \textit{token} perangkat ke penyedia yang terkait dengan aplikasi.
 \end{enumerate}
@@ -71,14 +71,14 @@
 \par Untuk mengimplementasikan FCM, pengembang harus mengikuti langkah-langkah berikut:
 \begin{enumerate}[listparindent=2.5em]
 	\item Menyiapkan FCM SDK
-	\par Menyiapkan Firebase dan FCM pada aplikasi sesuai petunjuk penyiapan untuk \textit{platform} (Android atau Web).
+	\par Menyiapkan Firebase dan FCM pada aplikasi sesuai petunjuk penyiapan untuk \textit{platform} (Android atau \textit{web}).
 	\item Mengembangkan aplikasi klien
 	\par Menambahkan penanganan pesan, logika langganan topik, atau fitur opsional lain ke aplikasi \textit{client}. Selama pengembangan, dapat dilakukan pengujian untuk mengirim pesan dengan mudah menggunakan \textit{Firebase Console}.
 	\item Mengembangkan \textit{server} aplikasi
 	\par Tentukan apakah pengembangan nantinya menggunakan Admin SDK atau salah satu \textit{server} \textit{protocol} untuk membuat logika pengiriman, yaitu logika untuk mengautentikasi, membuat permintaan pengiriman, menangani respons, dan sebagainya.
 \end{enumerate}
 \par Contoh program yang digunakan untuk mengirim notifikasi ke perangkat Android lewat layanan FCM dapat dilihat pada Kode Sumber \ref{json:contoh-fcm}. Hasil notifikasi yang diterima oleh pengguna dapat dilihat pada Gambar \ref{img:contoh-hasil-fcm}.
-\par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat Android dan Web akan dikirim ke layanan FCM oleh Push Notification Terpusat.
+\par Pada tugas akhir ini, \textit{push notification} yang menargetkan perangkat Android dan \textit{web} akan dikirim ke layanan FCM oleh Push Notification Terpusat.
 \lstinputlisting[label=json:contoh-fcm, caption={Contoh \textit{Push Notification} FCM}] {bab2/json/fcm.json}
 \begin{figure}[H]
 	\centering\includegraphics[width=0.8\textwidth]{bab2/img/fcm.jpg}
@@ -119,7 +119,7 @@
 	\caption{Arsitektur Antrian Pesan Apache Kafka}
 	\label{img:arsitektur-mq_kafka}
 \end{figure}
-\par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}), dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}). Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
+\par \textit{Producer} dan \textit{consumer} pada Kafka dapat memilih antrian mana yang ingin digunakan berdasarkan nama topik. Pengguna juga dapat mengkonfigurasi nilai partisi suatu antrian, pesan yang berada dalam satu partisi akan diolah secara terurut (\textit{synchronous}) dan yang berbeda partisi akan diolah secara bersamaan (\textit{asynchronous}). Gambar arsitektur antrian dapat dilihat pada Gambar \ref{img:arsitektur-mq_kafka} \cite{kafka-online}.
 \par Untuk menjalankan Kafka, pengembang perlu menjalankan Apache Zookeeper terlebih dahulu. Apache Zookeeper atau Zookeeper merupakan aplikasi yang digunakan oleh Kafka untuk mengatur sinkronisasi \textit{producer}, \textit{consumer}, dengan topik dan partisi antrian.
 \par Pada tugas akhir ini, Kafka akan digunakan sebagai pengganti antrian pesan Push Notification Terpusat. Tabel perbandingan antrian pesan Push Notification Terpusat dengan Apache Kafka dapat dilihat pada Tabel \ref{t:perbandingan_kafka}.
 \begin{longtable}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|}
@@ -173,7 +173,7 @@
 	\item \textit{Metrics}
 	\par Untuk menampilkan metrik yang berhubungan dengan sumber daya sistem yang terpakai, seperti CPU dan Memori.
 	\item \textit{Health}
-	\par Untuk menampilkan status kesehatan aplikasi, dan layanan-layanan yang berhubungan dengan aplikasi, seperti sistem basis data dan sistem antrian pesan.
+	\par Untuk menampilkan status kesehatan aplikasi, dan layanan yang berhubungan dengan aplikasi, seperti sistem basis data dan sistem antrian pesan.
 	\item \textit{Environment}
 	\par Untuk menampilkan konfigurasi Spring dan lingkungan sistem.
 	\item \textit{Logfile}

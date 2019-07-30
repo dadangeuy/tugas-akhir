@@ -12,7 +12,7 @@
 	\endhead
 	CPU & AMD Ryzen 5 2500U \\ \hline
 	CPU Core & 4 \\ \hline
-	Memory & 12 GB \\ \hline
+	Memori & 12 GB \\ \hline
 	Sistem Operasi & Ubuntu 19.04 \\ \hline
 	IDE & Intellij IDEA \\ \hline
 	Aplikasi & \begin{enumerate}
@@ -29,7 +29,7 @@
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endhead
 	CPU & Snapdragon 636 \\ \hline
-	Memory & 3 GB \\ \hline
+	Memori & 3 GB \\ \hline
 	Sistem Operasi & Android 9 (Pie) \\ \hline
 	Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
@@ -41,7 +41,7 @@
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endhead
 	CPU & Apple A10 Fusion \\ \hline
-	Memory & 3 GB \\ \hline
+	Memori & 3 GB \\ \hline
 	Sistem Operasi & iOS 12 \\ \hline
 	Aplikasi & MyITS Wali versi 1.0.2 \\ \hline
 \end{longtable}
@@ -156,6 +156,7 @@
 
 \section{Implementasi Proses dan Kasus Penggunaan}
 \par Subbab ini membahas implementasi proses yang dibuat berdasarkan hasil analisa dan rancangan yang telah dilakukan.
+\clearpage
 
 \subsection{Implementasi Pembuatan Packet}
 \par Proses pembuatan \textit{packet} dilakukan secara berkala oleh modul Scheduler setiap 30 detik. \textit{Packet} yang telah dibuat akan disimpan di sistem basis data. Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pembuatan_packet}.
@@ -166,11 +167,11 @@
 \lstinputlisting[label=code:menambahkan_packet_ke_antrian, caption=Implementasi Java untuk Menambahkan \textit{Packet} ke Antrian, language=Java] {bab4/java/menambahkan_packet_ke_antrian.java}
 
 \subsection{Implementasi Pengiriman Packet ke APNs}
-\par Proses pengiriman \textit{packet} ke APNs dilakukan secara berkala oleh Sender APN dengan cara menunggu Kafka untuk memberikan \textit{packet} yang berada diantrian topik "ios". Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pengiriman_packet_ke_apns}.
+\par Proses pengiriman \textit{packet} ke APNs dilakukan secara berkala oleh Sender APN dengan cara menunggu Kafka untuk memberikan \textit{packet} yang berada di antrian topik "ios". Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pengiriman_packet_ke_apns}.
 \lstinputlisting[label=code:pengiriman_packet_ke_apns, caption=Implementasi Java untuk Pengiriman \textit{Packet} ke APNs, language=Java] {bab4/java/pengiriman_packet_ke_apns.java}
 
 \subsection{Implementasi Pengiriman Packet ke FCM}
-\par Proses pengiriman \textit{packet} dilakukan secara berkala oleh Sender FCM dengan cara menunggu Kafka untuk mengirimkan data \textit{packet} yang berada diantrian topik "android" dan "web". Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pengiriman_packet_ke_fcm}.
+\par Proses pengiriman \textit{packet} dilakukan secara berkala oleh Sender FCM dengan cara menunggu Kafka untuk mengirimkan data \textit{packet} yang berada di antrian topik "android" dan "web". Hasil implementasi dapat dilihat pada Kode Sumber \ref{code:pengiriman_packet_ke_fcm}.
 \lstinputlisting[label=code:pengiriman_packet_ke_fcm, caption=Implementasi Java untuk Pengiriman \textit{Packet} ke FCM, language=Java] {bab4/java/pengiriman_packet_ke_fcm.java}
 
 \subsection{Implementasi Pemantauan Aplikasi}

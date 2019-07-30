@@ -2,7 +2,7 @@
 \par Bab ini membahas pengujian dan evaluasi terhadap perangkat lunak yang telah diimplementasikan dengan menggunakan metode \textit{blackbox}.
 
 \section{Lingkungan Pengujian}
-\par Lingkungan yang digunakan untuk menguji tugas akhir ini memiliki spesifikasi perangkat keras dan lunak yang ditunjukkan pada Tabel \ref{t:spec-server}, \ref{t:spec-android}, \ref{t:spec-android-2}, \ref{t:spec-android-3}, dan \ref{t:spec-ios}. Implementasi aplikasi android yang digunakan untuk pengujian dapat dilihat pada \nameref{lampiran:implementasi-android}.
+\par Lingkungan yang digunakan untuk menguji tugas akhir ini memiliki spesifikasi perangkat keras dan lunak yang ditunjukkan pada Tabel \ref{t:spec-server}, \ref{t:spec-server-basis-data}, \ref{t:spec-android}, \ref{t:spec-android-2}, \ref{t:spec-android-3}, dan \ref{t:spec-ios}. Implementasi aplikasi android yang digunakan untuk pengujian dapat dilihat pada \nameref{lampiran:implementasi-android}.
 \begin{longtable}{|p{3cm}|p{6cm}|}
 	\caption{Spesifikasi Server Push Notification Terpusat, Kafka, dan Zookeeper} \label{t:spec-server} \\ \hline
     \rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
@@ -12,7 +12,7 @@
     \endhead
     CPU & Intel(R) Xeon(R) CPU E5-2690 v4 \\ \hline
     CPU Core & 4 \\ \hline
-    Memory & 8 GB \\ \hline
+    Memori & 8 GB \\ \hline
     Sistem Operasi & Ubuntu 18.04 \\ \hline
     Aplikasi & \begin{enumerate}
     	\item Kafka versi 2.3.0
@@ -27,7 +27,7 @@
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endhead
 	CPU & \textit{shared} \\ \hline
-	Memory & \textit{shared} \\ \hline
+	Memori & \textit{shared} \\ \hline
 	Sistem Operasi & Windows Server 2012 \\ \hline
 	Aplikasi & SQLServer versi 2012 \\ \hline
 \end{longtable}
@@ -39,7 +39,7 @@
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endhead
     CPU & Snapdragon 636 \\ \hline
-    Memory & 3 GB \\ \hline
+    Memori & 3 GB \\ \hline
     Sistem Operasi & Android 9 (Pie) \\ \hline
     Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
@@ -51,7 +51,7 @@
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endhead
 	CPU & Snapdragon 625 \\ \hline
-	Memory & 4 GB \\ \hline
+	Memori & 4 GB \\ \hline
 	Sistem Operasi & Android 7 (Nougat) \\ \hline
 	Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
@@ -63,7 +63,7 @@
     \rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
     \endhead
     CPU & Snapdragon 616 \\ \hline
-    Memory & 3 GB \\ \hline
+    Memori & 3 GB \\ \hline
     Sistem Operasi & Android 5.1.1 (Lollipop) \\ \hline
     Aplikasi & Push Notification Dev versi 1.0 \\ \hline
 \end{longtable}
@@ -75,7 +75,7 @@
 	\rowcolor{lightgray} Komponen & Spesifikasi \\ \hline
 	\endhead
     CPU & Apple A10 Fusion \\ \hline
-    Memory & 3 GB \\ \hline
+    Memori & 3 GB \\ \hline
     Sistem Operasi & iOS 12 \\ \hline
     Aplikasi & MyITS Wali versi 1.0.2 \\ \hline
 \end{longtable}
@@ -183,8 +183,8 @@
 		\item Pengguna mengakses \textit{endpoint} /actuator/metrics/system.cpu.usage.
 		\item Sistem mengembalikan metrik penggunaan CPU dalam bentuk JSON.
 	\end{enumerate} \\ \hline
-	Hasil yang diharapkan & Aplikasi menampilkan metrik penggunaan Memori dan CPU \\ \hline
-	Hasil yang diperoleh & Aplikasi menampilkan metrik penggunaan Memori dan CPU \\ \hline
+	Hasil yang diharapkan & Aplikasi menampilkan metrik penggunaan memori dan CPU \\ \hline
+	Hasil yang diperoleh & Aplikasi menampilkan metrik penggunaan memori dan CPU \\ \hline
 	Hasil pengujian & Berhasil \\ \hline
 \end{longtable}
 

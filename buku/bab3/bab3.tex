@@ -11,7 +11,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \subsubsection{Keandalan Antrian Pesan}
 \par Proses pengolahan pesan yang ada di antrian saat ini dilakukan dengan membuat beberapa \textit{thread} yang bertindak sebagai \textit{producer} dan \textit{consumer} dari antrian pesan. \textit{Thread} tersebut akan menambahkan dan mengambil pesan dari antrian secara bersamaan.
 \par Berdasarkan analisis yang penulis lakukan, struktur data \textit{linked list} yang digunakan oleh antrian tidak mendukung perubahan data secara bersamaan \cite{linkedlist-online}.
-\par Konsekuensinya, bisa saja terjadi kasus \textit{race condition} yang menyebabkan pesan yang berada di antrian hilang tanpa ada \textit{error} yang terdeteksi oleh sistem. \textit{Race condition} adalah kondisi di mana beberapa proses mengakses sumber daya yang sama pada saat bersamaan, sehingga hasil akhir bergantung pada proses mana yang terakhir selesai dieksekusi. Potongan kode implementasi antrian pesan dapat dilihat pada \nameref{lampiran:queue_service}.
+\par Konsekuensinya, bisa saja terjadi kasus \textit{race condition} yang menyebabkan pesan yang berada di antrian hilang tanpa ada \textit{error} yang terdeteksi oleh sistem. \textit{Race condition} adalah kondisi saat beberapa proses mengakses sumber daya yang sama pada saat bersamaan, sehingga hasil akhir bergantung pada proses mana yang terakhir selesai dieksekusi. Potongan kode implementasi antrian pesan dapat dilihat pada \nameref{lampiran:queue_service}.
 \par Salah satu solusi yang dapat digunakan untuk menyelesaikan masalah ini adalah dengan menggunakan Kafka sebagai perantara pesan. Arsitektur Kafka membagi antrian pesan berdasarkan topik dan partisi. Antrian pesan yang berada di satu topik dan partisi akan diolah secara \textit{synchronous}, dan jika berbeda topik atau partisi akan diolah secara \textit{asynchronous}. Arsitektur Kafka menjamin setiap antrian pesan hanya akan digunakan oleh satu \textit{producer} dan \textit{consumer} pada satu waktu, sehingga kasus \textit{race condition} dapat dihindarkan.
 
 \subsubsection{Durabilitas Penyimpanan Antrian}
@@ -21,7 +21,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 
 \subsection{Deskripsi Umum Sistem}
 \par Push Notification Terpusat merupakan layanan yang digunakan untuk mengirim \textit{push notification} ke perangkat pengguna secara terjadwal dan \textit{asynchronous}. Alur pengiriman \textit{push notification} diawali dengan pengelola memasukkan data \textit{batch} (notifikasi yang dikirim ke beberapa pengguna atau kelompok pengguna) ke sistem basis data, lalu sistem akan mengolah data \textit{batch} menjadi \textit{packet-packet} (notifikasi yang dikirim ke satu perangkat pengguna). Setelah \textit{packet} dibuat, sistem akan mengirimkan \textit{packet} ke perangkat pengguna lewat layanan APNs dan FCM.
-\par Pada tugas akhir ini, modul Engine pada Push Notification Terpusat akan dipecah menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{packet}, Sender APN bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat Android dan Web lewat layanan FCM.
+\par Pada tugas akhir ini, modul Engine pada Push Notification Terpusat akan dipecah menjadi 3 modul, yaitu Scheduler, Sender APN, dan Sender FCM. Secara umum, Scheduler bertanggung jawab untuk menjadwalkan dan mengantrikan \textit{packet}, Sender APN bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat iOS lewat layanan APNs, dan Sender FCM bertanggung jawab untuk mengirimkan \textit{packet} yang diantrikan ke perangkat Android dan \textit{web} lewat layanan FCM.
 
 \subsection{Spesifikasi Kebutuhan Perangkat Lunak}
 \par Subbab ini membahas spesifikasi kebutuhan perangkat lunak dari hasil analisis yang telah dilakukan. Subbab ini berisi kebutuhan perangkat lunak yang direpresentasikan dalam bentuk kebutuhan fungsional, kebutuhan non fungsional, dan diagram kasus penggunaan.
@@ -39,7 +39,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     \endhead
     Scheduler & Membuat dan menjadwalkan pengiriman \textit{packet}. \\ \hline
     Sender APN & Mengirimkan \textit{packet} untuk perangkat iOS. \\ \hline
-    Sender FCM & Mengirimkan \textit{packet} notifikasi untuk perangkat Android dan Web. \\ \hline
+    Sender FCM & Mengirimkan \textit{packet} notifikasi untuk perangkat Android dan \textit{web}. \\ \hline
 \end{longtable}
 
 \subsubsection{Kebutuhan Fungsional}
@@ -54,7 +54,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     F-01 & Pembuatan \textit{Packet} & Jika terdapat \textit{batch} yang belum dan boleh dibuatkan \textit{packet}, sistem dapat membuatkan \textit{packet} dari \textit{batch} tersebut. \\ \hline
     F-02 & Menambahkan \textit{Packet} ke Antrian & Jika terdapat \textit{packet} yang belum dan sudah waktunya dikirim, sistem dapat menambahkan \textit{packet} tersebut ke antrian. \\ \hline
     F-03 & Pengiriman \textit{Packet} ke APNs & Jika terdapat \textit{packet} untuk perangkat iOS di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan APNs. \\ \hline
-    F-04 & Pengiriman \textit{Packet} ke FCM & Jika terdapat \textit{packet} untuk perangkat Android dan Web di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan FCM. \\ \hline
+    F-04 & Pengiriman \textit{Packet} ke FCM & Jika terdapat \textit{packet} untuk perangkat Android dan \textit{web} di antrian, sistem dapat mengambil \textit{packet} dari antrian dan mengirim \textit{packet} ke layanan FCM. \\ \hline
     F05 & Menampilkan Penggunaan Sumber Daya & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan penggunaan sumber daya (CPU dan Memori) yang digunakan dalam bentuk \textit{response} HTTP. \\ \hline
     F-06 & Menampilkan Status Kesehatan & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan kondisi layanan yang berhubungan dengan sistem (sistem basis data dan antrian pesan) dalam bentuk \textit{response} HTTP. \\ \hline
     F-07 & Menampilkan Konfigurasi & Jika mendapat \textit{request} HTTP tertentu, sistem dapat menampilkan konfigurasi sistem dalam bentuk \textit{response} HTTP. \\ \hline
@@ -171,18 +171,18 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 {-}
 
 \paragraph{Pengiriman Packet ke FCM}
-\par Pada kasus ini, Sender FCM akan menunggu sistem antrian pesan untuk mengirimkan \textit{packet} yang ada di antrian topik Android dan Web. Setelah \textit{packet} diterima, \textit{packet} akan dikirimkan ke layanan FCM. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_fcm}.
+\par Pada kasus ini, Sender FCM akan menunggu sistem antrian pesan untuk mengirimkan \textit{packet} yang ada di antrian topik Android dan \textit{web}. Setelah \textit{packet} diterima, \textit{packet} akan dikirimkan ke layanan FCM. Rincian skenario dapat dilihat pada Tabel \ref{t:skenario_pengiriman_packet_ke_fcm}.
 \tableUcDesc
 {t:skenario_pengiriman_packet_ke_fcm}
 {UC-04}
 {Pengiriman \textit{Packet} ke FCM}
 {Scheduler}
-{Terdapat \textit{packet} di antrian topik Android atau Web}
+{Terdapat \textit{packet} di antrian topik Android atau \textit{web}}
 {Packet diterima oleh layanan FCM}
 {
 \begin{enumerate}
-	\item Aktor menambahkan \textit{packet} ke antrian topik Android atau Web.
-    \item Sender FCM menerima packet dari antrian topik Android atau Web.
+	\item Aktor menambahkan \textit{packet} ke antrian topik Android atau \textit{web}.
+    \item Sender FCM menerima packet dari antrian topik Android atau \textit{web}.
     \item Sender FCM mengirimkan \textit{request push notification} ke layanan FCM berdasarkan data \textit{packet}.
     \item Sender FCM memperbarui data \textit{packet} berdasarkan \textit{response} dari FCM (berhasil atau gagal dan alasan gagal).
 \end{enumerate}
@@ -377,7 +377,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 %    Grant Types & varchar(80) & - \\ \hline
 %    Scope & varchar(4000) & - \\ \hline
 %    Sandbox & numeric(1) & - \\ \hline
-    Is Moderated & numeric(1) & Status moderasi dari aplikasi ITS (1/0) \\ \hline
+    Is Moderated & numeric(1) & Status moderasi dari aplikasi ITS (aktif(1) atau tidak aktif(0)) \\ \hline
 %    Visible & numeric(1) & - \\ \hline
 %    Category ID & int & - \\ \hline
 %    Auth Type ID & char(1) & - \\ \hline
@@ -399,7 +399,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     Certificate ID & uuid & ID tabel \\ \hline
     Client ID & uuid & ID Aplikasi yang menggunakan sertifikat \\ \hline
     Bundle ID & varchar(255) & Bundle ID untuk aplikasi iOS \\ \hline
-    Certificate Key & text & File sertifikat yang sudah diencode dengan base64 \\ \hline
+    Certificate Key & text & File sertifikat yang sudah di-\textit{encode} dengan base64 \\ \hline
     Type & char(1) & Tipe sertifikat (FCM(1) atau APNs(2)) \\ \hline
     Password & varchar(255) & Kata sandi untuk sertifikat iOS \\ \hline
 \end{longtable}
@@ -417,7 +417,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
     Client ID & uuid & ID aplikasi tempat perangkat terdaftar \\ \hline
     User ID & uuid & ID pengguna pemilik perangkat \\ \hline
     Device Token & varchar(255) & Token yang terdaftar di layanan APNs dan FCM \\ \hline
-    Device Type & char(1) & Jenis perangkat (Android(A), Web(W), atau iOS(I)) \\ \hline
+    Device Type & char(1) & Jenis perangkat (Android(A), \textit{web}(W), atau iOS(I)) \\ \hline
     Active & numeric(1) & Perangkat aktif atau tidak \\ \hline
     Registration Date & datetime & Waktu dan tanggal perangkat didaftarkan \\ \hline
     Invalidate Date & datetime & Waktu dan tanggal perangkat dihapus \\ \hline
@@ -515,7 +515,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 	\rowcolor{lightgray} Perangkat & Topik & Deskripsi \\ \hline
 	\endhead
 	Android & android & Berisi \textit{packet} untuk perangkat Android. \\ \hline
-	Web & web & Berisi \textit{packet} untuk perangkat Web. \\ \hline
+	\textit{web} & web & Berisi \textit{packet} untuk perangkat \textit{web}. \\ \hline
 	iOS & ios & Berisi \textit{packet} untuk perangkat iOS. \\ \hline
 \end{longtable}
 
@@ -534,7 +534,7 @@ Analisis yang dilakukan meliputi analisis permasalahan, deskripsi umum sistem, d
 \subsubsection{Proses Menambahkan Packet ke Antrian}
 \label{3:proses_menambahkan_packet_ke_antrian}
 \par Proses ini bertujuan untuk mengantrikan \textit{packet} yang sudah waktunya untuk dikirim.
-Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, Web, atau iOS). Proses pengantrian dapat dilihat di diagram alir pada Gambar \ref{flowchart_menambahkan_packet_ke_antrian}.
+Antrian \textit{packet} dibagi berdasarkan jenis perangkat penerima notifikasi (Android, \textit{web}, atau iOS). Proses pengantrian dapat dilihat di diagram alir pada Gambar \ref{flowchart_menambahkan_packet_ke_antrian}.
 \begin{figure}[H]
 	\centering\includegraphics[width=1\textwidth]{bab3/img/flowchart-menambahkan_packet_ke_antrian.jpg}
 	\caption{Diagram Alir Proses Menambahkan \textit{Packet} ke Antrian} \label{flowchart_menambahkan_packet_ke_antrian}
@@ -551,7 +551,7 @@ Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 
 \clearpage
 \subsubsection{Proses Pengiriman Packet ke FCM}
-\par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau Web lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada Gambar \ref{flowchart_pengiriman_packet_ke_fcm}.
+\par Proses ini bertujuan untuk mengirimkan \textit{packet} yang ada di antrian topik "android" dan "web" ke perangkat pengguna yang berbasis Android atau \textit{web} lewat layanan FCM. Proses pengiriman \textit{packet} dapat dilihat di diagram alir pada Gambar \ref{flowchart_pengiriman_packet_ke_fcm}.
 \begin{figure}[H]
 	\centering\includegraphics[width=0.8\textwidth]{bab3/img/flowchart-pengiriman_packet_ke_fcm.jpg}
 	\caption{Diagram Alir Proses Pengiriman \textit{Packet} ke FCM} \label{flowchart_pengiriman_packet_ke_fcm}
@@ -591,13 +591,13 @@ Gambar \ref{flowchart_pengiriman_packet_ke_apns}.
 
 \clearpage
 \subsection{Perancangan API Endpoint}
-\par Pemantauan Scheduler, Sender APN, dan Sender FCM menggunakan pustaka Actuator. Rincian API Endpoint yang digunakan untuk melihat hasil pemantauan dapat dilihat pada Tabel \ref{t:rancangan_api}.
+\par Pemantauan Scheduler, Sender APN, dan Sender FCM menggunakan pustaka Actuator. Rincian API \textit{Endpoint} yang digunakan untuk melihat hasil pemantauan dapat dilihat pada Tabel \ref{t:rancangan_api}.
 \begin{longtable}[H]{|p{0.5cm}|p{3.5cm}|p{1.2cm}|p{3.5cm}|}
-	\caption{Perancangan API Endpoint} \label{t:rancangan_api} \\ \hline
-	\rowcolor{lightgray} No & Endpoint URI & Method & Deskripsi \\ \hline
+	\caption{Perancangan API \textit{Endpoint}} \label{t:rancangan_api} \\ \hline
+	\rowcolor{lightgray} No & \textit{Endpoint} URI & \textit{Method} & Deskripsi \\ \hline
 	\endfirsthead
 	\hline
-	\rowcolor{lightgray} No & Endpoint URI & Method & Deskripsi \\ \hline
+	\rowcolor{lightgray} No & \textit{Endpoint} URI & \textit{Method} & Deskripsi \\ \hline
 	\endhead
 	1 & /actuator/metrics/\newline process.uptime & GET & Menampilkan lama waktu sistem berjalan \\ \hline
 	2 & /actuator/metrics/\newline process.cpu.usage & GET & Menampilkan penggunaan CPU oleh JVM \\ \hline
